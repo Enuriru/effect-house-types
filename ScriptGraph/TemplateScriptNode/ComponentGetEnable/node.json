@@ -6,7 +6,7 @@
 			"name": "Target",
 			"type": "Component",
 			"item_type": "",
-			"description": "Component",
+			"description": "The component to get status",
 			"displayType": "Component"
 		}
 	],
@@ -15,7 +15,7 @@
 			"name": "Value",
 			"type": "Bool",
 			"item_type": "",
-			"description": "Return true if it is enabled",
+			"description": "Return true if the component is enabled",
 			"displayType": "Boolean"
 		}
 	],
@@ -25,11 +25,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGGetEnable",
 	"category": "Utility",
-	"description": "Get the enable status of component",
+	"description": "Get the status of whether a component is enabled.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

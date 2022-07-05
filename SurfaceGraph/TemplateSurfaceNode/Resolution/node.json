@@ -1,0 +1,23 @@
+{
+  "name": "ResolutionNode",
+  "id": "c31c1e2e-a11b-41c5-921b-6c497a5ba7c8",
+  "inputs": [
+    {
+      "name": "Tex_in",
+      "type": "Texture",
+      "description": "change resolution of ouput texture"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Tex_out",
+      "type": "Texture",
+      "description": "output texture"
+    }
+  ],
+  "version": "1.0",
+  "category": "Function",
+  "description": "one pass",
+  "builtin": true,
+  "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

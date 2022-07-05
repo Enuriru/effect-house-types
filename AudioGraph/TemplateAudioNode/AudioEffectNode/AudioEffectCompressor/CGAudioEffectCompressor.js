@@ -18,38 +18,29 @@ class CGAudioEffectCompressor extends BaseNode {
     this.portIndexToParamName = {
       1: 'pre_gain',
       2: 'threshold',
-      3: 'knee',
-      4: 'ratio',
-      5: 'attack',
-      6: 'release',
-      7: 'pre_delay',
-      8: 'release_zone_1',
-      9: 'release_zone_2',
-      10: 'release_zone_3',
-      11: 'release_zone_4',
-      12: 'post_gain',
-      13: 'wet',
-      14: 'attenuation_dB_thd',
-      15: 'detector_avg_thd',
+      3: 'attack',
+      4: 'release',
+      5: 'pre_delay',
+      6: 'release_zone_1',
+      7: 'release_zone_2',
+      8: 'release_zone_3',
+      9: 'post_gain',
+      10: 'wet',
     };
     this.portRangeMap = {
       1: [0, 100],
       2: [-100, 0],
-      3: [0, 40],
-      4: [1, 20],
+      3: [0, 1],
+      4: [0, 1],
       5: [0, 1],
       6: [0, 1],
       7: [0, 1],
       8: [0, 1],
-      9: [0, 1],
+      9: [0, 100],
       10: [0, 1],
-      11: [0, 1],
-      12: [0, 100],
-      13: [0, 1],
-      14: [0, 2],
-      15: [0, 1],
     };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -74,6 +65,16 @@ class CGAudioEffectCompressor extends BaseNode {
   updateParamsValue() {
     if (!this.audioNode) {
       return;
+    }
+    const enable = this.inputs[11]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
     }
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {

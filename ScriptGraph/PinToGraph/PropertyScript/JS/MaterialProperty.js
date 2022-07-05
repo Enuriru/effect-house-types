@@ -19,6 +19,30 @@ class MaterialProperty {
           obj.setVec4(property, new Amaz.Vector4f(value.r, value.g, value.b, value.a));
         }
       }
+    } else if (valueType === 'Float') {
+      for (let obj of objects) {
+        if (obj) {
+          obj.setFloat(property, value);
+        }
+      }
+    } else if (valueType === 'Vec2') {
+      for (let obj of objects) {
+        if (obj) {
+          obj.setVec2(property, value);
+        }
+      }
+    } else if (valueType === 'Vec3') {
+      for (let obj of objects) {
+        if (obj) {
+          obj.setVec3(property, value);
+        }
+      }
+    } else if (valueType === 'Vec4') {
+      for (let obj of objects) {
+        if (obj) {
+          obj.setVec4(property, value);
+        }
+      }
     }
   }
 

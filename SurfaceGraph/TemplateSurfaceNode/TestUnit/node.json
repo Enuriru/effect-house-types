@@ -1,0 +1,23 @@
+{
+    "name": "TestUnitNode",
+    "id": "d23921b4-4796-4db0-a59a-52a964d6a69f",
+    "inputs": [
+        {
+            "name": "Tex_in",
+            "type": "Texture",
+            "description": "input texture"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Tex_out",
+            "type": "Texture",
+            "description": "output texture"
+        }
+    ],
+    "version": "1.0",
+    "category": "Builtin",
+    "description": "one pass",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

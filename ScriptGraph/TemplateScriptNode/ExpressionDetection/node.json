@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Which Face",
-			"description": "Face select including Face 0, Face 1, Face 2, Face 3, Face 4, Any; Track any face if choosing Any",
+			"description": "The face to detect the expression. Face 0 represents the first face appearing in the scene, Face 4 represents the fifth face appearing in the scene. Any represents any face in the scene.",
 			"type": "String",
 			"value_list": [
 				"Face 0",
@@ -28,7 +28,7 @@
 				"Sad",
 				"Neutral"
 			],
-			"description": "Expression to detect including Happy, Angry, Surprise, Disgust, Fear, Sad, Neutral",
+			"description": "The  facial expression to detect, including Happy, Angry, Surprise, Disgust, Fear, Sad, Neutral",
 			"displayType": "String"
 		}
 	],
@@ -56,7 +56,7 @@
 		},
 		{
 			"name": "None",
-			"description": "Keep executing the next node when the expression is not detected",
+			"description": "Keep executing the next node when no expression is on the certain face or the certain face is not in the scene",
 			"type": "Pulse",
 			"displayType": "Exec"
 		}
@@ -71,11 +71,11 @@
 	"graphAlgorithms": [
 		"expressionDetect"
 	],
-	"description": "Detect facial expression",
+	"description": "Detect facial expressions of people using this effect. To detect facial expression more than one face, assign a Face Expression Detection node to each face in the scene. It can detect up to five facial expressions.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

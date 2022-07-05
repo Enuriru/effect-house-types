@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value",
+			"description": "The value to round up",
 			"displayType": "Number"
 		}
 	],
@@ -18,7 +18,7 @@
 			"type": "Int",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The value rounded up",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 	"version": "1.0",
 	"luaFuncName": "CGCeil",
 	"category": "Math",
-	"description": "Calculate the ceiling of an input value",
+	"description": "Round up the input value. It is first integer greater or equal to the input.",
 	"supportedValueTypes": [
 		"Double"
 	],
@@ -36,5 +36,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

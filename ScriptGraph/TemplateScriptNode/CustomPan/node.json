@@ -1,0 +1,61 @@
+{
+	"name": "Custom Pan",
+	"id": "a7500d9a-7682-3f02-8e87-f69e3eac0000",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"description": "Execute the next node when dragging",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Local Offset",
+			"type": "Vector2f",
+			"description": "the distance between the start and end position of touch point",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Local Position",
+			"type": "Vector2f",
+			"description": "2D position of touch point",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Offset",
+			"type": "Vector2f",
+			"description": "",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Test",
+			"type": "String",
+			"description": "",
+			"displayType": "String"
+		}
+	],
+	"js": "CGCustomPan.js",
+	"scriptSupport": "all",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"nodeEvent": [
+		"onStart",
+		"onCallBack",
+		"onComponentRemoved",
+		"onEvent",
+		"onDestroy",
+		"beforeStart"
+	],
+	"category": "Event",
+	"subCategory": "Input",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
+	"description": "Use Screen Pan to capture drag gestures on screen.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

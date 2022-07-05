@@ -23,7 +23,8 @@ class CGSpectrumDisplay extends BaseNode {
     for (let i = 0; i < this.num_output_bin; i++) {
       this.frequency[i] = 0;
     }
-    for (let i = 1; i <= 8; i++) {
+    this.outputs[1] = 0;
+    for (let i = 2; i <= 9; i++) {
       this.outputs[i] = 0;
     }
   }
@@ -52,10 +53,16 @@ class CGSpectrumDisplay extends BaseNode {
           for (let i = 0; i < feature.values.size(); i++) {
             this.frequency[i] = feature.values.get(i);
           }
+          this.outputs[1] = this.avg(this.frequency);
           for (let i = 0; i < 512; i += 64) {
-            this.outputs[i / 64 + 1] = this.avg(this.frequency.slice(i, 64 + i));
+            this.outputs[i / 64 + 2] = this.avg(this.frequency.slice(i, 64 + i));
           }
         }
+      }
+    } else {
+      this.outputs[1] = 0;
+      for (let i = 2; i <= 9; i++) {
+        this.outputs[i] = 0;
       }
     }
   }
@@ -78,18 +85,13 @@ class CGSpectrumDisplay extends BaseNode {
     if (this.audioNode === null) {
       return;
     }
-    const outputType = this.inputs[2]();
-    if (true === outputType) {
-      this.audioNode.setStringParameter('output_type', 'db');
-    } else {
-      this.audioNode.setStringParameter('output_type', 'byte');
-    }
   }
 
   initAudio() {
     if (this.audioGraph) {
       this.audioNode = this.audioGraph.createAudioExtractorNode(this.audioNodeName, null);
       this.audioNode.setStringParameter('num_output_bin', this.num_output_bin);
+      this.audioNode.setStringParameter('output_type', 'byte');
     }
   }
 }

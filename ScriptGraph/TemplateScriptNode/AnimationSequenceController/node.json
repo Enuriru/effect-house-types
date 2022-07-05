@@ -4,37 +4,37 @@
 	"inputs": [
 		{
 			"name": "Play",
-			"description": "Play the Animation Sequence from the frame index set to play from",
+			"description": "Play the animation sequence from the index set in From",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Stop",
-			"description": "Stop the Animation Sequence and turn off the visual",
+			"description": "Stop the animation sequence playback and turn off the visibility of the current animation component",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Pause",
-			"description": "Pause the Animation Sequence without turning off the visual",
+			"description": "Pause the animation sequence playback without turning off the visibility",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Resume",
-			"description": "Resume the Animation Sequence from the current paused index",
+			"description": "Resume the animation sequence playback from the paused index",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Component",
-			"description": "The Animation Sequence component",
+			"description": "The animation sequence component",
 			"type": "AnimSeqComponent",
 			"displayType": "Animation Sequence"
 		},
 		{
 			"name": "From",
-			"description": "Frame index to play from, the first frame starting from 0",
+			"description": "The frame index of the animation sequence that will be played first",
 			"type": "Int",
 			"displayType": "Number",
 			"range": [
@@ -47,7 +47,7 @@
 		},
 		{
 			"name": "To",
-			"description": "Frame index to play to, maximum effective number is total frame count - 1",
+			"description": "The frame index of the animation sequence that will be played at last. The maximum available index is the total frame count minus 1.",
 			"type": "Int",
 			"displayType": "Number",
 			"range": [
@@ -60,7 +60,7 @@
 		},
 		{
 			"name": "Loop",
-			"description": "Loop times of the Animation Sequence to play",
+			"description": "The number of times of playing the animation sequence",
 			"type": "Int",
 			"displayType": "Number",
 			"default_value": "1",
@@ -74,7 +74,7 @@
 		},
 		{
 			"name": "Stop on Last",
-			"description": "It will stop on last frame when it ends if selected",
+			"description": "Select it to stop the animation sequence playback after playing the last frame",
 			"type": "Bool",
 			"displayType": "Bool"
 		}
@@ -88,37 +88,37 @@
 		},
 		{
 			"name": "On Play",
-			"description": "Execute the next node when the whole Animation Sequence plays the first frame",
+			"description": "Execute the next node when plays the first frame for the first time",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "On Each Play",
-			"description": "Execute the next node when the Animation Sequence plays its first frame every time during the loop",
+			"description": "Execute the next node when plays the first frame",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "On Each Stop",
-			"description": "Execute the next node when the Animation Sequence plays its last frame every time during the loop",
+			"description": "Execute the next node when plays the last frame",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "On Stop",
-			"description": "Execute the next node when the whole Animation Sequence stops",
+			"description": "Execute the next node when the animation sequence playback stops",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Current Frame",
-			"description": "The current frame index playing",
+			"description": "The current playback frame index",
 			"type": "Int",
 			"displayType": "Number"
 		}
 	],
 	"category": "Utility",
-	"TTEHVer": "1.0.0",
+	"TTEHVer": "1.0.1",
 	"productTypes": [
 		"TTEH"
 	],
@@ -129,5 +129,5 @@
 	],
 	"scriptSupport": "js",
 	"js": "CGAnimationSequenceController.js",
-	"description": "Control Animation Sequence and its relevant properties, note that the first animation frame index start from zero"
+	"description": "Control animation sequence playback and its relevant properties. The animation sequence frame index starts from zero. When From is equal to To, only one frame will be played. When the first frame index is greater than the last frame index, the animation sequence is played backward."
 }

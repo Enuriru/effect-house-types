@@ -1,0 +1,16 @@
+{
+  "name": "SurfacePinNode",
+  "id": "8e5c1d62-f26e-98d9-f15f-aa859e308ae3",
+  "inputs": [
+    {
+      "name": "Expose_in",
+      "type": "ExposeNode output",
+      "description": "pinNode"
+    }
+  ],
+  "version": "1.0",
+  "category": "Function",
+  "description": "one pass",
+  "builtin": true,
+  "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

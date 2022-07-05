@@ -41,11 +41,11 @@
 	"graphAlgorithms": [
 		"TouchGes"
 	],
-	"description": "Use Screen Pan to capture drag gestures on screen.",
+	"description": "Execute the next node when someone moves their finger on the device screen over 30 pixels.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

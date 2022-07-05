@@ -45,7 +45,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGSelect",
 	"category": "Logic",
-	"description": "Pass a value based on condition; (supporting Number, Boolean, Vec2, Vec3, Vec4, Color)",
+	"description": "Pass different values based on conditions. Supported type: Number, Boolean, Vec2, Vec3, Vec4, and Color.",
 	"supportedValueTypes": [
 		"Int",
 		"Double",
@@ -60,5 +60,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

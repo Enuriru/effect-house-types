@@ -26,7 +26,8 @@
 	],
 	"description": "Select the audio clip.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"containResource": true,
 	"builtinClass": "AudioGeneralNode",

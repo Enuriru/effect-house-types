@@ -1,7 +1,7 @@
 {
 	"name": "Split",
 	"id": "ab48e932-45f8-d528-500e-e052b59df6cf",
-	"description": "Unpack a vector to numbers; (supporting Vec2, Vec3, Vec4, Color)",
+	"description": "Unpack a vector or color data into separate output values. The number of outputs depends on the selected data type. Supported types: Vec2, Vec3, Vec4, and Color.",
 	"outputChangeFollowInput": [
 		{
 			"inputKey": "Vector2f",
@@ -83,7 +83,7 @@
 		{
 			"name": "Value",
 			"type": "Vector2f",
-			"description": "Value to split",
+			"description": "The input value to unpack.",
 			"dynamic": true,
 			"default_value": "0",
 			"item_type": "",
@@ -119,5 +119,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

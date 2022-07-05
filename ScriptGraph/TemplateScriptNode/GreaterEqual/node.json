@@ -36,7 +36,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGGreaterEqual",
 	"category": "Logic",
-	"description": "Check if one value is greater than or equal to another",
+	"description": "Compare two inputs and check if the first input is greater than or equal to the second input value.",
 	"supportedValueTypes": [
 		"Int",
 		"Double"
@@ -46,5 +46,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

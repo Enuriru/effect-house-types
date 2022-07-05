@@ -5,13 +5,13 @@
 		{
 			"name": "Enter",
 			"type": "Pulse",
-			"description": "Enter this execution",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Camera Texture",
 			"type": "RenderTexture",
-			"description": "Render texture of the camera to take a snapshot from",
+			"description": "The live video captured by the camera",
 			"displayType": "Render Texture"
 		}
 	],
@@ -27,7 +27,7 @@
 			"name": "Snapshot Texture",
 			"type": "Texture2D",
 			"item_type": "",
-			"description": "The output texture of the snapshot",
+			"description": "The snapshot captured from the live video",
 			"displayType": "Texture 2D"
 		}
 	],
@@ -41,9 +41,9 @@
 		"onCallBack",
 		"onDestroy"
 	],
-	"description": "Take a snapshot of a render texture from a camera",
+	"description": "Take a snapshot by camera.",
 	"productTypes": [
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

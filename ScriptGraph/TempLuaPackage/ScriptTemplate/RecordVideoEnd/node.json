@@ -1,23 +1,28 @@
 {
-    "name": "Record Video Ended",
-    "id": "87ffbd93-5404-3b8e-d7d2-58f525b21b37",
-    "inputs":
-    [
-    ],
-    "outputs": [
-        {
-            "name": "Next",
-            "type": "Pulse",
-            "item_type": "",
-            "description": "Trigger next node when receive record video end event"
-        }
-    ],
-    "lua": "CGRecordVideoEnd.lua",
-    "version": "1.0",
-    "amazingVersion": "10.40.0",
-    "luaFuncName": "CGRecordVideoEnd",
-    "category": "Event",
-    "nodeEvent": "onEvent",
-    "description": "When camera recording video ends",
-    "productTypes": ["InHouse", "Domestic", "TTEH"]
+	"name": "Video Record End",
+	"id": "87ffbd93-5404-3b8e-d7d2-58f525b21b37",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Exec next node",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGRecordVideoEnd.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGRecordVideoEnd",
+	"category": "Event",
+	"nodeEvent": "onEvent",
+	"description": "Execute when camera recording video ends",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
 }

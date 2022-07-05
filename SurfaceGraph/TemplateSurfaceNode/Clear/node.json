@@ -1,0 +1,23 @@
+{
+    "name": "ClearNode",
+    "id": "24b63719-da9e-4b71-a7ec-dc93d0d141a7",
+    "inputs": [
+        {
+            "name": "Tex_in",
+            "type": "Texture",
+            "description": "clear depth or color"
+        }
+    ],
+    "outputs": [
+      {
+        "name": "Tex_out",
+        "type": "Texture",
+        "description": "output texture"
+      }
+    ],
+    "version": "1.0",
+    "category": "Function",
+    "description": "import with the final results",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

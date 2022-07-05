@@ -11,6 +11,8 @@ class EnableStateController {
   constructor() {
     this.name = 'EnableStateController';
 
+    this.comp = null;
+
     // variables from property map
     this.frontCamera = true;
     this.backCamera = true;
@@ -31,6 +33,9 @@ class EnableStateController {
   }
 
   onStart() {
+    // console.warn(`${this.name}: `, 'onStart'); // Debugging purpose, TODO: remove later
+    this.comp = this.getComponent(this.script.className);
+
     const camFacing = Amaz.Platform.getCameraToward();
     if (camFacing === 0) {
       this._onChangeToFrontCamera();
@@ -42,24 +47,42 @@ class EnableStateController {
   }
 
   onDestroy() {
-    //console.warn(`${this.name}: `, 'onDestroy'); // Debugging purpose, TODO: remove later
+    // console.warn(`${this.name}: `, 'onDestroy'); // Debugging purpose, TODO: remove later
     this._restoreVisual(); // Revert to default values
   }
 
   onEnable() {
-    //console.warn(`${this.name}: `, 'onEnable'); // Debugging purpose, TODO: remove later
+    // console.warn(`${this.name}: `, 'onEnable'); // Debugging purpose, TODO: remove later
+    this.comp = this.getComponent(this.script.className);
+    this._processConditionChanges();
   }
 
   onDisable() {
-    //console.warn(`${this.name}: `, 'onDisable'); // Debugging purpose, TODO: remove later
+    // console.warn(`${this.name}: `, 'onDisable'); // Debugging purpose, TODO: remove later
   }
 
-  onUpdate(deltaTime) {
+  onLateUpdate(deltaTime) {
+    // console.warn(`RLTest ${this.name}: `, 'onLateUpdate'); // Debugging purpose, TODO: remove later
+
     // // TODO: Remove debug/ex-impl code in the near future
     // this._loadProperties();
     // this._logProperties();
 
-    this._monitorFactorChanges();
+    // For a consistent correctness, we need to check camera facing all the time
+    // because onEvent doesn't seem to be called currently when entity visibility is off
+    const camFacing = Amaz.Platform.getCameraToward();
+    if (camFacing === 0) {
+      this._onChangeToFrontCamera();
+    } else if (camFacing === 1) {
+      this._onChangeToBackCamera();
+    }
+
+    // For a consistent correctness, we need to check camera recording status all the time
+    // because onEvent doesn't seem to be called currently when entity visibility is off
+    const clientState = Amaz.AmazingManager.getSingleton('AppInfo').clientState;
+    this._isRecording = isOnMobile() && clientState === 'record';
+
+    this._processConditionChanges();
   }
 
   onEvent(event) {
@@ -145,7 +168,7 @@ class EnableStateController {
   _hideVisual() {
     for (let i = 0; i < this.entity.components.size(); i++) {
       const comp = this.entity.components.get(i);
-      if (comp.guid.toString() === this.getComponent(this.script.className).guid.toString()) {
+      if (comp.guid.toString() === this.comp.guid.toString()) {
         continue; // Skip self
       }
       if (this._canBeDisabledByStateController(comp)) {
@@ -161,7 +184,7 @@ class EnableStateController {
   _restoreVisual() {
     for (let i = 0; i < this.entity.components.size(); i++) {
       const comp = this.entity.components.get(i);
-      if (comp.guid.toString() === this.getComponent(this.script.className).guid.toString()) {
+      if (comp.guid.toString() === this.comp.guid.toString()) {
         continue; // Skip self
       }
       if (this._canBeDisabledByStateController(comp)) {
@@ -175,7 +198,7 @@ class EnableStateController {
     }
   }
 
-  _monitorFactorChanges() {
+  _processConditionChanges() {
     if (
       this._isUsingFrontCam !== this.lastValues._isUsingFrontCam ||
       this._isRecording !== this.lastValues._isRecording ||

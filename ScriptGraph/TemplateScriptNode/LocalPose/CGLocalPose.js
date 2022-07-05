@@ -7,7 +7,7 @@ class CGLocalPose extends BaseNode {
   }
 
   getOutput(index) {
-    if (this.inputs[0] === undefined || this.inputs[0] === null) {
+    if (this.inputs[0]() === undefined || this.inputs[0]() === null) {
       return new Amaz.Vector3f(0, 0, 0);
     }
     const transform = this.inputs[0]();

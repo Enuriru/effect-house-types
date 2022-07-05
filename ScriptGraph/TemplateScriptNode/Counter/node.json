@@ -4,39 +4,39 @@
 	"inputs": [
 		{
 			"name": "Increase",
-			"description": "Add step value to the count sum",
+			"description": "Add value to the origin number",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Decrease",
-			"description": "Deduct step value from the count sum",
+			"description": "Deduct value from the origin number",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Reset",
-			"description": "Reset the counter to its \"from\" value",
+			"description": "Reset the counter to the From value",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Step",
-			"description": "Step value to increase or decrease",
+			"description": "The value to increase or decrease",
 			"type": "Double",
 			"default_value": "1",
 			"displayType": "Number"
 		},
 		{
 			"name": "From",
-			"description": "Start value of the count",
+			"description": "The origin value to increase or decrease",
 			"default_value": "0",
 			"type": "Double",
 			"displayType": "Number"
 		},
 		{
 			"name": "To",
-			"description": "End value of the count",
+			"description": "The end value of the count",
 			"type": "Double",
 			"default_value": "10",
 			"displayType": "Number"
@@ -51,14 +51,14 @@
 		},
 		{
 			"name": "Current",
-			"description": "Current output number",
+			"description": "The current output number after increasing or decreasing",
 			"type": "Double",
 			"displayType": "Number"
 		}
 	],
 	"category": "Utility",
-	"TTEHVer": "1.0.0",
-	"description": "Increase or decrease count by set step when executes ",
+	"TTEHVer": "1.0.1",
+	"description": "Increase or decrease a certain value to/from an origin number.",
 	"productTypes": [
 		"TTEH"
 	],

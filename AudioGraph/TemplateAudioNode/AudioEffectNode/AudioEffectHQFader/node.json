@@ -68,5 +68,6 @@
   "productTypes": ["TTEH"],
   "nodeEvent": ["beforeStart", "onUpdate"],
   "builtinClass": "AudioEffectNode",
-  "audioNodeName": "hq_fader"
+  "audioNodeName": "hq_fader",
+  "SDKVersion": "10.9.0"
 }

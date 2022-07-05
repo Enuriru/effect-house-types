@@ -8,7 +8,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value A",
+			"description": "The dividend",
 			"displayType": "Number"
 		},
 		{
@@ -17,7 +17,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "1",
-			"description": "Input value B",
+			"description": "The divisor",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The quotient of A divided by B",
 			"displayType": "Number"
 		}
 	],
@@ -37,7 +37,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGDivide",
 	"category": "Math",
-	"description": "Divide one value by another (supporting Number, Vec2, Vec3, Vec4)",
+	"description": "Divide one value (A) by another (B). Supported types: Number, Vec2, Vec3, and Vec4.",
 	"supportedValueTypes": [
 		"Double",
 		"Int",
@@ -50,5 +50,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

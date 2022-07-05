@@ -1,0 +1,18 @@
+{
+    "name": "ExposeNode",
+    "id": "abbdd523-5707-4b58-8d1b-84bc9a102347",
+    "inputs": [
+        {
+            "name": "Uniform_in",
+            "type": "Uniform",
+            "description": "Expose uniform"
+        }
+    ],
+    "outputs": [
+    ],
+    "version": "1.0",
+    "category": "Function",
+    "description": "expose uniform",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

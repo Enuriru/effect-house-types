@@ -19,8 +19,12 @@ class CGAudioEffectMegaphone extends BaseNode {
       1: 'lpf_fc',
       2: 'hpf_fc',
     };
-    this.portRangeMap = {};
+    this.portRangeMap = {
+      1: [20, 20000],
+      2: [20, 20000],
+    };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -45,6 +49,16 @@ class CGAudioEffectMegaphone extends BaseNode {
   updateParamsValue() {
     if (!this.audioNode) {
       return;
+    }
+    const enable = this.inputs[3]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
     }
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {

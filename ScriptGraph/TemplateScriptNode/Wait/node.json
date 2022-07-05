@@ -6,7 +6,7 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
@@ -14,7 +14,7 @@
 			"type": "Double",
 			"item_type": "",
 			"default_value": "0",
-			"description": "The number of seconds to wait",
+			"description": "The number of seconds to wait before executing the next node",
 			"displayType": "Number"
 		}
 	],
@@ -33,12 +33,12 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGWait",
 	"category": "Time",
-	"description": "Delay a value by some time",
+	"description": "Take an execution after certain seconds.",
 	"nodeEvent": "onUpdate",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

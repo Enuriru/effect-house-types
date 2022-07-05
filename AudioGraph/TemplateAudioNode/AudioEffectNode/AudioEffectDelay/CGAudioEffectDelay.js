@@ -28,6 +28,7 @@ class CGAudioEffectDelay extends BaseNode {
       4: [0, 1],
     };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -53,6 +54,17 @@ class CGAudioEffectDelay extends BaseNode {
     if (!this.audioNode) {
       return;
     }
+    const enable = this.inputs[5]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
+    }
+
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {
       const oriValue = this.params[keys[i]];

@@ -1,0 +1,17 @@
+{
+    "name": "ExportNode",
+    "id": "d638dce7-a845-438a-b3ef-78bab10c10f1",
+    "inputs": [
+        {
+            "name": "Tex_in",
+            "type": "Texture",
+            "description": "rendering results"
+        }
+    ],
+    "outputs": [],
+    "version": "1.0",
+    "category": "Function",
+    "description": "import with the final results",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

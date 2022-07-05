@@ -1,14 +1,14 @@
 {
-	"Shader":"Occluder",
+	"Shader": "Occluder",
+    "RenderQueue": 1000,
 	"Pass":
 	[
 		{
-			"Ausl":"a1",
-			"DepthWriteEnable":"On",
-			"BlendMode" : "Normal",
-			"ColorWrite":"Off",
-			"ZTest":"LessEqual",
-			"BlendEnable":"Off"
+			"Ausl": "a1",
+			"DepthWriteEnable": "On",
+			"BlendMode": "Normal",
+			"ColorWrite": "Off",
+			"ZTest": "LessEqual"
 		}
 	]
 }

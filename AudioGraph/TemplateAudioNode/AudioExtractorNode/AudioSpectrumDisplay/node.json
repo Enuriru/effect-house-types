@@ -1,70 +1,98 @@
 {
-  "name": "Spectrum Display",
-  "id": "6b7ef62c-07d1-fcf5-bbde-3d84ce9b63e8",
-  "description": "Track the estimated signal power of an audio source for 8 frequency bands",
-  "inputs": [
-    {
-      "name": "Audio In",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "Enabled",
-      "type": "Bool",
-      "default_value": "true"
-    },
-    {
-      "name": "db or byte",
-      "type": "Bool",
-      "default_value": "true"
-    }
-  ],
-  "outputs": [
-    {
-      "name": "Audio Out",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "band1",
-      "type": "Double"
-    },
-    {
-      "name": "band2",
-      "type": "Double"
-    },
-    {
-      "name": "band3",
-      "type": "Double"
-    },
-    {
-      "name": "band4",
-      "type": "Double"
-    },
-    {
-      "name": "band5",
-      "type": "Double"
-    },
-    {
-      "name": "band6",
-      "type": "Double"
-    },
-    {
-      "name": "band7",
-      "type": "Double"
-    },
-    {
-      "name": "band8",
-      "type": "Double"
-    }
-  ],
-
-
-  "category": "Audio",
-  "productTypes": ["TTEH"],
-  "nodeEvent": ["onUpdate"],
-  "scriptSupport": "js",
-  "js": "CGSpectrumDisplay.js",
-  "version": "1.0",
-  "amazingVersion": "10.40.0",
-  "builtinClass": "AudioExtractorNode",
-  "audioNodeName": "spectrum_display"
+	"name": "Energy Detection",
+	"id": "6b7ef62c-07d1-fcf5-bbde-3d84ce9b63e8",
+	"description": "Detect the amplitude of each frequency band, sort from low frequency to high frequency, and divide the detected frequency band into 8 output ranges.",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "The audio stream you want to detect the energy",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": true,
+			"description": "Enable this node",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Average",
+			"type": "Double",
+			"description": "The average value",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 1",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 2",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 3",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 4",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 5",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 6",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 7",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Band 8",
+			"type": "Double",
+			"description": "Energy detection result in this frequency range",
+			"displayType": "Number"
+		}
+	],
+	"category": "Audio",
+	"productTypes": [
+		"TTEH",
+		"InUse"
+	],
+	"nodeEvent": [
+		"onUpdate"
+	],
+	"scriptSupport": "js",
+	"js": "CGSpectrumDisplay.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"builtinClass": "AudioExtractorNode",
+	"audioNodeName": "spectrum_display",
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.5.0"
 }

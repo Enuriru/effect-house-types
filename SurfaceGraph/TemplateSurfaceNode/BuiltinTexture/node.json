@@ -1,0 +1,17 @@
+{
+    "name": "BuiltinTextureNode",
+    "id": "da151c89-adc8-4a09-8a5d-c61a88a348bb",
+    "inputs": [],
+    "outputs": [
+        {
+            "name": "Tex_out",
+            "type": "Texture",
+            "description": "Builtin texture export"
+        }
+    ],
+    "version": "1.0",
+    "category": "Function",
+    "description": "export with builtin textures",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

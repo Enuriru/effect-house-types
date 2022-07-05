@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value",
+			"description": "The input value",
 			"displayType": "Number"
 		},
 		{
@@ -36,7 +36,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The value clamped between minimum and maximum",
 			"displayType": "Number"
 		}
 	],
@@ -45,7 +45,7 @@
 	"version": "1.0",
 	"luaFuncName": "CGClamp",
 	"category": "Math",
-	"description": "Calculate the clamping of an input value",
+	"description": "Limit a value within a minimum and maximum range.",
 	"supportedValueTypes": [
 		"Double",
 		"Int"
@@ -55,5 +55,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

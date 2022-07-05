@@ -70,7 +70,7 @@ class AudioGraphAssembler {
     if (node.audioNodeName && node.audioNodeName !== '') {
       node.audioGraph = this._audioGraph;
       if (node.audioNodeName === 'SinkNode') {
-        node.audioNode = this.sinkNode();
+        node.sinkNode = this.sinkNode();
       }
       node.initAudio && node.initAudio(sys);
     }

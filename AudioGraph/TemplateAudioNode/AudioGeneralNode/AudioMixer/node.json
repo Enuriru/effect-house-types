@@ -5,27 +5,41 @@
 		{
 			"name": "Audio 1",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The first audio stream used for mix",
 			"displayType": "Audio Stream"
 		},
 		{
 			"name": "Volume 1",
 			"type": "Double",
-			"default_value": "1.0",
-			"description": "Input value",
+			"default_value": 100,
+			"range": [
+				[
+					0,
+					100,
+					1
+				]
+			],
+			"description": "The volume of Audio 1. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Audio 2",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The other audio stream used for mix",
 			"displayType": "Audio Stream"
 		},
 		{
 			"name": "Volume2",
 			"type": "Double",
-			"default_value": "1.0",
-			"description": "Input value",
+			"default_value": 100,
+			"range": [
+				[
+					0,
+					100,
+					1
+				]
+			],
+			"description": "The volume of Audio 2. Value range",
 			"displayType": "Number"
 		}
 	],
@@ -40,9 +54,10 @@
 	"scriptSupport": "js",
 	"js": "CGAudioMixer.js",
 	"category": "Audio",
-	"description": "Mix the volume for two audio streams",
+	"description": "Mix two audio streams into one.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",

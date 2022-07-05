@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Detect",
-			"description": "Face select includes Face 0, Face 1, Face 2, Face 3, Face 4, Any; Track any face if choosing Any",
+			"description": "The face to detect the movement. Face 0 represents the first face appearing in the scene, Face 4 represents the fifth face appearing in the scene. Any represents any face in the scene.",
 			"type": "String",
 			"value_list": [
 				"Face 0",
@@ -18,7 +18,7 @@
 		},
 		{
 			"name": "Facial Movement",
-			"description": "Facial movement including Eye Blink Left, Eye Blink Right, Eye Blink Both, Eye Blink Either, Mouth Open, Mouth Pout, Eyebrow Wiggle",
+			"description": "The movement on face, including Eye Blink Left, Eye Blink Right, Eye Blink Both, Eye Blink Either, Mouth Open, Mouth Pout, Eyebrow Wiggle",
 			"type": "String",
 			"value_list": [
 				"Eye Blink Left",
@@ -35,25 +35,25 @@
 	"outputs": [
 		{
 			"name": "Begin",
-			"description": "Execute the next node when the facial movement begins",
+			"description": "Execute the next node when the movement starts",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Stay",
-			"description": "Keep executing the next node when the facial movement stays, note that even with movements such as blink, the fastest eye blink will still have one frame as \"stay\"",
+			"description": "Keep executing the next node when the movement is in progress",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "End",
-			"description": "Execute the next node when the facial movement ends",
+			"description": "Execute the next node when the movement ends",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "None",
-			"description": "Keep executing the next node when the facial movement is not detected",
+			"description": "Keep executing the next node when no movement is on the certain face or the certain face is not detected",
 			"type": "Pulse",
 			"displayType": "Exec"
 		}
@@ -61,8 +61,8 @@
 	"js": "CGFaceMovementDetection.js",
 	"nodeEvent": "onUpdate",
 	"category": "Head & Face",
-	"TTEHVer": "1.0.0",
-	"description": "Detect facial movement; Note that each facial movement has four states, \"begin\", \"stay\", \"end\", and \"none\", and for movement such as eye blink, even the fastest blink will still have one frame \"stay\" state.",
+	"TTEHVer": "1.0.1",
+	"description": "Detect the movement on face. Each movement has four states: Begin, Stay, End, and None. For movement such as eye blink, even the fastest blink has one frame \"Stay\" state. To detect facial movement more than one face, assign a Face Movement Detection node to each face in the scene. It can detect up to five facial movements.",
 	"productTypes": [
 		"TTEH"
 	],

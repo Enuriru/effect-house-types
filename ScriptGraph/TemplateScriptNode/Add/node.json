@@ -8,7 +8,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value A",
+			"description": "The first value to be added",
 			"displayType": "Number"
 		},
 		{
@@ -17,7 +17,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value B",
+			"description": "The second value to be added",
 			"displayType": "Number"
 		}
 	],
@@ -27,17 +27,15 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The sum of the two input values",
 			"displayType": "Number"
 		}
 	],
 	"js": "CGAdd.js",
-	"lua": "CGAdd.lua",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGAdd",
 	"category": "Math",
-	"description": "Add two input values; (supporting Number, Vec2, Vec3, Vec4, Color)",
+	"description": "Calculate the sum of two inputs. You can click \"+\" to add more inputs. Supported types: Number, Vec2, Vec3, Vec4, and Color.",
 	"supportedValueTypes": [
 		"Double",
 		"Int",
@@ -45,10 +43,15 @@
 		"Vector3f",
 		"Vector4f"
 	],
+	"addableInput": {
+		"index": 1,
+		"baseName": "",
+		"increaseStartIndex": "C"
+	},
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

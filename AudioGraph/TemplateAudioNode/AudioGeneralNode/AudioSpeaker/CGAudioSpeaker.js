@@ -19,6 +19,26 @@ class CGAudioSpeaker extends BaseNode {
   setInput(index, func) {
     this.inputs[index] = func;
   }
+
+  onUpdate(sys, dt) {
+    const curVol = this.inputs[1]() / 100.0;
+    if (this.audioGainNode) {
+      this.audioGainNode.gain = curVol;
+    }
+  }
+
+  initAudio() {
+    if (this.audioGraph) {
+      this.audioGainNode = this.audioGraph.createAudioNode('GainNode', null);
+      this.audioGainNode.gain = 1;
+      this.audioNode = this.audioGainNode;
+      if (this.sinkNode) {
+        this.audioGainNode.connect(this.sinkNode);
+      } else {
+        console.error('Speaker Node connection error: can not connection to sinknode');
+      }
+    }
+  }
 }
 
 exports.CGAudioSpeaker = CGAudioSpeaker;

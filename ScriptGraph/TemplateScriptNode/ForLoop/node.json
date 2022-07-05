@@ -6,7 +6,7 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
@@ -14,7 +14,7 @@
 			"type": "Int",
 			"item_type": "",
 			"default_value": "0",
-			"description": "The starting index",
+			"description": "The first index of the loop",
 			"displayType": "Number"
 		},
 		{
@@ -22,7 +22,7 @@
 			"type": "Int",
 			"item_type": "",
 			"default_value": "5",
-			"description": "The last index",
+			"description": "The last index of the loop",
 			"displayType": "Number"
 		},
 		{
@@ -30,7 +30,7 @@
 			"type": "Int",
 			"item_type": "",
 			"default_value": "1",
-			"description": "Increase step of each loop",
+			"description": "The incremental value for each iteration",
 			"displayType": "Number"
 		}
 	],
@@ -39,21 +39,21 @@
 			"name": "Exit",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the loop is finished",
+			"description": "Execute the next node when the loop has completed",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Body",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node every time the step number increases by one",
+			"description": "Execute the next node in each iteration",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Index",
 			"type": "Int",
 			"item_type": "",
-			"description": "Current index of loop",
+			"description": "The current index of the loop",
 			"displayType": "Number"
 		}
 	],
@@ -63,11 +63,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGForLoop",
 	"category": "Control",
-	"description": "For loop control, if first < last, the body will keep executing within single frame, when it's done, it will execute the complete output",
+	"description": "Execute a loop in one frame for each index between the first index and the last index.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

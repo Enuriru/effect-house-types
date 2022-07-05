@@ -7,7 +7,7 @@
 			"type": "Double",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Input Rad value",
+			"description": "The input radian value",
 			"displayType": "Number"
 		}
 	],
@@ -16,7 +16,7 @@
 			"name": "Deg",
 			"type": "Double",
 			"item_type": "",
-			"description": "Output Deg value",
+			"description": "The converted degree value",
 			"displayType": "Number"
 		}
 	],
@@ -26,11 +26,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGRadianToDeg",
 	"category": "Math",
-	"description": "Convert from radian to degree",
+	"description": "Convert radian to degree.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

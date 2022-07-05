@@ -1,39 +1,71 @@
 {
-  "name": "Climiter",
-  "id": "e1bf28fa-bb45-d096-7e9b-30290ee8bba2",
-  "inputs":
-  [
-    {
-      "name": "Audio Stream",
-      "type": "Audio Stream",
-      "description": "Input Audio Stream"
-    },
-    {
-      "name": "gate",
-      "type": "Double",
-      "default_value": "1",
-      "range": [[0, 1, 0.1]]
-    },
-    {
-      "name": "pregain_dB",
-      "type": "Double",
-      "default_value": "0",
-      "range": [[-100, 100, 1]]
-    }
-  ],
-  "outputs": [
-    {
-      "name": "Audio Stream",
-      "type": "Audio Stream",
-      "description": "Output Audio Stream"
-    }
-  ],
-  "scriptSupport": "js",
-  "js": "CGAudioEffectClimiter.js",
-  "category": "Audio",
-  "description": "limiter Effect",
-  "productTypes": ["TTEH"],
-  "nodeEvent": ["beforeStart", "onUpdate"],
-  "builtinClass": "AudioEffectNode",
-  "audioNodeName": "climiter"
+	"name": "Limiter",
+	"id": "e1bf28fa-bb45-d096-7e9b-30290ee8bba2",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Gate",
+			"type": "Double",
+			"default_value": 0.99,
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "Input threshold value [0,1]"
+		},
+		{
+			"name": "Pre Gain",
+			"type": "Double",
+			"default_value": 0,
+			"range": [
+				[
+					-100,
+					100,
+					1
+				]
+			],
+			"displayType": "Number",
+			"description": "Input volume limitation [-100,100]"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": true,
+			"displayType": "Boolean",
+			"description": "Enable this node"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioEffectClimiter.js",
+	"category": "Audio",
+	"description": "A type of compressor to limit the level of the amplitude of volume to a certain threshold",
+	"productTypes": [
+		"TTEH",
+		"InUse"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioEffectNode",
+	"audioNodeName": "climiter",
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
 }

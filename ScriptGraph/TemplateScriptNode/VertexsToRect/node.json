@@ -6,28 +6,28 @@
 			"name": "Top left",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The vertex pixel position of top left corner",
+			"description": "The vertex pixel position of the rectangle's top left corner",
 			"displayType": "Vec2"
 		},
 		{
 			"name": "Top right",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The vertex pixel position of top right corner",
+			"description": "The vertex pixel position of the rectangle's top right corner",
 			"displayType": "Vec2"
 		},
 		{
 			"name": "Bottom left",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The vertex pixel position of bottom left corner",
+			"description": "The vertex pixel position of the rectangle's bottom left corner",
 			"displayType": "Vec2"
 		},
 		{
 			"name": "Bottom right",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The vertex pixel position of bottom right corner",
+			"description": "The vertex pixel position of the rectangle's bottom right corner",
 			"displayType": "Vec2"
 		}
 	],
@@ -36,7 +36,7 @@
 			"name": "New Rect",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The new rect generated from the 4 vertices",
+			"description": "The generated rectangle",
 			"displayType": "Rect"
 		}
 	],
@@ -44,11 +44,11 @@
 	"lua": "CGVertexToRect.lua",
 	"version": "1.0",
 	"category": "Transform",
-	"description": "Create a rect from 4 vertices",
+	"description": "Create a rectangle by specifying its 4 corners positions.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value A",
+			"description": "The value to raise to the power of B",
 			"displayType": "Number"
 		},
 		{
@@ -17,7 +17,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value B",
+			"description": "The power to raise A",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The result of A raised to the power of B",
 			"displayType": "Number"
 		}
 	],
@@ -46,5 +46,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

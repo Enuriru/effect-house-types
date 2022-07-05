@@ -1,0 +1,61 @@
+{
+	"name": "Finger Touch 1-Point",
+	"id": "0d990e75-52d1-4fe3-b946-f0d1b498a579",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Idle",
+			"type": "Pulse",
+			"description": "Execute the next node when no finger touch detected on the device screen",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Start",
+			"type": "Pulse",
+			"description": "Execute the next node as soon as someone's finger touches the device screen",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"type": "Pulse",
+			"description": "Execute the next node when someone's finger stays on the device screen",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Stop",
+			"type": "Pulse",
+			"description": "Execute the next node as soon as someone's finger leaves the device screen",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Current Position",
+			"type": "Vector2f",
+			"description": "The position of tapping point in the current frame. If the node execution is Idle (no touch detected), this position returns (-1, -1).",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Last Updated",
+			"type": "Vector2f",
+			"description": "The position of last updated tapping point",
+			"displayType": "Vec2"
+		}
+	],
+	"nodeEvent": [
+		"onStart",
+		"onUpdate",
+		"onEvent"
+	],
+	"category": "Event",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
+	"js": "OnePointTouch.js",
+	"version": "1.0",
+	"description": "Execute the next node when the device screen is tapped by one finger.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

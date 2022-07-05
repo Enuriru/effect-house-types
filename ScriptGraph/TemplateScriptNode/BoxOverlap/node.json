@@ -10,17 +10,17 @@
 			"displayType": "Exec"
 		},
 		{
-			"name": "Box boundary 1",
+			"name": "A",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The rect of box 1 to detect as boundary",
+			"description": "The rect A to detect as boundary",
 			"displayType": "Rect"
 		},
 		{
-			"name": "Box boundary 2",
+			"name": "B",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The rect of box 2 to detect as boundary",
+			"description": "The rect B to detect as boundary",
 			"displayType": "Rect"
 		}
 	],
@@ -43,12 +43,12 @@
 	"lua": "CGBoxOverlap.lua",
 	"js": "CGBoxOverlap.js",
 	"version": "1.0",
-	"category": "Math",
-	"description": "Detect whether or not two box boundaries are overlapping",
+	"category": "Utility",
+	"description": "Detect whether or not two rectangles boundaries are overlapping.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

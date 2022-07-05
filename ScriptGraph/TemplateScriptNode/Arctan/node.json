@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value",
+			"description": "The input value",
 			"displayType": "Number"
 		}
 	],
@@ -18,7 +18,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The arctangent of the input value",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 	"version": "1.0",
 	"luaFuncName": "CGArctan",
 	"category": "Math",
-	"description": "Calculate the arctangent (in radians) of an input value",
+	"description": "Calculate the arctangent (in radians) of the input value.",
 	"supportedValueTypes": [
 		"Double",
 		"Int"
@@ -37,5 +37,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

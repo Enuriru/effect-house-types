@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value",
+			"description": "The value to round",
 			"displayType": "Number"
 		}
 	],
@@ -18,7 +18,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The rounded value of the input",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 	"version": "1.0",
 	"luaFuncName": "CGRound",
 	"category": "Math",
-	"description": "Calculate the rounding of an input value",
+	"description": "Round the input value to the nearest integer.",
 	"supportedValueTypes": [
 		"Double"
 	],
@@ -36,5 +36,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

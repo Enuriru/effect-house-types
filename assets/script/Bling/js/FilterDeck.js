@@ -42,6 +42,7 @@ const PropertiesEnum = {
   PATTERN1: 'Pattern1',
   PATTERN2: 'Pattern2',
   PATTERN3: 'Pattern3',
+  SPEED: 'Speed',
 }
 
 // Write your own filter, once done and nice, we'll typescriptize it as a standard node of filtersystem
@@ -71,6 +72,8 @@ class KiraFilter extends amg.FilterNode {
 
       // cache a reference to js script component's properties map
       this.map = properties.PropertiesMap;
+      this.frameCounter = 0;
+      this.elapsedTime = 0;
   }
 
   createKiraMesh() {
@@ -201,9 +204,9 @@ class KiraFilter extends amg.FilterNode {
       this._pointSpriteMat.enableMacro("AE_USE_PATTERN");
       this._pointSpriteMat.setInt("u_KiraPatternCount", texID);
     }
-}
-  
-  onUpdate(_dt, cmdBuffer, texturePool) {
+  }
+
+  updateKiraFilter(cmdBuffer, texturePool) {
     this.setMaterialProperties();
     this.handleDirty(cmdBuffer, texturePool);
 
@@ -214,6 +217,25 @@ class KiraFilter extends amg.FilterNode {
       let kiraMask = kiraInfo.mask;
       this._kiraTex.storage(kiraMask);
       this._pointSpriteMat.setTex("u_KiraTex", this._kiraTex);
+    }
+  }
+  onUpdate(_dt, cmdBuffer, texturePool) {
+    // run free fps in the first 5 frames to prevent blue screen artifacts
+    if (this.frameCounter < 5) {
+      this.updateKiraFilter(cmdBuffer, texturePool);
+      this.frameCounter++;
+    } else {
+      let speed = this.map.get(PropertiesEnum.SPEED);
+      // speed is a value range from [0, 1];
+      // remap it to [0.75 - 0.95] which is the sweet spot for bling speed
+      speed = 0.75 + 0.2 * speed;
+      speed = Number(speed.toFixed(4)); 
+      const timeToDelay = 1 - speed;
+      this.elapsedTime += _dt;
+      if (this.elapsedTime > timeToDelay) {
+        this.elapsedTime = 0;
+        this.updateKiraFilter(cmdBuffer, texturePool);
+      }
     }
   }
 }

@@ -11,7 +11,7 @@
 		{
 			"name": "Pre Gain",
 			"type": "Double",
-			"default_value": "0",
+			"default_value": 10,
 			"range": [
 				[
 					0,
@@ -25,7 +25,7 @@
 		{
 			"name": "Threshold",
 			"type": "Double",
-			"default_value": "-24",
+			"default_value": -50,
 			"range": [
 				[
 					-100,
@@ -39,12 +39,12 @@
 		{
 			"name": "Attack",
 			"type": "Double",
-			"default_value": "30",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
-					40,
-					1
+					1,
+					0.1
 				]
 			],
 			"displayType": "Number",
@@ -53,12 +53,12 @@
 		{
 			"name": "Release",
 			"type": "Double",
-			"default_value": "12",
+			"default_value": 0.5,
 			"range": [
 				[
+					0,
 					1,
-					20,
-					1
+					0.1
 				]
 			],
 			"displayType": "Number",
@@ -67,7 +67,7 @@
 		{
 			"name": "Pre delay",
 			"type": "Double",
-			"default_value": "0.003",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -81,7 +81,7 @@
 		{
 			"name": "Release Zone 1",
 			"type": "Double",
-			"default_value": "0.25",
+			"default_value": 0,
 			"range": [
 				[
 					0,
@@ -95,7 +95,7 @@
 		{
 			"name": "Release Zone 2",
 			"type": "Double",
-			"default_value": "0.006",
+			"default_value": 0,
 			"range": [
 				[
 					0,
@@ -109,7 +109,7 @@
 		{
 			"name": "Release Zone 3",
 			"type": "Double",
-			"default_value": "0.09",
+			"default_value": 0,
 			"range": [
 				[
 					0,
@@ -123,11 +123,11 @@
 		{
 			"name": "Post Gain",
 			"type": "Double",
-			"default_value": "0.16",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
-					1,
+					100,
 					0.1
 				]
 			],
@@ -137,7 +137,7 @@
 		{
 			"name": "Wet",
 			"type": "Double",
-			"default_value": "0.42",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -150,15 +150,8 @@
 		},
 		{
 			"name": "Enabled",
-			"type": "Double",
-			"default_value": "0.98",
-			"range": [
-				[
-					0,
-					1,
-					0.1
-				]
-			],
+			"type": "Bool",
+			"default_value": true,
 			"displayType": "Boolean",
 			"description": "Enable this node"
 		}
@@ -176,7 +169,8 @@
 	"category": "Audio",
 	"description": "Make your tracks sound more polished by controlling maximum levels and maintaining higher average loudness",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",
@@ -184,5 +178,6 @@
 	],
 	"builtinClass": "AudioEffectNode",
 	"audioNodeName": "compressor",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
 }

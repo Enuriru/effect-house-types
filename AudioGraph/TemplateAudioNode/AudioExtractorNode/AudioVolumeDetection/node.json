@@ -1,20 +1,20 @@
 {
 	"name": "Volume Detection",
 	"id": "e63475de-fb84-2bc7-0f04-f867d9315632",
-	"description": "Detect volume of the audio source in realtime",
+	"description": "Detect the volume of the audio source in realtime.",
 	"inputs": [
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
 			"displayType": "Audio Stream",
-			"description": "Execute this node"
+			"description": "The audio stream you want to detect the volume"
 		},
 		{
 			"name": "Enabled",
 			"type": "Bool",
 			"default_value": "true",
 			"displayType": "Boolean",
-			"description": "Enable this node"
+			"description": "Enable this node or not"
 		}
 	],
 	"outputs": [
@@ -33,7 +33,8 @@
 	],
 	"category": "Audio",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"onUpdate"
@@ -44,5 +45,6 @@
 	"amazingVersion": "10.40.0",
 	"builtinClass": "AudioExtractorNode",
 	"audioNodeName": "volume_detection",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.5.0"
 }

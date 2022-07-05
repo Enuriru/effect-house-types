@@ -17,20 +17,6 @@
 			"displayType": "Exec"
 		},
 		{
-			"name": "Pause",
-			"type": "Pulse",
-			"item_type": "",
-			"description": "Pause the clip",
-			"displayType": "Exec"
-		},
-		{
-			"name": "Resume",
-			"type": "Pulse",
-			"item_type": "",
-			"description": "Resume the clip",
-			"displayType": "Exec"
-		},
-		{
 			"name": "Animation",
 			"type": "Animator",
 			"item_type": "",
@@ -102,11 +88,11 @@
 		"onDestroy"
 	],
 	"category": "Utility",
-	"description": "Control the 3D animation state",
+	"description": "Control the 3D animation playback state.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "2.0.0"
 }

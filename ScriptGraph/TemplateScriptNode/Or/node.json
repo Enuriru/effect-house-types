@@ -34,11 +34,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGOr",
 	"category": "Logic",
-	"description": "Check if either one of inputs are true",
+	"description": "Check if one of the inputs is true.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

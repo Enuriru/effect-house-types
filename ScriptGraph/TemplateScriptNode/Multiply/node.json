@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "1",
 			"dynamic": true,
-			"description": "Input value A",
+			"description": "The first value to multiply",
 			"displayType": "Number"
 		},
 		{
@@ -17,7 +17,7 @@
 			"item_type": "",
 			"default_value": "1",
 			"dynamic": true,
-			"description": "Input value B",
+			"description": "The second value to multiply",
 			"displayType": "Number"
 		}
 	],
@@ -27,17 +27,15 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The result of  multiplying",
 			"displayType": "Number"
 		}
 	],
-	"lua": "CGMultiply.lua",
 	"js": "CGMultiply.js",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGMultiply",
 	"category": "Math",
-	"description": "Multiply two values; (supporting Number, Vec2, Vec3, Vec4)",
+	"description": "Multiply two values. You can click \"+\" to add more inputs. Supported types: Number, Vec2, Vec3, and Vec4.",
 	"supportedValueTypes": [
 		"Double",
 		"Int",
@@ -45,10 +43,15 @@
 		"Vector3f",
 		"Vector4f"
 	],
+	"addableInput": {
+		"index": 1,
+		"baseName": "",
+		"increaseStartIndex": "C"
+	},
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

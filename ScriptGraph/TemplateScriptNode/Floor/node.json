@@ -7,7 +7,7 @@
 			"type": "Double",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Input value",
+			"description": "The value to round down",
 			"displayType": "Number"
 		}
 	],
@@ -16,7 +16,7 @@
 			"name": "Result",
 			"type": "Int",
 			"item_type": "",
-			"description": "The result",
+			"description": "The value rounded down",
 			"displayType": "Number"
 		}
 	],
@@ -26,7 +26,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGFloor",
 	"category": "Math",
-	"description": "Rounds down the value",
+	"description": "Round down the input value. It is first integer smaller or equal to the input.",
 	"supportedValueTypes": [
 		"Double"
 	],
@@ -35,5 +35,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

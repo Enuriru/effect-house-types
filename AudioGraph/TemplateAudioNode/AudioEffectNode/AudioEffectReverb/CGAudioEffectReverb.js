@@ -21,23 +21,20 @@ class CGAudioEffectReverb extends BaseNode {
       3: 'stereo_depth',
       4: 'wet',
       5: 'dry',
-      6: 'dry_gaindB',
-      7: 'wet_gaindB',
-      8: 'dry_only',
-      9: 'wet_only',
+      6: 'wet_gaindB',
+      7: 'dry_gaindB',
     };
     this.portRangeMap = {
       1: [0, 1.5],
-      2: [0, 1],
+      2: [0, 0.9],
       3: [0, 1],
       4: [0, 1],
       5: [0, 1],
       6: [0, 1],
       7: [0, 1],
-      8: [0, 1],
-      9: [0, 1],
     };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -62,6 +59,16 @@ class CGAudioEffectReverb extends BaseNode {
   updateParamsValue() {
     if (!this.audioNode) {
       return;
+    }
+    const enable = this.inputs[8]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
     }
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {

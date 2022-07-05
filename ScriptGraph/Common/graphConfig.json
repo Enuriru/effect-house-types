@@ -1,7 +1,7 @@
 {
   "useJs": true,
   "autoExportPackage": true,
-  "enableAudioGraph": true,
+  "enableAudioGraph": false,
   "showFullPortType": true
 }
 

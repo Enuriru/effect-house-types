@@ -24,6 +24,7 @@ class CGAudioEffectVibrato extends BaseNode {
       2: [0, 2],
     };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -48,6 +49,16 @@ class CGAudioEffectVibrato extends BaseNode {
   updateParamsValue() {
     if (!this.audioNode) {
       return;
+    }
+    const enable = this.inputs[3]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
     }
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {

@@ -7,7 +7,7 @@
 			"type": "Double",
 			"default_value": "0",
 			"item_type": "",
-			"description": "The lowest random number",
+			"description": "The minimum value (included) of the generated random number",
 			"displayType": "Number"
 		},
 		{
@@ -15,7 +15,7 @@
 			"type": "Double",
 			"default_value": "1",
 			"item_type": "",
-			"description": "The highest random number",
+			"description": "The maximum value (not included) of the generated random number",
 			"displayType": "Number"
 		}
 	],
@@ -24,7 +24,7 @@
 			"name": "Result",
 			"type": "Double",
 			"item_type": "",
-			"description": "The result",
+			"description": "The random number generated between Min and Max",
 			"displayType": "Number"
 		}
 	],
@@ -34,11 +34,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGRandom",
 	"category": "Math",
-	"description": "Generates a random number between min value and max value each time that it executes",
+	"description": "Generate a random number within a certain range.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

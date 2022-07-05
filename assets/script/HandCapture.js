@@ -135,7 +135,10 @@ class HandCapture {
     let childEntities = this.getChildrenEntities();
     let isVisible = handCount > 0;
     for (let i = 0; i < childEntities.length; i++) {
-      childEntities[i].selfvisible = isVisible;
+      if(childEntities[i].getComponent('Renderer')){
+        childEntities[i].getComponent('Renderer').enabled = isVisible;
+      }
+      
     }
     if (handCount > 0) {
       let handInfo = result.getHandInfo(0);

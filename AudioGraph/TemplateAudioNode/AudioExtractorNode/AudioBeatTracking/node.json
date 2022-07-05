@@ -1,42 +1,53 @@
 {
-  "name": "Beat Tracking",
-  "id": "8da4eb36-f2b9-a6bd-33c2-5035021596ad",
-  "description":"Detect music beats in real-time, there will be four kind of beats to be detected, from strong to soft",
-  "inputs": [
-    {
-      "name": "Audio In",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "Enabled",
-      "type": "Bool",
-      "default_value": "true",
-      "description": "Default enabled"
-    },
-    {
-      "name": "Keep",
-      "type": "Bool",
-      "default_value": "true"
-    }
-  ],
-  "outputs": [
-    {
-      "name": "Audio Out",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "Value",
-      "type": "Double",
-      "description": "Return value 1, 2, 3, 4 in real-time, stands for four kind of beats to be detected, from strong to soft"
-    }
-  ],
-  "category": "Audio",
-  "productTypes": ["TTEH"],
-  "nodeEvent": ["onUpdate"],
-  "scriptSupport": "js",
-  "js": "CGBeatTracking.js",
-  "version": "1.0",
-  "amazingVersion": "10.40.0",
-  "builtinClass": "AudioExtractorNode",
-  "audioNodeName": "beat_tracking"
+	"name": "Beats Detection",
+	"id": "8da4eb36-f2b9-a6bd-33c2-5035021596ad",
+	"description": "Detect the beats of the audio sourcen (mostly, musical audio) in realtime. Return the beats value in 1, 2, 3, 4 sequence.\nIt is normal to have 2 seconds accuracy delay.",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "The audio stream you want to detect the beats"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": "true",
+			"description": "Enable this node or not",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio"
+		},
+		{
+			"name": "Beat Value",
+			"type": "Double",
+			"description": "Beats detection result, always return the beats value in 1, 2, 3, 4 sequence.",
+			"displayType": "Number"
+		}
+	],
+	"category": "Audio",
+	"productTypes": [
+		"TTEH",
+		"InUse"
+	],
+	"nodeEvent": [
+		"onUpdate"
+	],
+	"scriptSupport": "js",
+	"js": "CGBeatTracking.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"builtinClass": "AudioExtractorNode",
+	"audioNodeName": "beat_tracking",
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.5.0",
+	"audioAlgorithm": [
+		"bt_streaming_espresso"
+	]
 }

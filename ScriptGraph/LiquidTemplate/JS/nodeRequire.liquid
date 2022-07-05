@@ -19,8 +19,6 @@ const { {{ jsClsName }} } = require("./{{ jsClsName }}");
             {%- assign jsClsName = node.fileName | getJSClassName -%}
 const { {{ jsClsName }} } = require("./{{ jsClsName }}");
         {% endif %}
-    {% else %}
-        {{- "include path error, unhandled case !" | log -}}
     {% endif %}
 {% endfor %}
 

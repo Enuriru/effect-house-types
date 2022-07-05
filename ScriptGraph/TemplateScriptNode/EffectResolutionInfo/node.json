@@ -1,0 +1,33 @@
+{
+	"name": "Effect Resolution Info",
+	"id": "6567e89c-ed56-49ab-ae9c-076c89733ef3",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Width",
+			"type": "Double",
+			"description": "The width of the Camera live video",
+			"displayType": "Number"
+		},
+		{
+			"name": "Height",
+			"type": "Double",
+			"description": "The height of the Camera live video",
+			"displayType": "Number"
+		}
+	],
+	"nodeEvent": [
+		"onStart",
+		"onUpdate"
+	],
+	"category": "Utility",
+	"js": "CGEffectResolutionInfo.js",
+	"version": "1.0",
+	"description": "Get both width and height of the camera live video resolution in TikTok based on the rating of viewers' devices specifications. The aspect ratio is always 9 x16.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

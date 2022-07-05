@@ -7,7 +7,7 @@
 			"name": "Time in Seconds",
 			"type": "Double",
 			"item_type": "",
-			"description": "The number of seconds elapsed since the timer started",
+			"description": "The number of seconds elapsed since the effect started",
 			"displayType": "Number"
 		}
 	],
@@ -18,11 +18,11 @@
 	"luaFuncName": "CGRuntime",
 	"category": "Time",
 	"nodeEvent": "onUpdate",
-	"description": "Track the time since the start of the effect in seconds",
+	"description": "Get the total time since the effect started. ",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

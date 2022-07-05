@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Which Face",
-			"description": "Face select including Face 0, Face 1, Face 2, Face 3, Face 4",
+			"description": "The face to apply the effect to. Face 0 represents the first face appearing in the scene, Face 4 represents the fifth face appearing in the scene.",
 			"type": "String",
 			"value_list": [
 				"Face 0",
@@ -25,26 +25,32 @@
 		},
 		{
 			"name": "Stay",
-			"description": "Keep executing the next node when face stays in the scene",
+			"description": "Keep executing the next node when the face stays in the scene",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "End",
-			"description": "Execute the next node when face is not detected",
+			"description": "Execute the next node when the face disappeared",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "None",
-			"description": "Keep executing the next node when face is not in the scene",
+			"description": "Keep executing the next node when the certain face is not detected",
 			"type": "Pulse",
 			"displayType": "Exec"
+		},
+		{
+			"name": "Face Count",
+			"description": "The number of faces in the scene, the max is 5",
+			"type": "Int",
+			"displayType": "Number"
 		}
 	],
 	"category": "Head & Face",
-	"TTEHVer": "1.0.0",
-	"description": "Detect face",
+	"TTEHVer": "2.0.0",
+	"description": "Detect faces of people using this effect. To detect more than one face, assign a Face Detection node to each face in the scene. It can detect up to five faces.",
 	"js": "CGFaceDetection.js",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",

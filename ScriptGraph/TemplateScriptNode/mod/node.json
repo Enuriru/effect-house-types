@@ -8,7 +8,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value A",
+			"description": "The dividend",
 			"displayType": "Number"
 		},
 		{
@@ -17,7 +17,7 @@
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value B",
+			"description": "The divisor",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The remainder",
 			"displayType": "Number"
 		}
 	],
@@ -37,7 +37,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGMod",
 	"category": "Math",
-	"description": "Calculate mod value",
+	"description": "Calculate the remainder of division.",
 	"supportedValueTypes": [
 		"Double",
 		"Int"
@@ -47,5 +47,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

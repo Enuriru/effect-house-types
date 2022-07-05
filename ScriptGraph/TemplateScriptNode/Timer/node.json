@@ -27,7 +27,7 @@
 			"name": "Duration",
 			"type": "Double",
 			"item_type": "",
-			"description": "Duration time",
+			"description": "The total number of seconds that the timer counts",
 			"displayType": "Number"
 		}
 	],
@@ -64,14 +64,14 @@
 			"name": "Progress",
 			"type": "Double",
 			"item_type": "",
-			"description": "The proportion of the duration that has elapsed (0-1)",
+			"description": "The proportion of the duration that has elapsed. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Remaining",
 			"type": "Double",
 			"item_type": "",
-			"description": "The number of seconds remaining until the timer is elapsed",
+			"description": "The number of seconds remaining until the timer stops",
 			"displayType": "Number"
 		}
 	],
@@ -82,11 +82,11 @@
 	"luaFuncName": "CGTimer",
 	"category": "Time",
 	"nodeEvent": "onUpdate",
-	"description": "Timer ",
+	"description": "Use a timer to manage different executions.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -11,7 +11,7 @@
 		{
 			"name": "Room size",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 1.5,
 			"range": [
 				[
 					0,
@@ -25,7 +25,7 @@
 		{
 			"name": "Damping",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -39,7 +39,7 @@
 		{
 			"name": "Stereo Balance",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -53,7 +53,7 @@
 		{
 			"name": "Wet",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -67,7 +67,7 @@
 		{
 			"name": "Dry",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -81,7 +81,7 @@
 		{
 			"name": "Wet Gain",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -95,7 +95,7 @@
 		{
 			"name": "Dry Gain",
 			"type": "Double",
-			"default_value": "0.5",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -108,15 +108,8 @@
 		},
 		{
 			"name": "Enabled",
-			"type": "Double",
-			"default_value": "0",
-			"range": [
-				[
-					0,
-					1,
-					0.1
-				]
-			],
+			"type": "Bool",
+			"default_value": true,
 			"displayType": "Boolean",
 			"description": "Enable this node"
 		}
@@ -134,7 +127,8 @@
 	"category": "Audio",
 	"description": "Create a sense of space or depth to the audio",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",
@@ -142,5 +136,6 @@
 	],
 	"builtinClass": "AudioEffectNode",
 	"audioNodeName": "reverb1",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
 }

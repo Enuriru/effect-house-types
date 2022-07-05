@@ -5,14 +5,21 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to use",
 			"displayType": "Audio Stream"
 		},
 		{
 			"name": "Volume",
 			"type": "Double",
-			"default_value": "1.0",
-			"description": "Input value",
+			"default_value": 100,
+			"range": [
+				[
+					0,
+					100,
+					1
+				]
+			],
+			"description": "The volume of the audio stream. Value range",
 			"displayType": "Number"
 		}
 	],
@@ -27,9 +34,10 @@
 	"scriptSupport": "js",
 	"js": "CGAudioGain.js",
 	"category": "Audio",
-	"description": "Set the volume",
+	"description": "Set the volume of the audio stream.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",

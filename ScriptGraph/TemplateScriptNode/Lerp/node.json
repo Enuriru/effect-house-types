@@ -20,7 +20,7 @@
 			"name": "Step",
 			"type": "Double",
 			"item_type": "",
-			"description": "The normalized [0,1] value within the range to return",
+			"description": "The value used to interpolate between Start and Stop. Value range",
 			"displayType": "Number"
 		}
 	],
@@ -29,7 +29,7 @@
 			"name": "Result",
 			"type": "Double",
 			"item_type": "",
-			"description": "A value between start and stop",
+			"description": "The linear interpolation of Step between Start and Stop. When Step = 0, the result is Start, when Step = 1, the result is Stop.",
 			"displayType": "Number"
 		}
 	],
@@ -39,11 +39,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGLerp",
 	"category": "Math",
-	"description": "Linearly interpolate a value within a range",
+	"description": "Linearly interpolate a value within a range.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

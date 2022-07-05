@@ -24,16 +24,18 @@ class CGAnimatorController extends BaseNode {
     this.finish = false;
     this.sys = null;
     this.state = '';
+    this.chosenIndex = -1;
   }
 
   beforeStart(sys) {
     this.sys = sys;
-    this.component = this.inputs[4]();
+    this.errorConfig = false;
+    this.component = this.inputs[2]();
     if (!this.component || false === this.component.isInstanceOf('Animator')) {
       this.errorConfig = true;
       return;
     }
-    this.loops = this.inputs[6]();
+    this.loops = this.inputs[4]();
     if (this.loops === 0) {
       console.error('animation loops 0 times !!');
       this.errorConfig = true;
@@ -42,7 +44,7 @@ class CGAnimatorController extends BaseNode {
     if (this.loops === -1) {
       this.infinity = true;
     }
-    this.stayLastFrame = this.inputs[7]();
+    this.stayLastFrame = this.inputs[5]();
     this.animationList = this.component.animations;
     this.animationSize = this.animationList.size();
     if (this.animationSize < 1) {
@@ -50,13 +52,15 @@ class CGAnimatorController extends BaseNode {
       this.errorConfig = true;
       return;
     }
-    let chooseIndex = this.inputs[5]();
-    if (chooseIndex >= this.animationSize || chooseIndex < 0) {
+    let prevChosenIndex = this.chosenIndex;
+    let prevClip = this.currentClip;
+    this.chosenIndex = this.inputs[3]();
+    if (this.chosenIndex >= this.animationSize || this.chosenIndex < 0) {
       console.error('animation chooseIndex error !!');
       this.errorConfig = true;
       return;
     }
-    let chooseAnim = this.animationList.get(chooseIndex);
+    let chooseAnim = this.animationList.get(this.chosenIndex);
     if (!chooseAnim) {
       console.error('get chosen animation error !!');
       this.errorConfig = true;
@@ -68,8 +72,12 @@ class CGAnimatorController extends BaseNode {
       this.errorConfig = true;
       return;
     }
-    sys.script.removeScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
-    sys.script.addScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
+    if (prevChosenIndex === -1) {
+      sys.script.addScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
+    } else if (prevChosenIndex !== this.chosenIndex && prevChosenIndex !== -1) {
+      sys.script.removeScriptListener(prevClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
+      sys.script.addScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
+    }
   }
 
   execute(index) {
@@ -92,26 +100,32 @@ class CGAnimatorController extends BaseNode {
         this.beforeStart(this.sys);
       }
       this.state = 'play';
-      this.component.resumeAnimator();
-      this.component.stopAllAnimations();
       let clipPlaySpeed = this.currentClip.getSpeed();
       this.component.schedule(this.currentClip, 1, clipPlaySpeed);
       if (this.nexts[1]) {
         this.nexts[1]();
       }
     } else if (index === 1) {
-      this.component.stopAllAnimations();
+      this.component.unschedule(this.currentClip);
       this.state = 'stop';
       if (this.nexts[2]) {
         this.nexts[2]();
       }
-    } else if (index === 2) {
-      this.state = 'pause';
-      this.component.pauseAnimator();
-    } else if (index === 3) {
-      this.state = 'resume';
-      this.component.resumeAnimator();
     }
+    // else if (index === 2) {
+    //   if (this.state !== 'play' && this.state !== 'resume') {
+    //     return;
+    //   }
+    //   this.state = 'pause';
+    //   this.component.unschedule(this.currentClip);
+    // } else if (index === 3) {
+    //   if (this.state !== 'pause') {
+    //     return;
+    //   }
+    //   this.state = 'resume';
+    //   let clipPlaySpeed = this.currentClip.getSpeed();
+    //   this.component.schedule(this.currentClip, 1, clipPlaySpeed);
+    // }
   }
 
   onCallBack(sys, clip, eventType) {
@@ -119,10 +133,8 @@ class CGAnimatorController extends BaseNode {
       if (clip.equals(this.currentClip) && this.state !== 'stop') {
         this.currentLoop = this.currentLoop + 1;
         if (this.currentLoop >= this.loops && false === this.infinity) {
-          if (this.stayLastFrame) {
-            this.component.pauseAnimator();
-          } else {
-            this.component.stopAllAnimations();
+          this.component.unschedule(this.currentClip);
+          if (this.stayLastFrame === false) {
             this.component.entity.visible = false;
           }
           if (this.nexts[3]) {

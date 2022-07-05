@@ -26,11 +26,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGNot",
 	"category": "Logic",
-	"description": "Flip a boolean from true to false, or false to true",
+	"description": "Reverse the input boolean value. If the input boolean is true, then the output is false, and vice versa.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

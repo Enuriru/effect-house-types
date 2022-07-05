@@ -68,7 +68,8 @@
 		"onEvent"
 	],
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"builtinClass": "AudioGeneralNode",
 	"TTEHVer": "1.0.0"

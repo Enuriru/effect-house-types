@@ -439,150 +439,234 @@ fragment main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, te
     World: {
         
         VS: `
-#pragma clang diagnostic ignored "-Wmissing-prototypes"
-#pragma clang diagnostic ignored "-Wmissing-braces"
-
-#include <metal_stdlib>
-#include <simd/simd.h>
-
-using namespace metal;
-
-template<typename T, size_t Num>
-struct spvUnsafeArray
-{
-    T elements[Num ? Num : 1];
-    
-    thread T& operator [] (size_t pos) thread
-    {
-        return elements[pos];
-    }
-    constexpr const thread T& operator [] (size_t pos) const thread
-    {
-        return elements[pos];
-    }
-    
-    device T& operator [] (size_t pos) device
-    {
-        return elements[pos];
-    }
-    constexpr const device T& operator [] (size_t pos) const device
-    {
-        return elements[pos];
-    }
-    
-    constexpr const constant T& operator [] (size_t pos) const constant
-    {
-        return elements[pos];
-    }
-    
-    threadgroup T& operator [] (size_t pos) threadgroup
-    {
-        return elements[pos];
-    }
-    constexpr const threadgroup T& operator [] (size_t pos) const threadgroup
-    {
-        return elements[pos];
-    }
-};
-
-struct buffer_t
-{
-    spvUnsafeArray<float2, 69> u_Keypoints;
-    float3 u_Rotation;
-    float u_CenterMode;
-    float u_ScreenSpaceMode;
-    float u_AspectRatio;
-    float4x4 u_MVP;
-};
-
-struct main0_out
-{
-    float2 v_UV;
-    float2 v_InsetUV;
-    float2 v_ScreenCoord;
-    float4 gl_Position [[position]];
-};
-
-struct main0_in
-{
-    float3 inPosition [[attribute(0)]];
-    float2 inTexCoord [[attribute(1)]];
-};
-
-vertex main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer)
-{
-    main0_out out = {};
-    out.v_UV = in.inTexCoord;
-    float2 _909;
-    _909 = float2(0.0);
-    for (int _908 = 0; _908 < 69; )
-    {
-        _909 += buffer.u_Keypoints[_908];
-        _908++;
-        continue;
-    }
-    float2 _475 = _909 * float2(0.0144927538931369781494140625);
-    float2 _911;
-    float2 _912;
-    float2 _913;
-    float2 _914;
-    _914 = float2(0.5, 0.0);
-    _913 = float2(0.5, 1.0);
-    _912 = float2(0.0, 0.5);
-    _911 = float2(1.0, 0.5);
-    for (int _910 = 0; _910 < 69; )
-    {
-        float _505 = -buffer.u_Rotation.z;
-        float _591 = cos(_505);
-        float _593 = sin(_505);
-        float2 _585 = ((buffer.u_Keypoints[_910] - _475) * float2x2(float2(_591, -_593), float2(_593, _591))) + _475;
-        float _512 = _585.x;
-        float _532 = _585.y;
-        _914 = mix(_914, _585, float2(float(_532 > _914.y)));
-        _913 = mix(_913, _585, float2(float(_532 < _913.y)));
-        _912 = mix(_912, _585, float2(float(_512 > _912.x)));
-        _911 = mix(_911, _585, float2(float(_512 < _911.x)));
-        _910++;
-        continue;
-    }
-    float _622 = cos(buffer.u_Rotation.z);
-    float _624 = sin(buffer.u_Rotation.z);
-    float2x2 _633 = float2x2(float2(_622, -_624), float2(_624, _622));
-    float2 _616 = ((_911 - _475) * _633) + _475;
-    float2 _647 = ((_912 - _475) * _633) + _475;
-    float2 _678 = ((_913 - _475) * _633) + _475;
-    float2 _709 = ((_914 - _475) * _633) + _475;
-    float _751 = 3.599999904632568359375 * buffer.u_AspectRatio;
-    float2 _754 = _616 - _647;
-    float2 _757 = _678 - _709;
-    float2 _901 = _754;
-    _901.x = _754.x * _751;
-    float2 _904 = _757;
-    _904.x = _757.x * _751;
-    float _774 = fast::max(length(_904), length(_901));
-    float2 _778 = float2(_774) * float2(0.5);
-    float2 _781 = float2(1.0 / buffer.u_AspectRatio, 1.0);
-    float2 _783 = _781 * 0.75;
-    float2 _915;
-    if (buffer.u_CenterMode == 0.0)
-    {
-        _915 = _475;
-    }
-    else
-    {
-        float2 _856 = mix(_781, float2(1.0), float2(buffer.u_ScreenSpaceMode));
-        _915 = mix((_616 + _647) * 0.5, (_678 + _709) * 0.5, float2(smoothstep(0.75, 1.25, length(_757 * _856) / length(_754 * _856))));
-    }
-    out.v_InsetUV = (((((in.inTexCoord * _774) - _778) * _633) + _778) * _783) + (_915 - (_783 * _778));
-    float4 _426 = buffer.u_MVP * (float4x4(float4(10.0, 0.0, 0.0, 0.0), float4(0.0, 10.0, 0.0, 0.0), float4(0.0, 0.0, 10.0, 0.0), float4(0.0, 0.0, 0.0, 1.0)) * float4(in.inPosition, 1.0));
-    out.v_ScreenCoord = ((_426.xyz / float3(_426.w)).xy * 0.5) + float2(0.5);
-    out.gl_Position = mix(_426, float4(in.inPosition.xy, 0.0, 1.0), float4(buffer.u_ScreenSpaceMode));
-    out.gl_Position.z = (out.gl_Position.z + out.gl_Position.w) * 0.5;       // Adjust clip-space for Metal
-    return out;
-}
+        #pragma clang diagnostic ignored "-Wmissing-prototypes"
+        #pragma clang diagnostic ignored "-Wmissing-braces"
         
+        #include <metal_stdlib>
+        #include <simd/simd.h>
         
-
+        #ifndef NUM_KEYPOINTS
+        #define NUM_KEYPOINTS 1
+        #endif
+        using namespace metal;
+        
+        template<typename T, size_t Num>
+        struct spvUnsafeArray
+        {
+            T elements[Num ? Num : 1];
+            
+            thread T& operator [] (size_t pos) thread
+            {
+                return elements[pos];
+            }
+            constexpr const thread T& operator [] (size_t pos) const thread
+            {
+                return elements[pos];
+            }
+            
+            device T& operator [] (size_t pos) device
+            {
+                return elements[pos];
+            }
+            constexpr const device T& operator [] (size_t pos) const device
+            {
+                return elements[pos];
+            }
+            
+            constexpr const constant T& operator [] (size_t pos) const constant
+            {
+                return elements[pos];
+            }
+            
+            threadgroup T& operator [] (size_t pos) threadgroup
+            {
+                return elements[pos];
+            }
+            constexpr const threadgroup T& operator [] (size_t pos) const threadgroup
+            {
+                return elements[pos];
+            }
+        };
+        
+        struct buffer_t
+        {
+            spvUnsafeArray<float2, NUM_KEYPOINTS> u_Keypoints;
+            float3 u_Rotation;
+            float u_CenterMode;
+            float u_ScreenSpaceMode;
+            float u_AspectRatio;
+            float4x4 u_MVP;
+        };
+        
+        struct main0_out
+        {
+            float2 v_UV;
+            float2 v_InsetUV;
+            float2 v_ScreenCoord;
+            float4 gl_Position [[position]];
+        };
+        
+        struct main0_in
+        {
+            float3 inPosition [[attribute(0)]];
+            float2 inTexCoord [[attribute(1)]];
+        };
+        
+        static inline __attribute__((always_inline))
+        float2 calcAverage(constant spvUnsafeArray<float2, NUM_KEYPOINTS>& u_Keypoints)
+        {
+            float2 average = float2(0.0);
+            for (int i = 0; i < NUM_KEYPOINTS; i++)
+            {
+                average += u_Keypoints[i];
+            }
+            average /= float2(NUM_KEYPOINTS);
+            return average;
+        }
+        
+        static inline __attribute__((always_inline))
+        float2 rotate(thread const float2& v, thread const float& a)
+        {
+            float c = cos(a);
+            float s = sin(a);
+            return v * float2x2(float2(c, -s), float2(s, c));
+        }
+        
+        static inline __attribute__((always_inline))
+        float2 rotateAboutPoint2D(thread float2& v, thread const float2& p, thread const float& a)
+        {
+            v -= p;
+            float2 param = v;
+            float param_1 = a;
+            v = rotate(param, param_1);
+            return v + p;
+        }
+        
+        static inline __attribute__((always_inline))
+        void calcMaxExtentPoints(thread const float2& average, thread float2& left, thread float2& right, thread float2& up, thread float2& down, constant spvUnsafeArray<float2, NUM_KEYPOINTS>& u_Keypoints, constant float3& u_Rotation)
+        {
+            left = float2(1.0, 0.5);
+            right = float2(0.0, 0.5);
+            up = float2(0.5, 1.0);
+            down = float2(0.5, 0.0);
+            for (int i = 0; i < NUM_KEYPOINTS; i++)
+            {
+                float2 point = u_Keypoints[i];
+                float2 param = point;
+                float2 param_1 = average;
+                float param_2 = -u_Rotation.z;
+                float2 _149 = rotateAboutPoint2D(param, param_1, param_2);
+                point = _149;
+                left = mix(left, point, float2(float(point.x < left.x)));
+                right = mix(right, point, float2(float(point.x > right.x)));
+                up = mix(up, point, float2(float(point.y < up.y)));
+                down = mix(down, point, float2(float(point.y > down.y)));
+            }
+            float2 param_3 = left;
+            float2 param_4 = average;
+            float param_5 = u_Rotation.z;
+            float2 _201 = rotateAboutPoint2D(param_3, param_4, param_5);
+            left = _201;
+            float2 param_6 = right;
+            float2 param_7 = average;
+            float param_8 = u_Rotation.z;
+            float2 _209 = rotateAboutPoint2D(param_6, param_7, param_8);
+            right = _209;
+            float2 param_9 = up;
+            float2 param_10 = average;
+            float param_11 = u_Rotation.z;
+            float2 _217 = rotateAboutPoint2D(param_9, param_10, param_11);
+            up = _217;
+            float2 param_12 = down;
+            float2 param_13 = average;
+            float param_14 = u_Rotation.z;
+            float2 _225 = rotateAboutPoint2D(param_12, param_13, param_14);
+            down = _225;
+        }
+        
+        static inline __attribute__((always_inline))
+        float2 calcCenter(thread const float2& average, thread const float2& left, thread const float2& right, thread const float2& up, thread const float2& down, thread const float2& screenRatio, constant float& u_CenterMode, constant float& u_ScreenSpaceMode)
+        {
+            float2 center;
+            if (u_CenterMode == 0.0)
+            {
+                center = average;
+            }
+            else
+            {
+                float2 ratio = mix(screenRatio, float2(1.0), float2(u_ScreenSpaceMode));
+                float lenLR = length((left - right) * ratio);
+                float lenUD = length((up - down) * ratio);
+                float2 maxLengths = float2(lenUD, lenLR);
+                float thresh = smoothstep(0.75, 1.25, maxLengths.x / maxLengths.y);
+                center = mix((left + right) * 0.5, (up + down) * 0.5, float2(thresh));
+            }
+            return center;
+        }
+        
+        static inline __attribute__((always_inline))
+        float2 getUVFromExtent(thread const float2& average, thread const float2& left, thread const float2& right, thread const float2& up, thread const float2& down, constant float3& u_Rotation, constant float& u_CenterMode, constant float& u_ScreenSpaceMode, thread float2& inTexCoord, constant float& u_AspectRatio)
+        {
+            float2 uv = inTexCoord;
+            float xReadjust = 3.599999904632568359375 * u_AspectRatio;
+            float2 diffLR = left - right;
+            float2 diffUD = up - down;
+            diffLR.x *= xReadjust;
+            diffUD.x *= xReadjust;
+            float lenLR = length(diffLR);
+            float lenUD = length(diffUD);
+            float maxLen = fast::max(lenUD, lenLR);
+            float2 midpoint = float2(maxLen) / float2(2.0);
+            float2 screenRatio = float2(1.0 / u_AspectRatio, 1.0);
+            float2 scaleAdjust = screenRatio * 0.75;
+            uv *= maxLen;
+            float2 param = uv;
+            float2 param_1 = midpoint;
+            float param_2 = u_Rotation.z;
+            float2 _342 = rotateAboutPoint2D(param, param_1, param_2);
+            uv = _342;
+            uv *= scaleAdjust;
+            float2 param_3 = average;
+            float2 param_4 = left;
+            float2 param_5 = right;
+            float2 param_6 = up;
+            float2 param_7 = down;
+            float2 param_8 = screenRatio;
+            uv += (calcCenter(param_3, param_4, param_5, param_6, param_7, param_8, u_CenterMode, u_ScreenSpaceMode) - (scaleAdjust * midpoint));
+            return uv;
+        }
+        
+        vertex main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer)
+        {
+            main0_out out = {};
+            out.v_UV = in.inTexCoord;
+            float2 average = calcAverage(buffer.u_Keypoints);
+            float2 param = average;
+            float2 param_1;
+            float2 param_2;
+            float2 param_3;
+            float2 param_4;
+            calcMaxExtentPoints(param, param_1, param_2, param_3, param_4, buffer.u_Keypoints, buffer.u_Rotation);
+            float2 left = param_1;
+            float2 right = param_2;
+            float2 up = param_3;
+            float2 down = param_4;
+            float2 param_5 = average;
+            float2 param_6 = left;
+            float2 param_7 = right;
+            float2 param_8 = up;
+            float2 param_9 = down;
+            out.v_InsetUV = getUVFromExtent(param_5, param_6, param_7, param_8, param_9, buffer.u_Rotation, buffer.u_CenterMode, buffer.u_ScreenSpaceMode, in.inTexCoord, buffer.u_AspectRatio);
+            float4 homPos = float4(in.inPosition, 1.0);
+            float4x4 rescaleMat = float4x4(float4(10.0, 0.0, 0.0, 0.0), float4(0.0, 10.0, 0.0, 0.0), float4(0.0, 0.0, 10.0, 0.0), float4(0.0, 0.0, 0.0, 1.0));
+            float4 finalPos = buffer.u_MVP * (rescaleMat * homPos);
+            float3 ndc = finalPos.xyz / float3(finalPos.w);
+            out.v_ScreenCoord = (ndc.xy * 0.5) + float2(0.5);
+            finalPos = mix(finalPos, float4(in.inPosition.xy, 0.0, 1.0), float4(buffer.u_ScreenSpaceMode));
+            out.gl_Position = finalPos;
+            out.gl_Position.z = (out.gl_Position.z + out.gl_Position.w) * 0.5;       // Adjust clip-space for Metal
+            return out;
+        }
         `,
         
         FS:`
@@ -1033,68 +1117,75 @@ vertex main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer)
             return ret;
         }
         
-        fragment main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, texture2d<float> u_FBOTexture [[texture(0)]], texture2d<float> u_FinalAlphaCoordRT [[texture(1)]], texture2d<float> u_CameraTexture [[texture(2)]], sampler u_FBOTextureSmplr [[sampler(0)]], sampler u_FinalAlphaCoordRTSmplr [[sampler(1)]], sampler u_CameraTextureSmplr [[sampler(2)]])
+        fragment main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, texture2d<float> u_FinalAlphaCoordRT [[texture(0)]], texture2d<float> u_CameraTexture [[texture(1)]], texture2d<float> u_FBOTexture [[texture(2)]], sampler u_FinalAlphaCoordRTSmplr [[sampler(0)]], sampler u_CameraTextureSmplr [[sampler(1)]], sampler u_FBOTextureSmplr [[sampler(2)]])
         {
             main0_out out = {};
+        #ifdef USE_MIP_BLUR
+            float4 finalAlphaCoord = u_FinalAlphaCoordRT.sample(u_FinalAlphaCoordRTSmplr, in.v_UV, bias(buffer.u_FeatheringScale * 0.85000002384185791015625));
+        #else
             float4 finalAlphaCoord = u_FinalAlphaCoordRT.sample(u_FinalAlphaCoordRTSmplr, in.v_UV);
-            bool _927 = in.v_InsetUV.x <= 0.0;
-            bool _934;
-            if (!_927)
+        #endif
+            bool _39 = in.v_InsetUV.x <= 0.0;
+            bool _47;
+            if (!_39)
             {
-                _934 = in.v_InsetUV.x >= 1.0;
+                _47 = in.v_InsetUV.x >= 1.0;
             }
             else
             {
-                _934 = _927;
+                _47 = _39;
             }
-            bool _941;
-            if (!_934)
+            bool _55;
+            if (!_47)
             {
-                _941 = in.v_InsetUV.y <= 0.0;
+                _55 = in.v_InsetUV.y <= 0.0;
             }
             else
             {
-                _941 = _934;
+                _55 = _47;
             }
-            bool _948;
-            if (!_941)
+            bool _62;
+            if (!_55)
             {
-                _948 = in.v_InsetUV.y >= 1.0;
+                _62 = in.v_InsetUV.y >= 1.0;
             }
             else
             {
-                _948 = _941;
+                _62 = _55;
             }
-            bool _955;
-            if (!_948)
+            bool _71;
+            if (!_62)
             {
-                _955 = finalAlphaCoord.w == 0.0;
+                _71 = finalAlphaCoord.w == 0.0;
             }
             else
             {
-                _955 = _948;
+                _71 = _62;
             }
-            if (_955)
+            if (_71)
             {
                 discard_fragment();
             }
-        #ifdef USE_MIP_BLUR
-            float4 finalColor = u_CameraTexture.sample(u_CameraTextureSmplr, in.v_InsetUV, u_FeatheringScale * 0.825);
-        #else
+
+        #ifdef USE_INPUT_RT
             float4 finalColor = u_CameraTexture.sample(u_CameraTextureSmplr, in.v_InsetUV);
         #endif
-        float3 _980 = mix(finalColor.xyz, buffer.u_FillColor.xyz, float3(buffer.u_FillColor.w));
-        finalColor = float4(_980.x, _980.y, _980.z, finalColor.w);
-        if (buffer.u_OutlineInfluence > 0.0)
-        {
-            float4 outlineColor = mix(buffer.u_OutlineColor, finalColor, float4(smoothstep(buffer.u_OutlineThresh, 1.0, finalAlphaCoord.w)));
-            outlineColor.w *= smoothstep(0.0, 0.20000000298023223876953125, finalAlphaCoord.w);
-            finalColor = mix(finalColor, outlineColor, float4(buffer.u_OutlineInfluence));
-        }
+ 
+        #ifdef USE_FINAL_RT
+            float4 finalColor = u_FBOTexture.sample(u_FBOTextureSmplr, in.v_InsetUV);
+        #endif
+            float3 _91 = mix(finalColor.xyz, buffer.u_FillColor.xyz, float3(buffer.u_FillColor.w));
+            finalColor = float4(_91.x, _91.y, _91.z, finalColor.w);
+            if (buffer.u_OutlineInfluence > 0.0)
+            {
+                float4 outlineColor = mix(buffer.u_OutlineColor, finalColor, float4(smoothstep(buffer.u_OutlineThresh, 1.0, finalAlphaCoord.w)));
+                outlineColor.w *= smoothstep(0.0, 0.20000000298023223876953125, finalAlphaCoord.w);
+                finalColor = mix(finalColor, outlineColor, float4(buffer.u_OutlineInfluence));
+            }
             finalColor.w = finalAlphaCoord.w * buffer.u_Opacity;
             float4 param = finalColor;
             float2 param_1 = in.v_ScreenCoord;
-            out.gl_FragColor = applyBlendMode(param, param_1, u_FBOTexture, u_FBOTextureSmplr);
+            out.gl_FragColor = applyBlendMode(param, param_1, u_FBOTexture,u_FBOTextureSmplr);
             return out;
         }
         

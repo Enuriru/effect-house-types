@@ -1,9 +1,9 @@
 /**
  * @file CGMultiply.js
- * @author liujiacheng
- * @date 2021/8/23
+ * @author runjiatian
+ * @date 2022/3/25
  * @brief CGMultiply.js
- * @copyright Copyright (c) 2021, ByteDance Inc, All Rights Reserved
+ * @copyright Copyright (c) 2022, ByteDance Inc, All Rights Reserved
  */
 
 const {BaseNode} = require('./BaseNode');
@@ -27,25 +27,79 @@ class CGMultiply extends BaseNode {
     if (curType == null) {
       return null;
     }
-    if (this.inputs[0] === undefined || this.inputs[1] === undefined) {
-      return null;
-    }
-    let op1 = this.inputs[0]();
-    let op2 = this.inputs[1]();
-    if (op1 == null || op2 == null) {
-      return null;
-    }
 
     if (curType == 'Int' || curType == 'Double') {
-      return op1 * op2;
+      let result = 1.0;
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        result *= op;
+      }
+      return result;
     } else if (curType == 'Vector2f') {
-      return new Amaz.Vector2f(op1.x * op2.x, op1.y * op2.y);
+      let resultX = 1.0;
+      let resultY = 1.0;
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX *= op.x;
+        resultY *= op.y;
+      }
+      return new Amaz.Vector2f(resultX, resultY);
     } else if (curType == 'Vector3f') {
-      return new Amaz.Vector3f(op1.x * op2.x, op1.y * op2.y, op1.z * op2.z);
+      let resultX = 1.0;
+      let resultY = 1.0;
+      let resultZ = 1.0;
+
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX *= op.x;
+        resultY *= op.y;
+        resultZ *= op.z;
+      }
+      return new Amaz.Vector3f(resultX, resultY, resultZ);
     } else if (curType == 'Vector4f') {
-      return new Amaz.Vector4f(op1.x * op2.x, op1.y * op2.y, op1.z * op2.z, op1.w * op2.w);
+      let resultX = 1.0;
+      let resultY = 1.0;
+      let resultZ = 1.0;
+      let resultW = 1.0;
+
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX *= op.x;
+        resultY *= op.y;
+        resultZ *= op.z;
+        resultW *= op.w;
+      }
+      return new Amaz.Vector4f(resultX, resultY, resultZ, resultW);
+
     } else if (curType == 'Color') {
-      return op1 * op2;
+      let result = 1.0;
+
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+        
+        if(op == null){
+          return null;
+        }
+        result *= op;
+      }
+
+      return result;
     }
   }
 }

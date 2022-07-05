@@ -1,7 +1,7 @@
 {
 	"name": "Is Nil",
 	"id": "d23a958e-7dfc-8a84-7fa3-8e80e188e728",
-	"description": "Check if input value is nil; (support any types of value)",
+	"description": "Check if an input value is valid.",
 	"inputs": [
 		{
 			"name": "Value",
@@ -26,5 +26,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

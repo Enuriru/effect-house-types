@@ -26,8 +26,9 @@ class CGAudioExtractorOut extends BaseNode {
     if (this.audioGraph) {
       this.audioGainNode = this.audioGraph.createAudioNode('GainNode', null);
       this.audioGainNode.gain = 0;
-      if (this.audioNode) {
-        this.audioGainNode.connect(this.audioNode);
+      this.audioNode = this.audioGainNode;
+      if (this.sinkNode) {
+        this.audioGainNode.connect(this.sinkNode);
       } else {
         console.error('CGAudioExtractorOut Node connection error: can not connection to sinknode');
       }

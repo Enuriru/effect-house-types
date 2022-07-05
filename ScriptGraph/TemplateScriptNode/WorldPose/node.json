@@ -49,8 +49,8 @@
 	],
 	"js": "CGWorldPose.js",
 	"category": "Transform",
-	"TTEHVer": "1.0.0",
-	"description": "World pose of a Transform",
+	"TTEHVer": "1.1.0",
+	"description": "Get the world space position, rotation, and scale of a Transform component.",
 	"productTypes": [
 		"TTEH"
 	]

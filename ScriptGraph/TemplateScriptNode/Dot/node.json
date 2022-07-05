@@ -1,0 +1,48 @@
+{
+	"name": "Dot",
+	"id": "76817403-58ED-E197-DB81-25647C4AFDEE",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Vector2f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The first vector",
+			"displayType": "Vec4"
+		},
+		{
+			"name": "B",
+			"type": "Vector2f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The second vector",
+			"displayType": "Vec4"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": false,
+			"description": "The result of the dot product",
+			"displayType": "Float"
+		}
+	],
+	"js": "CGDot.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Math",
+	"description": "Calculate the dot product between two vectors. For example, the dot product of vector A [1, -3, -2] and B [5, -1, 1] is:\n[1, -3, -2] · [5, -1, 1] = (1 x 5) + (-3 x -1) + (-2 x 1) = 6\nSupported types: Vec2, Vec3, and Vec4.",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f",
+		"Vector4f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

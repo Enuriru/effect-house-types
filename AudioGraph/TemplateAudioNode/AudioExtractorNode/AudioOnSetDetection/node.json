@@ -1,52 +1,65 @@
 {
-  "name": "On-Set Detection",
-  "id": "793ffb44-14e0-74e7-42b4-5f9c55b3fa7d",
-  "description": "The amplitude of the nearest rhythm point of the current frame at the time of detection",
-  "inputs": [
-    {
-      "name": "Audio Stream",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "Enabled",
-      "type": "Bool",
-      "default_value": "true"
-    },
-    {
-      "name": "Keep",
-      "type": "Bool"
-    },
-    {
-      "name": "threshold",
-      "type": "Double",
-      "default_value": "50.0",
-      "range": [
-        [
-          40,
-          200,
-          1
-        ]
-      ]
-    }
-  ],
-  "outputs": [
-    {
-      "name": "Audio Stream",
-      "type": "Audio Stream"
-    },
-    {
-      "name": "value",
-      "type": "Double"
-    }
-  ],
-
-  "category": "Audio",
-  "productTypes": ["TTEH"],
-  "nodeEvent": ["onUpdate" ,"beforeStart"],
-  "scriptSupport": "js",
-  "js": "CGOnSetDetection.js",
-  "version": "1.0",
-  "amazingVersion": "10.40.0",
-  "builtinClass": "AudioExtractorNode",
-  "audioNodeName": "onset_detection"
+	"name": "Onset Detection",
+	"id": "793ffb44-14e0-74e7-42b4-5f9c55b3fa7d",
+	"description": "Detect the onsets of notes in the musical audio in realtime based on a certain threshold.",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "The audio stream you want to detect the onsets"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": "true",
+			"displayType": "Boolean",
+			"description": "Enable this node or not"
+		},
+		{
+			"name": "Threshold",
+			"type": "Double",
+			"displayType": "Number",
+			"default_value": 10,
+			"range": [
+				[
+					0,
+					160,
+					1
+				]
+			],
+			"description": "The value of certain decibel level. When a note of the audio gets louder than this level, it is detected as an onset. Value range"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio"
+		},
+		{
+			"name": "Onset Value",
+			"type": "Double",
+			"displayType": "Number",
+			"description": "Onset detection result"
+		}
+	],
+	"category": "Audio",
+	"productTypes": [
+		"TTEH",
+		"InUse"
+	],
+	"nodeEvent": [
+		"onUpdate",
+		"beforeStart"
+	],
+	"scriptSupport": "js",
+	"js": "CGOnSetDetection.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"builtinClass": "AudioExtractorNode",
+	"audioNodeName": "onset_detection",
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.5.0"
 }

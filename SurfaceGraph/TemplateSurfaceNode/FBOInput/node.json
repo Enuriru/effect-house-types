@@ -1,0 +1,18 @@
+{
+    "name": "FBOInputNode",
+    "id": "bcec1ace-1534-409a-892f-08bdd5562a8d",
+    "inputs": [
+    ],
+    "outputs": [
+        {
+            "name": "FBO",
+            "type": "Texture",
+            "description": "FBO Export"
+        }
+    ],
+    "version": "1.0",
+    "category": "Function",
+    "description": "export with FBO",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

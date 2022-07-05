@@ -6,14 +6,14 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Deformation",
 			"type": "MorpherComponent",
 			"item_type": "",
-			"description": "Match the name of all 52 blendShape channels in the input deformation component with the avatarDrive algorithm, and drive the channel weight by the algorithm",
+			"description": "The input Deformation component, including all 52 blend shape channels",
 			"displayType": "Deformation"
 		}
 	],
@@ -36,11 +36,11 @@
 	"graphAlgorithms": [
 		"naviAvatarDrive"
 	],
-	"description": "Drive the deformation component with Face Avatar Drive, resulting in movement that matches facial expressions",
+	"description": "Control the Deformation component, producing facial movement that matches the real facial expressions.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

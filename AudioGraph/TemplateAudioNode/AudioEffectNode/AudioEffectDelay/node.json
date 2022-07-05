@@ -11,14 +11,21 @@
 		{
 			"name": "Feedback",
 			"type": "Double",
-			"default_value": "500",
+			"default_value": 500,
+			"range": [
+				[
+					1,
+					"inf",
+					1
+				]
+			],
 			"displayType": "Number",
 			"description": "Input threshold value [0,1]"
 		},
 		{
 			"name": "Dry",
 			"type": "Double",
-			"default_value": "0.2",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -32,7 +39,7 @@
 		{
 			"name": "Wet",
 			"type": "Double",
-			"default_value": "1",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -46,7 +53,7 @@
 		{
 			"name": "Enabled",
 			"type": "Double",
-			"default_value": "0.2",
+			"default_value": 0.5,
 			"range": [
 				[
 					0,
@@ -71,7 +78,8 @@
 	"category": "Audio",
 	"description": "Decaying echo audio effect ",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",
@@ -79,5 +87,6 @@
 	],
 	"builtinClass": "AudioEffectNode",
 	"audioNodeName": "delay",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
 }

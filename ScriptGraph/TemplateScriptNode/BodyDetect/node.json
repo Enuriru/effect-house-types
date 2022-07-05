@@ -7,25 +7,25 @@
 			"name": "Begin",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when any part of the body is detected.",
+			"description": "Execute the next node when any part of the body is detected",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Stay",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the body is in the camera viewport.",
+			"description": "Keep executing the next node when the body stays in the scene",
 			"displayType": "Exec"
 		},
 		{
 			"name": "End",
-			"description": "Execute the next node when the body disappeared.",
+			"description": "Execute the next node when the body disappeared",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "None",
-			"description": "Execute when nothing is detected",
+			"description": "Keep executing the next node when nobody is detected",
 			"type": "Pulse",
 			"displayType": "Exec"
 		}
@@ -36,7 +36,7 @@
 	"category": "Body",
 	"subCategory": "Interaction",
 	"nodeEvent": "onUpdate",
-	"description": "Detect how a body is interacting with the camera viewport.",
+	"description": "Detect body in the scene to create interacting effect.",
 	"graphAlgorithms": [
 		"avatar3d"
 	],
@@ -44,5 +44,5 @@
 		"InHouse",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -6,13 +6,13 @@
 			"name": "World pos",
 			"type": "Vector3f",
 			"item_type": "",
-			"description": "The world position to calculate from",
+			"description": "The position in world space",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Camera",
 			"type": "Camera",
-			"description": "The camera whose screen will be the target to calculate the new position on",
+			"description": "The camera that provides the output viewport space",
 			"displayType": "Camera"
 		}
 	],
@@ -21,7 +21,7 @@
 			"name": "Screen pos",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The screen position to calculate to",
+			"description": "The position in the camera viewport space, which is normalized to the camera",
 			"displayType": "Vec2"
 		}
 	],
@@ -29,11 +29,11 @@
 	"lua": "CGWorldToScreen.lua",
 	"version": "1.0",
 	"category": "Transform",
-	"description": "Calculate the screen normalized position from world position",
+	"description": "Transform a position from world space to camera viewport space. The bottom left of the camera viewport is (0,0) and the top right is (1,1). ",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

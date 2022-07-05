@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Start",
-			"description": "Start the transition at the \"from\" value",
+			"description": "Start the transition at the From value",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
@@ -28,21 +28,21 @@
 		},
 		{
 			"name": "From",
-			"description": "Start value of the transition",
+			"description": "The start value of the transition",
 			"type": "Double",
 			"displayType": "Number",
 			"dynamic": true
 		},
 		{
 			"name": "To",
-			"description": "End value of the transition",
+			"description": "The end value of the transition",
 			"type": "Double",
 			"displayType": "Number",
 			"dynamic": true
 		},
 		{
 			"name": "Duration",
-			"description": "Duration of the transition",
+			"description": "The total time of the transition",
 			"type": "Double",
 			"displayType": "Number",
 			"range": [
@@ -55,7 +55,7 @@
 		},
 		{
 			"name": "Interpolator",
-			"description": "Type of interpolators including Linear, Ease-in, Ease-out, Ease-in-out, Ease-out-in",
+			"description": "The type of interpolators, supporting Linear, Ease-in, Ease-out, Ease-in-out, and Ease-out-in",
 			"type": "String",
 			"value_list": [
 				"Linear",
@@ -68,7 +68,7 @@
 		},
 		{
 			"name": "Loop",
-			"description": "Loop count of the transition",
+			"description": "The number of times of looping the transition",
 			"type": "Int",
 			"displayType": "Number",
 			"default_value": 1,
@@ -90,7 +90,7 @@
 		},
 		{
 			"name": "Stay",
-			"description": "Keep executing the next node when the transition stay working",
+			"description": "Keep executing the next node when the transition stays working",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
@@ -102,15 +102,15 @@
 		},
 		{
 			"name": "Current",
-			"description": "Current interpolated value",
+			"description": "The current interpolated value",
 			"type": "Double",
 			"displayType": "Number",
 			"dynamic": true
 		}
 	],
 	"category": "Utility",
-	"TTEHVer": "1.0.0",
-	"description": "Transit from value A to value B according to set interpolator within set time range; (supporting Number, Vec2, Vec3, Vec4, Color)",
+	"TTEHVer": "1.0.1",
+	"description": "Transition from one value to another according to a certain interpolator within a certain time range. Supported types: Number, Vec2, Vec3, Vec4, and Color.",
 	"productTypes": [
 		"TTEH"
 	],

@@ -1,23 +1,25 @@
 {
-	"Shader":"Unlit",
+	"Shader": "Unlit",
 	"Pass":
 	[
 		{
 			"Ausl": "a1",
-			"Cull":"Back",
-			"DepthWriteEnable":"On",
-      "BlendMode":"Normal",
-			"ZTest":"LessEqual"
+			"Cull": "Back",
+			"DepthWriteEnable": "On",
+            "BlendMode": "Normal",
+			"ZTest": "LessEqual"
 		}
 	]
 }
 ---ENDJSON
 
 ---BEGIN UIPROPERTY
-$Albedo$
-_AlbedoColor(Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
-AlbedoTexture(Texture on, Defs) = 0
-[AlbedoTexture]_AlbedoTexture(Texture, 2D) = "Default_Material_Texture_Icon"
+
+    $Albedo$
+    _AlbedoColor (Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+    AlbedoTexture (Texture on, Defs) = 0
+    [AlbedoTexture] _AlbedoTexture (Texture, 2D) = "Default_Material_Texture_Icon"
+
 ---END UIPROPERTY
 
 ---BEGIN a1
@@ -31,10 +33,10 @@ AlbedoTexture(Texture on, Defs) = 0
     #pragma input attributes
         in vec3 attPosition;
         in vec2 attTexcoord0;
-    #ifdef AE_AMAZING_USE_BONES
-        in vec4 attBoneIds;
-        in vec4 attWeights;
-    #endif
+        #ifdef AE_AMAZING_USE_BONES
+            in vec4 attBoneIds;
+            in vec4 attWeights;
+        #endif
     #pragma end
 
     // Varyings: outputs of vertex shader, inputs for fragment shader
@@ -55,267 +57,267 @@ AlbedoTexture(Texture on, Defs) = 0
             const int MAX_BONES = 50;
             uniform mat4 u_Palatte[MAX_BONES];
         #endif
-            uniform mat4 u_Model;
-            uniform mat4 u_MVP;
+        uniform mat4 u_Model;
+        uniform mat4 u_MVP;
     #pragma end
 
     // Fragment stage section in fragment shader
     #pragma fs varyings targets
-    precision highp float;
-    #ifdef AlbedoTexture
-        uniform sampler2D _AlbedoTexture;
-    #endif
-    uniform vec4 _AlbedoColor;
-    uniform mat4 u_VP;
-    // --------------------- Frame buffer fetch ---------------------
+        precision highp float;
+        #ifdef AlbedoTexture
+            uniform sampler2D _AlbedoTexture;
+        #endif
+        uniform vec4 _AlbedoColor;
+        uniform mat4 u_VP;
+        // --------------------- Frame buffer fetch ---------------------
 
-    uniform sampler2D u_FBOTexture;
-    vec4 TextureFromFBO(vec2 uv)
-    {
-        vec4 result = texture(u_FBOTexture, uv); 
-        return result;
-    }
+        uniform sampler2D u_FBOTexture;
+        vec4 TextureFromFBO(vec2 uv)
+        {
+            vec4 result = texture(u_FBOTexture, uv); 
+            return result;
+        }
 
-    #ifdef AMAZING_USE_BLENDMODE_MUTIPLAY
-    vec3 BlendMultiply(vec3 base, vec3 blend)
-    {
-            return base * blend;
-    }
-    vec3 BlendMultiply(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendMultiply(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_MUTIPLAY
+            vec3 BlendMultiply(vec3 base, vec3 blend)
+            {
+                return base * blend;
+            }
+            vec3 BlendMultiply(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendMultiply(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_OVERLAY
-    float BlendOverlay(float base, float blend)
-    {
-            return base < 0.5 ? (2.0 * base * blend) :(1.0 - 2.0 * (1.0 - base) * (1.0 - blend));
-    }
-    vec3 BlendOverlay(vec3 base, vec3 blend)
-    {
-            return vec3(BlendOverlay(base.r, blend.r), BlendOverlay(base.g, blend.g), BlendOverlay(base.b, blend.b));
-    }
-    vec3 BlendOverlay(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendOverlay(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_OVERLAY
+            float BlendOverlay(float base, float blend)
+            {
+                return base < 0.5 ? (2.0 * base * blend) :(1.0 - 2.0 * (1.0 - base) * (1.0 - blend));
+            }
+            vec3 BlendOverlay(vec3 base, vec3 blend)
+            {
+                return vec3(BlendOverlay(base.r, blend.r), BlendOverlay(base.g, blend.g), BlendOverlay(base.b, blend.b));
+            }
+            vec3 BlendOverlay(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendOverlay(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_ADD
-    vec3 BlendAdd(vec3 base, vec3 blend)
-    {
-        return min(base + blend,vec3(1.0));
-    }
-    vec3 BlendAdd(vec3 base, vec3 blend, float opacity)
-    {
-        return (BlendAdd(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_ADD
+            vec3 BlendAdd(vec3 base, vec3 blend)
+            {
+                return min(base + blend,vec3(1.0));
+            }
+            vec3 BlendAdd(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendAdd(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_SCREEN
-    vec3 BlendScreen(vec3 base, vec3 blend)
-    {
-        return vec3(1.0) - ((vec3(1.0) - base) * (vec3(1.0) - blend));
-    }
-    vec3 BlendScreen(vec3 base, vec3 blend, float opacity)
-    {
-        return (BlendScreen(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_SCREEN
+            vec3 BlendScreen(vec3 base, vec3 blend)
+            {
+                return vec3(1.0) - ((vec3(1.0) - base) * (vec3(1.0) - blend));
+            }
+            vec3 BlendScreen(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendScreen(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_SOFTLIGHT
-    float BlendSoftLight(float base, float blend)
-    {
-        return (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));
-    }
-    vec3 BlendSoftLight(vec3 base, vec3 blend)
-    {
-        return vec3(BlendSoftLight(base.r,blend.r),BlendSoftLight(base.g,blend.g),BlendSoftLight(base.b,blend.b));
-    }
-    vec3 BlendSoftLight(vec3 base, vec3 blend, float opacity)
-    {
-        return (BlendSoftLight(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_SOFTLIGHT
+            float BlendSoftLight(float base, float blend)
+            {
+                return (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));
+            }
+            vec3 BlendSoftLight(vec3 base, vec3 blend)
+            {
+                return vec3(BlendSoftLight(base.r,blend.r),BlendSoftLight(base.g,blend.g),BlendSoftLight(base.b,blend.b));
+            }
+            vec3 BlendSoftLight(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendSoftLight(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_AVERAGE
-    vec3 BlendAverage(vec3 base, vec3 blend)
-    {
-            return (base + blend) / 2.0;
-    }
-    vec3 BlendAverage(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendAverage(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_AVERAGE
+            vec3 BlendAverage(vec3 base, vec3 blend)
+            {
+                return (base + blend) / 2.0;
+            }
+            vec3 BlendAverage(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendAverage(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_COLORBURN
-    float BlendColorBurn(float base, float blend)
-    {
-            return (blend == 0.0) ? blend : max((1.0 - ((1.0 - base) / blend)),0.0);
-    }
-    vec3 BlendColorBurn(vec3 base, vec3 blend)
-    {
-            return vec3(BlendColorBurn(base.r, blend.r), BlendColorBurn(base.g, blend.g), BlendColorBurn(base.b, blend.b));
-    }
-    vec3 BlendColorBurn(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendColorBurn(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_COLORBURN
+            float BlendColorBurn(float base, float blend)
+            {
+                return (blend == 0.0) ? blend : max((1.0 - ((1.0 - base) / blend)),0.0);
+            }
+            vec3 BlendColorBurn(vec3 base, vec3 blend)
+            {
+                return vec3(BlendColorBurn(base.r, blend.r), BlendColorBurn(base.g, blend.g), BlendColorBurn(base.b, blend.b));
+            }
+            vec3 BlendColorBurn(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendColorBurn(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_COLORDODGE
-    float BlendColorDodge(float base, float blend)
-    {
-            return (blend == 1.0) ? blend : min(base / (1.0 - blend), 1.0);
-    }
-    vec3 BlendColorDodge(vec3 base, vec3 blend)
-    {
-            return vec3(BlendColorDodge(base.r, blend.r), BlendColorDodge(base.g, blend.g), BlendColorDodge(base.b, blend.b));
-    }
-    vec3 BlendColorDodge(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendColorDodge(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_COLORDODGE
+            float BlendColorDodge(float base, float blend)
+            {
+                return (blend == 1.0) ? blend : min(base / (1.0 - blend), 1.0);
+            }
+            vec3 BlendColorDodge(vec3 base, vec3 blend)
+            {
+                return vec3(BlendColorDodge(base.r, blend.r), BlendColorDodge(base.g, blend.g), BlendColorDodge(base.b, blend.b));
+            }
+            vec3 BlendColorDodge(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendColorDodge(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_DARKEN
-    float BlendDarken(float base, float blend)
-    {
-            return min(blend,base);
-    }
-    vec3 BlendDarken(vec3 base, vec3 blend)
-    {
-            return vec3(BlendDarken(base.r,blend.r), BlendDarken(base.g,blend.g), BlendDarken(base.b,blend.b));
-    }
-    vec3 BlendDarken(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendDarken(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_DARKEN
+            float BlendDarken(float base, float blend)
+            {
+                return min(blend,base);
+            }
+            vec3 BlendDarken(vec3 base, vec3 blend)
+            {
+                return vec3(BlendDarken(base.r,blend.r), BlendDarken(base.g,blend.g), BlendDarken(base.b,blend.b));
+            }
+            vec3 BlendDarken(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendDarken(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_DIFFERENCE
-    vec3 BlendDifference(vec3 base, vec3 blend)
-    {
-            return abs(base - blend);
-    }
-    vec3 BlendDifference(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendDifference(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_DIFFERENCE
+            vec3 BlendDifference(vec3 base, vec3 blend)
+            {
+                return abs(base - blend);
+            }
+            vec3 BlendDifference(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendDifference(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_EXCLUSION
-    vec3 BlendExclusion(vec3 base, vec3 blend)
-    {
-            return base + blend - 2.0 * base * blend;
-    }
-    vec3 BlendExclusion(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendExclusion(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_EXCLUSION
+            vec3 BlendExclusion(vec3 base, vec3 blend)
+            {
+                return base + blend - 2.0 * base * blend;
+            }
+            vec3 BlendExclusion(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendExclusion(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_LIGHTEN
-    float BlendLighten(float base, float blend)
-    {
-            return max(blend,base);
-    }
-    vec3 BlendLighten(vec3 base, vec3 blend)
-    {
-            return vec3(BlendLighten(base.r,blend.r), BlendLighten(base.g,blend.g), BlendLighten(base.b,blend.b));
-    }
-    vec3 BlendLighten(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendLighten(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_LIGHTEN
+            float BlendLighten(float base, float blend)
+            {
+                return max(blend,base);
+            }
+            vec3 BlendLighten(vec3 base, vec3 blend)
+            {
+                return vec3(BlendLighten(base.r,blend.r), BlendLighten(base.g,blend.g), BlendLighten(base.b,blend.b));
+            }
+            vec3 BlendLighten(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendLighten(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_LINEARDODGE
-    float BlendLinearDodge(float base, float blend)
-    {
-            return min(base + blend, 1.0);
-    }
-    vec3 BlendLinearDodge(vec3 base, vec3 blend)
-    {
-            return min(base + blend,vec3(1.0));
-    }
-    vec3 BlendLinearDodge(vec3 base, vec3 blend, float opacity)
-    {
-            return (BlendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));
-    }
-    #endif
+        #ifdef AMAZING_USE_BLENDMODE_LINEARDODGE
+            float BlendLinearDodge(float base, float blend)
+            {
+                return min(base + blend, 1.0);
+            }
+            vec3 BlendLinearDodge(vec3 base, vec3 blend)
+            {
+                return min(base + blend,vec3(1.0));
+            }
+            vec3 BlendLinearDodge(vec3 base, vec3 blend, float opacity)
+            {
+                return (BlendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));
+            }
+        #endif
 
-    vec4 ApplyBlendMode(vec4 color, vec2 uv)
-    {
-        vec4 ret = color;
-    #ifdef AMAZING_USE_BLENDMODE_MUTIPLAY
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendMultiply(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+        vec4 ApplyBlendMode(vec4 color, vec2 uv)
+        {
+            vec4 ret = color;
+            #ifdef AMAZING_USE_BLENDMODE_MUTIPLAY
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendMultiply(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_OVERLAY
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendOverlay(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_OVERLAY
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendOverlay(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_ADD
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendAdd(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_ADD
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendAdd(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_SCREEN
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendScreen(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_SCREEN
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendScreen(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_SOFTLIGHT
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendSoftLight(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_SOFTLIGHT
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendSoftLight(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_AVERAGE
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendAverage(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_AVERAGE
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendAverage(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_COLORBURN
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendColorBurn(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_COLORBURN
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendColorBurn(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_COLORDODGE
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendColorDodge(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_COLORDODGE
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendColorDodge(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_DARKEN
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendDarken(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_DARKEN
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendDarken(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_DIFFERENCE
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendDifference(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_DIFFERENCE
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendDifference(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_EXCLUSION
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendExclusion(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_EXCLUSION
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendExclusion(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_LIGHTEN
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendLighten(ret.rgb, framecolor.rgb, ret.a);
-    #endif
+            #ifdef AMAZING_USE_BLENDMODE_LIGHTEN
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendLighten(ret.rgb, framecolor.rgb, ret.a);
+            #endif
 
-    #ifdef AMAZING_USE_BLENDMODE_LINEARDODGE
-        vec4 framecolor = TextureFromFBO(uv);
-        ret.rgb = BlendLinearDodge(ret.rgb, framecolor.rgb, ret.a);
-    #endif
-        return ret;
-    }
+            #ifdef AMAZING_USE_BLENDMODE_LINEARDODGE
+                vec4 framecolor = TextureFromFBO(uv);
+                ret.rgb = BlendLinearDodge(ret.rgb, framecolor.rgb, ret.a);
+            #endif
+            return ret;
+        }
     #pragma end
 
     // Entry function in vertex shader, must match "void vertex()"
@@ -324,17 +326,17 @@ AlbedoTexture(Texture on, Defs) = 0
         vec4 homogeneous_pos = vec4(attPosition, 1.0);
         g_vary_uv0 = attTexcoord0;
   
-    #ifdef AE_AMAZING_USE_BONES
-        mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x;
-        boneTransform += u_Palatte[int(attBoneIds.y)] * attWeights.y;
-        boneTransform += u_Palatte[int(attBoneIds.z)] * attWeights.z;
-        boneTransform += u_Palatte[int(attBoneIds.w)] * attWeights.w;
-        gl_Position = u_MVP * boneTransform * vec4(attPosition, 1.0);
-        v_posWS = (u_Model * boneTransform * vec4(attPosition, 1.0)).xyz;
-    #else
-        gl_Position = u_MVP * homogeneous_pos;
-        v_posWS = (u_Model * vec4(attPosition, 1.0)).xyz;
-    #endif
+        #ifdef AE_AMAZING_USE_BONES
+            mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x;
+            boneTransform += u_Palatte[int(attBoneIds.y)] * attWeights.y;
+            boneTransform += u_Palatte[int(attBoneIds.z)] * attWeights.z;
+            boneTransform += u_Palatte[int(attBoneIds.w)] * attWeights.w;
+            gl_Position = u_MVP * boneTransform * vec4(attPosition, 1.0);
+            v_posWS = (u_Model * boneTransform * vec4(attPosition, 1.0)).xyz;
+        #else
+            gl_Position = u_MVP * homogeneous_pos;
+            v_posWS = (u_Model * vec4(attPosition, 1.0)).xyz;
+        #endif
     }
 
     // Entry function in fragment shader, must match "void fragment()"
@@ -343,14 +345,14 @@ AlbedoTexture(Texture on, Defs) = 0
         vec2 uv = g_vary_uv0;
         uv.y = 1.0 - uv.y;
         vec4 t_albedo = vec4(1, 1, 1, 1);
-    #ifdef AlbedoTexture
-        t_albedo = texture(_AlbedoTexture, uv);
-    #endif
-        vec4 final_color = t_albedo * _AlbedoColor;
-    #ifdef AMAZING_USE_BLENDMODE_ALPHATEST
-        if(final_color.a < 0.5)
-            discard;
-    #endif
+        #ifdef AlbedoTexture
+            t_albedo = texture(_AlbedoTexture, uv);
+        #endif
+            vec4 final_color = t_albedo * _AlbedoColor;
+        #ifdef AMAZING_USE_BLENDMODE_ALPHATEST
+            if(final_color.a < 0.5)
+                discard;
+        #endif
         vec4 proj_pos = u_VP * vec4(v_posWS, 1.0);
         vec2 ndc_coord = proj_pos.xy / proj_pos.w;
         vec2 screen_coord = ndc_coord * 0.5 + vec2(0.5, 0.5);

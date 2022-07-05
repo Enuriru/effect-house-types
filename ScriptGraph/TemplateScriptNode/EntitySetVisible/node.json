@@ -47,11 +47,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGEntitySetVisible",
 	"category": "Utility",
-	"description": "Set entity visibility",
+	"description": "Set the visibility for a Scene Object.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

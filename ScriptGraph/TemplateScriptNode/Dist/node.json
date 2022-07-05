@@ -7,7 +7,7 @@
 			"type": "Vector2f",
 			"dynamic": true,
 			"item_type": "",
-			"description": "Input point A",
+			"description": "The first point",
 			"displayType": "Vec2"
 		},
 		{
@@ -15,7 +15,7 @@
 			"type": "Vector2f",
 			"dynamic": true,
 			"item_type": "",
-			"description": "Input point B",
+			"description": "The second point",
 			"displayType": "Vec2"
 		}
 	],
@@ -24,7 +24,7 @@
 			"name": "Dist",
 			"type": "Double",
 			"item_type": "",
-			"description": "Distance between two points",
+			"description": "The distance between the two points",
 			"displayType": "Number"
 		}
 	],
@@ -38,11 +38,11 @@
 		"Vector2f",
 		"Vector3f"
 	],
-	"description": "Calculates the 2D distance between two points (supporting Vec2, Vec3)",
+	"description": "Calculate the distance between two points. Supported types: Vec2 and Vec3.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -17,8 +17,8 @@ class CGAudioMixer extends BaseNode {
     this.audioNodeName = 'GainNode';
     this.audioGraph = null;
     this.portRangeMap = {
-      1: [-1, 1],
-      3: [-1, 1],
+      1: [0, 100],
+      3: [0, 100],
     };
     this.params = {};
   }
@@ -61,14 +61,14 @@ class CGAudioMixer extends BaseNode {
       const oriGain = this.params[keys[i]];
       let curGain = this.inputs[keys[i]]();
       if (oriGain !== curGain) {
-        const gainRange = this.portRangeMap[1];
+        const gainRange = this.portRangeMap[keys[i]];
         if (curGain < gainRange[0]) {
-          curGain = -1;
+          curGain = 0;
         }
         if (curGain > gainRange[1]) {
-          curGain = 1;
+          curGain = 100;
         }
-        this.audioNodes[i].gain = curGain;
+        this.audioNodes[i].gain = curGain / 100.0;
         this.params[keys[i]] = curGain;
       }
     }

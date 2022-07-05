@@ -1,7 +1,7 @@
 {
 	"name": "Combine",
 	"id": "da895c0a-894c-f23b-a341-8ab1aeafafd1",
-	"description": "Pack numbers to a vector; (supporting Vec2, Vec3, Vec4, Color)",
+	"description": "Pack inputs into a vector or color data. The number of inputs depends on the selected data type. And the outputs are in the same order as they were inputted. Supported types: Vec2, Vec3, Vec4, and Color.",
 	"inputChangeFollowOutput": [
 		{
 			"outputKey": "Vector2f",
@@ -105,5 +105,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -1,0 +1,17 @@
+{
+    "name": "InputTextureNode",
+    "id": "52408260-762b-4aaf-bb8b-c6dc4f19148f",
+    "inputs": [],
+    "outputs": [
+        {
+            "name": "Tex_out",
+            "type": "Texture",
+            "description": "Texture export"
+        }
+    ],
+    "version": "1.0",
+    "category": "Function",
+    "description": "export with textures",
+    "builtin": true,
+    "productTypes": ["InHouse", "Domestic", "TTEH"]
+}

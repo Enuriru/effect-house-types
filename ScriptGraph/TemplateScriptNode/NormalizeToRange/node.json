@@ -1,0 +1,49 @@
+{
+	"name": "Normalize to Range",
+	"id": "58e73fae-74f9-f5be-5034-ed8b864e2f0e",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"description": "The input value to be normalized",
+			"displayType": "Number"
+		},
+		{
+			"name": "Min",
+			"type": "Double",
+			"item_type": "",
+			"description": "The lower bound of the old range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Max",
+			"type": "Double",
+			"item_type": "",
+			"description": "The upper bound of the old range",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"description": "The normalized value",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGNormalized.lua",
+	"js": "CGNormalized.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGNormalized",
+	"category": "Math",
+	"description": "Remap a value from an old range to a range within 0 and 1.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.1.0"
+}

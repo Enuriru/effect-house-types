@@ -3,6 +3,31 @@
 	"id": "196f91d3-603c-24d4-6164-390a539628b7",
 	"outputChangeFollowInput": [
 		{
+			"inputKey": "Double",
+			"displayType": "Number",
+			"outputNames": [
+				"Vector2f",
+				"Vector3f",
+				"Vector4f",
+				"Color",
+				"String"
+			],
+			"outputTypes": [
+				"Vector2f",
+				"Vector3f",
+				"Vector4f",
+				"Color",
+				"String"
+			],
+			"outputDescriptions": [
+				"Convert to vector2f",
+				"Convert to vector3f",
+				"Convert to vector4f",
+				"Convert to color",
+				"Convert to string"
+			]
+		},
+		{
 			"inputKey": "Vector2f",
 			"outputNames": [
 				"Vector3f",
@@ -129,11 +154,11 @@
 	"inputs": [
 		{
 			"name": "Input",
-			"type": "Vector2f",
+			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "Input value to convert",
-			"displayType": "Vec2"
+			"description": "The value to convert",
+			"displayType": "Number"
 		}
 	],
 	"outputs": [],
@@ -143,8 +168,9 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGDataConvert",
 	"category": "Utility",
-	"description": "Convert input value to other types; (supporting Vec2, Vec3, Vec4, Color, Boolean, Rect, String)",
+	"description": "Convert input value to other types. Supported types: Number, Vec2, Vec3, Vec4, Color, Boolean, Rect, and String.",
 	"supportedValueTypes": [
+		"Double",
 		"Vector2f",
 		"Vector3f",
 		"Vector4f",
@@ -158,5 +184,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

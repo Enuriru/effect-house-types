@@ -22,12 +22,13 @@ class CGAudioEffectFilter extends BaseNode {
       4: 'filter_type',
     };
     this.portRangeMap = {
-      1: [0, 100],
-      2: [0, 0.5],
-      3: [0, 0.5],
+      1: [10, 20000],
+      2: [0, 10],
+      3: [1, 2],
       4: [0, 1],
     };
     this.params = {};
+    this.enable = true;
   }
 
   setInput(index, func) {
@@ -52,6 +53,16 @@ class CGAudioEffectFilter extends BaseNode {
   updateParamsValue() {
     if (!this.audioNode) {
       return;
+    }
+    const enable = this.inputs[5]();
+    if (this.enable !== enable) {
+      this.enable = enable;
+      if (this.enable) {
+        this.audioNode.setByPass(false);
+      } else {
+        this.audioNode.setByPass(true);
+        return;
+      }
     }
     const keys = Object.keys(this.portIndexToParamName);
     for (let i = 0; i < keys.length; i++) {

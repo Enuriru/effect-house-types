@@ -23,15 +23,11 @@
 		}
 	],
 	"js": "CGScreenLongTap.js",
-	"lua": "CGScreenLongTap.lua",
 	"scriptSupport": "all",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGScreenLongTap",
 	"nodeEvent": [
-		"onStart",
 		"onCallBack",
-		"onComponentRemoved",
 		"onDestroy",
 		"beforeStart"
 	],
@@ -39,11 +35,11 @@
 	"graphAlgorithms": [
 		"TouchGes"
 	],
-	"description": "Execute when a touch staying on screen is detected",
+	"description": "Execute the next node when someone touches and holds the device screen for over 200 ms.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

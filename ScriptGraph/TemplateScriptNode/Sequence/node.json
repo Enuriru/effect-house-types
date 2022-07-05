@@ -6,7 +6,7 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		}
 	],
@@ -16,7 +16,7 @@
 			"type": "Pulse",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Execute the next node",
+			"description": "Execute the next node as the first procedure",
 			"displayType": "Exec"
 		},
 		{
@@ -24,7 +24,7 @@
 			"type": "Pulse",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Execute the next node",
+			"description": "Execute the next node as the second procedure",
 			"displayType": "Exec"
 		},
 		{
@@ -32,7 +32,7 @@
 			"type": "Pulse",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Execute the next node",
+			"description": "Execute the next node as the last procedure",
 			"displayType": "Exec"
 		}
 	],
@@ -42,7 +42,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGSequence",
 	"category": "Control",
-	"description": "Execute procedures one by one",
+	"description": "Execute procedures one by one. You can click \"+\" to add more outputs.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
@@ -53,5 +53,5 @@
 		"baseName": "Procedure ",
 		"increaseStartIndex": 4
 	},
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

@@ -1,0 +1,47 @@
+{
+	"name": "Flip-Flop",
+	"id": "2e205aa1-22ec-4999-90c5-a06b3d7a0420",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The input execution that triggers this node",
+			"displayType": "Exec"
+		}
+	],
+	"outputs": [
+		{
+			"name": "A",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when \"Is A\" is true",
+			"displayType": "Exec"
+		},
+		{
+			"name": "B",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when \"Is A\" is false",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Is A",
+			"type": "Bool",
+			"item_type": "",
+			"description": "The condition flipping every time this node is triggered",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGFlipFlop.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Control",
+	"description": "Switch between two execution outputs. When this node is triggered for the first time, output A is executed. When it is triggered for the second time, output B is executed. For the third time, output A, and so on.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

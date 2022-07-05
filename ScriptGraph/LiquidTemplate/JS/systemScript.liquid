@@ -25,6 +25,7 @@ class {{ systemName }} {
             "onComponentAdded": [],
             "onComponentRemoved": [],
             "onDestroy": [],
+            "onLateUpdate": [],
         };
 
         this.graphUtils = new GraphUtils();
@@ -144,6 +145,12 @@ class {{ systemName }} {
 {% if containAudioGraph %}
         this.audioAssembler && this.audioAssembler.releaseProxy();
 {% endif %}
+    }
+
+    onLateUpdate(dt) {
+        this.callbackNode["onLateUpdate"].forEach((node)=>{
+            node.onLateUpdate(this, dt);
+        })
     }
 
     onCallBack(sys, sender, eventType) {

@@ -16,7 +16,7 @@ class CGAudioGain extends BaseNode {
     this.audioNodeName = 'GainNode';
     this.audioGraph = null;
     this.portRangeMap = {
-      1: [-1, 1],
+      1: [0, 100],
     };
     this.params = {};
   }
@@ -47,12 +47,12 @@ class CGAudioGain extends BaseNode {
     if (oriGain !== curGain) {
       const gainRange = this.portRangeMap[1];
       if (curGain < gainRange[0]) {
-        curGain = -1;
+        curGain = 0;
       }
       if (curGain > gainRange[1]) {
-        curGain = 1;
+        curGain = 100;
       }
-      this.audioNode.gain = curGain;
+      this.audioNode.gain = curGain / 100.0;
       this.params[1] = curGain;
     }
   }

@@ -1,25 +1,43 @@
 {
-	"name": "Video Record Start",
-	"id": "5330c175-41e2-7791-a132-43884ea72b73",
+	"name": "Video Record",
+	"id": "4945a3e7-a2d3-b194-7c0c-b2e6a3d52c46",
 	"inputs": [],
 	"outputs": [
 		{
-			"name": "Next",
+			"name": "On Start",
+			"description": "Execute the next node when the recording starts",
 			"type": "Pulse",
-			"item_type": "",
-			"description": "Exec next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Recording",
+			"description": "Keep executing the next node during recording",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Stop",
+			"description": "Execute the next node when the recording is stopped or paused",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Not Recording",
+			"description": "Keep executing the next node when recording is not started",
+			"type": "Pulse",
 			"displayType": "Exec"
 		}
 	],
-	"lua": "CGRecordVideo.lua",
 	"js": "CGRecordVideo.js",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGRecordVideo",
 	"category": "Event",
 	"subCategory": "Effect Application",
-	"nodeEvent": "onEvent",
-	"description": "Execute when camera starts recording video",
+	"nodeEvent": [
+		"onEvent",
+		"onUpdate"
+	],
+	"description": "Execute the next node when recording.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",

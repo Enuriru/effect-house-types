@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Type",
-			"description": "Which type to detect; including Single hand, Both hands",
+			"description": "The detection type, Single hand or Both hands",
 			"type": "String",
 			"displayType": "String",
 			"value_list": [
@@ -16,25 +16,25 @@
 	"outputs": [
 		{
 			"name": "Begin",
-			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"description": "Execute the next node when the hands are detected",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Stay",
-			"description": "Keep executing the next node when the hand gesture stays detected",
+			"description": "Keep executing the next node when the hands stays in scene",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "End",
-			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"description": "Execute the next node when the hand disappeared",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "None",
-			"description": "Keep executing the next node when the hand gesture is not detected",
+			"description": "Keep executing the next node when no hand is detected",
 			"type": "Pulse",
 			"displayType": "Exec"
 		}
@@ -42,7 +42,7 @@
 	"js": "CGHandDetection.js",
 	"nodeEvent": "onUpdate",
 	"category": "Hand",
-	"TTEHVer": "1.0.0",
+	"TTEHVer": "1.0.1",
 	"graphAlgorithms": [
 		"handDetect"
 	],
@@ -69,5 +69,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"description": "Detect single hand or both hand appear and disappear"
+	"description": "Detect one hand or two hands in the scene."
 }

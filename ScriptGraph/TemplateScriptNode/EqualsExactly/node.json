@@ -3,41 +3,48 @@
 	"id": "1c971448-8cf0-427f-8307-52d04d310379",
 	"inputs": [
 		{
-			"name": "Value 1",
-			"type": "Int",
+			"name": "A",
+			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value 1",
+			"description": "The first input to compare",
 			"displayType": "Number"
 		},
 		{
-			"name": "Value 2",
-			"type": "Int",
+			"name": "B",
+			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value 2",
+			"description": "The second input to compare",
+			"displayType": "Number"
+		},
+		{
+			"name": "Tolerance",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": false,
+			"default_value": "0.001",
+			"description": "Tolerance",
 			"displayType": "Number"
 		}
 	],
 	"outputs": [
 		{
-			"name": "Result",
+			"name": "A==B?",
 			"type": "Bool",
 			"item_type": "",
 			"dynamic": false,
-			"description": "Boolean value",
+			"description": "If A and B are equal, this value is true. If they are not equal, this value is false.",
 			"displayType": "Boolean"
 		}
 	],
 	"js": "CGEqualsExactly.js",
-	"lua": "CGEqualsExactly.lua",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGEqualsExactly",
 	"category": "Logic",
-	"description": "Check if two values are equal; (supporting Number, Boolean, Vec2, Vec3, Vec4, Color, String)",
+	"description": "Compare two inputs and check if they are equal. Supported types: Number, Boolean, Vec2, Vec3, Vec4, Color, and String.",
 	"supportedValueTypes": [
 		"Int",
 		"Double",
@@ -53,5 +60,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "2.0.0"
 }

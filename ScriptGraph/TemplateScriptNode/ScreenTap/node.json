@@ -29,11 +29,11 @@
 	"graphAlgorithms": [
 		"TouchGes"
 	],
-	"description": "Execute when a touch on screen is detected",
+	"description": "Execute the next node when the device screen is tapped. It triggers as soon as the finger touches the screen.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

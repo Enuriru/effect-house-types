@@ -1,30 +1,39 @@
 {
-    "name": "Screen Pinch",
-    "id": "7a155dd6-0c22-6045-48c6-add091847353",
-    "inputs":
-    [
-    ],
-    "outputs": [
-        {
-            "name": "Pinch",
-            "type": "Pulse",
-            "description": "Trigger next node when screen pinch happened"
-        },
-        {
-            "name": "Scale",
-            "type": "Double",
-            "description": "Pinch scale"
-        }
-    ],
-    "js": "CGScreenPinch.js",
-    "lua": "CGScreenPinch.lua",
-    "version": "1.0",
-    "amazingVersion": "10.40.0",
-    "luaFuncName": "CGScreenPinch",
-    "nodeEvent": ["onEvent"],
-    "category": "Event",
-    "subCategory": "Input",
-    "graphAlgorithms": ["TouchGes"],
-    "description": "Capture screen pinch event",
-    "productTypes": ["InHouse", "Domestic", "Pending"]
+	"name": "Screen Pinch",
+	"id": "8d8b5f42-e51e-892b-4653-2016dd077660",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Pinching",
+			"type": "Pulse",
+			"description": "Execute the next node when 2 finger touching the screen and rotating",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Scale",
+			"type": "Double",
+			"description": "The scale multiplier changed from the beginning frame of the pinching to the current frame",
+			"displayType": "Number"
+		}
+	],
+	"js": "CGScreenPinch.js",
+	"lua": "CGScreenPinch.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGScreenPinch",
+	"nodeEvent": [
+		"onEvent"
+	],
+	"category": "Event",
+	"subCategory": "Input",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
+	"description": "This node outputs the scale multiplier changes based on the 2-finger touch points and keep executing the next node while rotating",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
 }

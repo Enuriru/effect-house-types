@@ -75,7 +75,7 @@
 		{
 			"EngineType": "MeshRenderer",
 			"DisPlayType": [
-				"Model"
+				"Mesh Renderer"
 			]
 		},
 		{
@@ -107,8 +107,7 @@
 		"Texture2D",
 		"Camera",
 		"Audio Stream",
-		"AudioComponent",
-		"ErrorType"
+		"AudioComponent"
 	],
 	"allDisplayType": [
 		"Exec",
@@ -132,6 +131,8 @@
 		"Camera",
 		"Audio Stream",
 		"Animation Sequence",
-		"Bool"
+		"Bool",
+		"Vec4",
+		"Float"
 	]
 }

@@ -20,12 +20,12 @@
 	"luaFuncName": "CGOnStart",
 	"category": "Event",
 	"subCategory": "Lifecycle",
-	"description": "Execute when the effect starts",
+	"description": "Execute the next node when an effect starts.",
 	"nodeEvent": "onStart",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

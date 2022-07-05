@@ -34,7 +34,13 @@ class CGDataConvert extends BaseNode {
       return null;
     }
 
-    if (curType === 'Vector2f') {
+    if (curType === 'Double') {
+      this.outputs[0] = new Amaz.Vector2f(value, value);
+      this.outputs[1] = new Amaz.Vector3f(value, value, value);
+      this.outputs[2] = new Amaz.Vector4f(value, value, value, value);
+      this.outputs[3] = new Amaz.Color(value, value, value, value);
+      this.outputs[4] = `${value.toFixed(2)}`;
+    } else if(curType === 'Vector2f') {
       this.outputs[0] = new Amaz.Vector3f(value.x, value.y, 0.0);
       this.outputs[1] = new Amaz.Vector4f(value.x, value.y, 0.0, 0.0);
       this.outputs[2] = `x:${value.x.toFixed(2)}, y:${value.y.toFixed(2)}`;

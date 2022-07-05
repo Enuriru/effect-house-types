@@ -1,0 +1,93 @@
+{
+	"name": "Screen Touch 2-point",
+	"id": "2b52b915-0d7b-45ab-bf31-a4246ff4171e",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "P1 Idle",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P1 On Start",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P1 Stay",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P1 On Stop",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P2 Idle",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P2 On Start",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P2 Stay",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P2 On Stop",
+			"type": "Pulse",
+			"description": "Execute the next node when tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "P1 Current Position",
+			"type": "Vector2f",
+			"description": "2D position of touch point",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "P1 Last Update",
+			"type": "Vector2f",
+			"description": "2D position of touch point",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "P2 Current Position",
+			"type": "Vector2f",
+			"description": "2D position of touch point",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "P2 Last Update",
+			"type": "Vector2f",
+			"description": "2D position of touch point",
+			"displayType": "Vec2"
+		}
+	],
+	"js": "CGScreenTouch2point.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"nodeEvent": ["onEvent", "onLateUpdate"],
+	"category": "Event",
+	"subCategory": "Input",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
+	"description": "Execute when a touch on screen is detected",
+	"productTypes": [
+		"InHouse"
+	],
+	"TTEHVer": "1.0.0"
+}

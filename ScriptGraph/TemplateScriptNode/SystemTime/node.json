@@ -7,42 +7,42 @@
 			"name": "Year",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current year",
+			"description": "The current year. E.g. 2022.",
 			"displayType": "Number"
 		},
 		{
 			"name": "Month",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current month",
+			"description": "The current month. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Day",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current day",
+			"description": "The current day of the month. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Hour",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current hour",
+			"description": "The current hour of the day. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Minute",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current minute",
+			"description": "The minutes of the hour. Value range",
 			"displayType": "Number"
 		},
 		{
 			"name": "Second",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current second",
+			"description": "The seconds of the minute. Value range",
 			"displayType": "Number"
 		}
 	],
@@ -53,11 +53,11 @@
 	"luaFuncName": "CGSystemTime",
 	"category": "Time",
 	"nodeEvent": "onUpdate",
-	"description": "Get the system time",
+	"description": "Get the current date and time from the system.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

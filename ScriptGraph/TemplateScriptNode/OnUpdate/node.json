@@ -16,7 +16,7 @@
 			"name": "Delta Time",
 			"type": "Double",
 			"item_type": "",
-			"description": "Delta time of each update event",
+			"description": "The number of seconds elapsed since last frame",
 			"displayType": "Number"
 		}
 	],
@@ -27,12 +27,12 @@
 	"luaFuncName": "CGOnUpdate",
 	"category": "Event",
 	"subCategory": "Lifecycle",
-	"description": "Execute every frame",
+	"description": "Execute the next node in every frame.",
 	"nodeEvent": "onUpdate",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

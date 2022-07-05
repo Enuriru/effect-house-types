@@ -1,0 +1,135 @@
+{
+    "Pass": [
+        {
+            "Ausl": "a1",
+            "BlendMode": "Normal",
+            "Cull": "Back",
+            "DepthTestEnable": "On",
+            "DepthWriteEnable": "On",
+            "ZTest": "LessEqual"
+        }
+    ],
+    "Shader": "defaultMatGraph"
+}
+---ENDJSON
+
+---BEGIN a1
+#version  300 es
+#pragma only_renderers glsl30 metal
+
+// Attributes: attributes in vertex shader
+#pragma input attributes
+    in vec3 attPosition;
+    in vec3 attNormal;
+    in vec3 attTangent;
+    in vec2 attTexcoord0;
+    in vec2 attTexcoord1;
+    in vec4 attColor;
+#ifdef AE_AMAZING_USE_BONES
+in vec4 attBoneIds;
+in vec4 attWeights;
+#endif
+#pragma end
+
+// Varyings: outputs of vertex shader, inputs for fragment shader
+#pragma varying varyings
+    vec3 v_posWS;
+    vec3 v_nDirWS;
+    vec3 v_tDirWS;
+    vec3 v_bDirWS;
+    vec2 v_uv0;
+    vec2 v_uv1;
+    vec4 v_color;
+#pragma end
+
+// Output: output targets in fragment shader
+#pragma output targets
+    out vec4 o_FragColor;
+#pragma end
+
+// Vertex stage section in vertex shader
+#pragma vs attributes varyings
+
+        #ifdef AE_AMAZING_USE_BONES
+        const int MAX_BONES = 50;
+        uniform mat4 u_Palatte[MAX_BONES];
+        #endif
+      
+
+ #include "Packages/common/input_define.glsl"
+ #include "Packages/core/spacetranslate.glsl"
+#pragma end
+
+// Fragment stage section in fragment shader
+#pragma fs varyings targets
+
+ #include "Packages/common/input_define.glsl"
+ #include "Packages/core/spacetranslate.glsl"
+ #include "Packages/core/color.glsl"
+#pragma end
+
+// Vertex Main Function
+void vertex()
+{
+
+#ifdef AE_AMAZING_USE_BONES
+mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x +
+      u_Palatte[int(attBoneIds.y)] * attWeights.y +
+      u_Palatte[int(attBoneIds.z)] * attWeights.z +
+      u_Palatte[int(attBoneIds.w)] * attWeights.w;
+      vec3 bm_postiton   = (boneTransform * vec4(attPosition.xyz, 1.0)).xyz;
+      vec3 bn_normal     = (boneTransform * vec4(attNormal.xyz, 0.0)).xyz;
+      v_posWS            = (u_Model * vec4(bm_postiton, 1.0)).xyz;
+      v_nDirWS           = (u_TransposeInvModel * vec4(bn_normal, 0.0)).xyz;
+      vec3 bm_tangent    = (boneTransform * vec4(attTangent.xyz, 0.0)).xyz;
+      vec3 bm_binormal   = (boneTransform * vec4(attPosition.xyz, 0.0)).xyz;
+      v_tDirWS           = (u_Model * vec4(bm_tangent, 0.0)).xyz;
+      v_bDirWS           = cross(v_nDirWS.xyz, v_tDirWS.xyz).xyz;
+      
+   v_uv0 =attTexcoord0;
+   v_uv1 =attTexcoord1;
+   v_color = attColor.rgba;
+
+#else
+   v_uv0 =attTexcoord0;
+   v_uv1 =attTexcoord1;
+   v_posWS =(u_Model * vec4(attPosition,1.0)).xyz;
+   v_nDirWS =(mat3(u_Model) * attNormal).xyz;
+   v_tDirWS =(mat3(u_Model) * attTangent).xyz;
+   v_bDirWS =(cross(v_nDirWS, v_tDirWS)).xyz;
+   v_color = attColor.rgba;
+
+#endif
+   v_bDirWS =(cross(v_nDirWS, v_tDirWS)).xyz;
+
+vec4 temp_temp_1 = u_VP * vec4(v_posWS.xyz, 1.0);
+gl_Position = temp_temp_1;
+}
+
+// fragment Main Function
+void fragment()
+{
+vec4 temp_temp_1 = vec4(1, 1, 1, 1);
+
+
+        #ifdef AEG_SE_FINAL_ALPHAMASK
+        if(temp_temp_1.a < 0.01)
+        {
+            discard;
+        }
+        #endif
+      
+
+   
+      // ------ PostProcess ------
+      #ifdef ToneMapping
+      temp_temp_1.rgb            = LinearToneMapping(temp_temp_1.rgb);
+      #endif
+      #ifndef USE_LINER
+      temp_temp_1.rgb = LinearToGamma(temp_temp_1.rgb);
+      #endif
+      
+      o_FragColor = temp_temp_1;
+}
+
+---END a1

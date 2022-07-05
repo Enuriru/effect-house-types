@@ -1,0 +1,47 @@
+{
+	"name": "Cross",
+	"id": "9ecf6b79-e278-4270-87af-50bafe781a50",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Vector3f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The first vector",
+			"displayType": "Vec4"
+		},
+		{
+			"name": "B",
+			"type": "Vector3f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The second vector",
+			"displayType": "Vec4"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Vector3f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result of the cross product",
+			"displayType": "Vec4"
+		}
+	],
+	"js": "CGCross.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Math",
+	"description": "Calculate the cross product between two vectors. The cross product is a vector that is perpendicular to the input two vectors. Supported types: Vec3, and Vec4.",
+	"supportedValueTypes": [
+		"Vector3f",
+		"Vector4f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

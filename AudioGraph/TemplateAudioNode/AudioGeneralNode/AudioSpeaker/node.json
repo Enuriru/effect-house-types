@@ -7,6 +7,20 @@
 			"type": "Audio Stream",
 			"description": "The audio stream you want to play",
 			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Volume",
+			"description": "The volume of the audio stream. Value range",
+			"type": "Double",
+			"displayType": "Number",
+			"default_value": 100,
+			"range": [
+				[
+					0,
+					100,
+					1
+				]
+			]
 		}
 	],
 	"outputs": [],
@@ -15,10 +29,14 @@
 	"js": "CGAudioSpeaker.js",
 	"category": "Audio",
 	"SDKVersion": "10.5.0",
-	"description": "Play the audio stream as an output.",
+	"description": "Play the audio stream with volume control.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
+	],
+	"nodeEvent": [
+		"onUpdate"
 	],
 	"builtinClass": "AudioGeneralNode",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "2.0.0"
 }

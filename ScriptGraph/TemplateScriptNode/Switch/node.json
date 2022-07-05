@@ -4,13 +4,13 @@
 	"inputs": [
 		{
 			"name": "Enter",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"type": "Pulse",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Index",
-			"description": "Controlling which item to be selected, it will be rounded to 0, 1, 2 etc. For example, if the input is 1.4, it will be recognized 1, if it is 1.5, it will be 2, so on and so forth",
+			"description": "The input rounded value, controlling which execution to be taken. For example, if the input is 1.4, it will be rounded to 1, if it is 1.5, it will be 2.",
 			"type": "Int",
 			"displayType": "Number"
 		}
@@ -20,24 +20,24 @@
 			"name": "0",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when index is 0"
+			"description": "Execute next node when the input Index is 0"
 		},
 		{
 			"name": "1",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when index is 1"
+			"description": "Execute next node when the input Index is 1"
 		},
 		{
 			"name": "2",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when index is 2"
+			"description": "Execute next node when the input Index is 2"
 		}
 	],
 	"category": "Control",
-	"TTEHVer": "1.0.0",
-	"description": "Switch Exec according to the input index",
+	"TTEHVer": "1.0.1",
+	"description": "Take different executions according to the input index. You can click \"+\" to add more outputs.",
 	"productTypes": [
 		"TTEH"
 	],

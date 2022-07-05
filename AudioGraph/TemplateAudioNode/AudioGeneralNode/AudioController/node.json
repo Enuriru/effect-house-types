@@ -27,9 +27,23 @@
 			"description": "Resume the audio source"
 		},
 		{
+			"name": "Loop Amount",
+			"type": "Int",
+			"default_value": 1,
+			"range": [
+				[
+					1,
+					"inf",
+					1
+				]
+			],
+			"description": "Set amount value for loop",
+			"displayType": "Number"
+		},
+		{
 			"name": "Audio Resource",
-			"type": "Audio Source",
 			"description": "The audio source you want to play",
+			"type": "ErrorType",
 			"displayType": "Audio Source"
 		}
 	],
@@ -37,7 +51,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "The audio stream. Connect it to a speaker to play.",
+			"description": "The audio source. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		},
 		{
@@ -66,11 +80,12 @@
 		"onUpdate",
 		"onEvent"
 	],
-	"description": "Connect to a speaker as an output to play and control the audio source.",
+	"description": "Connect to a speaker as an output to play and control the audio resource.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"builtinClass": "AudioGeneralNode",
 	"audioNodeName": "AudioControlNode",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "2.0.0"
 }

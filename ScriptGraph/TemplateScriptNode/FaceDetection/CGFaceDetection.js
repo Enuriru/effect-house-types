@@ -26,9 +26,12 @@ class CGFaceDetection extends BaseNode {
     const algResult = algMgr.getAEAlgorithmResult();
     const curFaceCount = algResult.getFaceCount();
     const faceIdxInput = this.inputs[0]();
+    this.outputs[4] = curFaceCount;
+    
     if (faceIdxInput === null) {
       return;
     }
+    this.outputs[4] = curFaceCount;
     const faceIdx = this.faceIndexMap[faceIdxInput];
     if (faceIdx === undefined) {
       return;
@@ -53,6 +56,7 @@ class CGFaceDetection extends BaseNode {
         this.nexts[3]();
       }
     }
+
     this.faceCount = curFaceCount;
   }
 }

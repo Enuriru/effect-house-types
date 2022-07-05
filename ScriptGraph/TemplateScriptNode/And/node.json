@@ -3,25 +3,25 @@
 	"id": "75ac8ecf-f20c-46ae-822b-dd184942fb4e",
 	"inputs": [
 		{
-			"name": "Value 1",
+			"name": "Value A",
 			"type": "Bool",
 			"default_value": "0",
 			"item_type": "",
-			"description": "Boolean value 1",
+			"description": "Boolean value A",
 			"displayType": "Boolean"
 		},
 		{
-			"name": "Value 2",
+			"name": "Value B",
 			"type": "Bool",
 			"default_value": "0",
 			"item_type": "",
-			"description": "Boolean value 2",
+			"description": "Boolean value B",
 			"displayType": "Boolean"
 		}
 	],
 	"outputs": [
 		{
-			"name": "Result",
+			"name": "A&B",
 			"type": "Bool",
 			"item_type": "",
 			"description": "Boolean value",
@@ -34,11 +34,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGAnd",
 	"category": "Logic",
-	"description": "Check if all inputs are true",
+	"description": "Check if both inputs are true.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

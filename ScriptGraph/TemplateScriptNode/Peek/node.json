@@ -4,7 +4,7 @@
 	"inputs": [
 		{
 			"name": "Data",
-			"description": "The data as its output type to be observed",
+			"description": "The input data",
 			"type": "Double",
 			"displayType": "Number",
 			"dynamic": true
@@ -13,15 +13,15 @@
 	"outputs": [
 		{
 			"name": "Data",
-			"description": "The data observed as its output type",
+			"description": "The value of the input data",
 			"type": "Double",
 			"displayType": "Number",
 			"dynamic": true
 		}
 	],
 	"category": "Utility",
-	"TTEHVer": "1.0.0",
-	"description": "Observe the data output; (supporting Number, Bool, Vec2, Vec3, Vec4, Color, String, Rect)",
+	"TTEHVer": "1.0.1",
+	"description": "Monitor and display the value of the input in real time, or output the value to another node. Supported types: Number, Bool, Vec2, Vec3, Vec4, Color, String, and Rect.",
 	"supportedValueTypes": [
 		"Double",
 		"Int",

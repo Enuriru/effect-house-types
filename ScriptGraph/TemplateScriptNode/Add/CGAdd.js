@@ -15,20 +15,74 @@ class CGAdd extends BaseNode {
   }
 
   getOutput() {
-    let v1 = this.inputs[0]();
-    let v2 = this.inputs[1]();
-    if (v1 !== undefined && v2 !== undefined) {
-      if (this.valueType === 'Vector2f') {
-        return new Amaz.Vector2f(v1.x + v2.x, v1.y + v2.y);
-      } else if (this.valueType === 'Vector3f') {
-        return new Amaz.Vector3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
-      } else if (this.valueType === 'Vector4f') {
-        return new Amaz.Vector4f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
-      } else {
-        return v1 + v2;
-      }
+    let curType = this.valueType;
+    if (curType == null) {
+      return null;
     }
-    return undefined;
+
+    if (curType == 'Int' || curType == 'Double') {
+      let result = 0.0;
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        result += op;
+      }
+      return result;
+    } else if (curType == 'Vector2f') {
+      let resultX = 0.0;
+      let resultY = 0.0;
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX += op.x;
+        resultY += op.y;
+      }
+      return new Amaz.Vector2f(resultX, resultY);
+
+    } else if (curType == 'Vector3f') {
+
+      let resultX = 0.0;
+      let resultY = 0.0;
+      let resultZ = 0.0;
+
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX += op.x;
+        resultY += op.y;
+        resultZ += op.z;
+      }
+      return new Amaz.Vector3f(resultX, resultY, resultZ);
+    } else if (curType == 'Vector4f') {
+
+      let resultX = 0.0;
+      let resultY = 0.0;
+      let resultZ = 0.0;
+      let resultW = 0.0;
+
+      for (let k = 0; k < this.inputs.length; ++k) {
+        var op = this.inputs[k]();
+
+        if(op == null){
+          return null;
+        }
+        resultX += op.x;
+        resultY += op.y;
+        resultZ += op.z;
+        resultW += op.w;
+      }
+      return new Amaz.Vector4f(resultX, resultY, resultZ, resultW);
+
+    }
   }
 }
 

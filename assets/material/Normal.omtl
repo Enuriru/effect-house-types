@@ -1,0 +1,62 @@
+{
+    "Shader":"testUnit2",
+    "Pass":
+    [
+        {
+            "Ausl" : "a1",
+            "DepthWriteEnable" : "On",
+            "DepthTestEnable" : "Off",
+            "UseFBOTexture" : "Off"
+        }
+    ]
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+---END UIPROPERTY
+
+---BEGIN a1
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+    #pragma end
+
+    // Varyings: outputs of vertex shader, inputs for fragment shader
+    #pragma varying varyings
+        vec2 v_uv;
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes varyings
+        precision highp float;
+    #pragma end
+
+    // Fragment stage section in fragment shader
+    #pragma fs varyings targets
+        uniform sampler2D TSlot_0;
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex()
+    {
+        vec4 pos = vec4(attPosition, 1.0);
+        v_uv = pos.xy / 2.0 + 0.5;
+        gl_Position = pos;
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        vec2 v_uv2 = vec2(v_uv.x, v_uv.y);
+        o_fragColor = texture(TSlot_0, v_uv2);
+    }
+
+---END a1

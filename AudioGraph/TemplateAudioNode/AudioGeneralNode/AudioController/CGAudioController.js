@@ -16,6 +16,8 @@ class CGAudioController extends BaseNode {
     this.playState = 'stop';
     this.timer = 0;
     this.enable = true;
+    this.loopAmount = 1;
+    this.curLoop = 0;
   }
   execute(index) {
     if (this.audioNode === undefined || this.audioNode === null) {
@@ -23,6 +25,7 @@ class CGAudioController extends BaseNode {
     }
     if (index === 0) {
       this.audioNode.start();
+      this.loopAmount = this.inputs[4]();
       if (this.nexts[1]) {
         this.nexts[1]();
       }
@@ -46,16 +49,26 @@ class CGAudioController extends BaseNode {
 
   onUpdate(sys, dt) {
     if (this.playState === 'play' || this.playState === 'resume') {
+      if (this.enable === false) {
+        return;
+      }
       this.timer += dt * 1000;
       if (this.timer >= this.duration) {
-        if (this.audioNode) {
-          this.audioNode.stop();
-          this.playState = 'stop';
-          this.timer = 0;
-        }
         if (this.nexts[3]) {
           this.nexts[3]();
         }
+        this.curLoop += 1;
+        if (this.curLoop >= this.loopAmount) {
+          if (this.audioNode) {
+            this.audioNode.stop();
+            this.playState = 'stop';
+          }
+        } else {
+          if (this.audioNode) {
+            this.audioNode.start();
+          }
+        }
+        this.timer = 0;
       }
     } else if (this.playState === 'stop') {
       this.timer = 0;
@@ -90,7 +103,7 @@ class CGAudioController extends BaseNode {
   }
 
   setInput(index, func) {
-    if (index === 4 && func) {
+    if (index === 5 && func) {
       this.audioNode = func();
     }
     this.inputs[index] = func;

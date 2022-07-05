@@ -16,10 +16,10 @@ class CGOnSetDetection extends BaseNode {
     this.audioNodeName = 'onset_detection';
     this.audioGraph = null;
     this.portIndexToParamName = {
-      3: 'threshold',
+      2: 'threshold',
     };
     this.portRangeMap = {
-      3: [40, 200],
+      2: [0, 160],
     };
     this.params = {};
   }
@@ -40,7 +40,6 @@ class CGOnSetDetection extends BaseNode {
   onUpdate(sys, dt) {
     this.updateParamsValue();
     const enable = this.inputs[1]();
-    const keepValue = this.inputs[2]();
     if (this.audioNode && enable) {
       const result = this.audioNode.getResult();
       if (result) {
@@ -49,11 +48,9 @@ class CGOnSetDetection extends BaseNode {
           const feature = featureList.popBack();
           this.outputs[1] = feature.values.get(0);
         }
-      } else {
-        if (false === keepValue) {
-          this.outputs[1] = 0;
-        }
       }
+    } else if (enable === false) {
+      this.outputs[1] = 0;
     }
   }
 

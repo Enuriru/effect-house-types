@@ -1,0 +1,40 @@
+{
+	"name": "Normalize",
+	"id": "6a8ee906-3562-7c33-8277-fd1915138c2e",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Vector2f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The vector to be normalized",
+			"displayType": "Vec4"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Vector2f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The normalized vector with a length of 1",
+			"displayType": "Vec4"
+		}
+	],
+	"js": "CGNormalizeVector.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Math",
+	"description": "Normalize the input vector. That is, return a vector of the same direction as the input with a length of 1. Supported types: Vec2, Vec3, and Vec4.",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f",
+		"Vector4f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

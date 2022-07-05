@@ -49,8 +49,8 @@
 	],
 	"js": "CGLocalPose.js",
 	"category": "Transform",
-	"TTEHVer": "1.0.0",
-	"description": "Local pose of a Transform",
+	"TTEHVer": "1.1.0",
+	"description": "Get the local space position, rotation, and scale of a Transform component. If a Transform component is parented under another Transform component, it inherits the parent Transform component's local space coordinates.\n",
 	"productTypes": [
 		"TTEH"
 	]

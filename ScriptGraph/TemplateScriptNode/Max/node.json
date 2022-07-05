@@ -1,0 +1,48 @@
+{
+	"name": "Max",
+	"id": "951ca0fb-c9f9-4d02-aa7a-09f5484ba2b0",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"description": "The first value",
+			"displayType": "Number"
+		},
+		{
+			"name": "B",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"description": "The second value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"description": "The greater value",
+			"displayType": "Number"
+		}
+	],
+	"js": "CGMax.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGMax",
+	"category": "Math",
+	"description": "Return the greater of two values. You can click \"+\" to add more inputs.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"addableInput": {
+		"index": 1,
+		"baseName": "",
+		"increaseStartIndex": "C"
+	},
+	"TTEHVer": "1.0.0"
+}

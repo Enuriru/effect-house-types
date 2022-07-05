@@ -11,7 +11,7 @@
 		{
 			"name": "Rate",
 			"type": "Double",
-			"default_value": "1",
+			"default_value": 1,
 			"range": [
 				[
 					0,
@@ -25,7 +25,7 @@
 		{
 			"name": "Semitones",
 			"type": "Double",
-			"default_value": "1",
+			"default_value": 1,
 			"range": [
 				[
 					0,
@@ -39,7 +39,8 @@
 		{
 			"name": "Enabled",
 			"description": "Enable this node",
-			"type": "ErrorType",
+			"type": "Bool",
+			"default_value": true,
 			"displayType": "Boolean"
 		}
 	],
@@ -56,7 +57,8 @@
 	"category": "Audio",
 	"description": "A rapid, slight variation in pitch, producing a stronger or richer tone.",
 	"productTypes": [
-		"TTEH"
+		"TTEH",
+		"InUse"
 	],
 	"nodeEvent": [
 		"beforeStart",
@@ -64,5 +66,6 @@
 	],
 	"builtinClass": "AudioEffectNode",
 	"audioNodeName": "vibrato",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
 }

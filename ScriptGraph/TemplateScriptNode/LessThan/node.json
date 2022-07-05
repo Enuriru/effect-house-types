@@ -37,7 +37,7 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGLessThan",
 	"category": "Logic",
-	"description": "Check if one value is less than another",
+	"description": "Compare two inputs and check if the first input is less than the second input.",
 	"supportedValueTypes": [
 		"Int",
 		"Double"
@@ -47,5 +47,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

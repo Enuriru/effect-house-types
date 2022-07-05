@@ -8,7 +8,7 @@
 			"item_type": "",
 			"default_value": "0",
 			"dynamic": true,
-			"description": "Input value",
+			"description": "The input value",
 			"displayType": "Number"
 		}
 	],
@@ -18,7 +18,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": true,
-			"description": "The result",
+			"description": "The absolute value of the input",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 	"version": "1.0",
 	"luaFuncName": "CGAbs",
 	"category": "Math",
-	"description": "Calculate the absolute value of an input value",
+	"description": "Calculate the absolute (positive) value of the input. Supported types: Number, Vec2, Vec3, Vec4, and Color.",
 	"supportedValueTypes": [
 		"Double",
 		"Int"
@@ -37,5 +37,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.0.1"
 }

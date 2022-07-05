@@ -6,7 +6,7 @@
 			"name": "Target",
 			"type": "Entity",
 			"item_type": "",
-			"description": "Scene Object",
+			"description": "The Scene Object to get the visibility status",
 			"displayType": "Scene Object"
 		}
 	],
@@ -15,7 +15,7 @@
 			"name": "Value",
 			"type": "Bool",
 			"item_type": "",
-			"description": "Boolean",
+			"description": "The visibility status, true for visible, false for invisible",
 			"displayType": "Boolean"
 		}
 	],
@@ -25,11 +25,11 @@
 	"amazingVersion": "10.40.0",
 	"luaFuncName": "CGEntityGetVisible",
 	"category": "Utility",
-	"description": "Get entity visibility",
+	"description": "Get the visibility status of a Scene Object.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

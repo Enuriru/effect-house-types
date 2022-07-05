@@ -16,15 +16,12 @@ class CGDragGesture extends BaseNode {
   }
 
   beforeStart(sys) {
-    if (!this.haveRegisterListener) {
       Amaz.AmazingManager.getSingleton('Input').addScriptListener(
         sys.script,
         Amaz.InputListener.ON_GESTURE_DRAG,
         'onCallBack',
         sys.script
       );
-      this.__proto__.haveRegisterListener = true;
-    }
   }
 
   onStart(sys) {}
@@ -38,7 +35,6 @@ class CGDragGesture extends BaseNode {
       'onCallBack',
       sys.script
     );
-    this.__proto__.haveRegisterListener = false;
   }
 
   onEvent(sys, event) {

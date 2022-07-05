@@ -129,7 +129,7 @@
       "valueType": "Double"
     }
   },
-  "Model": {
+  "Mesh Renderer": {
     "Mesh": {
       "enabled": false,
       "script": "Property",
@@ -275,6 +275,26 @@
       "enabled": true,
       "script": "MaterialProperty",
       "valueType": "Texture2D"
+    },
+    "Float": {
+      "enabled": false,
+      "script": "MaterialProperty",
+      "valueType": "Float"
+    },
+    "Vec2": {
+      "enabled": false,
+      "script": "MaterialProperty",
+      "valueType": "Vec2"
+    },
+    "Vec3": {
+      "enabled": false,
+      "script": "MaterialProperty",
+      "valueType": "Vec3"
+    },
+    "Vec4": {
+      "enabled": false,
+      "script": "MaterialProperty",
+      "valueType": "Vec4"
     }
   },
   "Face Stretch": {
@@ -373,6 +393,11 @@
       "enabled": true,
       "script": "BlingProperty",
       "valueType": "Color"
+    },
+    "Speed": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
     }
   },
   "IFTransform2d": {
@@ -439,6 +464,43 @@
       "enabled": true,
       "script": "LiquifyProperty",
       "valueType": "String"
+    }
+  },
+  "VFX Parameter": {
+    "Color": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Color"
+    },
+    "Vector4f": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Vector4f"
+    },
+    "Vector3f": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Vector3f"
+    },
+    "Vector2f": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Vector2f"
+    },
+    "Double": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Double"
+    },
+    "Int": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Int"
+    },
+    "Texture2D": {
+      "enabled": true,
+      "script": "VFXParameter",
+      "valueType": "Texture2D"
     }
   }
 }
