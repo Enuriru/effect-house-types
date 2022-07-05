@@ -17,7 +17,7 @@ class CGScreenTap extends BaseNode {
     if (event.type === Amaz.EventType.TOUCH) {
       const touch = event.args.get(0);
       if (touch.type === Amaz.TouchType.TOUCH_BEGAN) {
-        this.outputs[1] = new Amaz.Vector2f(touch.x, touch.y);
+        this.outputs[1] = new Amaz.Vector2f(touch.x, 1.0 - touch.y);
         if (this.nexts[0]) {
           this.nexts[0]();
         }

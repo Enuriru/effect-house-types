@@ -20,10 +20,10 @@ class OnePointTouch extends BaseNode {
   onEvent(sys, event) {
     if (event.type === Amaz.EventType.TOUCH) {
       const touch = event.args.get(0);
-      this.currentTouchPosition = new Amaz.Vector2f(touch.x, touch.y);
+      this.currentTouchPosition = new Amaz.Vector2f(touch.x, 1.0 - touch.y);
 
       // Update output while onEvent is triggered, before executing the next nodes
-      this.outputs[5] = this.currentTouchPosition;
+      this.outputs[4] = this.currentTouchPosition;
 
       this.moving = false;
       if (touch.type === Amaz.TouchType.TOUCH_BEGAN) {
@@ -44,8 +44,8 @@ class OnePointTouch extends BaseNode {
   }
 
   onUpdate(sys,dt){
-    this.outputs[4] = this.lastTouchPosition;
-    this.outputs[5] = this.currentTouchPosition;
+    this.outputs[4] = this.currentTouchPosition;
+    this.outputs[5] = this.lastTouchPosition;
 
     // Execute Idle function
     if(this.idle){

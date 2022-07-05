@@ -1,26 +1,26 @@
 {
-	"name": "Box Overlap",
+	"name": "Rect Overlap",
 	"id": "8c959f87-9e35-b5e1-510c-8b9aa730977b",
 	"inputs": [
 		{
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
 			"name": "A",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The rect A to detect as boundary",
+			"description": "The first rectangle",
 			"displayType": "Rect"
 		},
 		{
 			"name": "B",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The rect B to detect as boundary",
+			"description": "The second rectangle",
 			"displayType": "Rect"
 		}
 	],
@@ -29,19 +29,18 @@
 			"name": "True",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the two boxes are overlapping",
+			"description": "Execute the next node when the two rectangles are overlapping",
 			"displayType": "Exec"
 		},
 		{
 			"name": "False",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the two boxes are not overlapping",
+			"description": "Execute the next node when the two rectangles are not overlapping",
 			"displayType": "Exec"
 		}
 	],
-	"lua": "CGBoxOverlap.lua",
-	"js": "CGBoxOverlap.js",
+	"js": "CGRectOverlap.js",
 	"version": "1.0",
 	"category": "Utility",
 	"description": "Detect whether or not two rectangles boundaries are overlapping.",
@@ -50,5 +49,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.1.0"
+	"TTEHVer": "2.0.0"
 }

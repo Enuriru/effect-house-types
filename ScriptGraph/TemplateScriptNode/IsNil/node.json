@@ -1,12 +1,12 @@
 {
-	"name": "Is Nil",
+	"name": "Is Null",
 	"id": "d23a958e-7dfc-8a84-7fa3-8e80e188e728",
 	"description": "Check if an input value is valid.",
 	"inputs": [
 		{
 			"name": "Value",
 			"type": "any",
-			"description": "Input value",
+			"description": "The input value",
 			"displayType": "Any"
 		}
 	],
@@ -14,7 +14,7 @@
 		{
 			"name": "Result",
 			"type": "Bool",
-			"description": "Boolean value, true if nil",
+			"description": "If the input value is not valid, this value in true",
 			"displayType": "Boolean"
 		}
 	],

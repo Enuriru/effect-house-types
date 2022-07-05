@@ -3,21 +3,21 @@
 	"id": "c533f008-3b86-c5ab-5c02-39a54e7bf26d",
 	"inputs": [
 		{
-			"name": "Value 1",
+			"name": "A",
 			"type": "Int",
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value 1",
+			"description": "The first input to compare",
 			"displayType": "Number"
 		},
 		{
-			"name": "Value 2",
+			"name": "B",
 			"type": "Int",
 			"item_type": "",
 			"dynamic": true,
 			"default_value": "0",
-			"description": "Input value 2",
+			"description": "The second value to compare",
 			"displayType": "Number"
 		}
 	],
@@ -27,7 +27,7 @@
 			"type": "Bool",
 			"item_type": "",
 			"dynamic": false,
-			"description": "Boolean value",
+			"description": "If A is less than B, this value is true. Otherwise, this value is false.",
 			"displayType": "Boolean"
 		}
 	],

@@ -1,0 +1,42 @@
+{
+	"name": "Angle Between",
+	"id": "95031423-0c76-6fbe-491b-f8530a30294b",
+	"inputs": [
+		{
+			"name": "A",
+			"description": "The first vector",
+			"type": "Vector2f",
+			"dynamic": true,
+			"displayType": "Vec2"
+		},
+		{
+			"name": "B",
+			"description": "The second vector",
+			"type": "Vector2f",
+			"dynamic": true,
+			"displayType": "Vec2"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"description": "The acute angle between the two input vectors in radians",
+			"type": "Double",
+			"dynamic": false,
+			"displayType": "Number"
+		}
+	],
+	"js": "CGAngleBetween.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Calculate the angle between two vectors. Supported types: Vec2 and Vec3."
+}

@@ -12,7 +12,7 @@
 	],
 	"outputs": [
 		{
-			"name": "Value",
+			"name": "Visibility",
 			"type": "Bool",
 			"item_type": "",
 			"description": "The visibility status, true for visible, false for invisible",

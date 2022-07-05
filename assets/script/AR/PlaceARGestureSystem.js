@@ -169,11 +169,13 @@ class PlaceARGestureSystem{
         //----------------- config -----------------
         this.config.moveRange = 20.0    //--- maximum moving range, unuse
         this.config.touchThresh = 0.5   //--- touch time to be recognized as tap operation, unuse
+        this.config.maxDistance = 3  //--maximum distance object can move
+        this.config.minDistance = 0.01 //--maximum distance object can move
         this.config.selectRange = 1  //--- select range for drag move, scale and rotate, screen space,
         //----------------- scaleInfo -----------------
         this.scaleInfo.maxValue = Number.MAX_VALUE  //--- maximum scale size
         this.scaleInfo.minValue = 0.01  //--- minimum scale size
-        this.scaleInfo.speed = 0.15     //--- scale speed
+        this.scaleInfo.speed = 3     //--- scale speed
         //---------------- rotationInfo ---------------
         this.rotationInfo.speed = 50  //--- rotate speed
 
@@ -360,7 +362,10 @@ class PlaceARGestureSystem{
                     console.log("Gesture begin TOUCH_BEGAN: cameraComp guid:", cameraComp.guid.toString(), "cameraComp name: ", cameraComp.name);
                     console.log("Gesture begin TOUCH_BEGAN: ray cast:", castresult);
                     console.log("Gesture begin TOUCH_BEGAN:_isInterable", castresult)
-                    if(castresult && this._isInterable(this.operatingEntity)){
+                    const offset = this._calcWorldPosition(this.ARCamera.getComponent("Camera"), pointer, this.operatingTransform.worldPosition)
+                    const moveDistance = this._distanceFromCamera(offset);
+                    console.log("Gesture begin TOUCH_MOVED: ray cast:", castresult);
+                    if(castresult && this._isInterable(this.operatingEntity) && moveDistance < this.config.maxDistance && moveDistance > this.config.minDistance){
                         const offset = this._calcWorldPosition(this.ARCamera.getComponent("Camera"), pointer, this.operatingTransform.worldPosition)
                         console.log("Gesture begin TOUCH_BEGAN: move offset: x: ", offset.x, ", y: ", offset.y, ", z:", offset.z);
                         this.operatingTransform.worldPosition = offset
@@ -406,9 +411,10 @@ class PlaceARGestureSystem{
                         const castresult = meshrendererComp ? rayCastHit(meshrendererComp, cameraComp, pointer) : true;
                         meshrendererComp && console.log("Gesture begin TOUCH_MOVED: mesh render guid:", meshrendererComp.guid.toString(), "meshrendererComp name: ", meshrendererComp.name);
                         console.log("Gesture begin TOUCH_MOVED: cameraComp guid:", cameraComp.guid.toString(), "cameraComp name: ", cameraComp.name);
+                        const offset = this._calcWorldPosition(this.ARCamera.getComponent("Camera"), pointer, this.operatingTransform.worldPosition)
+                        const moveDistance = this._distanceFromCamera(offset);
                         console.log("Gesture begin TOUCH_MOVED: ray cast:", castresult);
-                        if(castresult){
-                            const offset = this._calcWorldPosition(this.ARCamera.getComponent("Camera"), pointer, this.operatingTransform.worldPosition)
+                        if(castresult && moveDistance < this.config.maxDistance && moveDistance > this.config.minDistance){
                             console.log("Gesture begin TOUCH_BEGAN: move offset: x: ", offset.x, ", y: ", offset.y, ", z:", offset.z);
                             this.operatingTransform.worldPosition = offset
                         }
@@ -534,6 +540,14 @@ class PlaceARGestureSystem{
         return dist
     }
 
+    _distanceFromCamera(entityPos){
+        let cameraPos = this.ARCamera.getComponent("Transform").getWorldPosition();
+        cameraPos = new Amaz.Vector3f(cameraPos.x, 0.0, cameraPos.z)
+        const entityPosHorizontal = new Amaz.Vector3f(entityPos.x, 0.0, entityPos.z)
+        let dist = cameraPos.distance(entityPosHorizontal)
+        return dist
+    }
+    
     _calcWorldPosition(camera, screenPos, objectPostion){
         //emit the ray from the center of the screen to AR plane (0 * x + 1 * y + 0 * z + 0 = y0)
         const width = camera.renderTexture.inputTexture.width;

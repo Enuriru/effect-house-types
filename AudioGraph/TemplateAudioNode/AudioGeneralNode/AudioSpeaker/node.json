@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "The audio stream you want to play",
+			"description": "The audio source you want to use in the effect",
 			"displayType": "Audio Stream"
 		},
 		{

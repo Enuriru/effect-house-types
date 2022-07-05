@@ -1,19 +1,19 @@
 {
-	"name": "Energy Detection",
+	"name": "Spectrum Detection",
 	"id": "6b7ef62c-07d1-fcf5-bbde-3d84ce9b63e8",
-	"description": "Detect the amplitude of each frequency band, sort from low frequency to high frequency, and divide the detected frequency band into 8 output ranges.",
+	"description": "Divide the audio spectrum range (0 Hz to 22050 Hz) into 8 output bands, and detect the magnitude of each band in a range between 0 and 255. \nYou can use the output values to animate or transform 2D objects.",
 	"inputs": [
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "The audio stream you want to detect the energy",
+			"description": "The audio stream you want to detect the magnitude of the spectrum range",
 			"displayType": "Audio Stream"
 		},
 		{
 			"name": "Enabled",
 			"type": "Bool",
 			"default_value": true,
-			"description": "Enable this node",
+			"description": "Enable this node or not",
 			"displayType": "Boolean"
 		}
 	],
@@ -21,61 +21,61 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio",
+			"description": "The connected audio stream. Connect it to a speaker to play or connect it to a Detection Output to play with no sound.",
 			"displayType": "Audio Stream"
 		},
 		{
 			"name": "Average",
 			"type": "Double",
-			"description": "The average value",
+			"description": "The average magnitude of the audio stream",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 1",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 0 Hz to 2756 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 2",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 2756 Hz to 5512 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 3",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 5512 Hz to 8269 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 4",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 8269 Hz to11025 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 5",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 11025 Hz to 13781 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 6",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 13781 Hz to16537 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 7",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 16537 Hz to 19293 Hz",
 			"displayType": "Number"
 		},
 		{
 			"name": "Band 8",
 			"type": "Double",
-			"description": "Energy detection result in this frequency range",
+			"description": "The magnitude of the spectrum range from 19293 Hz to 22050 Hz",
 			"displayType": "Number"
 		}
 	],

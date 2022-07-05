@@ -12,7 +12,7 @@
 	],
 	"outputs": [
 		{
-			"name": "Value",
+			"name": "Enabled",
 			"type": "Bool",
 			"item_type": "",
 			"description": "Return true if the component is enabled",

@@ -4,7 +4,7 @@ precision highp float;
 attribute vec3 inPosition;
 attribute vec2 inTexCoord;
 
-varying vec2 uv;
+varying vec2 v_uv;
 varying float v_NoiseData;
 varying float v_NoiseData2;
 
@@ -13,6 +13,8 @@ uniform sampler2D u_NoiseTex;
 uniform sampler2D u_MaskTex;
 uniform float u_KiraSizeScale;
 uniform float u_KiraSizeRandomExtent;
+uniform float u_halfQuadSideLength;
+uniform float u_aspectRatio;
 
 const float kiraTexWidth = 128.0;
 const float kiraTexWidthInv = 1.0 / kiraTexWidth;
@@ -26,13 +28,12 @@ float remapValue (float inputValue, float inputMin, float inputMax, float output
 
 void main() {
     // sample kira texture
-    vec2 uv0 = inPosition.xy;
-    vec2 uv1 = inPosition.xy + vec2(kiraTexWidthInv, 0.0);
+    vec2 uv0 = inTexCoord.xy;
+    vec2 uv1 = inTexCoord.xy + vec2(kiraTexWidthInv, 0.0);
     vec4 pixel0 = texture2D(u_KiraTex, uv0);
     vec4 pixel1 = texture2D(u_KiraTex, uv1);
     vec2 pos = vec2(pixel0.r + pixel0.g / 255.0, pixel0.b + pixel0.a / 255.0);
     float flag = pixel1.b;
-    gl_Position = vec4((pos-0.5)*2.0, 0.0, 1.0);
 
     // calculate size
     vec4 noiseData = texture2D(u_NoiseTex, uv0);
@@ -43,7 +44,12 @@ void main() {
         mask = 1.0 - texture2D(u_MaskTex, pos).r;
     #endif
 
-    gl_PointSize = inPosition.z * u_KiraSizeScale * spriteSizeRandom * flag * mask;
+    vec2 offset = inPosition.xy;
+    offset.x *= 1.0 / u_aspectRatio;
+    gl_Position = vec4(offset * u_KiraSizeScale * spriteSizeRandom * flag * mask, 0.0, 1.0);
+    gl_Position += vec4((pos-0.5) * 4.0, 0.0, 1.0);
+
+    v_uv = (inPosition.xy + vec2(u_halfQuadSideLength, u_halfQuadSideLength)) * 1.0 / (u_halfQuadSideLength * 2.0);
     v_NoiseData = noiseData.b;
     v_NoiseData2 = noiseData.r;
 }
@@ -63,7 +69,7 @@ const KIRA_SPRITE_FS=
     uniform vec4 u_ColorOne;
     uniform vec4 u_ColorTwo;
     
-    varying vec2 uv;
+    varying vec2 v_uv;
     varying float v_NoiseData;
     varying float v_NoiseData2;
     
@@ -116,18 +122,17 @@ const KIRA_SPRITE_FS=
     void main() {
         #ifdef AE_USE_PATTERN
             vec4 pats[3];
-            pats[0] = texture2D(u_KiraPattern0, gl_PointCoord);
-            pats[1] = texture2D(u_KiraPattern1, gl_PointCoord);
-            pats[2] = texture2D(u_KiraPattern2, gl_PointCoord);
+            pats[0] = texture2D(u_KiraPattern0, v_uv);
+            pats[1] = texture2D(u_KiraPattern1, v_uv);
+            pats[2] = texture2D(u_KiraPattern2, v_uv);
             int patIdx = remapIndex(v_NoiseData, u_KiraPatternCount);
             vec4 patColor = pats[patIdx];
             patColor.rgb *= patColor.a;
-            
             vec3 hueShiftColor = hueChange(patColor.rgb, u_ColorOne.rgb, u_ColorTwo.rgb, v_NoiseData2);
             vec3 rgbColor = mix(patColor.rgb, hueShiftColor, 0.8);
             vec4 finalColor = vec4(rgbColor, patColor.a) * (1.0 + u_KiraBrightness * 1.5) * u_KiraOpacity;
         #else
-            vec4 finalColor = vec4(0.0);
+            vec4 finalColor = vec4(1.0, 0.0, 0.0, 1.0);
         #endif
             gl_FragColor = finalColor;
     }

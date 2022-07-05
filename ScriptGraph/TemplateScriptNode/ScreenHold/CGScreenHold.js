@@ -1,15 +1,15 @@
 /**
- * @file CGScreenLongTap.js
+ * @file CGScreenHold.js
  * @author
  * @date 2021/8/15
- * @brief CGScreenLongTap.js
+ * @brief CGScreenHold.js
  * @copyright Copyright (c) 2021, ByteDance Inc, All Rights Reserved
  */
 
 const {BaseNode} = require('./BaseNode');
 const Amaz = effect.Amaz;
 
-class CGScreenLongTap extends BaseNode {
+class CGScreenHold extends BaseNode {
   constructor() {
     super();
     this.outputs[1] = null;
@@ -20,10 +20,10 @@ class CGScreenLongTap extends BaseNode {
     if (eventType != Amaz.InputListener.ON_GESTURE_LONG_TAP) {
       return;
     }
-    console.error('CGScreenLongTap ON_GESTURE_LONG_TAP');
+    // console.error('CGScreenHold ON_GESTURE_LONG_TAP');
     if (userData != null) {
       this.outputs[1] = userData.duration;
-      this.outputs[2] = new Amaz.Vector2f(userData.x, userData.y);
+      this.outputs[2] = new Amaz.Vector2f(userData.x, 1.0 - userData.y);
       if (this.nexts[0]) {
         this.nexts[0]();
       }
@@ -48,4 +48,4 @@ class CGScreenLongTap extends BaseNode {
   }
 }
 
-exports.CGScreenLongTap = CGScreenLongTap;
+exports.CGScreenHold = CGScreenHold;

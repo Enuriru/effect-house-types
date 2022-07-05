@@ -28,12 +28,7 @@
                             {% endif %}
                         {% endif %}
                         {% if edge.outputNode != edge.outputUINode%}
-            if (this.executionDepth >= 1000) {
-                return;
-            }
-            this.executionDepth++;
             this.nodes["{{edge.outputNode | getIdentifierById}}"].execute({{edge.outputPortIndex}})
-            this.executionDepth--;
                         {% endif %}
                         {{- edge | registerPortConnection -}}
         });
@@ -47,12 +42,7 @@
                         {% if isPreview %}
             this.graphUtils.setWatchValue("{{edge.outputPort}}", true)
                         {% endif %}
-            if (this.executionDepth >= 1000) {
-                return;
-            }
-            this.executionDepth++;
             this.nodes["{{edge.outputNode | getIdentifierById}}"].execute({{edge.outputPortIndex}})
-            this.executionDepth--;
                     {{- edge | registerPortConnection -}}
         });
                     {% endif %}

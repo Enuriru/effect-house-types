@@ -6,22 +6,22 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
-			"name": "Object",
+			"name": "Target",
 			"type": "Entity",
 			"item_type": "",
-			"description": "Scene Object",
+			"description": "The scene object to set the visibility",
 			"displayType": "Scene Object"
 		},
 		{
-			"name": "Value",
+			"name": "Visibility On",
 			"type": "Bool",
 			"default_value": "0",
 			"item_type": "",
-			"description": "Boolean",
+			"description": "The visibility status, true for visible, false for invisible",
 			"displayType": "Boolean"
 		}
 	],
@@ -34,7 +34,7 @@
 			"displayType": "Exec"
 		},
 		{
-			"name": "Value",
+			"name": "Visibility",
 			"type": "Bool",
 			"item_type": "",
 			"description": "Boolean",

@@ -87,9 +87,9 @@ class CGAnimatorController extends BaseNode {
     if (this.errorConfig) {
       return;
     }
-    if (this.finish === true && index !== 0) {
-      return;
-    }
+    // if (this.finish === true && index !== 0) {
+    //   return;
+    // }
     if (this.component.entity.visible === false) {
       this.component.entity.visible = true;
     }
@@ -137,15 +137,21 @@ class CGAnimatorController extends BaseNode {
           if (this.stayLastFrame === false) {
             this.component.entity.visible = false;
           }
-          if (this.nexts[3]) {
-            this.nexts[3]();
-          }
           this.finish = true;
         } else {
           let clipPlaySpeed = this.currentClip.getSpeed();
           this.component.schedule(this.currentClip, 1, clipPlaySpeed);
         }
       }
+    }
+  }
+
+  onLateUpdate(dt) {
+    if (this.finish) {
+      if (this.nexts[3]) {
+        this.nexts[3]();
+      }
+      this.finish = false;
     }
   }
 

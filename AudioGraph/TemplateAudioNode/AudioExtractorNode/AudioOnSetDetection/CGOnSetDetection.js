@@ -38,7 +38,7 @@ class CGOnSetDetection extends BaseNode {
   }
 
   onUpdate(sys, dt) {
-    this.updateParamsValue();
+    //this.updateParamsValue();
     const enable = this.inputs[1]();
     if (this.audioNode && enable) {
       const result = this.audioNode.getResult();

@@ -48,17 +48,16 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"description": "The connected audio stream. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		}
 	],
 	"scriptSupport": "js",
 	"js": "CGAudioEffectClimiter.js",
 	"category": "Audio",
-	"description": "A type of compressor to limit the level of the amplitude of volume to a certain threshold",
+	"description": "Limit the volume of the audio stream to a certain threshold.",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

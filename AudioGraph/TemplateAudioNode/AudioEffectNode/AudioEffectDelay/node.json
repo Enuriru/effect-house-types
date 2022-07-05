@@ -76,10 +76,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectDelay.js",
 	"category": "Audio",
-	"description": "Decaying echo audio effect ",
+	"description": "Play the audio after a period of time. It can create echo effect for the audio stream. ",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

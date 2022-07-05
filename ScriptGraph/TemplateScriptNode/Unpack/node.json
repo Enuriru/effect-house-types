@@ -81,7 +81,7 @@
 	],
 	"inputs": [
 		{
-			"name": "Value",
+			"name": "A",
 			"type": "Vector2f",
 			"description": "The input value to unpack.",
 			"dynamic": true,

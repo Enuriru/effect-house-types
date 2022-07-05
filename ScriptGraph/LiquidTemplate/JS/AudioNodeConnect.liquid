@@ -24,11 +24,6 @@
         {% if edge.audioStreamConnection %}
     if (this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}) && this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode && this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}) !== this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode) {
         this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}).connect(this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode);
-        {% comment %}
-        if (this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNodeName === 'SinkNode') {
-            this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}).pout(0).connect(this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode.pin(1));
-        }
-        {% endcomment %}
     }
         {% endif %}
         {% if edge.audioSourceConnection %}

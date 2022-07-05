@@ -1,5 +1,5 @@
 {
-	"name": "Negate",
+	"name": "Not",
 	"id": "804a898c-9ba2-7a84-cd68-722a2984171d",
 	"inputs": [
 		{
@@ -7,7 +7,7 @@
 			"type": "Bool",
 			"default_value": "0",
 			"item_type": "",
-			"description": "Boolean value",
+			"description": "The input boolean value",
 			"displayType": "Boolean"
 		}
 	],
@@ -16,7 +16,7 @@
 			"name": "Result",
 			"type": "Bool",
 			"item_type": "",
-			"description": "Boolean value",
+			"description": "The reversed boolean value",
 			"displayType": "Boolean"
 		}
 	],

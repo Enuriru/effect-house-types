@@ -21,6 +21,7 @@
 			"type": "Double",
 			"displayType": "Number",
 			"default_value": 10,
+			"visible": false,
 			"range": [
 				[
 					0,
@@ -28,7 +29,7 @@
 					1
 				]
 			],
-			"description": "The value of certain decibel level. When a note of the audio gets louder than this level, it is detected as an onset. Value range"
+			"description": "The value of spectrum magnitude difference between current and previous audio frame. When the difference is larger than the threshold, usually when a sound is louder, it is detected as an onset. Value range: 0 to 160"
 		}
 	],
 	"outputs": [
@@ -36,13 +37,13 @@
 			"name": "Audio",
 			"type": "Audio Stream",
 			"displayType": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio"
+			"description": "The connected audio stream. Connect it to a speaker to play or connect it to a Detection Output to play with no sound."
 		},
 		{
 			"name": "Onset Value",
 			"type": "Double",
 			"displayType": "Number",
-			"description": "Onset detection result"
+			"description": "The detection result of the onset. The value of onset energy. Value range: 0 to 1024."
 		}
 	],
 	"category": "Audio",

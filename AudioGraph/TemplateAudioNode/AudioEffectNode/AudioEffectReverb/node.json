@@ -125,10 +125,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectReverb.js",
 	"category": "Audio",
-	"description": "Create a sense of space or depth to the audio",
+	"description": "Create a sense of space or depth to the audio.",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

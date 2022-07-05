@@ -6,22 +6,22 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
-			"name": "Object",
+			"name": "Component",
 			"type": "Component",
 			"item_type": "",
-			"description": "Component",
+			"description": "The component to be enabled or disabled",
 			"displayType": "Component"
 		},
 		{
-			"name": "Value",
+			"name": "Enabled On",
 			"type": "Bool",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Enable/disable component",
+			"description": "True for enable the component, false for disable the component",
 			"displayType": "Boolean"
 		}
 	],
@@ -34,10 +34,10 @@
 			"displayType": "Exec"
 		},
 		{
-			"name": "Value",
+			"name": "Enabled",
 			"type": "Bool",
 			"item_type": "",
-			"description": "Boolean",
+			"description": "The status of the component, true for enabled, false for disabled",
 			"displayType": "Boolean"
 		}
 	],

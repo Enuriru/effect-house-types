@@ -37,13 +37,13 @@
 					1
 				]
 			],
-			"description": "Set amount value for loop",
+			"description": "The number of times of playing the audio source",
 			"displayType": "Number"
 		},
 		{
 			"name": "Audio Resource",
 			"description": "The audio source you want to play",
-			"type": "ErrorType",
+			"type": "Audio Source",
 			"displayType": "Audio Source"
 		}
 	],
@@ -58,19 +58,19 @@
 			"name": "On Play",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source starts playing"
+			"description": "Execute the next node when the audio source playback starts"
 		},
 		{
 			"name": "On Stop",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source stops playing"
+			"description": "Execute the next node when the audio source playback stops"
 		},
 		{
 			"name": "On Finish",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source finishes playing"
+			"description": "Execute the next node when the audio source finishes playing on each loop"
 		}
 	],
 	"scriptSupport": "js",

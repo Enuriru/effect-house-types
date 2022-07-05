@@ -26,6 +26,10 @@ class FaceShapeController {
         console.warn('[FaceShapeController]: onStart');
         this.properties = this.component().properties;
         this.renderers = this.entity.getComponentsRecursive('Renderer');
+        for (let i = 0; i < this.renderers.size(); i++) {
+            const renderer = this.renderers.get(i);
+            this.renderersRestoreState[i] = renderer.enabled;
+        }
         this.faceTransform = this.getComponent('Transform');
         if (this.faceTransform === null) {
             return;

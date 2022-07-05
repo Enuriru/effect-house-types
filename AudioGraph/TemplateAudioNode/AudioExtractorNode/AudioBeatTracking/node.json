@@ -1,7 +1,7 @@
 {
 	"name": "Beats Detection",
 	"id": "8da4eb36-f2b9-a6bd-33c2-5035021596ad",
-	"description": "Detect the beats of the audio sourcen (mostly, musical audio) in realtime. Return the beats value in 1, 2, 3, 4 sequence.\nIt is normal to have 2 seconds accuracy delay.",
+	"description": "Detect the rhythm pattern of a piece of music and output the beat in real time. All types of rhythm pattern will be quantified to 3/4 time or 4/4 time. The output value 1 represents the onset beat, which is usually the first beat of each measure. For example, music in 4/4 time will return 1, 2, 3, 4 in sequence, and music in 3/4 time will return 1, 2, 3 in sequence.",
 	"inputs": [
 		{
 			"name": "Audio",
@@ -22,12 +22,12 @@
 			"name": "Audio",
 			"type": "Audio Stream",
 			"displayType": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio"
+			"description": "The connected audio stream. Connect it to a speaker to play or connect it to a Detection Output to play with no sound."
 		},
 		{
 			"name": "Beat Value",
 			"type": "Double",
-			"description": "Beats detection result, always return the beats value in 1, 2, 3, 4 sequence.",
+			"description": "The beats detection result. Return the beats value in 1, 2, 3, 4 sequence or 1, 2, 3 sequence.",
 			"displayType": "Number"
 		}
 	],

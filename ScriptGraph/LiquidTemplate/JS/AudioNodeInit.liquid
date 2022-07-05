@@ -1,5 +1,11 @@
 {% for node in nodeList %}
     {% if node.__class == "AudioExtractorNode" or node.__class == "AudioGeneralNode" or node.__class == "AudioMDSPNode" or node.__class == "AudioNode" or node.__class == "AudioEffectNode"%}
+        {% if node.audioNodeName == 'MusicSourceNode' %}
+    this.nodes["{{ node.__uniqueId | getIdentifierById }}"].isPreview = {{ isPreview }};
+        {% endif %}
+        {% if node.onlineMusicSpeaker %}
+    this.nodes["{{ node.__uniqueId | getIdentifierById }}"].onlineMusicSpeaker = {{ node.onlineMusicSpeaker }};
+        {% endif %}
         {% if node.audioNodeName %}
     this.audioAssembler.createAudioNode(this, this.nodes["{{ node.__uniqueId | getIdentifierById }}"]);
         {% endif %}

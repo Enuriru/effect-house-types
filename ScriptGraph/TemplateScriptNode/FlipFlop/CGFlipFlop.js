@@ -17,7 +17,9 @@ class CGFlipFlop extends BaseNode {
   execute(index) {
     this.index = Math.round((this.index + 1) % 2);
     this.outputs[2] = this.index < 0.5;
-    this.nexts[this.index]();
+    if (this.nexts[this.index]) {
+      this.nexts[this.index]();
+    }
   }
 }
 

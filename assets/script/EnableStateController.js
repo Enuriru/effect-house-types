@@ -80,7 +80,7 @@ class EnableStateController {
     // For a consistent correctness, we need to check camera recording status all the time
     // because onEvent doesn't seem to be called currently when entity visibility is off
     const clientState = Amaz.AmazingManager.getSingleton('AppInfo').clientState;
-    this._isRecording = isOnMobile() && clientState === 'record';
+    this._isRecording = !isOnMobile() || (isOnMobile() && clientState === 'record');
 
     this._processConditionChanges();
   }

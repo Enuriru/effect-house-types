@@ -1,0 +1,61 @@
+{
+	"name": "Do N",
+	"id": "602da371-ec38-6ad4-2aef-909284c2745c",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The input execution that triggers this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Reset",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Reset this node so that it can be executed again",
+			"displayType": "Exec"
+		},
+		{
+			"name": "N",
+			"type": "Int",
+			"default_value": "1",
+			"range": [
+				[
+					1,
+					"Inf",
+					1
+				]
+			],
+			"description": "The number of times you want to execute this node",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Counter",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current execution times out of the N, starting from 1",
+			"displayType": "Number"
+		}
+	],
+	"js": "CGDoN.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Control",
+	"description": "Execute this node multiple times until it is reset. ",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

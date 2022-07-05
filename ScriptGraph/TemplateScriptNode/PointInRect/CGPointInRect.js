@@ -9,7 +9,7 @@
 const {BaseNode} = require('./BaseNode');
 const Amaz = effect.Amaz;
 
-class CGPointInBox extends BaseNode {
+class CGPointInRect extends BaseNode {
   constructor() {
     super();
   }
@@ -38,4 +38,4 @@ class CGPointInBox extends BaseNode {
   }
 }
 
-exports.CGPointInBox = CGPointInBox;
+exports.CGPointInRect = CGPointInRect;

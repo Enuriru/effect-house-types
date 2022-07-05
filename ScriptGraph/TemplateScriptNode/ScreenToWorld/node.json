@@ -1,27 +1,45 @@
 {
-
-  "name": "ScreenToWorld",
-  "id": "3a7hxb47-8b74-a89f-64a2-9f5874985bc1",
-  "inputs": [
-    {
-      "name": "Screen pos",
-      "type": "Vector2f",
-      "item_type":"",
-      "description": "The screen position to calculate from"
-    }
-  ],
-  "outputs": [
-    {
-      "name": "World pos",
-      "type": "Vector3f",
-      "item_type": "",
-      "description": "The world position to calculate from"
-    }
-  ],
-  "js": "CGScreenToWorld.js",
-  "lua": "CGScreenToWorld.lua",
-  "version": "1.0",
-  "category": "Transform",
-  "description": "Calculate the world position from screen pixel position",
-  "productTypes": ["InHouse", "Domestic"]
+	"name": "Screen to World",
+	"id": "7e382d00-278d-87c7-f567-078620511480",
+	"inputs": [
+		{
+			"name": "Screen Pos",
+			"type": "Vector2f",
+			"item_type": "",
+			"description": "The position in viewport space",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Z Depth",
+			"type": "Double",
+			"item_type": "",
+			"description": "The Z position in world units from the camera",
+			"displayType": "Number"
+		},
+		{
+			"name": "Camera",
+			"type": "Camera",
+			"description": "The camera that provides the input viewport space",
+			"displayType": "Camera"
+		}
+	],
+	"outputs": [
+		{
+			"name": "World Pos",
+			"type": "Vector3f",
+			"item_type": "",
+			"description": "The position in world space.",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGScreenToWorld.js",
+	"version": "1.0",
+	"category": "Transform",
+	"description": "Transform a position from camera viewport space to world space. The input viewport space is normalized to the camera. The bottom left of the camera viewport is (0,0) and the top right is (1,1). The Z position is in world units from the camera.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
 }

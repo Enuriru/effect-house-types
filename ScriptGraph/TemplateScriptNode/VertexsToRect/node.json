@@ -43,12 +43,12 @@
 	"js": "CGVertexToRect.js",
 	"lua": "CGVertexToRect.lua",
 	"version": "1.0",
-	"category": "Transform",
+	"category": "Utility",
 	"description": "Create a rectangle by specifying its 4 corners positions.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "2.0.0"
 }

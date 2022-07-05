@@ -35,35 +35,30 @@
 	],
 	"outputs": [
 		{
-			"name": "Audio",
-			"type": "Audio Stream",
-			"description": "The audio stream.",
-			"displayType": "Audio Stream"
-		},
-		{
 			"name": "On Play",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source starts playing"
+			"description": "Execute the next node when the audio source playback starts"
 		},
 		{
 			"name": "On Stop",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source stops playing"
+			"description": "Execute the next node when the audio source playback stops"
 		},
 		{
 			"name": "On Finish",
 			"type": "Pulse",
 			"displayType": "Exec",
-			"description": "Execute next node when the audio source finishes playing"
+			"description": "Execute the next node when the audio source finishes playing"
 		}
 	],
 	"scriptSupport": "js",
 	"js": "CGAudioComponentController.js",
 	"category": "Audio",
-	"description": "Use Audio Player Controller to control the audio source from the Audio Player component. Audio Player Controller is in the Audio category.",
+	"description": "Control the Audio Player component.",
 	"nodeEvent": [
+		"onInit",
 		"onUpdate",
 		"onEvent"
 	],
@@ -72,5 +67,5 @@
 		"InUse"
 	],
 	"builtinClass": "AudioGeneralNode",
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

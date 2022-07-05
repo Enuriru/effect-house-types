@@ -83,10 +83,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectFilter.js",
 	"category": "Audio",
-	"description": "Filter certain frequency of an audio, can be set as low pass or high pass filter",
+	"description": "Filter certain frequency of audio to amplify, pass, or attenuate some frequency ranges. It can be set as low pass or high pass filter.",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

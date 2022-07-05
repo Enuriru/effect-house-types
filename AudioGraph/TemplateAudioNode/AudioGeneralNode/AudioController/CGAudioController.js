@@ -18,14 +18,16 @@ class CGAudioController extends BaseNode {
     this.enable = true;
     this.loopAmount = 1;
     this.curLoop = 0;
+    this.previewPaused = false;
   }
   execute(index) {
-    if (this.audioNode === undefined || this.audioNode === null) {
+    if (this.audioNode === undefined || this.audioNode === null || this.previewPaused === true) {
       return;
     }
     if (index === 0) {
       this.audioNode.start();
       this.loopAmount = this.inputs[4]();
+      this.curLoop = 0;
       if (this.nexts[1]) {
         this.nexts[1]();
       }
@@ -39,17 +41,34 @@ class CGAudioController extends BaseNode {
       this.playState = 'stop';
       this.timer = 0;
     } else if (index === 2) {
+      if (this.playState === 'stop') {
+        return;
+      }
       this.audioNode.pause();
       this.playState = 'pause';
     } else if (index === 3) {
+      if (this.playState !== 'pause') {
+        return;
+      }
       this.audioNode.resume();
       this.playState = 'resume';
     }
   }
 
   onUpdate(sys, dt) {
+    if (dt === 0 && this.previewPaused === false && (this.playState === 'play' || this.playState === 'resume')) {
+      this.audioNode.pause();
+      this.playState = 'pause';
+      this.previewPaused = true;
+    } else if (dt !== 0 && this.previewPaused === true) {
+      if (this.playState === 'pause') {
+        this.audioNode.resume();
+        this.playState = 'resume';
+      }
+      this.previewPaused = false;
+    }
     if (this.playState === 'play' || this.playState === 'resume') {
-      if (this.enable === false) {
+      if (this.enable === false || this.previewPaused === true) {
         return;
       }
       this.timer += dt * 1000;
@@ -62,6 +81,7 @@ class CGAudioController extends BaseNode {
           if (this.audioNode) {
             this.audioNode.stop();
             this.playState = 'stop';
+            this.curLoop = 0;
           }
         } else {
           if (this.audioNode) {

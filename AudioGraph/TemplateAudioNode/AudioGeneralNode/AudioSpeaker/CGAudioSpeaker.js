@@ -14,6 +14,7 @@ class CGAudioSpeaker extends BaseNode {
     super();
     this.audioNode = null;
     this.audioNodeName = 'SinkNode';
+    this.onlineMusicSpeaker = false;
   }
 
   setInput(index, func) {
@@ -21,7 +22,12 @@ class CGAudioSpeaker extends BaseNode {
   }
 
   onUpdate(sys, dt) {
-    const curVol = this.inputs[1]() / 100.0;
+    let curVol = this.inputs[1]() / 100.0;
+    if (curVol > 1) {
+      curVol = 1;
+    } else if (curVol < 0) {
+      curVol = 0;
+    }
     if (this.audioGainNode) {
       this.audioGainNode.gain = curVol;
     }
@@ -34,6 +40,9 @@ class CGAudioSpeaker extends BaseNode {
       this.audioNode = this.audioGainNode;
       if (this.sinkNode) {
         this.audioGainNode.connect(this.sinkNode);
+        if (this.onlineMusicSpeaker === false) {
+          //this.audioGainNode.pout(0).connect(this.sinkNode.pin(1));
+        }
       } else {
         console.error('Speaker Node connection error: can not connection to sinknode');
       }

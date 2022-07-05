@@ -3,19 +3,19 @@
 	"id": "1f7430eb-4ee9-82e8-e4a6-43593b046911",
 	"inputs": [
 		{
-			"name": "Value 1",
+			"name": "A",
 			"type": "Bool",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Boolean value 1",
+			"description": "The first input value",
 			"displayType": "Boolean"
 		},
 		{
-			"name": "Value 2",
+			"name": "B",
 			"type": "Bool",
 			"item_type": "",
 			"default_value": "0",
-			"description": "Boolean value 2",
+			"description": "The second input value",
 			"displayType": "Boolean"
 		}
 	],
@@ -24,7 +24,7 @@
 			"name": "Result",
 			"type": "Bool",
 			"item_type": "",
-			"description": "Boolean value",
+			"description": "If A or B is true, this value is true. If both A and B are false, this value is false.",
 			"displayType": "Boolean"
 		}
 	],

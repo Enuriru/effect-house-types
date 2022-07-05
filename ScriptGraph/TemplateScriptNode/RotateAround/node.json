@@ -1,0 +1,47 @@
+{
+	"name": "Rotate Around",
+	"id": "408005b3-4c6b-8d9c-07c8-e8743e3a0786",
+	"inputs": [
+		{
+			"name": "A",
+			"description": "The first point on the axis",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "B",
+			"description": "The second point on the axis. A and B form the axis to rotate around.",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Angle",
+			"description": "The rotated angle in radians",
+			"type": "Double",
+			"displayType": "Number"
+		},
+		{
+			"name": "Current",
+			"description": "The point to rotate",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"description": "The rotated position",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGRotateAround.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Rotate an input point with a given angle around a given axis."
+}

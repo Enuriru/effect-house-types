@@ -23,7 +23,7 @@ class CGAudioGain extends BaseNode {
 
   setInput(index, func) {
     this.inputs[index] = func;
-    this.params[index] = 0;
+    this.params[index] = Number.MIN_VALUE;
   }
 
   beforeStart(sys) {

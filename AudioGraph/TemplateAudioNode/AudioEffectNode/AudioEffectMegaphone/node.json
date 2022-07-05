@@ -54,10 +54,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectMegaphone.js",
 	"category": "Audio",
-	"description": "Simulates the audio effect of speaking with a megaphone",
+	"description": "Simulate the audio effect of speaking with a megaphone.",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

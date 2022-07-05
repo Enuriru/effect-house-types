@@ -1,25 +1,35 @@
-const {BaseNode} = request('./BaseNode');
+const {BaseNode} = require('./BaseNode');
 const Amaz = effect.Amaz;
 
-// TODO
 class CGScreenToWorld extends BaseNode {
   constructor() {
     super();
-    this.screenHieght = Amaz.BuiltinObject.getInputTextureHeight();
   }
 
-  getOutput() {
-    if (!this.inputs[0]) {
-      return;
+  getOutput(index) {
+    if (this.inputs[0] == null|| this.inputs[1] == null || this.inputs[2] == null) {
+      return null;
     }
-    let sx = this.inputs[0]().x;
-    let sy = this.inputs[0]().y;
-    if (!sx || !sy) {
-      return;
+
+    const screenCoord = this.inputs[0]();
+    const sx = screenCoord.x
+    const sy = screenCoord.y;
+    const sz = this.inputs[1]();
+
+    const camera = this.inputs[2]();
+
+    let wx = Math.min(1.0, Math.max(sx, 0.0));
+    let wy = Math.min(1.0, Math.max(sy, 0.0));
+    let wz = sz;
+
+    let screenVec3 = new Amaz.Vector3f(wx, wy, wz);
+    let worldCoordinate = camera.viewportToWorldPoint(screenVec3);
+
+    if(wz === 0){
+      worldCoordinate = new Amaz.Vector3f(wx, wy, 0.0);
     }
-    let wx = (sx * 2) / this.screenHieght;
-    let wy = (sy * 2) / this.screenHieght;
-    return new Amaz.Vector3f(wx, wy, 0);
+    
+    return new Amaz.Vector3f(worldCoordinate.x, worldCoordinate.y, worldCoordinate.z);
   }
 }
 

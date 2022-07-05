@@ -6,29 +6,29 @@
 			"name": "Play",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Play the clip",
+			"description": "Play the animation",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Stop",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Stop the clip",
+			"description": "Stop the animation playback",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Animation",
 			"type": "Animator",
 			"item_type": "",
-			"description": "The current clip to be controlled",
+			"description": "The animation to be controlled",
 			"displayType": "Animator"
 		},
 		{
-			"name": "Animation Index",
+			"name": "Which Clip",
 			"type": "Int",
 			"item_type": "",
 			"default_value": "0",
-			"description": "The index of the animation",
+			"description": "The index of the animation. The animation is always played from index 0.",
 			"displayType": "Number"
 		},
 		{
@@ -36,7 +36,7 @@
 			"type": "Int",
 			"item_type": "",
 			"default_value": "1",
-			"description": "Play times for the clip, -1 is infinite loop",
+			"description": "The number of times of playing the animation. -1 is for infinite loop.",
 			"displayType": "Number"
 		},
 		{
@@ -44,7 +44,7 @@
 			"type": "Bool",
 			"item_type": "",
 			"default_value": "0",
-			"description": "If it will stop on last frame",
+			"description": "Whether to stop the animation on its last frame. True is for stop.",
 			"displayType": "Boolean"
 		}
 	],
@@ -60,21 +60,21 @@
 			"name": "On Play",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the current clip starts playing",
+			"description": "Execute the next node when the animation playback starts",
 			"displayType": "Exec"
 		},
 		{
 			"name": "On Stop",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the current clip stops playing",
+			"description": "Execute the next node when the animation playback stops",
 			"displayType": "Exec"
 		},
 		{
 			"name": "On Finish",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the current clip finishes playing",
+			"description": "Execute the next node when the animation finishes playing",
 			"displayType": "Exec"
 		}
 	],
@@ -85,7 +85,8 @@
 	"nodeEvent": [
 		"beforeStart",
 		"onCallBack",
-		"onDestroy"
+		"onDestroy",
+		"onLateUpdate"
 	],
 	"category": "Utility",
 	"description": "Control the 3D animation playback state.",

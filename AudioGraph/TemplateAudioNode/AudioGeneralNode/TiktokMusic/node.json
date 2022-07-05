@@ -1,0 +1,32 @@
+{
+	"name": "Tiktok Music",
+	"id": "72119df6-edca-f84d-0ef2-ef4d17b9d95b",
+	"inputs": [
+		{
+			"name": "Test Music",
+			"description": "The tested audio source",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"description": "Execute this node, connect to a detection node to extract the audio information",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"copyEnable": false,
+	"category": "Audio",
+	"TTEHVer": "1.0.0",
+	"description": "Let people play music from the TikTok online Audio Library. This effect is not compatible with audio aplied with effect (such as Reverb or Vibrato).",
+	"scriptSupport": "js",
+	"js": "CGTiktokMusic.js",
+	"productTypes": [
+		"TTEH"
+	],
+	"builtinClass": "AudioGeneralNode",
+	"audioNodeName": "MusicSourceNode",
+	"SDKVersion": "10.9.0"
+}

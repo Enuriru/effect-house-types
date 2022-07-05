@@ -36,7 +36,7 @@ class FaceMaskProvider {
     }
 
     onUpdate(dt) {
-        //this.autoRTScale(this.faceMaskRT)
+        this.autoRTScale(this.faceMaskRT)
         if(!this.algoFaceTex) {
             this.algoFaceTex = new Amaz.Texture2D()
             this.algoFaceTex.filterMin = Amaz.FilterMode.LINEAR

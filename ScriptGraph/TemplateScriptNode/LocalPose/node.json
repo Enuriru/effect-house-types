@@ -1,10 +1,10 @@
 {
-	"name": "Local Pose",
+	"name": "Local Transform Info",
 	"id": "f68b5063-bc44-90ba-e7ea-2c46f413a577",
 	"inputs": [
 		{
 			"name": "Transform",
-			"description": "The Transform of the target pose",
+			"description": "The Transform component you want to get its local transform information",
 			"type": "Transform",
 			"displayType": "Transform"
 		}
@@ -12,37 +12,37 @@
 	"outputs": [
 		{
 			"name": "Local Position",
-			"description": "Local position of the Transform",
+			"description": "The local position of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Local Rotation",
-			"description": "Local rotation of the Transform",
+			"description": "The local rotation of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Local Scale",
-			"description": "Local scale of the Transform",
+			"description": "The local scale of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Up Dir",
-			"description": "Local Y direction (green arrow) of the Transform",
+			"description": "The local Y axis direction (green arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Right Dir",
-			"description": "Local X direction (red arrow) of the Transform",
+			"description": "The local X axis direction (red arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Forward Dir",
-			"description": "Local Z direction (blue arrow) of the Transform",
+			"description": "The local Z axis direction (blue arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		}

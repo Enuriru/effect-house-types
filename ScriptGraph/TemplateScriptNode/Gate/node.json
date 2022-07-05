@@ -1,0 +1,65 @@
+{
+	"name": "Gate",
+	"id": "6d8c6fff-f045-2306-6fb6-c542e4dc28d3",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The input execution that triggers this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Open",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The execution that sets the gate status to open, allowing the Enter input to pass through to the Next output",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Close",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The execution that sets the gate status to closed, stopping the Enter input from passing through to the Next output",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Toggle",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The execution that reverses the current gate status. Open becomes closed and vice versa.",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Start Closed",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "true",
+			"description": "The starting status of the gate. If set to true the gate begins in a closed status.",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node if the gate status is currently open. If the gate is closed, no execution is taken.",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGGate.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"nodeEvent": [
+		"beforeStart"
+	],
+	"category": "Control",
+	"description": "Perform like a gate to open or close. The current state of the gate (open or closed) determines whether the Enter input pass out of the Next output or not.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

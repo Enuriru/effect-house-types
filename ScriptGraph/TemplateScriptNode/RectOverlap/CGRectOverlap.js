@@ -1,7 +1,7 @@
 const {BaseNode} = require('./BaseNode');
 const Amaz = effect.Amaz;
 
-class CGBoxOverlap extends BaseNode {
+class CGRectOverlap extends BaseNode {
   constructor() {
     super();
   }
@@ -56,4 +56,4 @@ class CGBoxOverlap extends BaseNode {
   }
 }
 
-exports.CGBoxOverlap = CGBoxOverlap;
+exports.CGRectOverlap = CGRectOverlap;

@@ -1,26 +1,26 @@
 {
-	"name": "Point in Box",
+	"name": "Point in Rect",
 	"id": "8c959fd9-9e35-b5e1-510c-8b9aa730977b",
 	"inputs": [
 		{
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute this node",
+			"description": "The input execution that triggers this node",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Detect Boundary",
 			"type": "Rect",
 			"item_type": "",
-			"description": "The rect of box to detect as boundary",
+			"description": "The rectangle",
 			"displayType": "Rect"
 		},
 		{
 			"name": "Detect Point",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "The point to detect",
+			"description": "The position of the point",
 			"displayType": "Vec2"
 		}
 	],
@@ -29,19 +29,18 @@
 			"name": "True",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the point is within the boundary",
+			"description": "Execute the next node when the point is in the rectangle",
 			"displayType": "Exec"
 		},
 		{
 			"name": "False",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when the point is outside the boundary",
+			"description": "Execute the next node when the point is outside the rectangle",
 			"displayType": "Exec"
 		}
 	],
-	"lua": "CGPointInBox.lua",
-	"js": "CGPointInBox.js",
+	"js": "CGPointInRect.js",
 	"version": "1.0",
 	"category": "Utility",
 	"description": "Detect whether or not a point is in a rectangle.",
@@ -50,5 +49,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.1.0"
+	"TTEHVer": "2.0.0"
 }

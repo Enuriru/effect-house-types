@@ -4,7 +4,7 @@ const amg = require('./amg');
 const FaceMaskProvider = require('./facemask-provider').FaceMaskProvider;
 const BlendFilter = require('./blend-filter').BlendFilter;
 const Utils = require('./utils').Utils;
-const {filterDeckShaderMap} = require('./FilterDeckShaderMap');
+const { filterDeckShaderMap } = require('./FilterDeckShaderMap');
 
 const KIRA_SIZE = 64;
 const KIRA_SIZE_INV = 1.0 / KIRA_SIZE;
@@ -12,21 +12,22 @@ const PIXEL_PER_KIRA = 2;
 const KIRA_WIDTH_INV = 1.0 / (KIRA_SIZE * PIXEL_PER_KIRA);
 const KIRA_INIT_SIZE = 160;
 const KIRA_INIT_COUNT = 150;
-const KIRA_SCALE_FACTOR = 0.5;
-const KIRA_BRIGHTNESS_FACTOR = 1.5;
+const KIRA_SCALE_FACTOR = 1.0;
+const KIRA_BRIGHTNESS_FACTOR = 1.0;
+const HALF_QUAD_EDGE_LENGTH = 0.1;
 
 const BLENDMODE = {
   'NORMAL': 1,
-  'DARKEN' : 2,
-  'MUTIPLY' : 3,
-  'COLORBURN' : 4,
-  'LIGHTEN' : 5,
-  'SCREEN' : 6,
-  'COLORDODGE' : 7,
-  'LINEARDODGE' : 8,
-  'OVERLAY' : 9,
-  'ADD':10,
-  'SOFTLIGHT' : 11
+  'DARKEN': 2,
+  'MUTIPLY': 3,
+  'COLORBURN': 4,
+  'LIGHTEN': 5,
+  'SCREEN': 6,
+  'COLORDODGE': 7,
+  'LINEARDODGE': 8,
+  'OVERLAY': 9,
+  'ADD': 10,
+  'SOFTLIGHT': 11
 }
 
 const PropertiesEnum = {
@@ -49,42 +50,47 @@ const PropertiesEnum = {
 class KiraFilter extends amg.FilterNode {
   constructor(name, properties) {
     super(name, properties);
-      this._kiraPointMesh = this.createKiraMesh();
-      this._pointSpriteMat = Utils.createEmptyMaterial()
-      Utils.addPassToMaterial(this._pointSpriteMat, filterDeckShaderMap, false, true);
+    this._kiraPointMesh = this.createKiraMesh();
+    this._pointSpriteMat = Utils.createEmptyMaterial()
+    Utils.addPassToMaterial(this._pointSpriteMat, filterDeckShaderMap, false, true);
 
-      // Create placeholder attribute for Kira Mask
-      this._kiraTex = new Amaz.Texture2D();
-      this._kiraTex.filterMin = Amaz.FilterMode.NEAREST;
-      this._kiraTex.filterMag = Amaz.FilterMode.NEAREST;
+    // Create placeholder attribute for Kira Mask
+    this._kiraTex = new Amaz.Texture2D();
+    this._kiraTex.filterMin = Amaz.FilterMode.NEAREST;
+    this._kiraTex.filterMag = Amaz.FilterMode.NEAREST;
 
-      let attDesc = this._pointSpriteMat.xshader.passes.get(0).renderState.colorBlend.attachments.get(0);
-      attDesc.srcColorBlendFactor = Amaz.BlendFactor.ONE;
-      attDesc.dstColorBlendFactor = Amaz.BlendFactor.ONE;
-      attDesc.srcAlphaBlendFactor = Amaz.BlendFactor.ONE;
-      attDesc.dstAlphaBlendFactor = Amaz.BlendFactor.ONE;
-      attDesc.ColorBlendOp = Amaz.BlendOp.ADD;
-      attDesc.AlphaBlendOp = Amaz.BlendOp.ADD;
+    let attDesc = this._pointSpriteMat.xshader.passes.get(0).renderState.colorBlend.attachments.get(0);
+    attDesc.srcColorBlendFactor = Amaz.BlendFactor.ONE;
+    attDesc.dstColorBlendFactor = Amaz.BlendFactor.ONE;
+    attDesc.srcAlphaBlendFactor = Amaz.BlendFactor.ONE;
+    attDesc.dstAlphaBlendFactor = Amaz.BlendFactor.ONE;
+    attDesc.ColorBlendOp = Amaz.BlendOp.ADD;
+    attDesc.AlphaBlendOp = Amaz.BlendOp.ADD;
 
-      let depthStencil = this._pointSpriteMat.xshader.passes.get(0).renderState.depthstencil;
-      depthStencil.depthTestEnable = false;
-      depthStencil.depthWriteEnable = false;
+    let depthStencil = this._pointSpriteMat.xshader.passes.get(0).renderState.depthstencil;
+    depthStencil.depthTestEnable = false;
+    depthStencil.depthWriteEnable = false;
 
-      // cache a reference to js script component's properties map
-      this.map = properties.PropertiesMap;
-      this.frameCounter = 0;
-      this.elapsedTime = 0;
+    // cache a reference to js script component's properties map
+    this.map = properties.PropertiesMap;
+    this.frameCounter = 0;
+    this.elapsedTime = 0;
+    this.rt = properties.rt;
   }
 
   createKiraMesh() {
     let mesh = new Amaz.Mesh()
     let subMesh = new Amaz.SubMesh()
+    // setup attributes
     let attribs = new Amaz.Vector()
     let attribPos = new Amaz.VertexAttribDesc()
     attribPos.semantic = Amaz.VertexAttribType.POSITION
-    attribs.pushBack(attribPos)
+    attribs.pushBack(attribPos);
+    let attribuv = new Amaz.VertexAttribDesc();
+    attribuv.semantic = Amaz.VertexAttribType.TEXCOORD0;
+    attribs.pushBack(attribuv);
     mesh.vertexAttribs = attribs
-    subMesh.primitive = Amaz.Primitive.POINTS
+    subMesh.primitive = Amaz.Primitive.TRIANGLES
     subMesh.mesh = mesh
     mesh.addSubMesh(subMesh)
     mesh.clearAfterUpload = false
@@ -93,35 +99,98 @@ class KiraFilter extends amg.FilterNode {
 
   setKiraMesh(mesh, pointsCount) {
     if (pointsCount === 0) {
-        pointsCount = 1
+      pointsCount = 1
     }
     let rowCount = Math.ceil(pointsCount / KIRA_SIZE) - 1
     let colCount = pointsCount - rowCount * KIRA_SIZE
     let vertices = new Amaz.FloatVector()
     let indices = new Amaz.UInt16Vector()
-
     if (rowCount > 0) {
-      for( let i = 0; i < rowCount; ++i) {
-          for(let j = 0; j < KIRA_SIZE - 1; ++j) {
-              const u = j * PIXEL_PER_KIRA * KIRA_WIDTH_INV + 0.5 * KIRA_WIDTH_INV
-              const v = i * KIRA_SIZE_INV + 0.5 * KIRA_SIZE_INV
-              vertices.pushBack(u)
-              vertices.pushBack(v)
-              vertices.pushBack(KIRA_INIT_SIZE)
-              indices.pushBack(i * KIRA_SIZE + j)
-          }
+      let counter = 0;
+      for (let i = 0; i < rowCount; ++i) {
+        for (let j = 0; j < KIRA_SIZE - 1; ++j) {
+          const u = j * PIXEL_PER_KIRA * KIRA_WIDTH_INV + 0.5 * KIRA_WIDTH_INV
+          const v = i * KIRA_SIZE_INV + 0.5 * KIRA_SIZE_INV
+          // v0
+          // position data
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          // uv data, used to determine bling point position
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          // v1
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          // v2
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          // v3
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          // triangle 1
+          indices.pushBack(0 + counter);
+          indices.pushBack(1 + counter);
+          indices.pushBack(2 + counter);
+          // triangle 2
+          indices.pushBack(1 + counter);
+          indices.pushBack(3 + counter);
+          indices.pushBack(2 + counter);
+          counter += 4;
+        }
       }
-  }
+    }
 
     if (rowCount > -1) {
-        for(let k = 0; k < colCount - 1; ++k) {
-            const u = k * PIXEL_PER_KIRA * KIRA_WIDTH_INV + 0.5 * KIRA_WIDTH_INV
-            const v = rowCount * KIRA_SIZE_INV + 0.5 * KIRA_SIZE_INV
-            vertices.pushBack(u)
-            vertices.pushBack(v)
-            vertices.pushBack(KIRA_INIT_SIZE)
-            indices.pushBack(rowCount * KIRA_SIZE + k)
-        }
+      let counter = 0;
+      for (let k = 0; k < colCount - 1; ++k) {
+        const u = k * PIXEL_PER_KIRA * KIRA_WIDTH_INV + 0.5 * KIRA_WIDTH_INV
+        const v = rowCount * KIRA_SIZE_INV + 0.5 * KIRA_SIZE_INV
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          vertices.pushBack(-HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(HALF_QUAD_EDGE_LENGTH);
+          vertices.pushBack(0);
+          vertices.pushBack(u);
+          vertices.pushBack(v);
+
+          indices.pushBack(0 + counter);
+          indices.pushBack(1 + counter);
+          indices.pushBack(2 + counter);
+          indices.pushBack(1 + counter);
+          indices.pushBack(3 + counter);
+          indices.pushBack(2 + counter);
+          counter += 4;
+      }
     }
 
     mesh.vertices = vertices
@@ -130,24 +199,24 @@ class KiraFilter extends amg.FilterNode {
 
   // setup texture
   handleDirty(cmdBuffer, texturePool) {
-    
+
     if (this.needUpdateTexture) {
       if (this.isInputsReady() && this.isOutputsReady()) {
         cmdBuffer.setRenderTexture(this.getOutput(0));
-          cmdBuffer.clearRenderTexture(
-              true,
-              true,
-              new Amaz.Color(0.0, 0.0, 0.0, 0.0),
-              0
-          );
-          this.setKiraMesh(this._kiraPointMesh, KIRA_INIT_COUNT * this.map.get(PropertiesEnum.INTENSITY));
+        cmdBuffer.clearRenderTexture(
+          true,
+          true,
+          new Amaz.Color(0.0, 0.0, 0.0, 0.0),
+          0
+        );
+        this.setKiraMesh(this._kiraPointMesh, KIRA_INIT_COUNT * this.map.get(PropertiesEnum.INTENSITY));
         cmdBuffer.drawMesh(
-            this._kiraPointMesh,
-            new Amaz.Matrix4x4f(),
-            this._pointSpriteMat,
-            0,
-            0,
-            null
+          this._kiraPointMesh,
+          new Amaz.Matrix4x4f(),
+          this._pointSpriteMat,
+          0,
+          0,
+          null
         );
       }
     }
@@ -157,25 +226,28 @@ class KiraFilter extends amg.FilterNode {
   setProp(name, value) {
     super.setProp(name, value);
     // TODO: check if runtime dirty
-    if(name === 'mask')
-    {
+    if (name === 'mask') {
       this.mask = value;
     }
   }
 
-  setMaterialProperties(){
+  setMaterialProperties() {
     // Set float uniforms
     this._pointSpriteMat.setFloat("u_KiraSizeScale", this.map.get(PropertiesEnum.SIZE) * KIRA_SCALE_FACTOR);
     this._pointSpriteMat.setFloat("u_KiraSizeRandomExtent", this.map.get(PropertiesEnum.SIZE_RANDOMNESS));
     this._pointSpriteMat.setFloat("u_KiraBrightness", this.map.get(PropertiesEnum.BRIGHTNESS) * KIRA_BRIGHTNESS_FACTOR);
     this._pointSpriteMat.setFloat("u_KiraOpacity", this.map.get(PropertiesEnum.OPACITY));
-    
+    this._pointSpriteMat.setFloat("u_halfQuadSideLength", HALF_QUAD_EDGE_LENGTH);
+    this.aspectRatio = this.rt.width / this.rt.height;
+    this._pointSpriteMat.setFloat("u_aspectRatio", this.aspectRatio);
+
+
     // Set Face Occuluder Uniform
-    if(this.map.get(PropertiesEnum.OCCLUDEFACE)){
+    if (this.map.get(PropertiesEnum.OCCLUDEFACE)) {
       this._pointSpriteMat.enableMacro("AE_USE_MASK", 1);
       this._pointSpriteMat.setTex("u_MaskTex", this.getProp("mask"));
     }
-    else{
+    else {
       this._pointSpriteMat.disableMacro("AE_USE_MASK");
     }
 
@@ -212,13 +284,13 @@ class KiraFilter extends amg.FilterNode {
 
     let algoResult = Amaz.AmazingManager.getSingleton('Algorithm').getAEAlgorithmResult();
     let kiraInfo = algoResult.getKiraInfo();
-    if(kiraInfo)
-    {
+    if (kiraInfo) {
       let kiraMask = kiraInfo.mask;
       this._kiraTex.storage(kiraMask);
       this._pointSpriteMat.setTex("u_KiraTex", this._kiraTex);
     }
   }
+
   onUpdate(_dt, cmdBuffer, texturePool) {
     // run free fps in the first 5 frames to prevent blue screen artifacts
     if (this.frameCounter < 5) {
@@ -229,7 +301,7 @@ class KiraFilter extends amg.FilterNode {
       // speed is a value range from [0, 1];
       // remap it to [0.75 - 0.95] which is the sweet spot for bling speed
       speed = 0.75 + 0.2 * speed;
-      speed = Number(speed.toFixed(4)); 
+      speed = Number(speed.toFixed(4));
       const timeToDelay = 1 - speed;
       this.elapsedTime += _dt;
       if (this.elapsedTime > timeToDelay) {
@@ -239,14 +311,15 @@ class KiraFilter extends amg.FilterNode {
     }
   }
 }
-class FilterDeck extends amg.Script{
+
+class FilterDeck extends amg.Script {
   constructor() {
     super();
     this.name = "FilterDeck";
     this.blendMode = 'LINEARDODGE'
   }
 
-  onEnable() {  
+  onEnable() {
     const cameraEntity = this.entity.scene.findByComponent(amg.CameraComponent);
     if (cameraEntity) {
       this.camera = cameraEntity.camera;
@@ -267,7 +340,7 @@ class FilterDeck extends amg.Script{
     this.filterSys = amg.FilterGraphRegistry.create('MyGraph' + Math.random());
 
     this.filterSys.bind(this.camera, amg.CameraRenderEvent.AfterRender, [this.faceMaskRT]);
-
+    this.rt = this.camera.renderTexture;
     this.filterSys.add(new KiraFilter('kira', {
       Texture1: bling1,
       Texture2: bling2,
@@ -275,6 +348,7 @@ class FilterDeck extends amg.Script{
       noiseTex: noiseImg,
       mask: this.faceMaskRT,
       PropertiesMap: this.propertiesMap,
+      rt: this.rt,
     }))
 
     this.filterSys.add(new BlendFilter(
@@ -286,7 +360,7 @@ class FilterDeck extends amg.Script{
     this.filterSys.link('internal_blit', 0, 'blend', 1);
   }
 
-  onUpdate(deltaTime) {    
+  onUpdate(deltaTime) {
     this.faceMaskProvider.onUpdate(deltaTime)
     this.faceMaskRT = this.faceMaskProvider.getTexture();
     this.filterSys.getFilter('kira').setProp('mask', this.faceMaskRT);
@@ -302,11 +376,11 @@ class FilterDeck extends amg.Script{
 
   getBlingComponent() {
     const jsScriptComps = this.entity.native.getComponents('JSScriptComponent');
-    for (let i = 0; i <  jsScriptComps.size(); i++) {
-        const comp = jsScriptComps.get(i);
-        if (comp.path === 'js/FilterDeck.js') {
-            return comp;
-        }
+    for (let i = 0; i < jsScriptComps.size(); i++) {
+      const comp = jsScriptComps.get(i);
+      if (comp.path === 'js/FilterDeck.js') {
+        return comp;
+      }
     }
   }
 }

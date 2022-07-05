@@ -6,23 +6,23 @@
 		{
 			"name": "Next",
 			"type": "Pulse",
-			"description": "Execute the next node when long tap happened",
+			"description": "Execute the next node when someone touches and holds the device screen",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Duration",
 			"type": "Double",
-			"description": "Tap duration in seconds",
+			"description": "The time of tapping and holding the screen in seconds",
 			"displayType": "Number"
 		},
 		{
 			"name": "Position",
 			"type": "Vector2f",
-			"description": "2D normalized position of touch point",
+			"description": "The 2D normalized position of the tapping point",
 			"displayType": "Vec2"
 		}
 	],
-	"js": "CGScreenLongTap.js",
+	"js": "CGScreenHold.js",
 	"scriptSupport": "all",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
@@ -41,5 +41,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "2.0.0"
 }

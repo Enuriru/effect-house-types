@@ -167,10 +167,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectCompressor.js",
 	"category": "Audio",
-	"description": "Make your tracks sound more polished by controlling maximum levels and maintaining higher average loudness",
+	"description": "Reduce the volume of loud sounds and amplify quiet sounds. ",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

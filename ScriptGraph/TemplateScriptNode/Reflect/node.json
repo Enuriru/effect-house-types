@@ -1,0 +1,42 @@
+{
+	"name": "Reflect",
+	"id": "b07f2899-43d9-ade4-7b76-3752dda1f165",
+	"inputs": [
+		{
+			"name": "Direction",
+			"description": "The origin vector to calculate its reflection vector",
+			"type": "Vector2f",
+			"dynamic": true,
+			"displayType": "Vec2"
+		},
+		{
+			"name": "Normal",
+			"description": "The normal vector of the reflection surface",
+			"type": "Vector2f",
+			"dynamic": true,
+			"displayType": "Vec2"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"description": "The reflection vector of A",
+			"type": "Vector2f",
+			"dynamic": true,
+			"displayType": "Vec2"
+		}
+	],
+	"js": "CGReflect.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Get the reflection vector of an input vector on a surface. Supported types: Vec2 and Vec3."
+}

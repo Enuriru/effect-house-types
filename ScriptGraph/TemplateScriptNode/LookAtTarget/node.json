@@ -1,0 +1,81 @@
+{
+	"name": "Look At",
+	"id": "878866d1-e7bb-24de-68b8-079022d8f99a",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The input execution that triggers this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Self",
+			"type": "Transform",
+			"item_type": "",
+			"description": "The start position to look from",
+			"displayType": "Transform"
+		},
+		{
+			"name": "Target",
+			"type": "Vector3f",
+			"item_type": "",
+			"description": "The target position",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Aim Dir",
+			"description": "The direction of Self that aims to the Target. The Z axis of Self is the default value.",
+			"type": "String",
+			"value_list": [
+				"Z",
+				"X",
+				"Y"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Up",
+			"description": "The up direction of Self. The Y axis of Self is the default value.",
+			"type": "String",
+			"value_list": [
+				"Y",
+				"Z",
+				"X"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Is Local",
+			"description": "Set the rotation result to local transform if it is true otherwise set it to world transform",
+			"type": "Bool",
+			"default_value": "true",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Result",
+			"type": "Vector3f",
+			"item_type": "",
+			"description": "The new orientation of Self",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGLookAtTarget.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Get the new orientation of a transform by setting a look-at target position."
+}

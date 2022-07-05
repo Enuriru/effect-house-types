@@ -27,7 +27,7 @@ class Utils {
 
         let semantics = new Amaz.Map()
         semantics.insert("inPosition", Amaz.VertexAttribType.POSITION)
-        //semantics.insert("inTexCoord", Amaz.VertexAttribType.TEXCOORD0)
+        semantics.insert("inTexCoord", Amaz.VertexAttribType.TEXCOORD0)
         newPass.semantics = semantics
         
         let depthStencilState = new Amaz.DepthStencilState()

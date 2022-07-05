@@ -19,6 +19,8 @@ class DeviceTracker extends amg.Script {
         this.pos = new Vec3(0,0,0)
         this.scale = new Vec3(0,0,0)
         this.quat = new Quat(0,0,0,0)
+        this.cameraQuat = new Quat(0,0,0,0);
+        this.sensorAgent = undefined;
     }
     onEnable(){
         //console.log("[OnEnable]",this.name);
@@ -35,6 +37,8 @@ class DeviceTracker extends amg.Script {
         this.camera = this.entity.getComponent("Camera");
         this.transform = this.entity.getComponent("Transform");
         this.algMgr = Amaz.AmazingManager.getSingleton('Algorithm');;
+        this.isPC = Amaz.Platform.name() === 'Mac' || Amaz.Platform.name() === 'Windows' ||  Amaz.Platform.name() === 'Linux'
+
         // this.entityVisiableMap.forEach((value, key) => {
         //     console.log("onStart:", key, value);
         // });
@@ -72,11 +76,39 @@ class DeviceTracker extends amg.Script {
         if(this.initSceneByRayCast === 2){
             //console.log("deviceTracker: index 2")
             this.updateCameraPos(slamVaild, slamResult)
-            this.initPlace(this.camera);
+            if (this.trackingType !== "Orientation"){
+                this.initPlace(this.camera);
+            }      
         }
 
         this.updateCameraPos(slamVaild, slamResult)
+
+        if (this.trackingType === "Orientation" && this.isPC === false) {
+            if(this.sensorAgent){
+                const quat = this.sensorAgent.getRotationData()
+                const roll = Amaz.Quaternionf.axisAngleToQuaternion(new Amaz.Vector3f(1.0, 0.0, 0.0), -Math.PI/2);
+                this.cameraQuat = roll.mul(quat)
+                this.transform.worldOrientation = this.cameraQuat
+            }else{
+                this.createSensorAgent()
+            }
+            //console.log("trackingType: ", this.trackingType)
+            //console.log("DeviceTracker: c position: x: ", transform.localPosition.x, ", y: ", transform.localPosition.y, ", z: ", transform.localPosition.y);
+            //transform.worldPosition = new Amaz.Vec3(0, 0, 40);
+            //transform.worldScale = scale
+            //console.log("Orientation x: ", euglar.x, ", y:", euglar.y, ",z", euglar.z)
+            
+        } 
         
+    }
+
+    createSensorAgent(){
+        this.sensorAgent = Amaz.AmazingManager.getSingleton('Input').createDeviceSensorHub();
+
+        if(this.sensorAgent){
+            this.sensorAgent.setSensorEnabled(Amaz.SensorType.Rotation, true);
+            this.sensorAgent.setRefreshRate(Amaz.SensorType.Rotation, 100);
+        }
     }
     
     initPlace(camera){
@@ -100,6 +132,7 @@ class DeviceTracker extends amg.Script {
         }
 
         //change all entities transform
+        const cameraRotationY = camera.entity.getComponent("Transform").localEulerAngle.y
         const entities = this.entity.scene.entities;
         for(let index = 0; index < entities.size(); index++){
             const entityOther = entities.get(index);
@@ -109,11 +142,11 @@ class DeviceTracker extends amg.Script {
             const transform =  entityOther.getComponent("Transform");
             if(transform.parent === null){
                 const wp ={x:transform.localPosition.x, y:transform.localPosition.y, z:transform.localPosition.z}
-        transform.localPosition = new Amaz.Vector3f(
-                wp.x + result.x, 
-                wp.y + result.y,
-                wp.z + result.z,)
+                transform.localPosition = new Amaz.Vector3f(wp.x + result.x,wp.y + result.y,wp.z + result.z,)     
                 //console.log("DeviceTracker:transform move point is: x: ", transform.localPosition.x, ", y: ", transform.localPosition.y, ", z: ", transform.localPosition.y)                                    
+                const euglar = {x:transform.localEulerAngle.x, y:transform.localEulerAngle.y, z:transform.localEulerAngle.z}
+                euglar.y = -euglar.y + (cameraRotationY - Math.PI)
+                transform.localEulerAngle = new Amaz.Vector3f(euglar.x, euglar.y, euglar.z)
             }
                    
         }
@@ -217,13 +250,12 @@ class DeviceTracker extends amg.Script {
                 transform.worldScale = scale
                 transform.worldOrientation = quat
                 
-            } 
-            else if (this.trackingType === "Orientation") {
+            }else if (this.trackingType === "Orientation" && this.isPC === true) {
                 //console.log("trackingType: ", this.trackingType)
                 //console.log("DeviceTracker: c position: x: ", transform.localPosition.x, ", y: ", transform.localPosition.y, ", z: ", transform.localPosition.y);
                 //transform.worldPosition = new Amaz.Vec3(0, 0, 40);
                 //transform.worldScale = scale
-                const euglar = quat.quaternionToEuler();
+                //const euglar = quat.quaternionToEuler();
                 //console.log("Orientation x: ", euglar.x, ", y:", euglar.y, ",z", euglar.z)
                 transform.worldOrientation = quat
             } 
@@ -236,6 +268,14 @@ class DeviceTracker extends amg.Script {
 
     onEvent(event) {
 	    //console.log("running:DeviceTracker:onEvent");
+        // if(event.type === Amaz.EventType.SENSOR){
+        //     const sensorType = event.args.get(0);
+        //     if(sensorType === Amaz.SensorEventType.GYRO){
+                //  const quat = event.args.get(1).quat;
+                //  const roll = Amaz.Quaternionf.axisAngleToQuaternion(new Amaz.Vector3f(1.0, 0.0, 0.0), -Math.PI/2);
+                //  this.cameraQuat = roll.mul(quat);
+        //     }
+        // }
     }
 }
 

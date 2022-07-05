@@ -7,33 +7,31 @@
 			"name": "Next",
 			"type": "Pulse",
 			"item_type": "",
-			"description": "Execute the next node when tap happened",
+			"description": "Execute the next node when the screen is tapped",
 			"displayType": "Exec"
 		},
 		{
 			"name": "Position",
 			"type": "Vector2f",
 			"item_type": "",
-			"description": "2D position of touch point",
+			"description": "The 2D position of the tapping point",
 			"displayType": "Vec2"
 		}
 	],
-	"lua": "CGScreenTap.lua",
 	"js": "CGScreenTap.js",
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGScreenTap",
 	"nodeEvent": "onEvent",
 	"category": "Event",
 	"subCategory": "Input",
 	"graphAlgorithms": [
 		"TouchGes"
 	],
-	"description": "Execute the next node when the device screen is tapped. It triggers as soon as the finger touches the screen.",
+	"description": "Execute the next node when the device screen is tapped. It is executed as soon as the finger touches the device screen.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "2.0.0"
 }

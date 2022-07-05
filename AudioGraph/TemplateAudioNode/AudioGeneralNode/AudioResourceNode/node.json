@@ -3,9 +3,9 @@
 	"id": "2179790b-1532-13df-1b60-247d68ade260",
 	"inputs": [
 		{
-			"name": "Audio Resource",
+			"name": "",
 			"type": "AudioClip",
-			"description": "The input audio clip",
+			"description": "The input audio source",
 			"visible": false,
 			"displayType": "Audio Clip"
 		}
@@ -24,7 +24,7 @@
 	"nodeEvent": [
 		"beforeStart"
 	],
-	"description": "Select the audio clip.",
+	"description": "Select the audio source.",
 	"productTypes": [
 		"TTEH",
 		"InUse"

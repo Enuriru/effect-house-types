@@ -6,6 +6,7 @@
 			"name": "Start",
 			"type": "Double",
 			"item_type": "",
+			"dynamic": true,
 			"description": "The lower bound of the range",
 			"displayType": "Number"
 		},
@@ -13,6 +14,7 @@
 			"name": "Stop",
 			"type": "Double",
 			"item_type": "",
+			"dynamic": true,
 			"description": "The upper bound of the range",
 			"displayType": "Number"
 		},
@@ -20,6 +22,7 @@
 			"name": "Step",
 			"type": "Double",
 			"item_type": "",
+			"dynamic": false,
 			"description": "The value used to interpolate between Start and Stop. Value range",
 			"displayType": "Number"
 		}
@@ -29,21 +32,26 @@
 			"name": "Result",
 			"type": "Double",
 			"item_type": "",
+			"dynamic": true,
 			"description": "The linear interpolation of Step between Start and Stop. When Step = 0, the result is Start, when Step = 1, the result is Stop.",
 			"displayType": "Number"
 		}
 	],
-	"lua": "CGLerp.lua",
 	"js": "CGLerp.js",
-	"version": "1.0",
+	"version": "1.1.0",
 	"amazingVersion": "10.40.0",
-	"luaFuncName": "CGLerp",
 	"category": "Math",
-	"description": "Linearly interpolate a value within a range.",
+	"description": "Linearly interpolate a value within a range. Supported types: Number, Vec2, Vec3 and Color.",
+	"supportedValueTypes": [
+		"Double",
+		"Vector2f",
+		"Vector3f",
+		"Color"
+	],
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "2.0.0"
 }

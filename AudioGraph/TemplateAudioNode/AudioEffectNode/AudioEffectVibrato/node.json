@@ -55,10 +55,9 @@
 	"scriptSupport": "js",
 	"js": "CGAudioEffectVibrato.js",
 	"category": "Audio",
-	"description": "A rapid, slight variation in pitch, producing a stronger or richer tone.",
+	"description": "Create a rapid, slight variation in pitch, producing a stronger or richer tone.",
 	"productTypes": [
-		"TTEH",
-		"InUse"
+		"TTEH"
 	],
 	"nodeEvent": [
 		"beforeStart",

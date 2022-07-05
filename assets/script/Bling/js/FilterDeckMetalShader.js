@@ -8,21 +8,23 @@ using namespace metal;
 
 struct buffer_t
 {
+    float u_aspectRatio;
     float u_KiraSizeScale;
+    float u_halfQuadSideLength;
 };
 
 struct main0_out
 {
-    float2 uv;
+    float2 v_uv;
     float v_NoiseData;
     float v_NoiseData2;
     float4 gl_Position [[position]];
-    float gl_PointSize [[point_size]];
 };
 
 struct main0_in
 {
     float3 inPosition [[attribute(0)]];
+    float2 inTexCoord [[attribute(1)]];
 };
 
 static inline __attribute__((always_inline))
@@ -34,13 +36,13 @@ float remapValue(thread const float& inputValue, thread const float& inputMin, t
 vertex main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, texture2d<float> u_KiraTex [[texture(0)]], texture2d<float> u_NoiseTex [[texture(1)]], texture2d<float> u_MaskTex [[texture(2)]], sampler u_KiraTexSmplr [[sampler(0)]], sampler u_NoiseTexSmplr [[sampler(1)]], sampler u_MaskTexSmplr [[sampler(2)]])
 {
     main0_out out = {};
-    float2 uv0 = in.inPosition.xy;
-    float2 uv1 = in.inPosition.xy + float2(0.0078125, 0.0);
+    float2 uv0 = in.inTexCoord.xy;
+    float2 uv1 = in.inTexCoord.xy + float2(0.0078125, 0.0);
     float4 pixel0 = u_KiraTex.sample(u_KiraTexSmplr, uv0, level(0.0));
     float4 pixel1 = u_KiraTex.sample(u_KiraTexSmplr, uv1, level(0.0));
     float2 pos = float2(pixel0.x + (pixel0.y / 255.0), pixel0.z + (pixel0.w / 255.0));
-    float flag = pixel1.z;
-    out.gl_Position = float4((pos - float2(0.5)) * 2.0, 0.0, 1.0);
+    float flag = pixel1.b;
+
     float4 noiseData = u_NoiseTex.sample(u_NoiseTexSmplr, uv0, level(0.0));
     float param = noiseData.x;
     float param_1 = 0.0;
@@ -48,11 +50,19 @@ vertex main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, text
     float param_3 = 0.100000001490116119384765625;
     float param_4 = 3.599999904632568359375;
     float spriteSizeRandom = remapValue(param, param_1, param_2, param_3, param_4);
+
     float mask = 1.0;
-  #ifdef AE_USE_MASK
-    mask = 1.0 - u_MaskTex.sample(u_MaskTexSmplr, pos, level(0.0)).x;
-  #endif
-    out.gl_PointSize = (((in.inPosition.z * buffer.u_KiraSizeScale) * spriteSizeRandom) * flag) * mask;
+    #ifdef AE_USE_MASK
+      mask = 1.0 - u_MaskTex.sample(u_MaskTexSmplr, pos, level(0.0)).x;
+    #endif
+
+    float2 finalPos = in.inPosition.xy;
+    finalPos.x *= (1.0 / buffer.u_aspectRatio);
+    
+    out.gl_Position = float4(((finalPos * buffer.u_KiraSizeScale) * spriteSizeRandom) * flag, 0.0, 1.0);
+    out.gl_Position += float4((pos - 0.5) * 4.0 * mask, 0.0, 1.0);
+    
+    out.v_uv = ((in.inPosition.xy + float2(buffer.u_halfQuadSideLength)) * 1.0) / float2(buffer.u_halfQuadSideLength * 2.0);
     out.v_NoiseData = noiseData.z;
     out.v_NoiseData2 = noiseData.x;
     out.gl_Position.z = (out.gl_Position.z + out.gl_Position.w) * 0.5;       // Adjust clip-space for Metal
@@ -123,6 +133,7 @@ float4 gl_FragColor [[color(0)]];
 
 struct main0_in
 {
+float2 v_uv;
 float v_NoiseData;
 float v_NoiseData2;
 };
@@ -177,9 +188,9 @@ fragment main0_out main0(main0_in in [[stage_in]], constant buffer_t& buffer, te
 main0_out out = {};
 #ifdef AE_USE_PATTERN
 spvUnsafeArray<float4, 3> pats;
-pats[0] = u_KiraPattern0.sample(u_KiraPattern0Smplr, gl_PointCoord);
-pats[1] = u_KiraPattern1.sample(u_KiraPattern1Smplr, gl_PointCoord);
-pats[2] = u_KiraPattern2.sample(u_KiraPattern2Smplr, gl_PointCoord);
+pats[0] = u_KiraPattern0.sample(u_KiraPattern0Smplr, in.v_uv);
+pats[1] = u_KiraPattern1.sample(u_KiraPattern1Smplr, in.v_uv);
+pats[2] = u_KiraPattern2.sample(u_KiraPattern2Smplr, in.v_uv);
 float param = in.v_NoiseData;
 int param_1 = buffer.u_KiraPatternCount;
 int patIdx = remapIndex(param, param_1);

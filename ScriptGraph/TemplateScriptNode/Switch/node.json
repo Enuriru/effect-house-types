@@ -44,7 +44,7 @@
 	"js": "CGSwitch.js",
 	"addableOutput": {
 		"index": 2,
-		"baseName": "Case ",
+		"baseName": "",
 		"increaseStartIndex": 3
 	}
 }

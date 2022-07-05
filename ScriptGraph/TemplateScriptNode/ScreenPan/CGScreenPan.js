@@ -1,15 +1,15 @@
 /**
- * @file CGDragGesture.js
+ * @file CGScreenPan.js
  * @author liujiacheng
  * @date 2021/8/23
- * @brief CGDragGesture.js
+ * @brief CGScreenPan.js
  * @copyright Copyright (c) 2021, ByteDance Inc, All Rights Reserved
  */
 
 const {BaseNode} = require('./BaseNode');
 const Amaz = effect.Amaz;
 
-class CGDragGesture extends BaseNode {
+class CGScreenPan extends BaseNode {
   constructor() {
     super();
     this.startPoint = new Amaz.Vector2f(0, 0);
@@ -52,8 +52,8 @@ class CGDragGesture extends BaseNode {
     }
 
     if (sender !== null) {
-      this.outputs[1] = new Amaz.Vector2f(sender.x - this.startPoint.x, sender.y - this.startPoint.y);
-      this.outputs[2] = new Amaz.Vector2f(sender.x, sender.y);
+      this.outputs[1] = new Amaz.Vector2f(sender.x - this.startPoint.x, this.startPoint.y - sender.y);
+      this.outputs[2] = new Amaz.Vector2f(sender.x, 1.0 - sender.y);
       if (this.nexts[0]) {
         this.nexts[0]();
       }
@@ -61,4 +61,4 @@ class CGDragGesture extends BaseNode {
   }
 }
 
-exports.CGDragGesture = CGDragGesture;
+exports.CGScreenPan = CGScreenPan;

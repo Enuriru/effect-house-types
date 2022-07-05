@@ -32,8 +32,7 @@
 	"description": "This node outputs the scale multiplier changes based on the 2-finger touch points and keep executing the next node while rotating",
 	"productTypes": [
 		"InHouse",
-		"Domestic",
-		"TTEH"
+		"Domestic"
 	],
 	"TTEHVer": "1.0.0"
 }

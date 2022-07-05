@@ -1,7 +1,8 @@
 /**
  * @file CGLerp.js
- * @author liujiacheng
- * @date 2021/8/23
+ * @version 1.1.0
+ * @author runjiatian
+ * @date 2021/4/18
  * @brief CGLerp.js
  * @copyright Copyright (c) 2021, ByteDance Inc, All Rights Reserved
  */
@@ -25,12 +26,35 @@ class CGLerp extends BaseNode {
   getOutput(index) {
     let initVal = this.inputs[0]();
     let endVal = this.inputs[1]();
-    let amtVal = this.inputs[2]();
+    let step = this.inputs[2]();
 
-    if (initVal == null || endVal == null || amtVal == null) {
+    if (initVal == null || endVal == null || step == null) {
       return null;
     }
-    return initVal + (endVal - initVal) * amtVal;
+
+    let amtVal = Math.max(0.0, Math.min(step, 1.0));
+
+    if (this.valueType === 'Double') {
+      return initVal + (endVal - initVal) * amtVal;
+    } else if (this.valueType === 'Vector2f') {
+      return new Amaz.Vector2f(
+        initVal.x + (endVal.x - initVal.x) * amtVal,
+        initVal.y + (endVal.y - initVal.y) * amtVal
+      );
+    } else if (this.valueType === 'Vector3f') {
+      return new Amaz.Vector3f(
+        initVal.x + (endVal.x - initVal.x) * amtVal,
+        initVal.y + (endVal.y - initVal.y) * amtVal,
+        initVal.z + (endVal.z - initVal.z) * amtVal
+      );
+    } else if (this.valueType === 'Color') {
+      return new Amaz.Color(
+        initVal.r + (endVal.r - initVal.r) * amtVal,
+        initVal.g + (endVal.g - initVal.g) * amtVal,
+        initVal.b + (endVal.b - initVal.b) * amtVal,
+        initVal.a + (endVal.a - initVal.a) * amtVal
+      );
+    }
   }
 }
 

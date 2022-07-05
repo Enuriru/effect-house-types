@@ -18,6 +18,8 @@ class AudioGraphAssembler {
     this._fileSourceMap = new Amaz.Map();
     this._sinkMap = new Amaz.Map();
     this._micMap = new Amaz.Map();
+    this._onlineMusic = null;
+    this._isPreview = true;
     if (this._audioProxy && this._audioGraph) {
       this._sinkNode = this._audioGraph.createAudioNode('SinkNode', this._sinkMap);
     }
@@ -49,6 +51,9 @@ class AudioGraphAssembler {
       this._audioProxy.useAudioGraph(this._audioGraph);
       this._audioProxy.start();
       //this._micSourceNode.start();
+      if (false === this._isPreview && this._onlineMusic) {
+        this._onlineMusic.start();
+      }
       this._proxyActive = true;
     } else {
       console.error('Audio Graph start Proxy error !!!');
@@ -73,6 +78,9 @@ class AudioGraphAssembler {
         node.sinkNode = this.sinkNode();
       }
       node.initAudio && node.initAudio(sys);
+      if (false === this._isPreview && node.audioNodeName === 'MusicSourceNode') {
+        this._onlineMusic = node.audioOnlineNode;
+      }
     }
   }
 

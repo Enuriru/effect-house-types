@@ -11,7 +11,8 @@ class VFXParameter {
       for (let obj of objects) {
         if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
-                obj.getCtxBlock(i).exposeProperties.setVec4(property, value);
+                if(obj.getCtxBlock(i).exposeProperties.getVec4(property))
+                  obj.getCtxBlock(i).exposeProperties.setVec4(property, value);
             }
         }
       }
@@ -20,7 +21,8 @@ class VFXParameter {
         for (let obj of objects) {
           if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
-                obj.getCtxBlock(i).exposeProperties.setVec3(property, value);
+              if(obj.getCtxBlock(i).exposeProperties.getVec4(property))
+                obj.getCtxBlock(i).exposeProperties.setVec4(property, new Amaz.Vector4f(value.x, value.y, value.z, 0.0));
             }
           }
         }
@@ -29,6 +31,7 @@ class VFXParameter {
         for (let obj of objects) {
           if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
+              if(obj.getCtxBlock(i).exposeProperties.getVec2(property))
                 obj.getCtxBlock(i).exposeProperties.setVec2(property, value);
             }
           }
@@ -38,6 +41,7 @@ class VFXParameter {
         for (let obj of objects) {
           if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
+              if(obj.getCtxBlock(i).exposeProperties.getInt(property))
                 obj.getCtxBlock(i).exposeProperties.setInt(property, value);
             }
           }
@@ -47,6 +51,7 @@ class VFXParameter {
         for (let obj of objects) {
           if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
+              if(obj.getCtxBlock(i).exposeProperties.getFloat(property))
                 obj.getCtxBlock(i).exposeProperties.setFloat(property, value);
             }
           }
@@ -56,6 +61,7 @@ class VFXParameter {
       for (let obj of objects) {
         if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
+              if(obj.getCtxBlock(i).exposeProperties.getVec4(property))
                 obj.getCtxBlock(i).exposeProperties.setVec4(property, new Amaz.Vector4f(value.r, value.g, value.b, value.a));
             }
         }
@@ -65,6 +71,7 @@ class VFXParameter {
       for (let obj of objects) {
         if (obj) {
             for(var i = 0; i < obj.ctxBlocks.size(); i++){
+              if(obj.getCtxBlock(i).exposeProperties.getTex(property))
                 obj.getCtxBlock(i).exposeProperties.setTex(property, value);
             }
         }

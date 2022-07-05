@@ -277,24 +277,24 @@
       "valueType": "Texture2D"
     },
     "Float": {
-      "enabled": false,
+      "enabled": true,
       "script": "MaterialProperty",
-      "valueType": "Float"
+      "valueType": "Double"
     },
     "Vec2": {
-      "enabled": false,
+      "enabled": true,
       "script": "MaterialProperty",
-      "valueType": "Vec2"
+      "valueType": "Vector2f"
     },
     "Vec3": {
-      "enabled": false,
+      "enabled": true,
       "script": "MaterialProperty",
-      "valueType": "Vec3"
+      "valueType": "Vector3f"
     },
     "Vec4": {
-      "enabled": false,
+      "enabled": true,
       "script": "MaterialProperty",
-      "valueType": "Vec4"
+      "valueType": "Vector4f"
     }
   },
   "Face Stretch": {

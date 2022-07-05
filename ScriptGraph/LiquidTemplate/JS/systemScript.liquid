@@ -33,8 +33,8 @@ class {{ systemName }} {
         {% if containAudioGraph %}
         this.audioAssembler = AudioGraphAssembler.getInstance();
         AudioGraphAssembler.getInstance()._usedInGraph = true;
+        AudioGraphAssembler.getInstance()._isPreview = {{ isPreview }};
         {% endif %}
-        this.executionDepth = 0;
 
         // member variable init
         {% include "variableInit" %}
@@ -56,8 +56,6 @@ class {{ systemName }} {
         {% endfor %}
     {% endif %}
 {% endfor %}
-
-
     }
 
     onInit() {

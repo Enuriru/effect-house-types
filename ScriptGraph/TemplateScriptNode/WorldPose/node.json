@@ -1,10 +1,10 @@
 {
-	"name": "World Pose",
+	"name": "World Transform Info",
 	"id": "2eba42c7-877b-6ef8-baa7-53cb20b806bb",
 	"inputs": [
 		{
 			"name": "Transform",
-			"description": "The Transform of the target pose",
+			"description": "The Transform component you want to get its world transform information",
 			"type": "Transform",
 			"displayType": "Transform"
 		}
@@ -12,37 +12,37 @@
 	"outputs": [
 		{
 			"name": "World Position",
-			"description": "World position of the scene object",
+			"description": "The world position of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "World Rotation",
-			"description": "World rotation of the scene object",
+			"description": "The world rotation of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "World Scale",
-			"description": "World scale of the scene object",
+			"description": "The world scale of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Up Dir",
-			"description": "World Y direction (green arrow) of the scene object",
+			"description": "The world Y axis direction (green arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Right Dir",
-			"description": "World X direction (red arrow) direction of the scene object",
+			"description": "The world X axis direction (red arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		},
 		{
 			"name": "Forward Dir",
-			"description": "World Z direction (blue arrow) direction of the scene object",
+			"description": "The world Z axis direction (blue arrow) of the Transform component",
 			"type": "Vector3f",
 			"displayType": "Vec3"
 		}

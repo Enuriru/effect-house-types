@@ -18,6 +18,16 @@ class CGAudioComponentController extends BaseNode {
     this.playState = '';
   }
 
+  onInit() {
+    this.audioComponent = this.inputs[4]();
+    if (
+      this.audioComponent.isInstanceOf('JSScriptComponent') === true &&
+      this.audioComponent.name === 'AudioComponent'
+    ) {
+      this.audioComponent.getScript().ref.configInGraph = true;
+    }
+  }
+
   execute(index) {
     this.audioComponent = this.inputs[4]();
     if (
@@ -31,15 +41,15 @@ class CGAudioComponentController extends BaseNode {
     if (index === 0) {
       this.componentRef.resetToPlay();
       this.playState = 'play';
-      if (this.nexts[1]) {
-        this.nexts[1]();
+      if (this.nexts[0]) {
+        this.nexts[0]();
       }
     }
     if (index === 1) {
       this.componentRef.stopAndReset();
       this.playState = 'stop';
-      if (this.nexts[2]) {
-        this.nexts[2]();
+      if (this.nexts[1]) {
+        this.nexts[1]();
       }
     }
     if (index === 2) {
@@ -50,7 +60,7 @@ class CGAudioComponentController extends BaseNode {
       this.playState = 'pause';
     }
     if (index === 3) {
-      if (this.playState === 'stop') {
+      if (this.playState !== 'pause') {
         return;
       }
       this.componentRef.resume();
@@ -75,17 +85,11 @@ class CGAudioComponentController extends BaseNode {
   onUpdate(sys, dt) {
     if (this.audioComponent && this.componentRef) {
       if (this.componentRef.isFinished === true) {
-        if (this.nexts[3]) {
-          this.nexts[3]();
+        if (this.nexts[2]) {
+          this.nexts[2]();
         }
         this.componentRef.isFinished = null;
       }
-    }
-  }
-
-  getOutput(index) {
-    if (this.audioComponent && this.componentRef && index === 0) {
-      return this.componentRef.getAudioGainNode();
     }
   }
 }

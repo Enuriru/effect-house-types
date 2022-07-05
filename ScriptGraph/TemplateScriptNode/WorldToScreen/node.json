@@ -3,7 +3,7 @@
 	"id": "3a7ccf47-8b74-a89f-64a2-9f5874985bc1",
 	"inputs": [
 		{
-			"name": "World pos",
+			"name": "World Pos",
 			"type": "Vector3f",
 			"item_type": "",
 			"description": "The position in world space",
@@ -18,7 +18,7 @@
 	],
 	"outputs": [
 		{
-			"name": "Screen pos",
+			"name": "Screen Pos",
 			"type": "Vector2f",
 			"item_type": "",
 			"description": "The position in the camera viewport space, which is normalized to the camera",
@@ -26,7 +26,6 @@
 		}
 	],
 	"js": "CGWorldToScreen.js",
-	"lua": "CGWorldToScreen.lua",
 	"version": "1.0",
 	"category": "Transform",
 	"description": "Transform a position from world space to camera viewport space. The bottom left of the camera viewport is (0,0) and the top right is (1,1). ",
@@ -35,5 +34,5 @@
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "1.0.2"
 }

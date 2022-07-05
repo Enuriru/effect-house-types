@@ -60,10 +60,10 @@ class CGEqualsExactly extends BaseNode {
        let dw = this.compareResult(value1.w, value2.w);
        return dx && dy && dz && dw;
      } else if (this.valueType === 'Color') {
-       let dr = this.compareResult(value1.r, value2.r);
-       let dg = this.compareResult(value1.g, value2.g);
-       let db = this.compareResult(value1.b, value2.b);
-       let da = this.compareResult(value1.a, value2.a);
+       let dr = this.compareResult(value1.r * 255.0, value2.r * 255.0);
+       let dg = this.compareResult(value1.g * 255.0, value2.g * 255.0);
+       let db = this.compareResult(value1.b * 255.0, value2.b * 255.0);
+       let da = this.compareResult(value1.a * 100.0, value2.a * 100.0);
        return dr && dg && db && da;
      } else {
        // For boolean and String
