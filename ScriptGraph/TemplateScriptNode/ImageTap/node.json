@@ -28,6 +28,9 @@
 	"amazingVersion": "10.40.0",
 	"category": "Utility",
 	"description": "Execute next node when an input image is tapped.",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
 	"nodeEvent": [
 		"onEvent",
 		"onUpdate"

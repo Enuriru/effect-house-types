@@ -339,7 +339,12 @@ class FilterDeck extends amg.Script {
     let noiseImg = asstMgr.SyncLoad("textures/noise.png");
     this.filterSys = amg.FilterGraphRegistry.create('MyGraph' + Math.random());
 
-    this.filterSys.bind(this.camera, amg.CameraRenderEvent.AfterRender, [], undefined, true);
+    if (this.isOnMobile()) {
+      this.filterSys.bind(this.camera, amg.CameraRenderEvent.AfterRender, [this.faceMaskRT]);
+    } else {
+      this.filterSys.bind(this.camera, amg.CameraRenderEvent.AfterRender, [], undefined, true);
+    }
+
     this.rt = this.camera.renderTexture;
     this.filterSys.add(new KiraFilter('kira', {
       Texture1: bling1,
@@ -357,7 +362,12 @@ class FilterDeck extends amg.Script {
         blendMode: BLENDMODE[this.blendMode],
       }
     ))
-    this.filterSys.link(null, 0, 'blend', 1);
+
+    if (this.isOnMobile()) {
+      this.filterSys.link('internal_blit', 0, 'blend', 1);
+    } else {
+      this.filterSys.link(null, 0, 'blend', 1);
+    }
   }
 
   onUpdate(deltaTime) {
@@ -382,6 +392,10 @@ class FilterDeck extends amg.Script {
         return comp;
       }
     }
+  }
+
+  isOnMobile() {
+    return Amaz.Platform.name() !== 'Mac' && Amaz.Platform.name() !== 'Windows' && Amaz.Platform.name() !== 'Linux';
   }
 }
 
