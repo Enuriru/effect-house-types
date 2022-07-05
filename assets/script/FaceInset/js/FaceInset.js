@@ -79,6 +79,7 @@ class FaceInset extends InsetRenderer {
 
     constructor() {
         super();
+        this.framecounter = 0;
     }
 
     // onStart
@@ -91,6 +92,15 @@ class FaceInset extends InsetRenderer {
     // onUpdate
     // Updates the face inset depending on whether or not the selected inset is a human or animal
     onUpdate(dt) {
+        /* Prevent placeholder face inset material from displaying */
+        if (this.framecounter < 2) {
+            debugger;
+            const renderer = this.entity.getComponent("MeshRenderer");
+            if (renderer) {
+                renderer.enabled = false; 
+            }
+            this.framecounter++;
+        }
         var algResult = Amaz.AmazingManager.getSingleton('Algorithm').getAEAlgorithmResult();
         if (FACE_TYPE[this.get(Keys.FACE_TYPE)] == FACE_TYPE[Keys.HUMAN]) {
             this._humanFaceUpdate(algResult);

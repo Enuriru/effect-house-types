@@ -7,16 +7,16 @@
             {{- edge | registerEdge -}}
             {% if edge.needExtraInputValue %}
                 {% if edge.outputPortType != "Pulse" %}
-                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
-                    {% if isPortConnectionValid == false %}
+                    {%- assign isConnected = edge | hasPortPairConnection -%}
+                    {% if isConnected == false %}
         this.nodes["{{edge.outputNode | getIdentifierById}}"].setInput({{ edge.outputPortIndex }}, ()=>{ return {{ edge.inputPortMetaData | getPortValueExpression }} });
                     {{- edge | registerPortConnection -}}
                     {% endif %}
                 {% endif %}
             {% elsif edge.needExtraOutputValue %}
                 {% if edge.inputPortType == "Pulse" %}
-                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
-                    {% if isPortConnectionValid == false %}
+                    {%- assign isConnected = edge | hasPortPairConnection -%}
+                    {% if isConnected == false %}
         this.nodes["{{edge.inputNode | getIdentifierById}}"].setNext({{edge.inputPortIndex}}, ()=>{
                         {% if isPreview %}
                             {% if edge.ExtraOutputTriggerSyncArray %}
@@ -27,20 +27,22 @@
         this.graphUtils.setWatchValue("{{edge.outputUIPort}}", true);
                             {% endif %}
                         {% endif %}
+                        {% if edge.outputNode != edge.outputUINode%}
             if (this.executionDepth >= 1000) {
                 return;
             }
             this.executionDepth++;
             this.nodes["{{edge.outputNode | getIdentifierById}}"].execute({{edge.outputPortIndex}})
             this.executionDepth--;
+                        {% endif %}
                         {{- edge | registerPortConnection -}}
         });
                     {% endif %}
                 {% endif %}
             {% else %}
                 {% if edge.inputPortType == "Pulse" %}
-                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
-                    {% if isPortConnectionValid == false %}
+                    {%- assign isConnected = edge | hasPortPairConnection -%}
+                    {% if isConnected == false %}
         this.nodes["{{edge.inputNode | getIdentifierById}}"].setNext({{edge.inputPortIndex}}, ()=>{
                         {% if isPreview %}
             this.graphUtils.setWatchValue("{{edge.outputPort}}", true)

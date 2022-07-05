@@ -56,16 +56,16 @@ class DeviceTracker extends amg.Script {
         if(slamVaild === true){
             this.initSceneByRayCast = this.initSceneByRayCast + 1;
             if(this.initSceneByRayCast === 1){
-                this.invisibleAllEntity(false);
+                //this.invisibleAllEntity(false);
             }
 
             if(this.initSceneByRayCast >= 3){
-                this.invisibleAllEntity(true);
+                //this.invisibleAllEntity(true);
             }
 
         }else{
             this.initSceneByRayCast = 0;
-            this.invisibleAllEntity(true);
+            //this.invisibleAllEntity(true);
         }
     
 

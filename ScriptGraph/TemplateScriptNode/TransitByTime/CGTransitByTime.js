@@ -20,12 +20,15 @@ class CGTransitByTime extends BaseNode {
   }
 
   beforeStart(sys) {
+    this.value = this.inputs[4]();
+  }
+
+  configTransition() {
     this.from = this.inputs[4]();
     this.to = this.inputs[5]();
     this.duration = Math.max(0, this.inputs[6]());
     this.interpolator = this.inputs[7]();
     this.loopTimes = Math.max(1, Math.round(this.inputs[8]()));
-    this.value = this.from;
   }
 
   execute(index) {
@@ -34,6 +37,7 @@ class CGTransitByTime extends BaseNode {
       this.loopIndex = 0;
       this.curTime = 0;
       this.start = true;
+      this.configTransition();
       this.value = this.from;
       if (this.nexts[0]) {
         this.nexts[0]();

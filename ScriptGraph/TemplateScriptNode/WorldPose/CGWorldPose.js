@@ -7,11 +7,12 @@ class CGWorldPose extends BaseNode {
   }
 
   getOutput(index) {
-    if (this.inputs[0] === undefined || this.inputs[0] === null) {
+    if (this.inputs[0]() === undefined || this.inputs[0]() === null) {
       return new Amaz.Vector3f(0, 0, 0);
     }
     const transform = this.inputs[0]();
     if (index === 0) {
+      console.error('Get World Position', transform);
       return transform.worldPosition;
     } else if (index === 1) {
       return transform.worldEulerAngle;

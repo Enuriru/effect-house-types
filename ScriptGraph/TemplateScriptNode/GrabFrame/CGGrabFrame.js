@@ -19,6 +19,7 @@ class CGGrabFrame extends BaseNode {
     this.blitMaterial = null;
     this.grabTexture = null;
     this.sys = null;
+    this.enable = false;
   }
 
   createRT(width, height) {
@@ -98,32 +99,44 @@ class CGGrabFrame extends BaseNode {
   }
 
   execute(index) {
-    this.cameraCount = 0;
-    this.inputTexture = this.inputs[1]();
-    if (this.inputTexture === undefined || this.inputTexture === null) {
+    if (this.enable === true) {
       return;
     }
-    if (!this.sys || !this.sys.script) {
-      return;
-    }
-    if (this.grabTexture === null) {
-      this.grabTexture = this.createRT(720, 1280);
-    }
-    const entities = this.sys.scene.entities;
-    this.cameraList = [];
-    //todo: fix when render chain is enabled
-    for (let i = 0; i < entities.size(); i++) {
-      const components = entities.get(i).components;
-      for (let j = 0; j < components.size(); j++) {
-        if (components.get(j).isInstanceOf('Camera')) {
-          if (components.get(j).renderTexture.equals(this.inputTexture)) {
-            this.sys.script.addScriptListener(
-              components.get(j),
-              Amaz.CameraEvent.AFTER_RENDER,
-              'onCallBack',
-              this.sys.script
-            );
-            this.cameraList.push(components.get(j));
+    this.enable = true;
+    if (this.inputTexture === null || false === this.inputTexture.equals(this.inputs[1]())) {
+      // re - add listener
+      this.cameraList.forEach(camera => {
+        if (this.sys && this.sys.script) {
+          this.sys.script.removeScriptListener(camera, Amaz.CameraEvent.AFTER_RENDER, 'onCallBack', this.sys.script);
+        }
+      });
+      this.cameraCount = 0;
+      this.inputTexture = this.inputs[1]();
+      if (this.inputTexture === undefined || this.inputTexture === null) {
+        return;
+      }
+      if (!this.sys || !this.sys.script) {
+        return;
+      }
+      if (this.grabTexture === null) {
+        this.grabTexture = this.createRT(720, 1280);
+      }
+      const entities = this.sys.scene.entities;
+      this.cameraList = [];
+      //todo: fix when render chain is enabled
+      for (let i = 0; i < entities.size(); i++) {
+        const components = entities.get(i).components;
+        for (let j = 0; j < components.size(); j++) {
+          if (components.get(j).isInstanceOf('Camera')) {
+            if (components.get(j).renderTexture.equals(this.inputTexture)) {
+              this.sys.script.addScriptListener(
+                components.get(j),
+                Amaz.CameraEvent.AFTER_RENDER,
+                'onCallBack',
+                this.sys.script
+              );
+              this.cameraList.push(components.get(j));
+            }
           }
         }
       }
@@ -131,6 +144,9 @@ class CGGrabFrame extends BaseNode {
   }
 
   onCallBack(sys, userData, eventType) {
+    if (this.enable === false) {
+      return;
+    }
     if (eventType === Amaz.CameraEvent.AFTER_RENDER) {
       this.cameraList.forEach(camera => {
         if (camera.guid.equals(userData.guid)) {
@@ -144,6 +160,8 @@ class CGGrabFrame extends BaseNode {
             this.grabCommandBuffer.clearAll();
             this.grabCommandBuffer.blitWithMaterial(cameraRT, this.grabTexture, this.blitMaterial);
             this.sys.scene.commitCommandBuffer(this.grabCommandBuffer);
+            this.enable = false;
+            this.cameraCount = 0;
             if (this.nexts[0]) {
               this.nexts[0]();
             }

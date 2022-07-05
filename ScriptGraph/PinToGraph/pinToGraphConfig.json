@@ -131,7 +131,7 @@
   },
   "Model": {
     "Mesh": {
-      "enabled": true,
+      "enabled": false,
       "script": "Property",
       "valueType": "Mesh"
     },

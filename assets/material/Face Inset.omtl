@@ -48,7 +48,6 @@
     #pragma input attributes
     in vec3 attPosition;
     in vec2 attTexcoord0;
-    in vec3 attPosOffset;
     in vec3 attNormal;
     #pragma end
 
@@ -100,7 +99,7 @@
 
         //vec4 homogeneous_modelPostiton = vec4(modelPostiton, 1.0);
 
-        vec4 homogeneous_pos = vec4(attPosition + attPosOffset, 1.0); // + vec4(0.0, 0.0, 10.0, 0.0); 
+        vec4 homogeneous_pos = vec4(attPosition, 1.0); // + vec4(0.0, 0.0, 10.0, 0.0); 
         // homogeneous_pos.xyz *= vec3(u_Scale);
         // float cosAngle = cos(u_RotateZ);
         // float sinAngle = sin(u_RotateZ);

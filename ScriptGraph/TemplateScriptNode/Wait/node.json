@@ -6,7 +6,6 @@
 			"name": "Enter",
 			"type": "Pulse",
 			"item_type": "",
-			"default_value": "0",
 			"description": "Execute this node",
 			"displayType": "Exec"
 		},

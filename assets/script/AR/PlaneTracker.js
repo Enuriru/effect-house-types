@@ -2,7 +2,7 @@
 const Amaz = effect.Amaz;
 const amg = require('amg');
 
-class PlaceTracker extends amg.Script {
+class PlaneTracker extends amg.Script {
     constructor() {
         super();
         this.name = "PlaceTracker";
@@ -21,10 +21,12 @@ class PlaceTracker extends amg.Script {
     }
 
     onUpdate(deltaTime) {
+        
+		console.log("running:PlaceTracker:onUpdate",deltaTime); 
     }
 
     onLateUpdate(deltaTime) {
-	    
+	  	console.log("running:PlaceTracker:onLateUpdate",deltaTime); 
     }
 
     onEvent(event) {
@@ -35,4 +37,4 @@ class PlaceTracker extends amg.Script {
 
 }
 
-exports.PlaceTracker = PlaceTracker;
+exports.PlaneTracker = PlaneTracker;
