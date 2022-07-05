@@ -10,27 +10,20 @@ class CGAnimationSequenceController extends BaseNode {
   beforeStart(sys) {
     this.component = this.inputs[4]();
     if (this.component) {
-      if (!this.haveRegisterEndListener) {
-        sys.script.addScriptListener(this.component, Amaz.AnimSeqEventType.ANIMSEQ_END, 'onCallBack', sys.script);
-        this.haveRegisterEndListener = true;
-      }
-      if (!this.haveRegisterStartListener) {
-        sys.script.addScriptListener(this.component, Amaz.AnimSeqEventType.ANIMSEQ_START, 'onCallBack', sys.script);
-        this.haveRegisterStartListener = true;
-      }
-      if (!this.haveRegisterWholeStartListener) {
-        sys.script.addScriptListener(
-          this.component,
-          Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_START,
-          'onCallBack',
-          sys.script
-        );
-        this.haveRegisterWholeStartListener = true;
-      }
-      if (!this.haveRegisterWholeEndListener) {
-        sys.script.addScriptListener(this.component, Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_END, 'onCallBack', sys.script);
-        this.haveRegisterWholeEndListener = true;
-      }
+      sys.eventListener.registerListener(sys.script, Amaz.AnimSeqEventType.ANIMSEQ_END, this.component, sys.script);
+      sys.eventListener.registerListener(sys.script, Amaz.AnimSeqEventType.ANIMSEQ_START, this.component, sys.script);
+      sys.eventListener.registerListener(
+        sys.script,
+        Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_START,
+        this.component,
+        sys.script
+      );
+      sys.eventListener.registerListener(
+        sys.script,
+        Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_END,
+        this.component,
+        sys.script
+      );
     }
   }
 
@@ -101,28 +94,7 @@ class CGAnimationSequenceController extends BaseNode {
     }
   }
 
-  onDestroy(sys) {
-    if (this.component) {
-      sys.script.removeScriptListener(this.component, Amaz.AnimSeqEventType.ANIMSEQ_END, 'onCallBack', sys.script);
-      this.haveRegisterEndListener = false;
-      sys.script.removeScriptListener(this.component, Amaz.AnimSeqEventType.ANIMSEQ_START, 'onCallBack', sys.script);
-      this.haveRegisterStartListener = false;
-      sys.script.removeScriptListener(
-        this.component,
-        Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_START,
-        'onCallBack',
-        sys.script
-      );
-      this.haveRegisterWholeStartListener = false;
-      sys.script.removeScriptListener(
-        this.component,
-        Amaz.AnimSeqEventType.ANIMSEQ_WHOLE_END,
-        'onCallBack',
-        sys.script
-      );
-      this.haveRegisterWholeEndListener = false;
-    }
-  }
+  onDestroy(sys) {}
 
   getOutput(index) {
     if (index === 5) {

@@ -21,6 +21,7 @@ class CGAudioComponentController extends BaseNode {
   onInit() {
     this.audioComponent = this.inputs[4]();
     if (
+      this.audioComponent &&
       this.audioComponent.isInstanceOf('JSScriptComponent') === true &&
       this.audioComponent.name === 'AudioComponent'
     ) {

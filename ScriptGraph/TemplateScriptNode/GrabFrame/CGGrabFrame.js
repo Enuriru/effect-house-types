@@ -20,6 +20,7 @@ class CGGrabFrame extends BaseNode {
     this.grabTexture = null;
     this.sys = null;
     this.enable = false;
+    this.cropRect = new Amaz.Rect();
   }
 
   createRT(width, height) {
@@ -47,8 +48,8 @@ class CGGrabFrame extends BaseNode {
       attribute vec3 attrPos;
       attribute vec2 attrUV;
       varying vec2 uv;
-      void main() {
-       gl_Position = vec4(attrPos.x, -attrPos.y, attrPos.z, 1.0);
+      void main() {        
+       gl_Position = vec4(attrPos.x, -attrPos.y, attrPos.z, 1.0);       
        uv = attrUV;
       }
   `;
@@ -60,9 +61,16 @@ class CGGrabFrame extends BaseNode {
       #endif
       uniform sampler2D _MainTex;
       varying vec2 uv;
-     
-      void main() {
-       vec4 color = texture2D(_MainTex, uv);
+      vec2 uvCrop;
+      uniform float u_x;
+      uniform float u_w;
+      uniform float u_y;
+      uniform float u_h;
+      void main() { 
+        uvCrop = uv;
+        uvCrop.x = u_x + uvCrop.x * u_w;
+        uvCrop.y = u_y + uvCrop.y * u_h;
+       vec4 color = texture2D(_MainTex, uvCrop);
        gl_FragColor = color;
       }
   `;
@@ -92,6 +100,7 @@ class CGGrabFrame extends BaseNode {
 
   beforeStart(sys) {
     this.sys = sys;
+    this.blitMaterial = this.createBlitMaterial();
   }
 
   getOutput(index) {
@@ -104,12 +113,6 @@ class CGGrabFrame extends BaseNode {
     }
     this.enable = true;
     if (this.inputTexture === null || false === this.inputTexture.equals(this.inputs[1]())) {
-      // re - add listener
-      this.cameraList.forEach(camera => {
-        if (this.sys && this.sys.script) {
-          this.sys.script.removeScriptListener(camera, Amaz.CameraEvent.AFTER_RENDER, 'onCallBack', this.sys.script);
-        }
-      });
       this.cameraCount = 0;
       this.inputTexture = this.inputs[1]();
       if (this.inputTexture === undefined || this.inputTexture === null) {
@@ -119,7 +122,7 @@ class CGGrabFrame extends BaseNode {
         return;
       }
       if (this.grabTexture === null) {
-        this.grabTexture = this.createRT(720, 1280);
+        this.grabTexture = this.createRT(this.inputs[1]().width, this.inputs[1]().height);
       }
       const entities = this.sys.scene.entities;
       this.cameraList = [];
@@ -129,10 +132,10 @@ class CGGrabFrame extends BaseNode {
         for (let j = 0; j < components.size(); j++) {
           if (components.get(j).isInstanceOf('Camera')) {
             if (components.get(j).renderTexture.equals(this.inputTexture)) {
-              this.sys.script.addScriptListener(
-                components.get(j),
+              this.sys.eventListener.registerListener(
+                this.sys.script,
                 Amaz.CameraEvent.AFTER_RENDER,
-                'onCallBack',
+                components.get(j),
                 this.sys.script
               );
               this.cameraList.push(components.get(j));
@@ -147,6 +150,9 @@ class CGGrabFrame extends BaseNode {
     if (this.enable === false) {
       return;
     }
+    if (this.inputs[2]() !== null) {
+      this.cropRect = this.inputs[2]();
+    }
     if (eventType === Amaz.CameraEvent.AFTER_RENDER) {
       this.cameraList.forEach(camera => {
         if (camera.guid.equals(userData.guid)) {
@@ -155,8 +161,13 @@ class CGGrabFrame extends BaseNode {
           if (this.cameraCount === this.cameraList.length) {
             const cameraRT = userData.renderTexture;
             if (this.blitMaterial === null) {
+              //incase blitmaterial was not created in beforeStart
               this.blitMaterial = this.createBlitMaterial();
             }
+            this.blitMaterial.setFloat('u_x', this.cropRect.x);
+            this.blitMaterial.setFloat('u_w', this.cropRect.width);
+            this.blitMaterial.setFloat('u_y', this.cropRect.y);
+            this.blitMaterial.setFloat('u_h', this.cropRect.height);
             this.grabCommandBuffer.clearAll();
             this.grabCommandBuffer.blitWithMaterial(cameraRT, this.grabTexture, this.blitMaterial);
             this.sys.scene.commitCommandBuffer(this.grabCommandBuffer);
@@ -172,11 +183,6 @@ class CGGrabFrame extends BaseNode {
   }
 
   onDestroy() {
-    this.cameraList.forEach(camera => {
-      if (this.sys && this.sys.script) {
-        this.sys.script.removeScriptListener(camera, Amaz.CameraEvent.AFTER_RENDER, 'onCallBack', this.sys.script);
-      }
-    });
     this.grabCommandBuffer = null;
   }
 }

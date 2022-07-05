@@ -1,0 +1,76 @@
+{
+	"name": "Co-Exec",
+	"id": "baf39225-4df9-47e6-a907-983fb67af7e1",
+	"inputs": [
+		{
+			"name": "Reset",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Reset this node so that it can be executed again",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Threshold",
+			"type": "Double",
+			"item_type": "",
+			"description": "The number of frames (or seconds) displayed since the first input execution was received. If the rest  executions are not received within these count of frames (or seconds), this node will be reset. If the rest executions are received within these count of frames (or seconds), execute the output once.",
+			"displayType": "Number",
+			"default_value": "0",
+			"range": [
+				[
+					0,
+					"inf",
+					0.001
+				]
+			]
+		},
+		{
+			"name": "As Frame",
+			"type": "Bool",
+			"item_type": "",
+			"description": "The type of Threshold. Set the number as frame when it is checked, otherwise, time (in seconds).",
+			"displayType": "Boolean",
+			"default_value": "false"
+		},
+		{
+			"name": "A",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The first input execution",
+			"displayType": "Exec"
+		},
+		{
+			"name": "B",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "The second input execution",
+			"displayType": "Exec"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when all inputs have been executed within the threshold",
+			"displayType": "Exec"
+		}
+	],
+	"addableInput": {
+		"index": 4,
+		"baseName": "",
+		"increaseStartIndex": "C"
+	},
+	"js": "CGCoExec.js",
+	"version": "1.0.0",
+	"category": "Control",
+	"description": "Execute next node once when all inputs receive valid executions. You can click \"+\" to add more inputs.",
+	"nodeEvent": [
+		"onUpdate"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic"
+	],
+	"TTEHVer": "1.0.0"
+}

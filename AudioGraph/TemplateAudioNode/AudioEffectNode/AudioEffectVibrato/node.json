@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to apply vibrato effect",
 			"displayType": "Audio Stream"
 		},
 		{
@@ -14,16 +14,16 @@
 			"default_value": 1,
 			"range": [
 				[
-					0,
+					0.1,
 					2,
 					0.1
 				]
 			],
 			"displayType": "Number",
-			"description": "Rate of the effect[0,2]"
+			"description": "The speed of the vibrato. Value range: 0 to 2."
 		},
 		{
-			"name": "Semitones",
+			"name": "Amount",
 			"type": "Double",
 			"default_value": 1,
 			"range": [
@@ -34,11 +34,11 @@
 				]
 			],
 			"displayType": "Number",
-			"description": "Pitch shift amount in musical semitones [0,2]"
+			"description": "The pitch shift amount of the audio source. Value range: 0 to 2."
 		},
 		{
 			"name": "Enabled",
-			"description": "Enable this node",
+			"description": "Enable this node or not",
 			"type": "Bool",
 			"default_value": true,
 			"displayType": "Boolean"
@@ -48,7 +48,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"description": "The connected audio stream. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		}
 	],

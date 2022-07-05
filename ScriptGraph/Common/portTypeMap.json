@@ -73,6 +73,12 @@
 			]
 		},
 		{
+			"EngineType": "MorpherComponent",
+			"DisPlayType": [
+				"Deformation"
+			]
+		},
+		{
 			"EngineType": "MeshRenderer",
 			"DisPlayType": [
 				"Mesh Renderer"
@@ -83,56 +89,71 @@
 			"DisPlayType": [
 				"Audio Player"
 			]
+		},
+		{
+			"EngineType": "AudioClip",
+			"DisPlayType": [
+				"Audio Clip"
+			]
+		},
+		{
+			"EngineType": "IFSprite2d",
+			"DisPlayType": [
+				"Image"
+			]
 		}
 	],
 	"allRealType": [
 		"Pulse",
-		"Animator",
-		"Int",
-		"Bool",
+		"Vector2f",
 		"Double",
+		"AnimSeqComponent",
+		"Bool",
+		"Int",
+		"any",
+		"RenderTexture",
+		"Rect",
+		"Texture2D",
+		"Vector3f",
+		"Animator",
+		"Component",
+		"Entity",
+		"String",
+		"Transform",
+		"Camera",
+		"MorpherComponent",
+		"AudioComponent",
 		"AudioClip",
 		"Audio Source",
-		"Rect",
-		"Vector2f",
-		"Component",
-		"MorpherComponent",
-		"String",
-		"AnimSeqComponent",
-		"Transform",
-		"Vector3f",
-		"any",
-		"Entity",
-		"RenderTexture",
-		"Texture2D",
-		"Camera",
 		"Audio Stream",
-		"AudioComponent"
+		"IFSprite2d",
+		"Boolean"
 	],
 	"allDisplayType": [
 		"Exec",
-		"Animator",
-		"Number",
-		"Boolean",
-		"Audio Clip",
-		"Audio Source",
-		"Rect",
 		"Vec2",
-		"Component",
-		"Deformation",
-		"String",
+		"Number",
 		"Seq Animation Component",
-		"Transform",
-		"Vec3",
+		"Boolean",
 		"Any",
-		"Scene Object",
 		"Render Texture",
+		"Rect",
 		"Texture 2D",
-		"Camera",
-		"Audio Stream",
+		"Vec4",
+		"Float",
+		"Animator",
 		"Animation Sequence",
 		"Bool",
-		"Vec4",
-		"Float"
+		"Component",
+		"Scene Object",
+		"String",
+		"Transform",
+		"Vec3",
+		"Camera",
+		"Deformation",
+		"Audio Clip",
+		"Audio Source",
+		"Audio Stream",
+		"Image"
 	]
 }

@@ -15,7 +15,7 @@ class CGMax extends BaseNode {
   }
 
   getOutput(index) {
-    var max = Number.MIN_VALUE;
+    var max = -Number.MAX_VALUE;
     for (let k = 0; k < this.inputs.length; ++k) {
 
       var value = this.inputs[k]();

@@ -502,5 +502,12 @@
       "script": "VFXParameter",
       "valueType": "Texture2D"
     }
+  },
+  "Animation Sequence": {
+    "FPS": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    }
   }
 }

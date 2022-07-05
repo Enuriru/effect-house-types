@@ -1,0 +1,49 @@
+{
+	"Shader": "None",
+	"Pass":
+	[
+		{
+			"Ausl": "a1",
+			"DepthWriteEnable": "Off",
+            "DepthTestEnable": "Off",
+			"ColorWrite": "Off"
+		}
+	]
+}
+---ENDJSON
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes
+        precision highp float;
+    #pragma end
+
+    #pragma fs targets
+        precision highp float;
+    #pragma end
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+        gl_Position = vec4(0.0, 0.0, 0.0, 0.0);
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+		o_fragColor = vec4(0.0, 0.0, 0.0, 0.0);
+    }
+
+---END a1

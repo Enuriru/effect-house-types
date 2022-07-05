@@ -14,35 +14,35 @@
 			"name": "Month",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current month. Value range",
+			"description": "The current month. Value range: 1 to 12.",
 			"displayType": "Number"
 		},
 		{
 			"name": "Day",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current day of the month. Value range",
+			"description": "The current day of the month. Value range: 1 to 31.",
 			"displayType": "Number"
 		},
 		{
 			"name": "Hour",
 			"type": "Int",
 			"item_type": "",
-			"description": "The current hour of the day. Value range",
+			"description": "The current hour of the day. Value range: 0 to 23.",
 			"displayType": "Number"
 		},
 		{
 			"name": "Minute",
 			"type": "Int",
 			"item_type": "",
-			"description": "The minutes of the hour. Value range",
+			"description": "The minutes of the hour. Value range: 0 to 59.",
 			"displayType": "Number"
 		},
 		{
 			"name": "Second",
 			"type": "Int",
 			"item_type": "",
-			"description": "The seconds of the minute. Value range",
+			"description": "The seconds of the minute. Value range: 0 to 59.",
 			"displayType": "Number"
 		}
 	],

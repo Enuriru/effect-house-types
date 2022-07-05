@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to apply limiter effect",
 			"displayType": "Audio Stream"
 		},
 		{

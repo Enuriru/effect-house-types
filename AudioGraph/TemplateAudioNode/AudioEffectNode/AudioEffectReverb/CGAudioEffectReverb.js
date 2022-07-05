@@ -25,7 +25,7 @@ class CGAudioEffectReverb extends BaseNode {
       7: 'dry_gaindB',
     };
     this.portRangeMap = {
-      1: [0, 1.5],
+      1: [0, 2],
       2: [0, 0.9],
       3: [0, 1],
       4: [0, 1],
@@ -85,7 +85,9 @@ class CGAudioEffectReverb extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }

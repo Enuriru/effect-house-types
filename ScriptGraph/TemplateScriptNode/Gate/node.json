@@ -34,7 +34,7 @@
 			"name": "Start Closed",
 			"type": "Bool",
 			"item_type": "",
-			"default_value": "true",
+			"default_value": true,
 			"description": "The starting status of the gate. If set to true the gate begins in a closed status.",
 			"displayType": "Boolean"
 		}

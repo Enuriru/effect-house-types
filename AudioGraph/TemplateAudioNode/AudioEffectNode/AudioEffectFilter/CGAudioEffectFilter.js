@@ -17,13 +17,13 @@ class CGAudioEffectFilter extends BaseNode {
     this.audioGraph = null;
     this.portIndexToParamName = {
       1: 'freq',
-      2: 'wet',
+      2: 'gain',
       3: 'quality',
       4: 'filter_type',
     };
     this.portRangeMap = {
       1: [10, 20000],
-      2: [0, 10],
+      2: [1, 10],
       3: [1, 2],
       4: [0, 1],
     };
@@ -79,7 +79,9 @@ class CGAudioEffectFilter extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }

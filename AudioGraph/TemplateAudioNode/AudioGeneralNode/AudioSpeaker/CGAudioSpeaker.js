@@ -15,21 +15,39 @@ class CGAudioSpeaker extends BaseNode {
     this.audioNode = null;
     this.audioNodeName = 'SinkNode';
     this.onlineMusicSpeaker = false;
+    this.params = {};
   }
 
   setInput(index, func) {
     this.inputs[index] = func;
+    this.params[index] = Number.MIN_VALUE;
+  }
+
+  beforeStart(sys) {
+    this.updateParamsValue();
   }
 
   onUpdate(sys, dt) {
-    let curVol = this.inputs[1]() / 100.0;
-    if (curVol > 1) {
-      curVol = 1;
-    } else if (curVol < 0) {
-      curVol = 0;
+    this.updateParamsValue();
+  }
+
+  updateParamsValue() {
+    if (!this.audioNode || !this.audioGainNode) {
+      return;
     }
-    if (this.audioGainNode) {
-      this.audioGainNode.gain = curVol;
+    const oriGain = this.params[1];
+    let curGain = this.inputs[1]();
+    if (oriGain !== curGain) {
+      if (curGain < 0) {
+        curGain = 0;
+      }
+      if (curGain > 100) {
+        curGain = 100;
+      }
+      if (curGain !== oriGain) {
+        this.audioGainNode.gain = curGain / 100.0;
+      }
+      this.params[1] = curGain;
     }
   }
 

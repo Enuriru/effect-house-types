@@ -19,7 +19,7 @@
 				"browOuterUpLeft",
 				"browOuterUpRight"
 			],
-			"description": "A scrollable dropdown list contains",
+			"description": "A scrollable dropdown list contains: browDownLeft, browDownRight, browInnerUp, browOuterUpLeft, browOuterUpRight",
 			"displayType": "String"
 		}
 	],

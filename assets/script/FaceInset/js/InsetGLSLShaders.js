@@ -225,7 +225,6 @@ const InsetShaders_GLSL =
 
             const int BLUR_SIZE_LIMIT = 9;
 
-        
         #ifndef BLUR_QUALITY
             const int BLUR_QUALITY = 1;
         #endif
@@ -396,7 +395,7 @@ const InsetShaders_GLSL =
 
         #ifdef USE_MIP_BLUR
             uniform float u_FeatheringScale;
-            const float MIP_RESCALE = 0.85;
+            const float MIP_RESCALE = 1.2;
         #endif
 
             varying vec2 v_UV;
@@ -670,7 +669,8 @@ const InsetShaders_GLSL =
 
             void main () {
             #ifdef USE_MIP_BLUR
-                vec4 finalAlphaCoord = texture2D(u_FinalAlphaCoordRT, v_UV, u_FeatheringScale * MIP_RESCALE);
+                float mipScale = sqrt((1. + u_FeatheringScale) * 6.);
+                vec4 finalAlphaCoord = texture2D(u_FinalAlphaCoordRT, v_UV, mipScale);
             #else
                 vec4 finalAlphaCoord = texture2D(u_FinalAlphaCoordRT, v_UV);
             #endif
@@ -690,7 +690,6 @@ const InsetShaders_GLSL =
                 #ifdef USE_FINAL_RT
                     mediump vec4 finalColor = texture2D(u_FBOTexture, v_InsetUV);
                 #endif
-                                
 
                 finalColor.rgb = mix(finalColor.rgb, u_FillColor.rgb, u_FillColor.a);
                 if (u_OutlineInfluence > 0.) 

@@ -1,0 +1,41 @@
+{
+	"name": "Image Tap",
+	"id": "c47567b5-d00a-4ce8-9e26-711e30728ff4",
+	"inputs": [
+		{
+			"name": "Image",
+			"type": "IFSprite2d",
+			"description": "The image people will tap to interact",
+			"displayType": "Image"
+		}
+	],
+	"outputs": [
+		{
+			"name": "On Image Tapped",
+			"type": "Pulse",
+			"description": "Execute the next node when people tapped the input image",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Is Tapped",
+			"type": "Bool",
+			"description": "Return true when the image is tapped otherwise return false",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGImageTap.js",
+	"version": "2.0",
+	"amazingVersion": "10.40.0",
+	"category": "Utility",
+	"description": "Execute next node when an input image is tapped.",
+	"nodeEvent": [
+		"onEvent",
+		"onUpdate"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

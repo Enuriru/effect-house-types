@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to apply megaphone effect",
 			"displayType": "Audio Stream"
 		},
 		{
@@ -47,7 +47,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"description": "The connected audio stream. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		}
 	],

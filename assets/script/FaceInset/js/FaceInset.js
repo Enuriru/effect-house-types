@@ -1,4 +1,4 @@
-const Amaz = effect.Amaz;
+const amg = require('./amg');
 
 const { InsetRenderer } = require('InsetRenderer');
 const { InsetConstants } = require('InsetConstants');
@@ -16,20 +16,26 @@ FACE_106_CUTOUT_POINTS[Keys.MOUTH] = [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94
 FACE_106_CUTOUT_POINTS[Keys.INNER_MOUTH] = [96, 97, 98, 99, 100, 101, 102, 103];
 FACE_106_CUTOUT_POINTS[Keys.HEAD] = [35, 40, 32, 24, 20, 19, 18, 16, 14, 13, 12, 8, 0];
 FACE_106_CUTOUT_POINTS[Keys.NOSE] = [43, 81, 83, 51, 50, 49, 48, 47, 82, 80]; // Two points removed
-// FACE_106_CUTOUT_POINTS[NOSE] = [78, 43, 79, 81, 83, 51, 50, 49, 48, 47, 82, 80]; // All points
 
 // Face extra cutout points
 const FACE_EXTRA_CUTOUT_POINTS = {};
-// Face 240
 FACE_EXTRA_CUTOUT_POINTS[Keys.RIGHT_EYE] = [21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 FACE_EXTRA_CUTOUT_POINTS[Keys.LEFT_EYE] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
 FACE_EXTRA_CUTOUT_POINTS[Keys.RIGHT_BROW] = [7, 8, 9, 10, 11, 12, 5, 4, 3, 2, 1, 0];
 FACE_EXTRA_CUTOUT_POINTS[Keys.LEFT_BROW] = [0, 1, 2, 3, 4, 5, 12, 11, 10, 9, 8, 7];
 FACE_EXTRA_CUTOUT_POINTS[Keys.MOUTH] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 61, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 60];
 FACE_EXTRA_CUTOUT_POINTS[Keys.INNER_MOUTH] = [62, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 63, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30];
-// Face 280
-FACE_EXTRA_CUTOUT_POINTS[Keys.LEFT_IRIS] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-FACE_EXTRA_CUTOUT_POINTS[Keys.RIGHT_IRIS] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+
+// Map from property string to amg enum for face parts
+const FACE_PART_MAP = {};
+FACE_PART_MAP[Keys.HEAD] = amg.FacePart.Whole;
+FACE_PART_MAP[Keys.RIGHT_EYE] = amg.FacePart.RightEye;
+FACE_PART_MAP[Keys.LEFT_EYE] = amg.FacePart.LeftEye;
+FACE_PART_MAP[Keys.NOSE] = amg.FacePart.Nose;
+FACE_PART_MAP[Keys.LEFT_BROW] = amg.FacePart.LeftEyeBrow;
+FACE_PART_MAP[Keys.RIGHT_BROW] = amg.FacePart.RightEyeBrow;
+FACE_PART_MAP[Keys.LEFT_EAR] = amg.FacePart.LeftEar;
+FACE_PART_MAP[Keys.RIGHT_EAR] = amg.FacePart.RightEar;
 
 // Enum map to avoid string compare
 const FACE_EXTRA_ENUM = {};
@@ -39,16 +45,21 @@ FACE_EXTRA_ENUM[Keys.RIGHT_BROW] = 3;
 FACE_EXTRA_ENUM[Keys.LEFT_BROW] = 4;
 FACE_EXTRA_ENUM[Keys.MOUTH] = 5;
 FACE_EXTRA_ENUM[Keys.INNER_MOUTH] = 6;
-FACE_EXTRA_ENUM[Keys.LEFT_IRIS] = 7;
-FACE_EXTRA_ENUM[Keys.RIGHT_IRIS] = 8;
+
+// Map from quality level to UseFaceExtra flag
+const USE_FACE_EXTRA = {};
+USE_FACE_EXTRA[Keys.QUALITY_LOW] = false;
+USE_FACE_EXTRA[Keys.QUALITY_MEDIUM] = true;
+USE_FACE_EXTRA[Keys.QUALITY_HIGH] = true;
 
 // ------ PET FACE CONSTANTS ------
 
 // Property to pet face type enums map
 const FACE_TYPE = {};
-FACE_TYPE[Keys.CAT] = Amaz.FacePetType.CAT;
-FACE_TYPE[Keys.DOG] = Amaz.FacePetType.DOG;
-FACE_TYPE[Keys.HUMAN] = Amaz.FacePetType.HUMAN;
+FACE_TYPE[Keys.HUMAN] = amg.FaceType.Human;
+FACE_TYPE[Keys.CAT] = amg.FaceType.Cat;
+FACE_TYPE[Keys.DOG] = amg.FaceType.Dog;
+
 
 // Map of cutout points for cat face insets
 const CAT_FACE_CUTOUT_POINTS = {};
@@ -57,21 +68,21 @@ CAT_FACE_CUTOUT_POINTS[Keys.LEFT_EYE] = [64, 65, 66, 67, 68, 69, 70, 71];
 CAT_FACE_CUTOUT_POINTS[Keys.RIGHT_EAR] = [19, 33, 34, 35, 36, 37, 38, 39, 16, 17, 18];
 CAT_FACE_CUTOUT_POINTS[Keys.LEFT_EAR] = [0, 26, 27, 28, 29, 30, 31, 32, 23, 24, 25];
 CAT_FACE_CUTOUT_POINTS[Keys.NOSE] = [45, 44, 46, 47];
-CAT_FACE_CUTOUT_POINTS[Keys.MOUTH] = [52, 51, 50, 49, 48, 57, 58, 59, 60, 59, 58, 57, 56, 55, 54, 53];
-CAT_FACE_CUTOUT_POINTS[Keys.NOSE_MOUTH] = [44, 46, 60, 9, 8, 7, 52, 45];
+CAT_FACE_CUTOUT_POINTS[Keys.MOUTH] = [44, 46, 60, 9, 8, 7, 52, 45];
 CAT_FACE_CUTOUT_POINTS[Keys.HEAD] = [16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 26, 27, 28, 29, 30, 31, 32, 23, 22, 21, 20, 19, 33, 34, 35, 36, 37, 38, 39];
 
 // Map of cutout points for dog face insets
 // TODO: update these with the new keypoints (these no longer work)
 const DOG_FACE_CUTOUT_POINTS = {};
-DOG_FACE_CUTOUT_POINTS[Keys.RIGHT_EYE] = [87, 86, 85, 84, 83, 82, 81, 80];
-DOG_FACE_CUTOUT_POINTS[Keys.LEFT_EYE] = [72, 73, 74, 75, 76, 77, 78, 79];
-DOG_FACE_CUTOUT_POINTS[Keys.RIGHT_EAR] = [16, 17, 18, 19, 33, 34, 35, 36, 37, 38, 39];
-DOG_FACE_CUTOUT_POINTS[Keys.LEFT_EAR] = [23, 24, 25, 0, 26, 27, 28, 29, 30, 31, 32];
-DOG_FACE_CUTOUT_POINTS[Keys.NOSE] = [52, 51, 50, 49, 48, 47, 46, 45];
-DOG_FACE_CUTOUT_POINTS[Keys.MOUTH] = [71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56];
-DOG_FACE_CUTOUT_POINTS[Keys.NOSE_MOUTH] = [43, 12, 11, 10, 9, 8, 7, 6, 5, 4];
-DOG_FACE_CUTOUT_POINTS[Keys.HEAD] = [26, 27, 28, 29, 30, 31, 32, 23, 22, 21, 20, 19, 33, 34, 35, 36, 37, 38, 39, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+DOG_FACE_CUTOUT_POINTS[Keys.RIGHT_EYE] = [66, 67, 68, 69, 70, 71, 72, 73];
+DOG_FACE_CUTOUT_POINTS[Keys.LEFT_EYE] = [58, 59, 60, 61, 62, 63, 64, 65];
+DOG_FACE_CUTOUT_POINTS[Keys.RIGHT_EAR] = [16, 17, 18, 19, 83, 84, 85, 86, 87, 88, 89];
+DOG_FACE_CUTOUT_POINTS[Keys.LEFT_EAR] = [0, 25, 24, 23, 82, 81, 80, 79, 78, 77, 76];
+DOG_FACE_CUTOUT_POINTS[Keys.NOSE] = [31, 32, 33, 34, 35, 36, 37, 38];
+DOG_FACE_CUTOUT_POINTS[Keys.MOUTH] = [5, 6, 7, 8, 9, 10, 11, 36, 35, 34];
+DOG_FACE_CUTOUT_POINTS[Keys.HEAD] = [0, 5, 6, 7, 8, 9, 10, 11, 16, 89, 88, 87, 86, 85, 84, 83, 19, 21, 23, 82, 81, 80, 79, 78, 77, 76];
+
+const MAX_NUM_HUMAN_FACES = 5; // found in amg
 
 // Class: FaceInset
 // Responsible for linking UI properties to the base class for human/cat/dog face inset
@@ -79,38 +90,169 @@ class FaceInset extends InsetRenderer {
 
     constructor() {
         super();
-        this.framecounter = 0;
     }
 
     // onStart
     onStart() {
-        this._comp = this.component();
-        this.properties = this._comp.properties;
+        this._guid = this.entity.native.guid;
+        this._comp = this.getFaceInsetComponent();
+        this._properties = this._comp.properties;
         super.onStart();
     }
 
     // onUpdate
     // Updates the face inset depending on whether or not the selected inset is a human or animal
     onUpdate(dt) {
-        /* Prevent placeholder face inset material from displaying */
-        if (this.framecounter < 2) {
-            const renderer = this.entity.getComponent("MeshRenderer");
-            if (renderer) {
-                renderer.enabled = false; 
-            }
-            this.framecounter++;
-        }
-        var algResult = Amaz.AmazingManager.getSingleton('Algorithm').getAEAlgorithmResult();
-        if (FACE_TYPE[this.get(Keys.FACE_TYPE)] == FACE_TYPE[Keys.HUMAN]) {
-            this._humanFaceUpdate(algResult);
-        } else if (FACE_TYPE[this.get(Keys.FACE_TYPE)] == FACE_TYPE[Keys.CAT] ||
+        this._setFilter();
+        if (FACE_TYPE[this.get(Keys.FACE_TYPE)] == FACE_TYPE[Keys.CAT] ||
             FACE_TYPE[this.get(Keys.FACE_TYPE)] == FACE_TYPE[Keys.DOG]) {
-            this._loge("Pet face type is not yet supported");
-            // this._petFaceUpdate(algResult);
+            this._petFaceUpdate();
         } else {
-            this._loge("No face type selected");
+            this._humanFaceUpdate();
         }
     }
+
+    // onEnable
+    onEnable() {
+        // super.onEnable();
+    }
+
+    // onDisable
+    onDisable() {
+        // super.onDisable();
+        FaceInset.prototype._faceTypesUsed[this._guid.toString()] = null;
+    }
+
+    // onDestroy
+    onDestroy() {
+        FaceInset.prototype._faceTypesUsed[this._guid.toString()] = null;
+    }
+
+    // getFaceInsetComponent
+    // Returns native script component object for Face Inset
+    getFaceInsetComponent() {
+        const jsScriptComps = this.entity.native.getComponents('JSScriptComponent');
+        for (let i = 0; i < jsScriptComps.size(); i++) {
+            const comp = jsScriptComps.get(i);
+            if (comp.path === 'js/FaceInset.js') {
+                return comp;
+            }
+        }
+    }
+
+    // *** PUBLIC ***
+    // *** setters / getters for properties ***
+
+    // return amg.FaceType
+    get faceType() {
+        return FACE_TYPE[this.get(Keys.FACE_TYPE)];
+    }
+
+    set faceType(newValue) {
+        let typeStr = null;
+        for (const key of Object.keys(FACE_TYPE)) {
+            const val = FACE_TYPE[key];
+            if (val == newValue) {
+                typeStr = key;
+                break;
+            }
+        }
+        if (typeStr) {
+            this.set(Keys.FACE_TYPE, typeStr);
+        }
+    }
+
+    // return number
+    get faceIndex() {
+        return this.get(Keys.FACE_INDEX);
+    }
+
+    set faceIndex(newValue) {
+        this.set(Keys.FACE_INDEX, newValue);
+    }
+
+    // return amg.FacePart
+    get facePart() {
+        return FACE_PART_MAP[this.get(Keys.FACE_AREA)];
+    }
+
+    set facePart(newValue) {
+        let facePartStr = null;
+        for (const key of Object.keys(FACE_PART_MAP)) {
+            const val = FACE_PART_MAP[key];
+            if (val == newValue) {
+                facePartStr = key;
+                break;
+            }
+        }
+        if (facePartStr) {
+            this.set(Keys.FACE_AREA, facePartStr);
+        }
+    }
+
+    // return number
+    get opacity() {
+        return this.get(Keys.OPACITY);
+    }
+
+    set opacity(newValue) {
+        this.set(Keys.OPACITY, newValue);
+    }
+
+    // return boolean
+    get useFeathering() {
+        return this.get(Keys.USE_FEATHERING);
+    }
+
+    set useFeathering(newValue) {
+        this.set(Keys.USE_FEATHERING, newValue);
+    }
+
+    // return number
+    get featheringScale() {
+        return this.get(Keys.FEATHERING_SCALE);
+    }
+
+    set featheringScale(newValue) {
+        this.set(Keys.FEATHERING_SCALE, newValue);
+    }
+
+    // return boolean
+    get useOutline() {
+        return this.get(Keys.USE_OUTLINE);
+    }
+
+    set useOutline(newValue) {
+        this.set(Keys.USE_OUTLINE, newValue);
+    }
+
+    // return number
+    get outlineThickness() {
+        return this.get(Keys.OUTLINE_THICKNESS);
+    }
+
+    set outlineThickness(newValue) {
+        this.set(Keys.OUTLINE_THICKNESS);
+    }
+
+    // return bool
+    get useDepthTest() {
+        return this.get(Keys.USE_DEPTH_TEST);
+    }
+
+    set useDepthTest(newValue) {
+        this.set(Keys.USE_DEPTH_TEST);
+    }
+
+    useCameraInput() {
+        this.set(Keys.INPUT_TEXTURE, Keys.CAMERA_INPUT_TEXTURE);
+    }
+
+    useFinalRenderInput() {
+        this.set(Keys.INPUT_TEXTURE, Keys.FINAL_RENDER_TEXTURE);
+    }
+
+    // *** PRIVATE ***
 
     _log(msg) {
         console.warn("FaceInsetLog", msg);
@@ -120,24 +262,43 @@ class FaceInset extends InsetRenderer {
         console.warn("FaceInsetError", msg);
     }
 
+    // _setFilter
+    // Sets the amg.Head API's filter to use the corresponding face types for all active face insets
+    _setFilter() {
+        // Use global variable to track exiting face types
+        let faceType = FACE_TYPE[this.get(Keys.FACE_TYPE)];
+        let storedFaceType = FaceInset.prototype._faceTypesUsed[this._guid.toString()];
+        if (faceType != storedFaceType)
+        {
+            FaceInset.prototype._faceTypesUsed[this._guid.toString()] = faceType;
+            let faceTypesUsed = new Set();
+            for (const guid of Object.keys(FaceInset.prototype._faceTypesUsed)) {
+                let ft = FaceInset.prototype._faceTypesUsed[guid];
+                if (ft != null) {
+                    faceTypesUsed.add(ft);
+                }
+            }
+            amg.Head.setFilter(Array.from(faceTypesUsed)); 
+        }
+    }
+
     // _humanFaceUpdate
     // If a human face is available, send the keypoints, indices, and rotation to the base class
-    _humanFaceUpdate(algResult) {
+    _humanFaceUpdate() {
         const faceIndex = this.get(Keys.FACE_INDEX);
-        const faceInfo = algResult.getFaceBaseInfo(faceIndex);
-        if (faceInfo) {
-            const eulerAngles = new Amaz.Vector3f(faceInfo.pitch, faceInfo.yaw, faceInfo.roll);
+        let faceInfo = amg.Head.faces[faceIndex];
+        if (faceInfo != null) {
+            const eulerAngles = new amg.Vec3(faceInfo.pitch, faceInfo.yaw, faceInfo.roll);
             const cutoutPointIndices = this._getInsetKeypointIndices();
-            if (this._shouldUseFaceExtra()) {
-                const faceExtraInfo = algResult.getFaceExtraInfo(faceIndex);
-                if (faceExtraInfo) {
-                    const keypoints = this._getFaceExtraKeypoints(faceExtraInfo);
+            if (this._useFaceExtra()) {
+                let keypoints = this._getFaceExtraKeypoints(faceInfo);
+                if (keypoints) {
                     this._setInsetProperties(keypoints, cutoutPointIndices, eulerAngles);
                 } else {
                     this._setInsetProperties(); // set as undefined
                 }
             } else {
-                const keypoints = faceInfo.points_array;
+                const keypoints = amg.Head.getLandmark(amg.FacePart.Whole, faceIndex, amg.FaceLandmarkType.Face106);
                 this._setInsetProperties(keypoints, cutoutPointIndices, eulerAngles);
             }
         } else {
@@ -147,23 +308,30 @@ class FaceInset extends InsetRenderer {
 
     // _petFaceUpdate
     // If a cat or dog face is available, send the keypoints, indices, and rotation to the base class
-    _petFaceUpdate(result) {
-        const index = Math.floor(this.get(Keys.FACE_INDEX));
-        // const petFaceInfo = result.getPetFaceInfo(this.get(Keys.FACE_INDEX)); // Disabled for now
-        if (petFaceInfo && petFaceInfo.face_pet_type == FACE_TYPE[this.get(Keys.FACE_TYPE)] && petFaceInfo.face_pet_type != FACE_TYPE[HUMAN]) {
-            const keypoints = petFaceInfo.points_array;
+    _petFaceUpdate() {
+        let petFaceInfo;
+        const faceType = FACE_TYPE[this.get(Keys.FACE_TYPE)];
+        for (let i = 0; i <= MAX_NUM_HUMAN_FACES; i++) {
+            let faceInfo = amg.Head.faces[i];
+            if (faceInfo && faceInfo.type != amg.FaceType.Human && faceInfo.type == faceType) {
+                petFaceInfo = faceInfo;
+                break;
+            }
+        }
+        if (petFaceInfo && petFaceInfo.type == faceType && petFaceInfo.type != amg.FaceType.Human) {
+            const keypoints = petFaceInfo.landmarksPetV2;
+            const eulerAngles = new amg.Vec3(petFaceInfo.pitch, petFaceInfo.yaw, -petFaceInfo.roll);
             let insetKeypointIndices = this._getInsetKeypointIndices();
-            const eulerAngles = Amaz.Vector3f(petFaceInfo.pitch, petFaceInfo.yaw, -petFaceInfo.roll);
             this._setInsetProperties(keypoints, insetKeypointIndices, eulerAngles);
         } else {
             this._setInsetProperties(); // set as undefined
         }
     }
 
-    // _shouldUseFaceExtra
+    // _useFaceExtra
     // Returns whether or not to use faceExtra keypoints depending on selected properties
-    _shouldUseFaceExtra() {
-        return this.get(Keys.USE_HIGH_QUALITY) && FACE_EXTRA_ENUM[this.get(Keys.FACE_AREA)] != null;
+    _useFaceExtra() {
+        return USE_FACE_EXTRA[this.get(Keys.QUALITY)] && FACE_EXTRA_ENUM[this.get(Keys.FACE_AREA)] != null;
     }
 
     // _getInsetKeypointIndices
@@ -171,14 +339,15 @@ class FaceInset extends InsetRenderer {
     _getInsetKeypointIndices() {
         const faceType = FACE_TYPE[this.get(Keys.FACE_TYPE)];
         const faceAreaKey = this.get(Keys.FACE_AREA);
-        if (faceType == Amaz.FacePetType.HUMAN) {
-            if (this._shouldUseFaceExtra()) {
+        if (faceType == FACE_TYPE[Keys.HUMAN]) {
+            if (this._useFaceExtra()) {
                 return FACE_EXTRA_CUTOUT_POINTS[faceAreaKey];
             } else {
                 return FACE_106_CUTOUT_POINTS[faceAreaKey];
             }
-        } else if (faceType == Amaz.FacePetType.DOG) {
-        } else if (faceType == Amaz.FacePetType.CAT) {
+        } else if (faceType == FACE_TYPE[Keys.DOG]) {
+            return DOG_FACE_CUTOUT_POINTS[faceAreaKey];
+        } else if (faceType == FACE_TYPE[Keys.CAT]) {
             return CAT_FACE_CUTOUT_POINTS[faceAreaKey];
         }
     }
@@ -196,49 +365,24 @@ class FaceInset extends InsetRenderer {
     }
 
     // _getFaceExtraKeypoints
-    // Takes the faceExtraInfo object and returns the corresponding keypoints depending
-    // on properties
-    _getFaceExtraKeypoints(faceExtraInfo) {
+    // Returns amg.Head landmark depending on script property
+    _getFaceExtraKeypoints(faceInfo) {
         if (this._isFacePartSelected(Keys.LEFT_EYE)) {
-            return faceExtraInfo.eye_left;
+            return faceInfo.landmarks240EyeLeft;
         } else if (this._isFacePartSelected(Keys.RIGHT_EYE)) {
-            return faceExtraInfo.eye_right;
+            return faceInfo.landmarks240EyeRight;
         } else if (this._isFacePartSelected(Keys.LEFT_BROW)) {
-            return faceExtraInfo.eyebrow_left;
+            return faceInfo.landmarks240EyebrowLeft;
         } else if (this._isFacePartSelected(Keys.RIGHT_BROW)) {
-            return faceExtraInfo.eyebrow_right;
+            return faceInfo.landmarks240EyebrowRight;
         } else if (this._isFacePartSelected(Keys.MOUTH) || this._isFacePartSelected(Keys.INNER_MOUTH)) {
-            return faceExtraInfo.lips;
-        } else if (this._isFacePartSelected(Keys.LEFT_IRIS)) {
-            return faceExtraInfo.left_iris;
-        } else if (this._isFacePartSelected(Keys.RIGHT_IRIS)) {
-            return faceExtraInfo.right_iris;
+            return faceInfo.landmarks240Lip;
         } else {
             return null;
         }
     }
-
-    onEnable() {
-        if (this._renderer !== null && this._renderer !== undefined) {
-            this._renderer.enabled = true;
-        }
-    }
-
-    onDisable() {
-        if (this._renderer !== null && this._renderer !== undefined) {
-            this._renderer.enabled = false;
-        }
-    }
-
-    component() {
-        const jsScriptComps = this.entity.getComponents('JSScriptComponent');
-        for (let i = 0; i < jsScriptComps.size(); i++) {
-            const comp = jsScriptComps.get(i);
-            if (comp.path === 'js/FaceInset.js') {
-                return comp;
-            }
-        }
-    }
 }
+
+FaceInset.prototype._faceTypesUsed = {};
 
 exports.FaceInset = FaceInset;

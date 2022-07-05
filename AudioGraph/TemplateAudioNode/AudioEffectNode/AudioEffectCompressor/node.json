@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to apply compressor effect",
 			"displayType": "Audio Stream"
 		},
 		{
@@ -79,48 +79,6 @@
 			"description": ""
 		},
 		{
-			"name": "Release Zone 1",
-			"type": "Double",
-			"default_value": 0,
-			"range": [
-				[
-					0,
-					1,
-					0.1
-				]
-			],
-			"displayType": "Number",
-			"description": ""
-		},
-		{
-			"name": "Release Zone 2",
-			"type": "Double",
-			"default_value": 0,
-			"range": [
-				[
-					0,
-					1,
-					0.1
-				]
-			],
-			"displayType": "Number",
-			"description": ""
-		},
-		{
-			"name": "Release Zone 3",
-			"type": "Double",
-			"default_value": 0,
-			"range": [
-				[
-					0,
-					1,
-					0.1
-				]
-			],
-			"displayType": "Number",
-			"description": ""
-		},
-		{
 			"name": "Post Gain",
 			"type": "Double",
 			"default_value": 0.5,
@@ -160,7 +118,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"description": "The connected audio stream. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		}
 	],

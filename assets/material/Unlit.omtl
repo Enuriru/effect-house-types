@@ -19,6 +19,13 @@
     _AlbedoColor (Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
     AlbedoTexture (Texture on, Defs) = 0
     [AlbedoTexture] _AlbedoTexture (Texture, 2D) = "Default_Material_Texture_Icon"
+    [AlbedoTexture] PremultOn (Premult On, Defs) = 1
+
+    $UV control$
+    UvControl (UV control, Defs) = 0
+    [UvControl] _Tiling (Tilling, Vec2) = [1.000000, 1.000000]
+    [UvControl] _Offset (Offset, Vec2) = [0.000000, 0.000000]
+    [UvControl] _Rotation (Rotation, Range(0.000000, 360.000000)) = 0.000000
 
 ---END UIPROPERTY
 
@@ -318,6 +325,27 @@
             #endif
             return ret;
         }
+
+        #ifdef UvControl
+            #define D2R 0.01745329251
+
+            uniform vec2 _Tiling;
+            uniform vec2 _Offset;
+            uniform float _Rotation;
+
+            vec2 UV_TRS(vec2 inputUV, vec2 uvCenter, vec2 uvPan, vec2 uvScale, float uvRotate)
+            {
+                vec2 minusCenterUV = inputUV - uvCenter;
+                float cosVal = cos(uvRotate);
+                float sinVal = sin(uvRotate);
+                mat2 rotateMat = mat2(cosVal, -sinVal, sinVal, cosVal);
+                
+                vec2 outputUV = minusCenterUV * uvScale;
+                outputUV = rotateMat * outputUV + uvCenter;
+                outputUV = outputUV + uvPan;
+                return outputUV;
+            }
+        #endif
     #pragma end
 
     // Entry function in vertex shader, must match "void vertex()"
@@ -344,9 +372,15 @@
     {
         vec2 uv = g_vary_uv0;
         uv.y = 1.0 - uv.y;
+        #ifdef UvControl
+            uv = UV_TRS(uv.xy, vec2(0.5, 0.5), _Offset, _Tiling, _Rotation * D2R);
+        #endif
         vec4 t_albedo = vec4(1, 1, 1, 1);
         #ifdef AlbedoTexture
             t_albedo = texture(_AlbedoTexture, uv);
+            #ifdef PremultOn
+                t_albedo.rgb = t_albedo.rgb / t_albedo.a;
+            #endif
         #endif
             vec4 final_color = t_albedo * _AlbedoColor;
         #ifdef AMAZING_USE_BLENDMODE_ALPHATEST

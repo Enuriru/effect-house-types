@@ -37,11 +37,11 @@
 		"onEvent",
 		"onUpdate"
 	],
-	"description": "Execute the next node when recording.",
+	"description": "Execute the next node when recording. By default, in Effect House preview, it is always recording.",
 	"productTypes": [
 		"InHouse",
 		"Domestic",
 		"TTEH"
 	],
-	"TTEHVer": "1.0.0"
+	"TTEHVer": "1.1.0"
 }

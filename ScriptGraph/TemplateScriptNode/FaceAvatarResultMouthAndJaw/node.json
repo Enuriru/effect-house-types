@@ -41,7 +41,7 @@
 				"mouthUpperUpLeft",
 				"mouthUpperUpRight"
 			],
-			"description": "A scrollable dropdown list contains",
+			"description": "A scrollable dropdown list contains: jawForward, jawLeft, jawRight, jawOpen, mouthClose, mouthFunnel, mouthPucker, mouthLeft, mouthRight, mouthSmileLeft, mouthSmileRight, mouthFrownLeft, mouthFrownRight, mouthDimpleLeft, mouthDimpleRight, mouthStretchLeft, mouthStretchRight, mouthRollLower, mouthRollUpper, mouthShrugLower, mouthShrugUpper, mouthPressLeft, mouthPressRight, mouthLowerDownLeft, mouthLowerDownRight, mouthUpperUpLeft, mouthUpperUpRight",
 			"displayType": "String"
 		}
 	],

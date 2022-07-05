@@ -23,7 +23,7 @@
 			"type": "Double",
 			"item_type": "",
 			"dynamic": false,
-			"description": "The value used to interpolate between Start and Stop. Value range",
+			"description": "The value used to interpolate between Start and Stop. Value range: 0 to 1.",
 			"displayType": "Number"
 		}
 	],

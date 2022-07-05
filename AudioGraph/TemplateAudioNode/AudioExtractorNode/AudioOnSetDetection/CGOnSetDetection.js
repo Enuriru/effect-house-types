@@ -54,7 +54,7 @@ class CGOnSetDetection extends BaseNode {
     }
   }
 
-  beforeStart(sys) {
+  onInit(sys) {
     this.updateParamsValue();
   }
 
@@ -77,7 +77,9 @@ class CGOnSetDetection extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }

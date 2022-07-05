@@ -3,64 +3,39 @@
   "id": "834af7d5-45f8-a01d-7956-f366e9f77efa",
   "inputs": [
     {
-      "name": "Start",
-      "type": "Pulse",
-      "item_type": "",
-      "description": "Trigger from last node"
-    },
-    {
-      "name": "Index",
+      "name": "Which Face",
       "type": "Int",
-      "item_type": "",
       "default_value": "0",
-      "description": "Index of face"
+      "description": "Index of face",
+      "displayType": "Number"
     }
   ],
   "outputs": [
     {
-      "name": "Trigger",
-      "type": "Pulse",
-      "item_type": "",
-      "description": "Trigger next node"
-    },
-    {
       "name": "Rect",
       "type": "Rect",
-      "item_type": "",
-      "description": "Rectangle of face"
+      "description": "Rectangle of face",
+      "displayType": "Rect"
     },
     {
-      "name": "Yaw",
+      "name": "Scale Multiplier",
       "type": "Double",
-      "item_type": "",
-      "description": "Face yaw angle"
+      "description": "Face scale multiplier factor",
+      "displayType": "Number"
     },
     {
-      "name": "Roll",
-      "type": "Double",
-      "item_type": "",
-      "description": "Face roll angle"
-    },
-    {
-      "name": "Pitch",
-      "type": "Double",
-      "item_type": "",
-      "description": "Face pitch angle"
-    },
-    {
-      "name": "Eye dist",
-      "type": "Double",
-      "item_type": "",
-      "description": "Distance between two eyes"
+      "name": "2D Keypoints",
+      "type": "Vector2f Array",
+      "description": "Face point 2D positions",
+      "displayType": "Vec2 Array"
     }
   ],
   "js": "CGFaceInfo.js",
-  "lua": "CGFaceInfo.lua",
   "version": "1.0",
   "amazingVersion": "10.40.0",
-  "luaFuncName": "CGFaceInfo",
   "category": "Head & Face",
-  "graphAlgorithms": ["faceDetect240"],
+  "graphAlgorithms": ["faceDetect"],
   "description": "Get face info",
-  "productTypes": ["InHouse", "Domestic"]
+  "productTypes": ["InHouse", "Domestic"],
+  "TTEHVer": "1.0.0"
 }

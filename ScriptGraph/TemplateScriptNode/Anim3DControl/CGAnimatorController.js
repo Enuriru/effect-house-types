@@ -52,7 +52,6 @@ class CGAnimatorController extends BaseNode {
       this.errorConfig = true;
       return;
     }
-    let prevChosenIndex = this.chosenIndex;
     let prevClip = this.currentClip;
     this.chosenIndex = this.inputs[3]();
     if (this.chosenIndex >= this.animationSize || this.chosenIndex < 0) {
@@ -72,12 +71,7 @@ class CGAnimatorController extends BaseNode {
       this.errorConfig = true;
       return;
     }
-    if (prevChosenIndex === -1) {
-      sys.script.addScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
-    } else if (prevChosenIndex !== this.chosenIndex && prevChosenIndex !== -1) {
-      sys.script.removeScriptListener(prevClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
-      sys.script.addScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
-    }
+    sys.eventListener.registerListener(sys.script, Amaz.AnimazEventType.ANIM_END, this.currentClip, sys.script);
   }
 
   execute(index) {
@@ -155,11 +149,7 @@ class CGAnimatorController extends BaseNode {
     }
   }
 
-  onDestroy(sys) {
-    if (this.currentClip) {
-      sys.script.removeScriptListener(this.currentClip, Amaz.AnimazEventType.ANIM_END, 'onCallBack', sys.script);
-    }
-  }
+  onDestroy(sys) {}
 }
 
 exports.CGAnimatorController = CGAnimatorController;

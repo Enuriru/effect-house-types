@@ -19,7 +19,7 @@
 					1
 				]
 			],
-			"description": "The volume of the audio stream. Value range",
+			"description": "The volume of the audio stream. Value range: 0 (silence) to 100 (max).",
 			"displayType": "Number"
 		}
 	],

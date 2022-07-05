@@ -1,0 +1,75 @@
+{
+	"name": "AED Detection",
+	"id": "9b3ea8f8-bdaf-a2d8-7b01-a899ee45fa9f",
+	"description": "AED Detection.",
+	"inputs": [
+		{
+			"name": "Audio Stream",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "The audio stream you want to detect"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": true,
+			"displayType": "Boolean",
+			"description": "Enable this node or not"
+		},
+		{
+			"name": "Threshold",
+			"type": "Double",
+			"displayType": "Number",
+			"default_value": 0.5,
+			"visible": false,
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"description": "Detection threshold"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Detected",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "The detection result of the aed."
+		},
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "Output Stream."
+		},
+		{
+			"name": "Result",
+			"type": "String",
+			"displayType": "String",
+			"description": "The detection result of the aed."
+		}
+	],
+	"category": "Audio",
+	"productTypes": [
+		"TTEH",
+		"InTest"
+	],
+	"nodeEvent": [
+		"onUpdate",
+		"onInit"
+	],
+	"audioAlgorithm": [
+		"samiAED"
+	],
+	"scriptSupport": "js",
+	"js": "CGAEDDetection.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"builtinClass": "AudioExtractorNode",
+	"audioNodeName": "aed",
+	"TTEHVer": "1.0.0",
+	"SDKVersion": "10.9.0"
+}

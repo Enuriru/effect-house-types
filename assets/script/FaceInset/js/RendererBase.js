@@ -1,25 +1,28 @@
 const Amaz = effect.Amaz;
-const {BaseComponent} = require('BaseComponent');
+const amg = require('./amg');
 
-class RendererBase extends BaseComponent {
+class RendererBase extends amg.Script {
 
     constructor() {
         super();
         this._previousUniforms = {};
-        this._frame = 0;
+    }
+
+    onStart() {
+        this._renderer = this.entity.native.getComponent("MeshRenderer");
     }
 
     // get
     // Get component property
     get(key) {
-        return this.properties.get(key);
+        return this._properties.get(key);
     }
 
     // set
     // Set component property
     set(key, value) {
         if (key != null && value != null) {
-            this.properties.set(key, value);
+            this._properties.set(key, value);
         }
     }
 

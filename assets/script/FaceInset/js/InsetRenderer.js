@@ -63,9 +63,14 @@ CENTER_MODE_MAP[Keys.CM_EXTENT_CENTER] = 1;
 
 // Constant tables that map RT size strings to numbers
 const RT_SIZE_MAP = {};
-RT_SIZE_MAP[Keys.RT_SIZE_SMALL] = 256;
-RT_SIZE_MAP[Keys.RT_SIZE_MEDIUM] = 512;
-RT_SIZE_MAP[Keys.RT_SIZE_LARGE] = 1024;
+RT_SIZE_MAP[Keys.QUALITY_LOW] = 256;
+RT_SIZE_MAP[Keys.QUALITY_MEDIUM] = 512;
+RT_SIZE_MAP[Keys.QUALITY_HIGH] = 512;
+
+const BLUR_QUALITY_MAP = {};
+BLUR_QUALITY_MAP[Keys.QUALITY_LOW] = 0;
+BLUR_QUALITY_MAP[Keys.QUALITY_MEDIUM] = 2;
+BLUR_QUALITY_MAP[Keys.QUALITY_HIGH] = 3;
 
 // Mesh constants
 const GRID_WIDTH = 3;
@@ -80,17 +85,18 @@ const BLUR_SIGMA = 20;
 const BLUR_SIGMA2 = BLUR_SIGMA * BLUR_SIGMA;
 const MIN_RT_SIZE = 256;
 
-const RESET_AFTER_FRAMES = 5;
+const RESET_AFTER_FRAMES = 5; // workaround for Orion material issues
 
 class InsetRenderer extends RendererBase {
 
     constructor() {
         super();
+        this._frame = 0;
     }
 
     // onStart
     onStart() {
-        const renderer = this.entity.getComponent("MeshRenderer");
+        const renderer = this.entity.native.getComponent("MeshRenderer");
         if (renderer) {
             renderer.enabled = false; // Prevent inspector material from displaying
         }
@@ -116,22 +122,29 @@ class InsetRenderer extends RendererBase {
     // a rotation vector (if applicable), and feed these into the inset material
     _setInsetProperties(algorithmKeypoints, insetKeypointIndices, eulerAngles) {
         this._frame += 1;
-        this._renderer = this.entity.getComponent("MeshRenderer");
+        this._renderer = this.entity.native.getComponent("MeshRenderer");
         if (this._renderer == null) {
             this._loge("Renderer not initialized!");
             return;
         }
         this._renderer.enabled = false;   
-        if (algorithmKeypoints && insetKeypointIndices && eulerAngles) {
-            const numKeypointIndices = insetKeypointIndices.length;
+        if (algorithmKeypoints && eulerAngles) {
+            let numKeypointIndices = 0;
+            let insetKeypoints;
+            if (insetKeypointIndices != null){
+                numKeypointIndices = insetKeypointIndices.length;
+                insetKeypoints = this._getInsetKeypoints(algorithmKeypoints, insetKeypointIndices);
+            } else {
+                numKeypointIndices = algorithmKeypoints.size();
+                insetKeypoints = algorithmKeypoints;
+            }
             if (this._shouldReset(numKeypointIndices)) {
                 this._reset();
             }
-            const insetKeypoints = this._getInsetKeypoints(algorithmKeypoints, insetKeypointIndices);
             if (insetKeypoints && this._material) {
                 this._renderer.enabled = true;
                 this._setMaterialProperties(insetKeypoints, eulerAngles);
-                if (this.get(Keys.USE_HIGH_QUALITY) && this.get(Keys.USE_FEATHERING) && this._shouldRecalculateBlurUniforms()) {
+                if (BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] > 0 && this.get(Keys.USE_FEATHERING) && this._shouldRecalculateBlurUniforms()) {
                     this._calculateBlurUniforms(Keys.BLUR_VERTICAL);
                     this._calculateBlurUniforms(Keys.BLUR_HORIZONTAL);
                 }
@@ -171,11 +184,11 @@ class InsetRenderer extends RendererBase {
     // _buildRenderer
     // Gets the renderer, removes any extra materials, and sets the mesh
     _buildRenderer() {
-        const renderer = this.entity.getComponent("MeshRenderer");
+        const renderer = this.entity.native.getComponent("MeshRenderer");
         if (renderer) {
             this._renderer = renderer;
         } else {
-            this._renderer = this.entity.addComponent("MeshRenderer");
+            this._renderer = this.entity.native.addComponent("MeshRenderer");
         }
         if (this._renderer == null) {
             this._loge("Renderer not initialized!");
@@ -200,17 +213,17 @@ class InsetRenderer extends RendererBase {
         const numInsetKeypoints = this._getInsetKeypointIndices().length;
         // Set up shader source code text; macros done this way to work around engine not setting them properly
         const keypointsMacro = '#define NUM_KEYPOINTS ' + parseInt(numInsetKeypoints);
-        const blurMacro = '#define BLUR_QUALITY ' + parseInt(this.get(Keys.FEATHERING_QUALITY));
+        const blurMacro = '#define BLUR_QUALITY ' + parseInt(BLUR_QUALITY_MAP[this.get(Keys.QUALITY)]);
         let worldMacro = '#define ' + BLEND_MODES_MAP[this.get(Keys.BLEND_MODE)].macro + ' + 1\n';
         worldMacro += '#define NUM_KEYPOINTS ' + parseInt(numInsetKeypoints) + '\n';
         // Set up passes and RTs
         const alphaPass = ShaderUtils.addPassToMaterial(this._material, getShaderMap(keypointsMacro, SHADERNAME.alpha));
-        const rtSize = RT_SIZE_MAP[this.get(Keys.RT_SIZE)] * 0.8;
+        const rtSize = RT_SIZE_MAP[this.get(Keys.QUALITY)] * 0.8;
         this._alphaCoordRT = ShaderUtils.createRenderTexture("vertical", rtSize, rtSize);
         alphaPass.renderTexture = this._alphaCoordRT;
         alphaPass.renderState.depthstencil.depthTestEnable = false;
         if (this.get(Keys.USE_FEATHERING)) { 
-            if (this.get(Keys.USE_HIGH_QUALITY)) { // Use gaussian blur
+            if (BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] > 0) { // Use gaussian blur
                 const hBlurPass = ShaderUtils.addPassToMaterial(this._material,getShaderMap(blurMacro, SHADERNAME.hBlur));
                 const vBlurPass = ShaderUtils.addPassToMaterial(this._material,getShaderMap(blurMacro, SHADERNAME.vBlur));
                 this._hBlurRT = ShaderUtils.createRenderTexture("horizontal", rtSize, rtSize);
@@ -234,16 +247,17 @@ class InsetRenderer extends RendererBase {
             this._alphaCoordRT.enableMipmap = false;
             this._alphaCoordRT.filterMipmap = Amaz.FilterMipmapMode.NONE;
         }
-        if (this.get("inputTexture") === 'Camera input texture') {
+        if (this.get(Keys.INPUT_TEXTURE) === Keys.CAMERA_INPUT_TEXTURE) {
             worldMacro += '\n#define USE_INPUT_RT 1\n';
-        } else if (this.get("inputTexture") === 'Final render output') {
+        } else if (this.get(Keys.INPUT_TEXTURE) === Keys.FINAL_RENDER_TEXTURE) {
             worldMacro += '\n#define USE_FINAL_RT 1\n';
         }
         this._worldPass = ShaderUtils.addPassToMaterial(this._material,getShaderMap(worldMacro, SHADERNAME.world));
         this._worldPass.renderState.colorBlend = ShaderUtils.getAlphaOverBlendState();
-        this._worldPass.useFBOTexture = true;
+        const useFBOTexture = BLEND_MODES_MAP[this.get(Keys.BLEND_MODE)].enum != BLEND_MODES_MAP[Keys.BLEND_MODE_DISABLE];
+        this._worldPass.useFBOTexture = useFBOTexture;
     }
-
+    
     // _shouldReset
     // Returns true if certain properties are changed that a reset; those properties are then cached
     // so that unless they change again, this will return false
@@ -251,9 +265,9 @@ class InsetRenderer extends RendererBase {
         if (this._prevInputTexture != this.get(Keys.INPUT_TEXTURE) ||
             this._prevNumCutoutPts != numInsetKeypoints ||
             this._prevUseFeathering != this.get(Keys.USE_FEATHERING) ||
-            this._prevUseHighQuality != this.get(Keys.USE_HIGH_QUALITY) ||
-            this._prevFeatheringQuality != this.get(Keys.FEATHERING_QUALITY) ||
-            this._prevRenderTextureSize != RT_SIZE_MAP[this.get(Keys.RT_SIZE)] ||
+            this._prevUseHighQuality != BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] > 0 ||
+            this._prevFeatheringQuality != BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] ||
+            this._prevRenderTextureSize != RT_SIZE_MAP[this.get(Keys.QUALITY)] ||
             this._prevBlendMode != BLEND_MODES_MAP[this.get(Keys.BLEND_MODE)].enum ||
             this._renderer == null ||
             this._renderer.materials.size() === 0 ||
@@ -262,9 +276,9 @@ class InsetRenderer extends RendererBase {
             this._resetOnce = this._frame >= RESET_AFTER_FRAMES;
             this._prevNumCutoutPts = numInsetKeypoints;
             this._prevUseFeathering = this.get(Keys.USE_FEATHERING);
-            this._prevUseHighQuality = this.get(Keys.USE_HIGH_QUALITY);
-            this._prevFeatheringQuality = this.get(Keys.FEATHERING_QUALITY);
-            this._prevRenderTextureSize = RT_SIZE_MAP[this.get(Keys.RT_SIZE)];
+            this._prevUseHighQuality = BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] > 0;
+            this._prevFeatheringQuality = BLUR_QUALITY_MAP[this.get(Keys.QUALITY)];
+            this._prevRenderTextureSize = RT_SIZE_MAP[this.get(Keys.QUALITY)];
             this._prevBlendMode = BLEND_MODES_MAP[this.get(Keys.BLEND_MODE)].enum;
             this._recalculateBlurFlag = true;
             this._prevInputTexture = this.get(Keys.INPUT_TEXTURE);
@@ -286,10 +300,10 @@ class InsetRenderer extends RendererBase {
     // _setTextureProperties
     // Sets textures, and also 
     _setTextureProperties() {
-        this._cameraTexture = this.entity.scene.assetMgr.SyncLoad("share://input.texture");
+        this._cameraTexture = this.entity.native.scene.assetMgr.SyncLoad("share://input.texture");
         this._setTex("u_CameraTexture", this._cameraTexture);
         this._setTex("u_AlphaCoordRT", this._alphaCoordRT);
-        if (this.get(Keys.USE_HIGH_QUALITY) && this.get(Keys.USE_FEATHERING)) {
+        if (BLUR_QUALITY_MAP[this.get(Keys.QUALITY)] > 0 && this.get(Keys.USE_FEATHERING)) {
             this._setTex("u_HorizontalBlurInputRT", this._alphaCoordRT);
             this._setTex("u_VerticalBlurInputRT", this._hBlurRT);
             this._setTex("u_FinalAlphaCoordRT", this._vBlurRT);
@@ -300,34 +314,6 @@ class InsetRenderer extends RendererBase {
         this._resolution = new Amaz.Vector2f(this._cameraTexture.width, this._cameraTexture.height);
         this._aspectRatio = this._resolution.x / this._resolution.y;
         this._isScreenSpace = false; // Option disabled in Orion
-    }
-
-    // _getAverageKeyppoint
-    // Adds all selected keypoints and divides them by count, returning the average value
-    static _getAverageKeypoint(insetKeypoints) {
-        let average = new Amaz.Vector2f(0, 0);
-        for (let i = 0; i < insetKeypoints.size(); i++) {
-            average.x += insetKeypoints.get(i).x;
-            average.y += insetKeypoints.get(i).y;
-        }
-        average.x /= insetKeypoints.size();
-        average.y /= insetKeypoints.size();
-        return average;
-    }
-
-    // _rotateAboutPoint2D
-    // Given a point to rotate, a pivot point, and and angle, rotate the "rotate point" and return the result
-    static _rotateAboutPoint2D(rotatePoint, aboutPoint, angle) {
-        let rotVec = new Amaz.Vector2f(rotatePoint.x, rotatePoint.y);
-        rotVec.x -= aboutPoint.x;
-        rotVec.y -= aboutPoint.y;
-        const c = Math.cos(angle);
-        const s = Math.sin(angle);
-        rotVec.x = rotVec.x * c - rotVec.y * s;
-        rotVec.y = rotVec.x * s + rotVec.y * c;
-        rotVec.x += aboutPoint.x;
-        rotVec.y += aboutPoint.y;
-        return rotVec;
     }
 
     // _shouldRecalculateBlurUniforms
@@ -350,7 +336,7 @@ class InsetRenderer extends RendererBase {
     _calculateBlurUniforms(direction) {
         // Calculate step size
         const stepSize = new Amaz.Vector2f(0, 0);
-        const rtSize = RT_SIZE_MAP[this.get(Keys.RT_SIZE)];
+        const rtSize = RT_SIZE_MAP[this.get(Keys.QUALITY)];
         let scaleModifier = rtSize / MIN_RT_SIZE;
         if (BLUR_DIRECTIONS[direction] === BLUR_DIRECTIONS[Keys.BLUR_VERTICAL]) {
             stepSize.y = scaleModifier / rtSize;
@@ -358,8 +344,8 @@ class InsetRenderer extends RendererBase {
             stepSize.x = scaleModifier / rtSize;
         }
         // Calculate offsets, weights, normalizer
-        const featheringQuality = this.get(Keys.FEATHERING_QUALITY);
-        const qualityScaleAdjust = BLUR_QUALITY_RESCALE / (this.get(Keys.FEATHERING_QUALITY) + 1);
+        const featheringQuality = BLUR_QUALITY_MAP[this.get(Keys.QUALITY)];
+        const qualityScaleAdjust = BLUR_QUALITY_RESCALE / (featheringQuality + 1);
         const featheringScale = this.get(Keys.FEATHERING_SCALE) * qualityScaleAdjust;
         const sqrtPi2Sigma2 = Math.sqrt(2 * Math.PI * BLUR_SIGMA2);
         const invSqrtPi2Sigma2 = 1 / sqrtPi2Sigma2;
@@ -409,7 +395,7 @@ class InsetRenderer extends RendererBase {
         this._setFloat("u_CenterMode", this._getCenterMode());
         this._setVec3("u_Rotation", eulerAngles);
         this._setFloat("u_ScreenSpaceMode", false); // disabled for Orion
-        if (this.get("useFillColor")) {
+        if (this.get("_useFillColor")) {
             this._setColor("u_FillColor", this.get(Keys.FILL_COLOR));
         }
         this._setFloat("u_Opacity", this.get(Keys.OPACITY) * this._flickerReduce());

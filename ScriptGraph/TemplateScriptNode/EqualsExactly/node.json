@@ -26,7 +26,7 @@
 			"item_type": "",
 			"dynamic": false,
 			"default_value": "0.001",
-			"description": "You can use Tolerance to set an equal range. When Tolerance is negative, and A is within [B-",
+			"description": "You can use Tolerance to set an equal range. When Tolerance is negative, and A is within [B-:Tolerance:, B+:Tolerance:], then the output is false. When Tolerance is positive, and A is within [B-:Tolerance:, B+:Tolerance:], then the output is true.",
 			"displayType": "Number"
 		}
 	],

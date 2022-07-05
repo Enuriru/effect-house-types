@@ -26,9 +26,7 @@
 	"version": "1.0",
 	"amazingVersion": "10.40.0",
 	"nodeEvent": [
-		"onStart",
 		"onCallBack",
-		"onComponentRemoved",
 		"onEvent",
 		"onDestroy",
 		"beforeStart"

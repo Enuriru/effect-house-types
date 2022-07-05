@@ -14,7 +14,7 @@ class FaceShapeController {
         this.faceTransform = null;
         this.faceMeshInfo = null;
         this.properties = null;
-        this.previousState = {detected: true};
+        this.previousState = {detected: true, faceIdx: 0};
     }
 
     onInit() {
@@ -116,7 +116,19 @@ class FaceShapeController {
                 isFaceDetected = false;
             }
         }
+
+        if (faceIdx !== this.previousState.faceIdx) {
+            this._faceIndexChanged();
+        }
+        this.previousState.faceIdx = faceIdx;
         return isFaceDetected;
+    }
+
+    _faceIndexChanged() {
+        for (let i = 0; i < this.renderers.size(); i++) {
+            const renderer = this.renderers.get(i);
+            renderer.enabled =  this.renderersRestoreState[i];
+        }
     }
 
     _loadCurrentParams(key) {
@@ -139,6 +151,9 @@ class FaceShapeController {
     }
 
     _setFaceTransform(camera) {
+        if (camera === null || camera === undefined) {
+            return;
+        }
         let oriMVP = new Amaz.Matrix4x4f();
         oriMVP.copy(this.faceMeshInfo.mvp);
         let oriModel = new Amaz.Matrix4x4f();

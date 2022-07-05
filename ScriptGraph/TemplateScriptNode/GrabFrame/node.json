@@ -13,6 +13,13 @@
 			"type": "RenderTexture",
 			"description": "The live video captured by the camera",
 			"displayType": "Render Texture"
+		},
+		{
+			"name": "Crop",
+			"type": "Rect",
+			"description": "The rectangle area to crop out of the Camera Texture",
+			"displayType": "Rect",
+			"default_value": "0.0 ,0.0 , 1.0, 1.0"
 		}
 	],
 	"outputs": [
@@ -33,17 +40,17 @@
 	],
 	"scriptSupport": "js",
 	"js": "CGGrabFrame.js",
-	"version": "1.0",
+	"version": "2.0",
 	"amazingVersion": "10.40.0",
-	"category": "Control",
+	"category": "Utility",
 	"nodeEvent": [
 		"beforeStart",
 		"onCallBack",
 		"onDestroy"
 	],
-	"description": "Take a snapshot by camera.",
+	"description": "Take a snapshot by camera. You can capture the full screen snapshot or an area of the camera.",
 	"productTypes": [
 		"TTEH"
 	],
-	"TTEHVer": "1.0.1"
+	"TTEHVer": "2.0.0"
 }

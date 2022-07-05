@@ -24,7 +24,8 @@ class CGReflect extends BaseNode {
 
     const normalizedN = normal.normalizeSafe();
     const dn = direction.dot(normalizedN);
-    let result = direction.sub(normalizedN.mul(dn * 2));
+    //Use Static Function Here instead
+    let result = Amaz.Vector2f.sub(direction, Amaz.Vector2f.mul(normalizedN, dn*2));//direction.sub(normalizedN.mul(dn * 2));
     return result;
   }
 }

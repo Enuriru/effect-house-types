@@ -10,7 +10,7 @@
 		},
 		{
 			"name": "Volume",
-			"description": "The volume of the audio stream. Value range",
+			"description": "The volume of the audio stream. Value range: 0 (silence) to 100 (max).",
 			"type": "Double",
 			"displayType": "Number",
 			"default_value": 100,
@@ -35,7 +35,8 @@
 		"InUse"
 	],
 	"nodeEvent": [
-		"onUpdate"
+		"onUpdate",
+		"beforeStart"
 	],
 	"builtinClass": "AudioGeneralNode",
 	"TTEHVer": "2.0.0"

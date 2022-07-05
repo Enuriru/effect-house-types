@@ -21,11 +21,8 @@ class CGAudioEffectCompressor extends BaseNode {
       3: 'attack',
       4: 'release',
       5: 'pre_delay',
-      6: 'release_zone_1',
-      7: 'release_zone_2',
-      8: 'release_zone_3',
-      9: 'post_gain',
-      10: 'wet',
+      6: 'post_gain',
+      7: 'wet',
     };
     this.portRangeMap = {
       1: [0, 100],
@@ -33,11 +30,8 @@ class CGAudioEffectCompressor extends BaseNode {
       3: [0, 1],
       4: [0, 1],
       5: [0, 1],
-      6: [0, 1],
+      6: [0, 100],
       7: [0, 1],
-      8: [0, 1],
-      9: [0, 100],
-      10: [0, 1],
     };
     this.params = {};
     this.enable = true;
@@ -66,7 +60,7 @@ class CGAudioEffectCompressor extends BaseNode {
     if (!this.audioNode) {
       return;
     }
-    const enable = this.inputs[11]();
+    const enable = this.inputs[8]();
     if (this.enable !== enable) {
       this.enable = enable;
       if (this.enable) {
@@ -91,7 +85,9 @@ class CGAudioEffectCompressor extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }

@@ -12,7 +12,7 @@
 		{
 			"name": "Enabled",
 			"type": "Bool",
-			"default_value": "true",
+			"default_value": true,
 			"displayType": "Boolean",
 			"description": "Enable this node or not"
 		}

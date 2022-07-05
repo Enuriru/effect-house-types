@@ -12,7 +12,7 @@
 		{
 			"name": "Enabled",
 			"type": "Bool",
-			"default_value": "true",
+			"default_value": true,
 			"displayType": "Boolean",
 			"description": "Enable this node or not"
 		}
@@ -28,7 +28,7 @@
 			"name": "Pitch Value",
 			"type": "Double",
 			"displayType": "Number",
-			"description": "The pitch detection result. The higher the pitch, the greater the number."
+			"description": "The pitch detection result. The higher the pitch, the greater the number, value range from 45 Hz to 650 Hz. The value -1 represents no pitch has been detected."
 		}
 	],
 	"category": "Audio",

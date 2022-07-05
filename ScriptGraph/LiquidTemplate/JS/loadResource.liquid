@@ -22,8 +22,30 @@
     {% endfor %}
     {% for object in resourceNodeObjectMap %}
         if (this.scene.assetMgr) {
-            this.nodes["{{object[0] | getIdentifierById}}"].resource = this.scene.assetMgr.SyncLoad("{{object[1]}}");
+            const resourceNode = this.nodes["{{object[0] | getIdentifierById}}"];
+            if (resourceNode.resType === 'material') {
+                resourceNode.resource = [this.scene.assetMgr.SyncLoad("{{object[1]}}"), this.scene.assetMgr.SyncLoad("{{object[2]}}")];
+            } else {
+                resourceNode.resource = this.scene.assetMgr.SyncLoad("{{object[1]}}");
+            }
         } else {
             console.error("AssertManager is undefined");
         }
     {% endfor %}
+
+    {% assign hasSharedMaterialProperty = false %}
+    {% for script in propertyScript %}
+        {% if script == "SharedMaterials" %}
+            {% assign hasSharedMaterialProperty = true %}
+        {% endif %}
+    {% endfor %}
+    {% if hasSharedMaterialProperty == true %}
+       {% for object in materialMap %}
+        if (this.scene.assetMgr) {
+            const aObject = this.scene.assetMgr.SyncLoad("{{object[1]}}");
+            SharedMaterials.materialMap.set("{{object[0]}}", aObject);
+        } else {
+            console.error("AssertManager is undefined");
+        }
+       {% endfor %}
+    {% endif %}

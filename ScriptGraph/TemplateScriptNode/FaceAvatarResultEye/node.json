@@ -28,7 +28,7 @@
 				"eyeWideLeft",
 				"eyeWideRight"
 			],
-			"description": "A scrollable dropdown list contains",
+			"description": "A scrollable dropdown list contains: eyeBlinkLeft, eyeBlinkRight, eyeLookDownLeft, eyeLookDownRight, eyeLookInLeft, eyeLookInRight, eyeLookOutLeft, eyeLookOutRight, eyeLookUpLeft, eyeLookUpRight, eyeSquintLeft, eyeSquintRight, eyeWideLeft, eyeWideRight",
 			"displayType": "String"
 		}
 	],

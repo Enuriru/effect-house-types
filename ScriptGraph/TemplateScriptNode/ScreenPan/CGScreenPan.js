@@ -16,23 +16,19 @@ class CGScreenPan extends BaseNode {
   }
 
   beforeStart(sys) {
-      Amaz.AmazingManager.getSingleton('Input').addScriptListener(
-        sys.script,
-        Amaz.InputListener.ON_GESTURE_DRAG,
-        'onCallBack',
-        sys.script
-      );
+    sys.eventListener.registerListener(
+      Amaz.AmazingManager.getSingleton('Input'),
+      Amaz.InputListener.ON_GESTURE_DRAG,
+      sys.script,
+      sys.script
+    );
   }
 
-  onStart(sys) {}
-
-  onComponentRemoved(sys, comp) {}
-
   onDestroy(sys) {
-    Amaz.AmazingManager.getSingleton('Input').removeScriptListener(
-      sys.script,
+    sys.eventListener.removeListener(
+      Amaz.AmazingManager.getSingleton('Input'),
       Amaz.InputListener.ON_GESTURE_DRAG,
-      'onCallBack',
+      sys.script,
       sys.script
     );
   }

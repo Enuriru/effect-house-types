@@ -13,7 +13,7 @@ class CGAudioEffectClimiter extends BaseNode {
   constructor() {
     super();
     this.audioNode = null;
-    this.audioNodeName = 'reverb1';
+    this.audioNodeName = 'climiter';
     this.audioGraph = null;
     this.portIndexToParamName = {
       1: 'gate',
@@ -75,7 +75,9 @@ class CGAudioEffectClimiter extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }

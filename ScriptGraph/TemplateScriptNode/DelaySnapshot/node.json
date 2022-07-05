@@ -1,0 +1,55 @@
+{
+	"name": "Delay Snapshot",
+	"id": "471ec007-954c-672c-5949-d434d29ffef7",
+	"inputs": [
+		{
+			"name": "Camera RT",
+			"type": "RenderTexture",
+			"description": "The live video captured by the camera",
+			"displayType": "Render Texture"
+		},
+		{
+			"name": "Delay Frames",
+			"type": "Int",
+			"description": "",
+			"displayType": "Number"
+		},
+        {
+			"name": "Enable",
+			"type": "Bool",
+			"description": "",
+			"displayType": "Bool"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Update after Delay",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Texture",
+			"type": "Texture2D",
+			"item_type": "",
+			"description": "",
+			"displayType": "Texture2D"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGDelaySnapshot.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Control",
+	"nodeEvent": [
+		"beforeStart",        
+        "onUpdate",
+		"onCallBack",
+		"onDestroy"
+	],
+	"description": "Take a snapshot by camera.",
+	"productTypes": [
+	],
+	"TTEHVer": "1.3.0"
+}

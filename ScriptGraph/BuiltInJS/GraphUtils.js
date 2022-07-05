@@ -17,6 +17,10 @@ class GraphUtils {
   setWatchValue(key, value) {
     Amaz.AmazingUtil.setWatchValue(key, value);
   }
+
+  setWatchValueList(watchList) {
+    Amaz.AmazingUtil.setWatchValueList(watchList);
+  }
 }
 
 exports.GraphUtils = GraphUtils;

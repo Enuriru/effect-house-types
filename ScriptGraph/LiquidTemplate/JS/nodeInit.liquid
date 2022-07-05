@@ -45,6 +45,9 @@
         this.nodes["{{ node.__uniqueId | getIdentifierById }}"].resourcePath = "{{node.resPath}}";
         this.nodes["{{ node.__uniqueId | getIdentifierById }}"].resType = "audio";
             {% endif %}
+            {%- if node.isMaterialResNode -%}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].resType = "material";
+            {% endif %}
             {%- if node.jsAssetUUID -%}
         this.nodes["{{ node.__uniqueId | getIdentifierById }}"].jsAssetUUID = "{{ node.jsAssetUUID }}";
             {% endif %}
@@ -59,6 +62,10 @@
         this.nodes["{{ node.__uniqueId | getIdentifierById }}"].valueType = "{{node.curSelectedType}}";
     {% endif %}
 
+    {%- assign needInputPortNumber = node | contained: "inputPortNumber" -%}
+    {% if needInputPortNumber %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].inputPortNum = {{node.inputPortNumber}};
+    {% endif %}
     {% comment %} -------------------------------------unconnected input port------------------------------------- {% endcomment %}
     {% for port in node.inputPorts %}
         {% if port.isConnect == false and port.valueTypeName != "Pulse" %}

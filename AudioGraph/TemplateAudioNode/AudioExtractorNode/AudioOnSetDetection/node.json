@@ -12,7 +12,7 @@
 		{
 			"name": "Enabled",
 			"type": "Bool",
-			"default_value": "true",
+			"default_value": true,
 			"displayType": "Boolean",
 			"description": "Enable this node or not"
 		},
@@ -29,7 +29,7 @@
 					1
 				]
 			],
-			"description": "The value of spectrum magnitude difference between current and previous audio frame. When the difference is larger than the threshold, usually when a sound is louder, it is detected as an onset. Value range: 0 to 160"
+			"description": "The value of spectrum magnitude difference between current and previous audio frame. When the difference is greater than the Threshold, usually when a sound is louder, it is detected as an onset. Value range: 0 to 160."
 		}
 	],
 	"outputs": [
@@ -53,7 +53,7 @@
 	],
 	"nodeEvent": [
 		"onUpdate",
-		"beforeStart"
+		"onInit"
 	],
 	"scriptSupport": "js",
 	"js": "CGOnSetDetection.js",

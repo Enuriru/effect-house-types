@@ -1,0 +1,26 @@
+{
+  "name": "Mic Source",
+  "id": "c87cfddd-787a-a4dd-c73c-71602e6a67e5",
+  "inputs": [],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Mic Stream"
+    }
+  ],
+  "audioNodeName": "MicSourceNode",
+  "scriptSupport": "js",
+  "js": "CGMicSource.js",
+  "category": "Audio",
+  "description": "Get Mic stream",
+  "nodeEvent": [
+    "onStart"
+  ],
+  "productTypes": [
+    "TTEH",
+    "InTest"
+  ],
+  "builtinClass": "AudioGeneralNode",
+  "TTEHVer": "1.0.0"
+}

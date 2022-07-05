@@ -12,9 +12,6 @@ const Amaz = effect.Amaz;
 class CGLookAtTarget extends BaseNode {
   constructor() {
     super();
-
-    this._inited = false
-    this.initialOrientation = new Amaz.Quaternionf()
   }
 
   execute(index) {
@@ -32,11 +29,6 @@ class CGLookAtTarget extends BaseNode {
     let isLocal = this.inputs[5]();
     
     let selfPos;
-
-    if (!this._inited) {
-      this.initialOrientation = hostTransform.getWorldOrientation();
-      this._inited = true;
-    }
 
     if(isLocal){
       selfPos = hostTransform.localPosition;
@@ -58,23 +50,23 @@ class CGLookAtTarget extends BaseNode {
         return new Amaz.Vector3f(0.0,0.0,0.0);
         break;
       case (aimAxis === "X" && upAxis === "Y") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(up, sideLeft);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(up, sideLeft);
         break;
  
       case (aimAxis === "X" && upAxis === "Z") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(up, sideRight);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(up, sideRight);
         break;
       case (aimAxis === "Y" && upAxis === "X") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(sideRight, eye);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(sideRight, eye);
         break;
       case (aimAxis === "Y" && upAxis === "Z") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(up, eye);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(up, eye);
         break;
       case (aimAxis === "Z" && upAxis === "X") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(eye, sideLeft);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(eye, sideLeft);
         break;
       case (aimAxis === "Z" && upAxis === "Y") :
-        quat =  Amaz.Quaternionf.lookRotationToQuaternion(eye, up);
+        quat = new Amaz.Quaternionf.lookRotationToQuaternion(eye, up);
         break;
      }
 
@@ -82,7 +74,7 @@ class CGLookAtTarget extends BaseNode {
       hostTransform.localOrientation = quat;
     }
     else{
-      hostTransform.setWorldOrientation(quat); //this.initialOrientation.mul(quat)); //.mul(this.initialOrientation));
+      hostTransform.setWorldOrientation(quat);
     }
 
      this.outputs[1] = quat.quaternionToEuler();

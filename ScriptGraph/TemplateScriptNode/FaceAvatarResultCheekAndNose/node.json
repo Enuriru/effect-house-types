@@ -19,7 +19,7 @@
 				"noseSneerLeft",
 				"noseSneerRight"
 			],
-			"description": "A scrollable dropdown list contains",
+			"description": "A scrollable dropdown list contains: cheekPuff, cheekSquintLeft, cheekSquintRight, noseSneerLeft, noseSneerRight",
 			"displayType": "String"
 		}
 	],

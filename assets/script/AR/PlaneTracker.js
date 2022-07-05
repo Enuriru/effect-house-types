@@ -22,11 +22,10 @@ class PlaneTracker extends amg.Script {
 
     onUpdate(deltaTime) {
         
-		console.log("running:PlaceTracker:onUpdate",deltaTime); 
     }
 
     onLateUpdate(deltaTime) {
-	  	console.log("running:PlaceTracker:onLateUpdate",deltaTime); 
+	  	
     }
 
     onEvent(event) {

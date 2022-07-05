@@ -1,0 +1,41 @@
+{
+	"name": "Spin",
+	"id": "7d8e5f16-17dc-40c6-b4c7-8e6fb86c4f0b",
+	"inputs": [
+		{
+			"name": "Current Rotation",
+			"description": "The current rotation of the Transform",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Up Dir",
+			"description": "The axis to rotate around",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Angle",
+			"description": "The rotated angle in radians",
+			"type": "Double",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result Rotation",
+			"description": "The result rotation",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGSpinTo.js",
+	"category": "Utility",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Calculate a Transform's new rotation based on its current rotation, a given rotating axis, and a given angle."
+}

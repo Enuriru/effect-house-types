@@ -31,18 +31,18 @@ class CGScreenHold extends BaseNode {
   }
 
   beforeStart(sys) {
-    Amaz.AmazingManager.getSingleton('Input').addScriptListener(
-      sys.script,
+    sys.eventListener.registerListener(
+      Amaz.AmazingManager.getSingleton('Input'),
       Amaz.InputListener.ON_GESTURE_LONG_TAP,
-      'onCallBack',
+      sys.script,
       sys.script
     );
   }
   onDestroy(sys) {
-    Amaz.AmazingManager.getSingleton('Input').removeScriptListener(
-      sys.script,
+    sys.eventListener.removeListener(
+      Amaz.AmazingManager.getSingleton('Input'),
       Amaz.InputListener.ON_GESTURE_LONG_TAP,
-      'onCallBack',
+      sys.script,
       sys.script
     );
   }

@@ -1,29 +1,30 @@
 const InsetConstants = {};
 
 InsetConstants.Keys = {
-    FACE_INDEX : "faceIndex",
-    FACE_TYPE : "faceType",
-    FACE_AREA : "faceArea", 
-    USE_FACE_EXTRA : "useFaceExtra", 
-    FILL_COLOR : "fillColor", 
-    OPACITY : "opacity",
-    BLEND_MODE : "blendMode",
-    USE_OUTLINE : "useOutline", 
-    OUTLINE_THICKNESS : "outlineThickness", 
-    OUTLINE_COLOR : "outlineColor",
-    USE_FEATHERING : "useFeathering", 
-    FEATHERING_SCALE : "featheringScale", 
-    FEATHERING_SIGMA : "featheringSigma", 
-    FEATHERING_QUALITY : "featheringQuality", 
-    RT_SIZE : "rtSize", 
-    CENTER_MODE : "centerMode", 
-    USE_DEPTH_TEST : "useDepthTest",
-    USE_HIGH_QUALITY : "highQuality",
-    INPUT_TEXTURE: "inputTexture",
+    FACE_INDEX : "_faceIndex",
+    FACE_TYPE : "_faceType",
+    FACE_AREA : "_faceArea", 
+    USE_FACE_EXTRA : "_useFaceExtra", 
+    FILL_COLOR : "_fillColor", 
+    OPACITY : "_opacity",
+    BLEND_MODE : "_blendMode",
+    USE_OUTLINE : "_useOutline", 
+    OUTLINE_THICKNESS : "_outlineThickness", 
+    OUTLINE_COLOR : "_outlineColor",
+    USE_FEATHERING : "_useFeathering", 
+    FEATHERING_SCALE : "_featheringScale", 
+    FEATHERING_SIGMA : "_featheringSigma", 
+    CENTER_MODE : "_centerMode", 
+    USE_DEPTH_TEST : "_useDepthTest",
+    QUALITY : "_qualityLevel",
+    INPUT_TEXTURE: "_inputTexture",
 
+    CAMERA_INPUT_TEXTURE: 'Camera input texture',
+    FINAL_RENDER_TEXTURE: 'Final render output',
+
+    HUMAN : "Human face",
     CAT : "Cat face",
     DOG : "Dog face",
-    HUMAN : "Human face",
     
     // Human face cutout parts
     RIGHT_EYE : "Right eye",
@@ -63,26 +64,10 @@ InsetConstants.Keys = {
 
     BLUR_VERTICAL : "Vertical",
     BLUR_HORIZONTAL : "Horizontal",
-};
 
-// Property list for testing
-InsetConstants.Keys.PropertyKeys = [
-    InsetConstants.Keys.FACE_INDEX,
-    InsetConstants.Keys.FACE_TYPE,
-    InsetConstants.Keys.FACE_AREA,
-    InsetConstants.Keys.USE_FACE_EXTRA,
-    InsetConstants.Keys.FILL_COLOR,
-    InsetConstants.Keys.OPACITY,
-    InsetConstants.Keys.BLEND_MODE,
-    InsetConstants.Keys.USE_OUTLINE,
-    InsetConstants.Keys.OUTLINE_THICKNESS,
-    InsetConstants.Keys.OUTLINE_COLOR,
-    InsetConstants.Keys.USE_FEATHERING,
-    InsetConstants.Keys.FEATHERING_SCALE,
-    InsetConstants.Keys.FEATHERING_QUALITY,
-    InsetConstants.Keys.RT_SIZE,
-    InsetConstants.Keys.USE_DEPTH_TEST,
-    InsetConstants.Keys.INPUT_TEXTURE,
-];
+    QUALITY_HIGH : "HQ",
+    QUALITY_MEDIUM : "MQ",
+    QUALITY_LOW : "LQ",
+};
 
 exports.InsetConstants = InsetConstants;

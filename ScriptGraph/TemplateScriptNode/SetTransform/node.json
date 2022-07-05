@@ -1,0 +1,54 @@
+{
+	"name": "Set Transform",
+	"id": "ded0a5c2-0c3e-47af-a096-11ec26c975a6",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"description": "The input execution that triggers this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Self",
+			"description": "The Transform to be set with position, rotation, and scale",
+			"type": "Transform",
+			"displayType": "Transform"
+		},
+		{
+			"name": "New Position",
+			"description": "The position of the Transform",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "New Rotation",
+			"description": "The rotation of the Transform",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "New Scale",
+			"description": "The scale of the Transform",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Is Local",
+			"description": "A boolean value that determines which type of space to be set. Check it to set the Transform as local, otherwise, world.",
+			"type": "Bool",
+			"displayType": "Boolean",
+			"default_value": "true"
+		}
+	],
+	"outputs": [],
+	"js": "CGSetTransform.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"description": "Set the position, rotation, and scale of an input Transform with the ability to toggle between local and world spaces.",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"version": "1.0"
+}

@@ -64,7 +64,7 @@
 			"name": "Progress",
 			"type": "Double",
 			"item_type": "",
-			"description": "The proportion of the duration that has elapsed. Value range",
+			"description": "The proportion of the duration that has elapsed. Value range: 0 to 1",
 			"displayType": "Number"
 		},
 		{

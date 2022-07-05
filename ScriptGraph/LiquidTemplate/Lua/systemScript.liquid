@@ -18,7 +18,6 @@ function {{ systemName }}.new(construct, ...)
     local self = setmetatable({}, {{systemName}})
     self.comps = {}
     self.compsdirty = true
-
     local lua = {}
     -- member variable init
     {% include "variableInit" %}

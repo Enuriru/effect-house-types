@@ -52,7 +52,9 @@ class CGAudioGain extends BaseNode {
       if (curGain > gainRange[1]) {
         curGain = 100;
       }
-      this.audioNode.gain = curGain / 100.0;
+      if (curGain !== oriGain) {
+        this.audioNode.gain = curGain / 100.0;
+      }
       this.params[1] = curGain;
     }
   }

@@ -15,7 +15,7 @@
 			"value_list": [
 				"tongueOut"
 			],
-			"description": "A scrollable dropdown list contains",
+			"description": "A scrollable dropdown list contains: tongueOut",
 			"displayType": "String"
 		}
 	],

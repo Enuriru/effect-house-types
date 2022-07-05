@@ -11,7 +11,8 @@ const {BaseNode} = require('./BaseNode');
 class CGFlipFlop extends BaseNode {
   constructor() {
     super();
-    this.index = 0;
+    this.index = 1;
+    this.outputs[2] = true;
   }
 
   execute(index) {

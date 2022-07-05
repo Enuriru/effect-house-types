@@ -5,7 +5,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node",
+			"description": "The audio stream you want to apply reverb effect",
 			"displayType": "Audio Stream"
 		},
 		{
@@ -15,7 +15,7 @@
 			"range": [
 				[
 					0,
-					1.5,
+					2,
 					0.1
 				]
 			],
@@ -118,7 +118,7 @@
 		{
 			"name": "Audio",
 			"type": "Audio Stream",
-			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"description": "The connected audio stream. Connect it to a speaker to play.",
 			"displayType": "Audio Stream"
 		}
 	],

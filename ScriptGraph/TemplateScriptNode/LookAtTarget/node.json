@@ -49,7 +49,7 @@
 			"name": "Is Local",
 			"description": "Set the rotation result to local transform if it is true otherwise set it to world transform",
 			"type": "Bool",
-			"default_value": "true",
+			"default_value": true,
 			"displayType": "Boolean"
 		}
 	],

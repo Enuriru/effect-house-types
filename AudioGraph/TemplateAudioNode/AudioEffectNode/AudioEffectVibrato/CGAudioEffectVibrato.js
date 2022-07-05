@@ -20,7 +20,7 @@ class CGAudioEffectVibrato extends BaseNode {
       2: 'semitones',
     };
     this.portRangeMap = {
-      1: [0, 2],
+      1: [0.1, 2],
       2: [0, 2],
     };
     this.params = {};
@@ -75,7 +75,9 @@ class CGAudioEffectVibrato extends BaseNode {
               curValue = range[1];
             }
           }
-          this.audioNode.setParameter(paramName, curValue);
+          if (oriValue !== curValue) {
+            this.audioNode.setParameter(paramName, curValue);
+          }
         }
         this.params[keys[i]] = curValue;
       }
