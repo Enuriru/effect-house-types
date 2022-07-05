@@ -1,0 +1,48 @@
+{
+	"name": "Volume Detection",
+	"id": "e63475de-fb84-2bc7-0f04-f867d9315632",
+	"description": "Detect volume of the audio source in realtime",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "Execute this node"
+		},
+		{
+			"name": "Enabled",
+			"type": "Bool",
+			"default_value": "true",
+			"displayType": "Boolean",
+			"description": "Enable this node"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"displayType": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream or connect to a Detection Output to finish the connect without play audio"
+		},
+		{
+			"name": "Volume Value",
+			"type": "Double",
+			"displayType": "Number",
+			"description": "Volume detection result"
+		}
+	],
+	"category": "Audio",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"onUpdate"
+	],
+	"scriptSupport": "js",
+	"js": "CGVolumeDetection.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"builtinClass": "AudioExtractorNode",
+	"audioNodeName": "volume_detection",
+	"TTEHVer": "1.0.0"
+}

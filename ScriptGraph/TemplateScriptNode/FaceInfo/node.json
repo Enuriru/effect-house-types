@@ -1,0 +1,66 @@
+{
+  "name": "Face Info",
+  "id": "834af7d5-45f8-a01d-7956-f366e9f77efa",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger from last node"
+    },
+    {
+      "name": "Index",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "0",
+      "description": "Index of face"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node"
+    },
+    {
+      "name": "Rect",
+      "type": "Rect",
+      "item_type": "",
+      "description": "Rectangle of face"
+    },
+    {
+      "name": "Yaw",
+      "type": "Double",
+      "item_type": "",
+      "description": "Face yaw angle"
+    },
+    {
+      "name": "Roll",
+      "type": "Double",
+      "item_type": "",
+      "description": "Face roll angle"
+    },
+    {
+      "name": "Pitch",
+      "type": "Double",
+      "item_type": "",
+      "description": "Face pitch angle"
+    },
+    {
+      "name": "Eye dist",
+      "type": "Double",
+      "item_type": "",
+      "description": "Distance between two eyes"
+    }
+  ],
+  "js": "CGFaceInfo.js",
+  "lua": "CGFaceInfo.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGFaceInfo",
+  "category": "Head & Face",
+  "graphAlgorithms": ["faceDetect240"],
+  "description": "Get face info",
+  "productTypes": ["InHouse", "Domestic"]
+}

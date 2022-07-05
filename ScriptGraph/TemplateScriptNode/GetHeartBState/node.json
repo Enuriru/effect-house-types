@@ -1,0 +1,50 @@
+{
+    "name": "Get HeartB State",
+    "id": "fd3d5281-bcfd-18b9-dee0-e072cba93a3f",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if hand is making HeartB gesture"
+        }
+    ],
+    "lua": "CGGetHeartBState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetHeartBState",
+    "category": "Hand",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get HeartB state",
+    "productTypes": ["InHouse", "Domestic"]
+}

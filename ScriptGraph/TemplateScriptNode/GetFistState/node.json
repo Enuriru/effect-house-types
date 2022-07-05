@@ -1,0 +1,50 @@
+{
+    "name": "Get Fist State",
+    "id": "92569dee-57cd-a50f-52c6-dd7c75e9aca3",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if hand is making Fist gesture"
+        }
+    ],
+    "lua": "CGGetFistState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetFistState",
+    "category": "Hand",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get Fist state",
+    "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,43 @@
+{
+    "name": "Get Eyebrow Raise State",
+    "id": "9c978935-aef2-277b-2f0e-60c16723010d",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if the face is raising eyebrow"
+        }
+    ],
+    "lua": "CGGetEyebrowRaiseState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetEyebrowRaiseState",
+    "category": "Face",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get eyebrow raise state",
+    "productTypes": ["InHouse", "Domestic"]
+}

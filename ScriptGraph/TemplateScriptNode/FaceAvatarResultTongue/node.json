@@ -1,0 +1,63 @@
+{
+	"name": "Face Avatar Result (Tongue)",
+	"id": "9F29FF85-BBC1-6A0C-2FF2-3B487A494304",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Blend Shape Channel",
+			"type": "String",
+			"value_list": [
+				"tongueOut"
+			],
+			"description": "A scrollable dropdown list contains",
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Weight",
+			"type": "Double",
+			"item_type": "",
+			"description": "The value of weight channel",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGFaceAvatarResultTongue.lua",
+	"js": "CGFaceAvatarResultTongue.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"SDKVersion": "9.9.0",
+	"luaFuncName": "CGFaceAvatarResultTongue",
+	"category": "Head & Face",
+	"graphAlgorithms": [
+		"naviAvatarDrive"
+	],
+	"description": "Provide face avatar drive blend shape channel value information",
+	"supportedNodeSwitchTypes": [
+		"Eye",
+		"Mouth and Jaw",
+		"Eyebrows",
+		"Cheek and Nose",
+		"Tongue"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

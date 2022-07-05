@@ -1,0 +1,73 @@
+{
+	"name": "For Loop",
+	"id": "a87c44a8-e95b-48e9-5ea4-014a2a2d03ea",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "First",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "The starting index",
+			"displayType": "Number"
+		},
+		{
+			"name": "Last",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "5",
+			"description": "The last index",
+			"displayType": "Number"
+		},
+		{
+			"name": "Step",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "1",
+			"description": "Increase step of each loop",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the loop is finished",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Body",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node every time the step number increases by one",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Index",
+			"type": "Int",
+			"item_type": "",
+			"description": "Current index of loop",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGForLoop.lua",
+	"js": "CGForLoop.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGForLoop",
+	"category": "Control",
+	"description": "For loop control, if first < last, the body will keep executing within single frame, when it's done, it will execute the complete output",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

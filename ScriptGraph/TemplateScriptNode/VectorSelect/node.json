@@ -1,0 +1,40 @@
+{
+    "name": "VectorSelect",
+    "id": "927b7dee-7f18-5883-ce15-456095549cf8",
+    "description": "Select a value from a vector",
+    "inputs": [
+        {
+            "name": "Vector",
+            "type": "DoubleVector",
+            "description": "A vector of supported types",
+            "default_value": "0",
+            "item_type": ""
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "description": "Index of vector",
+            "default_value": "0",
+            "item_type": ""
+        }
+    ],
+    "outputs": [
+        {
+            "name": "element",
+            "type": "Double",
+            "item_type": "",
+            "dynamic": true,
+            "description": "Selected value from vector"
+        }
+    ],
+    "lua": "CGVectorSelect.lua",
+    "luaFuncName": "CGVectorSelect",
+    "builtinClass": "EMNodeVectorSelect",
+    "category": "Utility",
+    "description": "Select a value from a vector by index",
+    "supportedValueTypes": [
+        "Double",
+        "Int"
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+}

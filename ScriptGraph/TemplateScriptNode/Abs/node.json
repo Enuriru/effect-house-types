@@ -1,0 +1,41 @@
+{
+	"name": "Abs",
+	"id": "6633e5f8-7e03-1fd6-efb0-47ba55b1b237",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Abs",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGAbs.lua",
+	"js": "CGAbs.js",
+	"version": "1.0",
+	"luaFuncName": "CGAbs",
+	"category": "Math",
+	"description": "Calculate the absolute value of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

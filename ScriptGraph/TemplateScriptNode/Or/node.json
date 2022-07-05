@@ -1,0 +1,44 @@
+{
+	"name": "Or",
+	"id": "1f7430eb-4ee9-82e8-e4a6-43593b046911",
+	"inputs": [
+		{
+			"name": "Value 1",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Boolean value 1",
+			"displayType": "Boolean"
+		},
+		{
+			"name": "Value 2",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Boolean value 2",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean value",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGOr.js",
+	"lua": "CGOr.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGOr",
+	"category": "Logic",
+	"description": "Check if either one of inputs are true",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,97 @@
+{
+    "name": "Face 240 Info",
+    "id": "b77e33b3-8318-96e7-1c54-47169c06459b",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Rect",
+            "type": "Rect",
+            "item_type": "",
+            "description": "Rectangle area of face"
+        },
+        {
+            "name": "score",
+            "type": "Double",
+            "item_type": "",
+            "description": "Confidence"
+        },
+        {
+            "name": "Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "Key point of face106"
+        },
+        {
+            "name": "Visibilities",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "visibility of each key point of face106"
+        },
+        {
+            "name": "Eye dist",
+            "type": "Double",
+            "item_type": "",
+            "description": "Distance between two eyes"
+        },
+        {
+            "name": "Yaw",
+            "type": "Float",
+            "item_type": "",
+            "description": "Face yaw angle"
+        },
+        {
+            "name": "Pitch",
+            "type": "Float",
+            "item_type": "",
+            "description": "Face pitch angle"
+        },
+        {
+            "name": "Roll",
+            "type": "Float",
+            "item_type": "",
+            "description": "Face roll angle"
+        },
+        {
+            "name": "Action",
+            "type": "Int",
+            "item_type": "",
+            "description": "Face action"
+        },
+        {
+            "name": "Tracking Count",
+            "type": "Int",
+            "item_type": "",
+            "description": "Count of tracking face"
+        }
+    ],
+    "lua": "CGFace240Info.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFace240Info",
+    "category": "Algorithm",
+    "graphAlgorithms": ["faceDetect240"],
+    "description": "Get face 240 info",
+    "productTypes": ["InHouse"]
+}

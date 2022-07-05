@@ -1,0 +1,97 @@
+{
+    "Shader": "Liquify",
+    "Pass" :
+    [
+        {
+            "Ausl": "a1",
+            "Cull" : "Back",
+            "ZTest" : "Always",
+            "DepthWriteEnable" : "Off",
+            "UseFBOFetch" : "Off",
+            "UseFBOTexture" : "On",
+            "BlendMode" : "FromShader"
+        }
+    ]
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+---END UIPROPERTY
+
+
+---BEGIN a1
+#version 300 es
+#pragma multi_compile AE_LIQUIFYBACKGROUND
+#pragma only_renderers glsl30 metal
+
+// Attributes: attributes in vertex shader
+#pragma input attributes
+    in vec3 attPosition;
+    in vec2 attTexcoord0;
+#pragma end
+
+#pragma output targets
+    out highp vec4 o_FragColor;
+#pragma end
+
+#pragma varying varyings
+    highp vec2 screenUV;
+    highp vec2 orgUV;
+#pragma end
+
+#pragma vs attributes varyings
+    uniform mat4 u_MVP;
+    uniform float radius;
+    uniform vec2 intensity;
+    uniform vec2 signFlag;
+#pragma end
+
+#pragma fs varyings targets
+    uniform sampler2D u_FBOTexture;
+    uniform float radius;
+#pragma end
+
+void vertex(){
+    gl_Position = u_MVP * vec4(attPosition, 1.0);
+
+    float dist = length(attPosition.xy);
+
+    vec2 flag = sign(signFlag * attPosition.xy);
+    flag = 1.0 - length(sign(signFlag)) + flag * (flag + 1.0) * 0.5;
+
+    vec2 finalUV = attPosition.xy;
+    if(intensity.x > 0.0) {
+        float scale = 1. - intensity.x + intensity.x * smoothstep(0., 1. , pow(dist / radius, 2.0));
+        finalUV.x = finalUV.x * ((scale - 1.0) * flag.x + 1.0);
+    }
+    else {
+        float scale = 1. + intensity.x - intensity.x * smoothstep(-0.3, 1., dist / radius);
+        finalUV.x = finalUV.x / ((scale - 1.0) * flag.x + 1.0);
+    }
+
+    if(intensity.y > 0.0) {
+        float scale = 1. - intensity.y + intensity.y * smoothstep(0., 1. , pow(dist / radius, 2.0));
+        finalUV.y = finalUV.y * ((scale - 1.0) * flag.y + 1.0);
+    }
+    else {
+        float scale = 1. + intensity.y - intensity.y * smoothstep(-0.3, 1., dist / radius);
+        finalUV.y = finalUV.y / ((scale - 1.0) * flag.y + 1.0);
+    }
+
+    vec4 tmp = u_MVP * vec4(finalUV.x, finalUV.y, 0.0, 1.0);
+    screenUV = vec2(tmp.x / tmp.w, tmp.y / tmp.w) * 0.5 + 0.5;
+
+    orgUV = attPosition.xy;
+}
+
+void fragment(){
+    vec4 finalColor = texture(u_FBOTexture, screenUV);
+#ifdef AE_LIQUIFYBACKGROUND
+    if(length(orgUV) < radius)
+    {
+        finalColor = mix(finalColor, vec4(0.298, 0.576, 0.914, 0.5), 0.5);
+    }
+#endif
+    o_FragColor = finalColor;
+}
+---END a1

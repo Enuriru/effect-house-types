@@ -1,0 +1,49 @@
+{
+    "name": "Get Mouth 3D Key Points",
+    "id": "818fa0d8-e229-6c05-f66e-1bd9c838abacD ",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get mouth 3D key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Left Mouth Corner",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the left mouth corner"
+        },
+        {
+            "name": "Right Mouth Corner",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point beside the right mouth corner"
+        }
+    ],
+    "lua": "CGGetMouthKeyPoints3D.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetMouthKeyPoints3D",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["3dFaceMeshPerspective"],
+    "description": "Get mouth 3D key points",
+    "productTypes": ["InHouse"]
+}

@@ -1,0 +1,50 @@
+{
+    "name": "Get Double Finger Up State",
+    "id": "d5be0ce1-043f-1bfe-071a-5548a5201447",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if hand is making Double Finger Up gesture"
+        }
+    ],
+    "lua": "CGGetDoubleFingerUpState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetDoubleFingerUpState",
+    "category": "Hand",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get Double Finger Up state",
+    "productTypes": ["InHouse", "Domestic"]
+}

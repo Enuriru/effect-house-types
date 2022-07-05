@@ -1,0 +1,33 @@
+{
+	"name": "Get Current Frame",
+	"id": "9c658557-18f3-ff30-e070-29521bbeafa3",
+	"inputs": [
+		{
+			"name": "Animation",
+			"type": "AnimSeqComponent",
+			"item_type": "",
+			"description": "The animation to bind event",
+			"displayType": "Seq Animation Component"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Index",
+			"type": "Int",
+			"item_type": "",
+			"description": "Current frame index",
+			"displayType": "Number"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAnimSeqGetCurrentFrame.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Utility",
+	"description": "Get current frame index of the playing animation sequence",
+	"productTypes": [
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,30 @@
+{
+	"name": "Get Local Scale",
+	"id": "5dcc44aa-6f0d-f4e4-221f-30bf8771e233",
+	"inputs": [
+		{
+			"name": "Transform",
+			"description": "The transform of the target entity",
+			"type": "Transform",
+			"displayType": "Transform"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Scale",
+			"description": "Local scale",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGGetLocalScale.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Get local scale of a transform"
+}

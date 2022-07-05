@@ -1,0 +1,44 @@
+{
+  "name": "GetSprite2DRegion",
+  "id": "544fc802-5319-7029-7a77-696f9c3ed570",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Execute the node when triggered"
+    },
+    {
+      "name": "IFTransform2d",
+      "type": "IFTransform2d",
+      "item_type": "",
+      "description": "Connect a transfrom2d component to this port"
+    },
+    {
+      "name": "Camera",
+      "type": "Camera",
+      "item_type": "",
+      "description": "The camera looking at this 2D object"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Triggered",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node when current node executed"
+    },
+    {
+      "name": "Rect",
+      "type": "Rect",
+      "item_type": "",
+      "description": "Normalized rectangular area"
+    }
+  ],
+  "lua": "CGGetSprite2DRegion.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Detection",
+  "description": "Get a 2D object's rectangle in normalized coordinates on the screen (XYWH)",
+  "productTypes": ["InHouse", "Domestic"]
+}

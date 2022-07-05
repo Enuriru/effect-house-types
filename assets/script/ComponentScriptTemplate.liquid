@@ -1,0 +1,105 @@
+//@ScriptComponent
+
+const amg = require('./__ExportFolder/amg.cjs.development');
+const Amaz = effect.Amaz;
+const used = (x)=>{} // mark a variable was used, to avoid the optimization of V8 Engine
+
+/**
+ * @field {Number} speed - {
+ *    "label": "My-Speed",
+ *    "default": 3.1415926,
+ *    "slider": true,
+ *    "range": {
+ *        "min": 0,
+ *        "max": 10
+ *    },
+ *    "accuracy": 3
+ * }
+ * @field {Boolean} reversed - {
+ *    "default": false,
+ *    "label": "My-Reversed"
+ * }
+ * @field {Texture2D} myTex - {
+ *    "default": null,
+ *    "label": "My-Texture"
+ * }
+ * @field {Transform} myTran - {
+ *    "default": null,
+ *    "label": "My-Transform"
+ * }
+ * @field {Vector3f} myVec3 - {
+ *    "label": "My-Vector3f"
+ * }
+ * @field {Vector4f} myVec4 - {
+ *    "label": "My-Vector4f"
+ * }
+  * @field {Rect} myRect - {
+ *    "label": "My-Vector4f"
+ * }
+ */
+class {{componentName}} {
+
+    constructor() {
+        console.log('[{{componentName}}.js]: constructor'+this);
+    }
+
+    onInit() {
+        console.log('[{{componentName}}.js]: onInit'+this);
+    }
+
+    onStart() {
+        console.log('[{{componentName}}.js]: onStart'+this);
+        this.transform = this.getComponent('Transform');
+    }
+
+    onUpdate(dt){
+        console.log('speed: ', this.speed, '  reversed: ',this.reversed)
+        used(amg)
+        used(Amaz)
+        used(require)
+        const speed = this.speed ? this.speed : 1
+        var value = dt * speed
+        if(this.reversed)
+            value = -value
+        if (this.transform !== null)
+            this.RotateByY(value);
+    }
+
+    onEvent(event) {
+        if (event.type === Amaz.EventType.TOUCH) {
+            const touch = event.args.get(0);
+            if (touch.type === Amaz.TouchType.TOUCH_BEGAN) {
+                let meshRenderer = this.getComponent('MeshRenderer')
+                if (meshRenderer) {
+                    if (this.vMesh) {
+                        meshRenderer.mesh = this.vMesh
+                    }
+                    if (this.vMtl) {
+                        meshRenderer.sharedMaterial = this.vMtl
+                    }
+                    if (this.myTran)  {
+                        this.myTran.localPosition = this.myTran.localPosition.add(new Amaz.Vector3f(-1, 1, 0))
+                    }
+                }
+                let sprite2d = this.getComponent('IFSprite2d')
+                if (sprite2d && this.vTex2D) {
+                    sprite2d.texture = this.vTex2D
+                }
+            }
+        }
+    }
+    RotateByY(radius)
+    {
+        // Get current orientation
+        const curQuat = this.transform.localOrientation;
+        const currRot = curQuat.quaternionToEuler(this.transform.localOrientation);
+        // Rotate the transform by radius
+        const rotVec = new Amaz.Vector3f(0, currRot.y + radius, 0);
+        // Set localOrientation with new value to rotate the entity
+        const dstRotQuat = curQuat.eulerToQuaternion(rotVec);
+        this.transform.localOrientation = dstRotQuat;
+    }
+}
+
+exports.{{componentName}} = {{componentName}};
+

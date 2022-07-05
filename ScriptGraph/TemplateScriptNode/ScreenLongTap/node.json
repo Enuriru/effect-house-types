@@ -1,0 +1,49 @@
+{
+	"name": "Screen Hold",
+	"id": "902bdfb1-206d-b627-8211-4c7a661c3d97",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"description": "Execute the next node when long tap happened",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Duration",
+			"type": "Double",
+			"description": "Tap duration in seconds",
+			"displayType": "Number"
+		},
+		{
+			"name": "Position",
+			"type": "Vector2f",
+			"description": "2D normalized position of touch point",
+			"displayType": "Vec2"
+		}
+	],
+	"js": "CGScreenLongTap.js",
+	"lua": "CGScreenLongTap.lua",
+	"scriptSupport": "all",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGScreenLongTap",
+	"nodeEvent": [
+		"onStart",
+		"onCallBack",
+		"onComponentRemoved",
+		"onDestroy",
+		"beforeStart"
+	],
+	"category": "Event",
+	"graphAlgorithms": [
+		"TouchGes"
+	],
+	"description": "Execute when a touch staying on screen is detected",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

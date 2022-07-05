@@ -1,0 +1,38 @@
+{
+    "name": "Gender Detection",
+    "id": "c1507a65-7c5e-15a0-4f7a-65ff05e52de6",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "0",
+            "range": [[0, 5, 1]],
+            "description": "Index of face to detect gender"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Male Detected",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Keep triggering next node when male is detected"
+        },
+        {
+            "name": "Female Detected",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Keep triggering next node when female is detected"
+        }
+    ],
+    "lua": "CGGenderDetection.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGenderDetection",
+    "category": "Event",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["genderDetect"],
+    "description": "Use gender detection result to trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

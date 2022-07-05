@@ -1,0 +1,37 @@
+vec3 IBL_EnvBRDFApprox (vec3 SpecularColor, float Roughness, float NoV)
+{
+    vec4 c0 = vec4(-1, -0.0275, -0.572, 0.022 );
+    vec4 c1 = vec4(1, 0.0425, 1.0, -0.04 );
+    vec4 r = Roughness * c0 + c1;
+    float a004 = min( r.x * r.x, exp2( -9.28 * NoV ) ) * r.x + r.y;
+    vec2 AB = vec2( -1.04, 1.04 ) * a004 + r.zw;
+    return SpecularColor * AB.x + AB.y;
+}
+
+vec3 AOMultiBounce(vec3 base_color, float ao)
+{
+    vec3 a =  2.0404 * base_color - 0.3324;
+    vec3 b = -4.7951 * base_color + 0.6417;
+    vec3 c =  2.7552 * base_color + 0.6903;
+    return max(vec3(ao), ((ao * a + b) * ao + c) * ao);
+}
+
+vec3 IBLShading(vec3 n, vec3 v, float metallic, float roughness, vec3 base_color, vec3 specular_color, float ambient_occlusion, float ambient_intensity, vec3 irradiance, vec3 radiance, vec2 envBRDF)
+{
+    float nv = max(dot(n, v), 0.0);
+    vec3 result = irradiance * base_color + radiance * IBL_EnvBRDFApprox(specular_color, roughness, nv);
+    result *= AOMultiBounce(base_color, ambient_occlusion);
+    return result;
+}
+
+
+vec3 IBLShadingIrradiance(vec3 base_color, vec3 irradiance)
+{
+    return irradiance * base_color;
+}
+
+vec3 IBLShadingRadiance(vec3 n, vec3 v, float roughness, vec3 specular_color, vec3 radiance)
+{
+    float nv = max(dot(n, v), 0.0);
+    return radiance * IBL_EnvBRDFApprox(specular_color, roughness, nv);
+}

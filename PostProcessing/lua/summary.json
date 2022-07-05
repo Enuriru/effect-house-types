@@ -1,0 +1,186 @@
+[
+    {
+        "ClassName": "PostProcessLayer",
+        "Super": "ScriptComponent",
+        "Path": "Runtime/PostProcessLayer.lua",
+        "Annotations": [],
+        "Properties": [
+            {
+                "VarName": "pBloomEnable",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomFastMode",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomHdr",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomThreshold",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomColor",
+                "VarType": "Vector4f",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomDiffuse",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomIntensity",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomSoftknee",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomClamp",
+                "VarType": "Int64",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomAnamorphicRatio",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomStarEnable",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomStarLod",
+                "VarType": "Int",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomStarRatio",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pBloomStarIntensity",
+                "VarType": "Double",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pFxaaEnable",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            },
+            {
+                "VarName": "pGrayScaleEnable",
+                "VarType": "Bool",
+                "Comment": "",
+                "Annotations": [
+                    {
+                        "AnnoType": "UI",
+                        "Attributes": []
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,46 @@
+{
+  "name": "Distortion",
+  "id": "a7083b7d-bbe1-f847-ea88-66c361a72a40",
+  "description":"Create a distortion effect on the signal.",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Distortion Mode",
+      "type": "Int",
+      "default_value": "0",
+      "description": "BitCrush mode achieves distortion by reducing the quantized bits of the original signal amplitude, while Decimate mode achieves distortion by reducing the original signal sampling rate. The latter combined with Filter can produce Lofi effect well."
+    },
+    {
+      "name": "Distortion Amount",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Set the location of Threshold."
+    },
+    {
+      "name": "Apply Upsampling",
+      "type": "Int",
+      "default_value": "0",
+      "description": "Wave Shaping generates high-order harmonics and easily generates aliasing in the frequency domain, resulting in undesirable audio effects. So we can increase Nyquist frequency in advance by increasing sampling to reduce the side effects of aliasing."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioDistortion.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

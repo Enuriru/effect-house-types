@@ -1,0 +1,25 @@
+{
+  "name": "PixelToNormalized",
+  "id": "d429aa74-7868-1b21-e422-b07a787392e6",
+  "inputs": [
+    {
+      "name": "input",
+      "type": "Vector2f",
+      "item_type": "",
+      "description": "A pixel coordinate centered on the center of the screen"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "type": "Vector2f",
+      "item_type":"",
+      "description": "Normalized coordinates centered on the top left corner"
+    }
+  ],
+  "lua": "CGPixelToNormalized.lua",
+  "version": "1.0",
+  "category": "Transform",
+  "description": "Converts a pixel coordinate to a normalized coordinate centered on the top left corner of the screen",
+  "productTypes": ["InHouse", "Domestic"]
+}

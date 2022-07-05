@@ -1,0 +1,122 @@
+{
+    "name": "Foot Info",
+    "id": "9fb1a2c9-c843-727a-c2b9-6dd0b5914de4",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of foot"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Foot Box",
+            "type": "Rect",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Left Probability",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Right Probability",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Is Left",
+            "type": "Bool",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Key Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": ""
+        },
+        {
+            "name": "Point Detected",
+            "type": "IntVector",
+            "item_type": "",
+            "description": ""
+        },
+        {
+            "name": "ShankOrient",
+            "type": "Vector3f",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "ShandVisible",
+            "type": "Bool",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Segment",
+            "type": "IntVector",
+            "item_type": "",
+            "description": ""
+        },
+        {
+            "name": "SegmentBro",
+            "type": "IntVector",
+            "item_type": "",
+            "description": ""
+        },
+        {
+            "name": "Segment Box",
+            "type": "Rect",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Trans Mat",
+            "type": "Matrix4x4f",
+            "item_type": "",
+            "description": ""
+        },
+        {
+            "name": "Model Mat",
+            "type": "Matrix4x4f",
+            "item_type": "",
+            "description": ""
+        }
+    ],
+    "lua": "CGFootInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFootInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["foot"],
+    "description": "Get foot info",
+    "productTypes": ["InHouse"]
+}

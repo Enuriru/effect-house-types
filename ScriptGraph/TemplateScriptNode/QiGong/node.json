@@ -1,0 +1,45 @@
+{
+    "name": "Qi Gong",
+    "id": "37d3b7e4-ff9e-4348-fb2e-48a1e6a4e72a",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a Qi Gong gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a Qi Gong gesture"
+        }
+    ],
+    "lua": "CGQiGong.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGQiGong",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches Qigong, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

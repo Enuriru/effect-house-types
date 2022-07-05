@@ -1,0 +1,76 @@
+{
+  "name": "Compressor",
+  "id": "054752db-335f-c3e0-3e57-54bbce2750c1",
+  "description":"By creating a sense of distance and space, makes the audio have a different scene effect",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Ratio",
+      "type": "Double",
+      "default_value": "1",
+      "description": "The ratio of compression. The higher the Ratio, the more obvious the compression effect."
+    },
+    {
+      "name": "Threshold dB",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Set the location of Threshold."
+    },
+    {
+      "name": "Knee dB",
+      "type": "Double",
+      "default_value": "6",
+      "description": "Sets the Knee state. The larger the value, the smoother Knee will be."
+    },
+    {
+      "name": "Attack",
+      "type": "Double",
+      "default_value": "0.25",
+      "description": " Used to determine \"how long it takes for the input signal to be compressed to the specified amplitude after crossing the Threshold\". The larger the value, the longer it takes."
+    },
+    {
+      "name": "Release",
+      "type": "Double",
+      "default_value": "100",
+      "description": "Used to determine \"how long it takes to remove the compression state of the signal after the input signal drops below Threshold\". The larger the value, the longer it takes."
+    },
+    {
+      "name": "Auto Makeup Gain",
+      "type": "Bool",
+      "default_value": "1",
+      "description": "The principle of Compressor determines that the output volume will be reduced. So we can set this parameter to true so that the node automatically compensates for the reduced gain."
+    },
+    {
+      "name": "Output Gain dB",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Sets the output gain."
+    },
+    {
+      "name": "Lookahead",
+      "type": "Double",
+      "default_value": "0",
+      "description": "How many future sampling points are considered when calculating the audio amplitude. Generally, use the default Settings."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioCompressor.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

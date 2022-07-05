@@ -1,0 +1,59 @@
+{
+  "name": "Biquad Filter",
+  "id": "10c7ac48-5519-1b7b-14d1-64aa73161cce",
+  "description":"A signal of a particular frequency can be obtained by effective filtering of the frequency points of a particular frequency or frequencies beyond that frequency point, or the signal after the elimination of a particular frequency.",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Filter Mode",
+      "type": "Int",
+      "default_value": "0",
+      "description": "Filter provides low pass filter, high pass filter, band pass filter and other different filtering modes."
+    },
+    {
+      "name": "Cutoff Freq",
+      "type": "Double",
+      "default_value": "1000",
+      "description": "The cutoff frequency is the boundary frequency at which the output signal energy of a system begins to decline substantially (in the case of band-stop filters, rise substantially)."
+    },
+    {
+      "name": "Resonance",
+      "type": "Double",
+      "default_value": "1",
+      "description": "Resonance increases the strength of the signal near the cutoff frequency, resulting in a richer sound effect."
+    },
+    {
+      "name": "Gain dB",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Control signal gain strength."
+    },
+    {
+      "name": "Morph",
+      "type": "Double",
+      "default_value": "0",
+      "range": [[-1.0, 1.0, 0.1]],
+      "description": "When filter mode is Morph, this parameter adjusts filter mode from lowPass -> bandPass -> highPass."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioBiquadFilter.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

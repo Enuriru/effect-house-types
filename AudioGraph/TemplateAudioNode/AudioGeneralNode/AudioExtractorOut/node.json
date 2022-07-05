@@ -1,0 +1,20 @@
+{
+  "name": "Extractor Out",
+  "id": "97d2ff06-da28-99d0-f87f-d8da67bb8cbc",
+  "inputs":
+  [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Input Audio Stream"
+    }
+  ],
+  "outputs": [],
+  "audioNodeName": "SinkNode",
+  "scriptSupport": "js",
+  "js": "CGAudioExtractorOut.js",
+  "category": "Audio",
+  "description": "Extractor Audio Stream",
+  "productTypes": ["TTEH"],
+  "builtinClass": "AudioGeneralNode"
+}

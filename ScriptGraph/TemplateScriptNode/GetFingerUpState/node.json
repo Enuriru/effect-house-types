@@ -1,0 +1,50 @@
+{
+    "name": "Get Index Finger Up State",
+    "id": "cfff08f2-3541-9514-a874-930d3f0056e0",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if hand is making Finger Up gesture"
+        }
+    ],
+    "lua": "CGGetFingerUpState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetFingerUpState",
+    "category": "Hand",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get Finger Up state",
+    "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,37 @@
+%YAML 1.1
+--- !DrawTexture &1
+name: depth
+guid: {a: 2181323311045495668, b: 3504398237501169316}
+width: 720
+height: 1280
+depth: 1
+internalFormat:
+  __class: InternalFormat
+  value: RGBA8
+dataType:
+  __class: DataType
+  value: U8norm
+builtinType:
+  __class: BuiltInTextureType
+  value: NORAML
+filterMin:
+  __class: FilterMode
+  value: LINEAR
+filterMag:
+  __class: FilterMode
+  value: LINEAR
+filterMipmap:
+  __class: FilterMipmapMode
+  value: NONE
+wrapModeS:
+  __class: WrapMode
+  value: CLAMP
+wrapModeT:
+  __class: WrapMode
+  value: CLAMP
+wrapModeR:
+  __class: WrapMode
+  value: CLAMP
+colorFormat:
+  __class: PixelFormat
+  value: D24X8Unorm

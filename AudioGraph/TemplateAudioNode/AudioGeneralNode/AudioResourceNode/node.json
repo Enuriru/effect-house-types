@@ -1,0 +1,35 @@
+{
+	"name": "Audio Resource",
+	"id": "2179790b-1532-13df-1b60-247d68ade260",
+	"inputs": [
+		{
+			"name": "Audio Resource",
+			"type": "AudioClip",
+			"description": "The input audio clip",
+			"visible": false,
+			"displayType": "Audio Clip"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio Resource",
+			"type": "Audio Source",
+			"description": "The audio source. Connect it to an Audio Resource Controller to play.",
+			"displayType": "Audio Source"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioResourceNode.js",
+	"category": "Audio",
+	"nodeEvent": [
+		"beforeStart"
+	],
+	"description": "Select the audio clip.",
+	"productTypes": [
+		"TTEH"
+	],
+	"containResource": true,
+	"builtinClass": "AudioGeneralNode",
+	"audioNodeName": "FileSourceNode",
+	"TTEHVer": "1.0.0"
+}

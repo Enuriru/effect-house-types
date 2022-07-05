@@ -1,0 +1,71 @@
+{
+    "name": "Number Calculation",
+    "id": "bfee76a5-2b32-ff13-6140-5110448bfafb",
+    "inputs": [
+      {
+        "name": "Number A",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Left number of the mathematical operation"
+      },
+      {
+        "name": "Number B",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Right number of mathematical operation"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "A+B",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Result of A plus B"
+      },
+      {
+        "name": "A-B",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Result of A minus B"
+      },
+      {
+        "name": "A*B",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Result of A times B"
+      },
+      {
+        "name": "A/B",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Result of A divided by B"
+      },
+      {
+        "name": "A%B",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Result of A modulo B"
+      }
+    ],
+    "lua": "CGNumberCalculation.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGNumberCalculation",
+    "category": "Calculation",
+    "description": "Do basic mathematical operations of two numbers",
+    "supportedValueTypes": [
+        "Int",
+        "Float",
+        "Double"
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+  }

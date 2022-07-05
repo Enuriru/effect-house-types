@@ -1,0 +1,32 @@
+{% for node in nodeList %}
+    {% if node.__class == "Group" or node.__class == 'PlaceholderNode' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup' %}
+        {% continue %}
+    {% endif %}
+    {{- node.displayName | registerNode: node.nodeName, node.__uniqueId  -}}
+    {%- assign hasJsFile = node | contained: "fileName" -%}
+    {%- assign hasGuid = node | contained: "templateGuid" -%}
+    {% if hasGuid %}
+        {%-assign hasRegistered = node.fileName | registerJsFile -%}
+        {% if hasRegistered == false %}
+            {{- node.absolutePath | includeAbsPath -}}
+            {%- assign jsClsName = node.fileName | getJSClassName -%}
+const { {{ jsClsName }} } = require("./{{ jsClsName }}");
+        {% endif %}
+    {% elsif hasJsFile %}
+        {%-assign hasRegistered = node.fileName | registerJsFile -%}
+        {% if hasRegistered == false %}
+            {{- node.absolutePath | includeAbsPath -}}
+            {%- assign jsClsName = node.fileName | getJSClassName -%}
+const { {{ jsClsName }} } = require("./{{ jsClsName }}");
+        {% endif %}
+    {% else %}
+        {{- "include path error, unhandled case !" | log -}}
+    {% endif %}
+{% endfor %}
+
+{% if containAudioGraph %}
+const { AudioGraphAssembler } = require("./AudioGraphAssembler");
+{% endif %}
+
+const { GraphUtils } = require("./GraphUtils");
+

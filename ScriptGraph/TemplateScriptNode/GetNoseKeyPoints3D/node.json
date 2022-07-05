@@ -1,0 +1,61 @@
+{
+    "name": "Get Nose 3D Key Points",
+    "id": "5bccd37b-7846-8dc5-8109-960595c55b4d",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get nose 3D key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Left Nose Ala",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point beside the left nose ala"
+        },
+        {
+            "name": "Right Nose Ala",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point beside the right nose ala"
+        },
+        {
+            "name": "Nose Tip",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the nose tip"
+        },
+        {
+            "name": "Nose Ridge",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D Key point on the nose ridge"
+        }
+    ],
+    "lua": "CGGetNoseKeyPoints3D.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetNoseKeyPoints3D",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["3dFaceMeshPerspective"],
+    "description": "Get nose 3D key points",
+    "productTypes": ["InHouse"]
+}

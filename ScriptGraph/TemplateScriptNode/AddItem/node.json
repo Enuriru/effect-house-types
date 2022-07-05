@@ -1,0 +1,31 @@
+{
+  "name": "Add Item",
+  "id": "834af7d5-45f8-a01d-7956-f3hxb9f77hxb",
+  "inputs": [
+    {
+      "name": "Item",
+      "type": "General",
+      "item_type": "",
+      "description": "The item to add to end of list"
+    },
+    {
+      "name": "Collection",
+      "type": "General",
+      "item_type": "",
+      "description": "Enumerable Interface / array"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Collection",
+      "type": "General",
+      "item_type": "",
+      "description": "Enumerable Interface / array"
+    }
+  ],
+  "js": "CGAddItem.js",
+  "version": "1.0",
+  "category": "Utility",
+  "description": "Add a item to a vector",
+  "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,137 @@
+{
+	"Shader":"FacePaint",
+	"Pass":
+	[
+		{
+            "Ausl": "a1",
+			"BlendMode":"Transparent",
+			"ColorWrite":"RGBA",
+			"Cull":"Back",
+			"FullScreenShading":"Off",
+			"DepthTestEnable":"On",
+			"ZTest":"LessEqual",
+			"DepthWriteEnable":"On",
+			"PassType":"Normal",
+			"UseFBOFetch": "Off",
+            "UseFBOTexture": "Off",
+			"UseCameraRT":"Off",
+			"ClearType":"Dont"
+		}
+	]
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+
+    $Base property$
+    _BaseTexture (Texture, 2D) = "Default_Material_Texture_Face"
+    _BaseColor (Tint color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+
+    $UV control$
+    UvControl (UV control, Defs) = 0
+    [UvControl] _Tiling (Tilling, Vec2) = [1.000000, 1.000000]
+    [UvControl] _Offset (Offset, Vec2) = [0.000000, 0.000000]
+    [UvControl] _Rotation (Rotation, Range(0.000000, 360.000000)) = 0.000000
+
+    $Scaling control$	
+    _MeshRescale (Mesh scale, Vec3) = [1.0, 1.0, 1.000000]	
+    _TextureRescale (Texture scale from center, Vec2) = [1.000000, 1.000000]
+
+---END UIPROPERTY
+
+---BEGIN a1
+#version 300 es
+    #pragma only_renderers glsl30 metal
+
+    #pragma multi_compile AE_AMAZING_USE_BONES
+
+    #pragma input attributes
+    in vec3 attPosition;
+    in vec2 attTexcoord0;
+    in vec3 attPosOffset;
+    in vec3 attNormal;
+    #pragma end
+
+    #pragma varying varyings
+    highp vec2 g_vary_uv0;
+    highp vec4 v_sampling_pos;
+    highp vec4 v_background_pos;
+    highp vec3 v_worldPos;
+    highp vec3 v_Normal;
+    #pragma end
+
+    #pragma output targets
+    out highp vec4 glResult;
+    #pragma end
+
+
+
+    #pragma vs attributes varyings
+    precision highp float;
+    uniform vec4 _MeshRescale;	
+    uniform vec2 _TextureRescale;
+
+    uniform mat4 u_Model;
+    uniform mat4 u_MVP;
+    uniform mat4 u_TransposeInvModel;
+    #pragma end
+
+
+
+    #pragma fs varyings targets
+        precision highp float;
+        // uniform sampler2D u_FBOTexture;
+        uniform vec4 u_WorldSpaceCameraPos;
+        uniform vec4 _BaseColor;
+        uniform sampler2D _BaseTexture;
+        uniform float _Opacity;
+    #pragma end
+
+    void vertex()
+    {
+         vec3 modelPostiton = attPosition;
+
+        mat4 rescaleMat = mat4(_MeshRescale.x, 0., 0., 0.,
+                                0., _MeshRescale.y, 0., 0.,
+                                0., 0., _MeshRescale.z, 0.,
+                                0., 0., 0., 1.);
+
+        vec4 homogeneous_modelPostiton = rescaleMat * vec4(modelPostiton, 1.0);
+
+        //vec4 homogeneous_modelPostiton = vec4(modelPostiton, 1.0);
+
+        vec4 homogeneous_pos = vec4(attPosition + attPosOffset, 1.0); // + vec4(0.0, 0.0, 10.0, 0.0); 
+        // homogeneous_pos.xyz *= vec3(u_Scale);
+        // float cosAngle = cos(u_RotateZ);
+        // float sinAngle = sin(u_RotateZ);
+        // mat3 rotation = mat3(cosAngle, 0.0, -sinAngle, 0.0, 1.0, 0.0, sinAngle, 0.0, cosAngle);
+        // homogeneous_pos.xyz *= rotation;
+        homogeneous_pos = rescaleMat * homogeneous_pos;
+        g_vary_uv0 = (attTexcoord0 - vec2(0.5)) * _TextureRescale + vec2(0.5);
+        //g_vary_uv0 = attTexcoord0;
+
+        gl_Position = u_MVP * homogeneous_pos;
+
+        v_worldPos = homogeneous_pos.xyz;
+        v_Normal = mat3(u_TransposeInvModel) * attNormal; // * rotation;
+
+        v_sampling_pos = u_MVP * homogeneous_modelPostiton;
+        v_background_pos = u_MVP * homogeneous_pos;
+    }
+
+
+
+    void fragment()
+    {
+        vec2 uv = g_vary_uv0;
+        uv.y = 1.0 - uv.y;
+        vec2 sampling_uv = (v_sampling_pos.xy / v_sampling_pos.w) * 0.5 + 0.5;
+        // vec4 inputColor = texture(u_FBOTexture, sampling_uv);
+        vec4 texColor = texture(_BaseTexture, uv) * _BaseColor;
+        texColor.a *= _Opacity;
+        if (texColor.a == 0.) discard;
+        // vec2 background_uv = (v_background_pos.xy / v_background_pos.w) * vec2(0.5, -0.5) + 0.5;
+        // vec3 normal = normalize(v_Normal);
+        glResult = texColor;
+    }
+---END a1

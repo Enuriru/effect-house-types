@@ -1,0 +1,40 @@
+{
+  "name": "AgeDetection",
+  "id": "bc09781d-d03e-b1bf-aba9-a6dd7871e0bc",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Start detecting"
+    },
+    {
+      "name": "FaceIndex",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "1",
+      "range": [[1,5,1]],
+      "description": "Index of face to detect"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Triggered",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "triggered when the node was executed"
+    },
+    {
+      "name": "Age",
+      "type": "Double",
+      "item_type": "",
+      "description": "The measured age value , a floating-point value, accurate to two decimal places"
+    }
+  ],
+  "lua": "CGAgeDetection.lua",
+  "version": "1.0",
+  "category": "Detection",
+  "description": "Detects the age of the face on the screen",
+  "graphAlgorithms": ["genderDetect"],
+  "productTypes": ["InHouse", "Domestic"]
+}

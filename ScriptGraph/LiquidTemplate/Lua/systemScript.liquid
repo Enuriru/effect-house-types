@@ -1,0 +1,141 @@
+local exports = exports or {}
+local {{systemName}} = {{systemName}} or {}
+{{systemName}}.__index = {{systemName}}
+
+local nodes = {}
+local variables = {}
+local __callbackNode ={}
+__callbackNode["onStart"] = {}
+__callbackNode["onUpdate"] = {}
+__callbackNode["onEvent"] = {}
+__callbackNode["onCallBack"] = {}
+__callbackNode["beforeOnStart"] = {}
+__callbackNode["onComponentRemoved"] = {}
+
+{% comment %} todo: registerMemberBlock {% endcomment %}
+
+function {{ systemName }}.new(construct, ...)
+    local self = setmetatable({}, {{systemName}})
+    self.comps = {}
+    self.compsdirty = true
+
+    local lua = {}
+    -- member variable init
+    {% include "variableInit" %}
+
+    -- property function init
+    {% include "propertyFuncInit" %}
+
+    -- nodeInit
+    {% include "nodeInit" %}
+
+    -- nodeConnect
+    {% include "nodeConnect" %}
+
+    -- init callback table
+    {% for node in  nodeList %}
+        {% if node.__class == "Group" or node.__class == 'PlaceholderNode' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup' %}
+            {{- 'Group Node or PlaceholderNode' | log -}}
+            {% continue %}
+        {% endif %}
+        {% if node.onCallback %}
+            {{- node.onCallback | log -}}
+            {% for callback in node.onCallback %}
+    table.insert(__callbackNode["{{ callback }}"], nodes["{{ node.__uniqueId | getIdentifierById }}"])
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    return self
+end
+
+function {{ systemName }}:constructor()
+    -- Amaz.LOGE("INFO: ", "{{ systemName }}:constructor")
+end
+
+function {{ systemName }}:onComponentAdded(sys, comp)
+    -- Amaz.LOGE("INFO: ", "{{ systemName }}:onComponentAdded")
+end
+
+function {{systemName}}:onComponentRemoved(sys, comp)
+    --Amaz.LOGE("INFO: ", "{{ systemName }}:onComponentRemoved")
+    for i=1, #__callbackNode["onComponentRemoved"] do
+        __callbackNode["onComponentRemoved"][i]:onDestroy(sys)
+    end
+end
+
+function {{systemName}}:onStart(sys)
+    -- Amaz.LOGE("INFO: ", "{{ systemName }}:onStart")
+    {% comment %}
+    for i=1, #__callbackNode["beforeOnStart"] do
+        __callbackNode["beforeOnStart"][i]:beforeStart(sys)
+    end
+    {% endcomment %}
+    -- load resource
+    {% include "loadResource" %}
+    for i=1, #__callbackNode["onStart"] do
+        __callbackNode["onStart"][i]:execute(sys)
+    end
+end
+
+function {{systemName}}:onEvent(sys, event)
+    --Amaz.LOGE("INFO: ", "{{ systemName }}:onEvent")
+    for i=1, #__callbackNode["onEvent"] do
+    {% comment %} __callbackNode["onEvent"][i]:onEvent(sys, event) {% endcomment %}
+        __callbackNode["onEvent"][i]:onEvent(sys, event)
+    end
+end
+
+function {{systemName}}:onCallBack(sys, userData, eventType)
+     Amaz.LOGE("INFO: ", "{{ systemName }}:onCallBack")
+    for i=1, #__callbackNode["onCallBack"] do
+        __callbackNode["onCallBack"][i]:callback(sys, userData, eventType)
+    end
+end
+
+function {{systemName}}:onUpdate(sys,deltaTime)
+    -- Amaz.LOGE("INFO: ", "{{ systemName }}:onUpdate")
+    for i=1, #__callbackNode["onUpdate"] do
+        __callbackNode["onUpdate"][i]:update(sys, deltaTime)
+    end
+{{- 'log update' | log -}}
+    {% if isPreview and supportedPreviewDataType%}
+        {{- 'log isPreview' | log -}}
+        {% if isPreview %}
+            {% for edge in edgeList%}
+                {%- assign isSupportType = supportedPreviewDataType | contained: edge.outputPortType -%}
+                {% if edge.edgeValid and edge.inputPortType == edge.outputPortType and isSupportType %}
+                    {% if edge.needExtraInputValue %}
+    local __portValue = {{ edge.inputPortMetaData | getPortValueExpression }}
+    if __portValue ~= nil then
+        Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", __portValue)
+    end
+                    {% else %}
+    local __portValue = nodes["{{edge.inputNode | getIdentifierById}}"]:getOutput({{edge.inputPortIndex}})
+    if __portValue ~= nil then
+        Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", __portValue)
+    end
+                    {% endif %}
+                {% elsif edge.outputPortType == "Enum" %}
+    local __portValue = nodes["{{edge.inputNode | getIdentifierById}}"]:getOutput({{edge.inputPortIndex}})
+    if __portValue ~= nil then
+        Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", __portValue)
+    end
+                {% endif %}
+            {%endfor%}
+        {% endif %}
+    {% endif %}
+end
+
+
+function generateEmptyNode()
+    local node = {}
+    node.nexts = {}
+    node.inputs = {}
+    node.setNext = function(__self, __index, __next) __self.nexts[__index] = __next end
+    node.setInput = function(__self, __index, __func) __self.inputs[__index] = __func end
+    return node
+end
+
+exports.{{systemName}} = {{systemName}}
+return exports

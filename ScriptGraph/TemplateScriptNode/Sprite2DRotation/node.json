@@ -1,0 +1,138 @@
+{
+    "name": "Sprite2D Rotation",
+    "id": "3fcd5541-c7ff-b50b-5660-1d635bcf5b73",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, rotation starts"
+      },
+      {
+        "name": "Pause",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, rotation is paused"
+      },
+      {
+        "name": "Resume",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, rotation is resumed"
+      },
+      {
+        "name": "End",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, rotation is ended"
+      },
+      {
+        "name": "Transform2d",
+        "type": "IFTransform2d",
+        "item_type": "",
+        "description": "Transform component of the 2D Sprite to rotate"
+      },
+      {
+        "name": "Rotation Center",
+        "type": "Vector2f",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Center of the rotation"
+      },
+      {
+        "name": "Rotation Angle",
+        "type": "Double",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Angle of the rotation"
+      },
+      {
+        "name": "Curve",
+        "type": "List",
+        "default_value": "0",
+        "description": "",
+        "value_list": [
+          {
+              "value": "Linear",
+              "text": "Linear",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease In",
+              "text": "Ease In",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease Out",
+              "text": "Ease Out",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease In-Out",
+              "text": "Ease In-Out",
+              "value_type": "String"
+          }
+        ]
+      },
+      {
+        "name": "Duration",
+        "type": "Double",
+        "default_value": "0",
+        "item_type": "",
+        "range" : [[0, "Inf", 0.01]],
+        "description": "How long the rotation take"
+      },
+      {
+        "name": "Times",
+        "type": "Int",
+        "default_value": "1",
+        "range": [[1, 9999, 1]],
+        "description": "Specify how many times the rotation should be performed"
+      },
+      {
+        "name": "Spin Disabled",
+        "type": "Bool",
+        "default_value": "0",
+        "description": "Enable/Disable the self spin"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "Trigger next node during the rotation"
+      },
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the rotation begins, trigger next node"
+      },
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the last rotation ends, trigger next node"
+      },
+      {
+        "name": "Position",
+        "type": "Vector2f",
+        "item_type":"",
+        "description": "Output the position of the 2D sprite at each frame"
+      },
+      {
+        "name": "Angle",
+        "type": "Double",
+        "item_type":"",
+        "description": "Output the angle of the 2D sprite at each frame"
+      }
+    ],
+    "lua": "CGSprite2DRotation.lua",
+    "luaFuncName": "CGSprite2DRotation",
+    "version": "1.0",
+    "category": "Control",
+    "description": "Rotate the 2D sprite around the given center",
+    "nodeEvent": "onUpdate",
+    "productTypes": ["InHouse", "Domestic"]
+  }

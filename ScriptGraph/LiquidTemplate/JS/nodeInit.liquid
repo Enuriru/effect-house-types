@@ -1,0 +1,70 @@
+        // init node properties
+
+{% for node in nodeList %}
+    {% if node.__class == "Group" or node.__class == 'Placeholder' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup'%}
+        {% continue %}
+    {% endif %}
+    {% if node.__class == "ScriptTemplateNode" %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"] = new {{ node.fileName | getJSClassName }}();
+        {% comment %} -------------------------------------TemplateLuaNode------------------------------------- {% endcomment %}
+    {% elsif node.__class == "AudioExtractorNode" or node.__class == "AudioGeneralNode" or node.__class == "AudioMDSPNode" or node.__class == "AudioNode" or node.__class == "AudioEffectNode"%}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"] = new {{ node.fileName | getJSClassName }}();
+        {% comment %} -------------------------------------AudioNode------------------------------------- {% endcomment %}
+    {% elsif node.__class == "VariableNode" %}
+        {% comment %} -------------------------------------VariableNode------------------------------------- {% endcomment %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"] = new {{ node.fileName | getJSClassName }}();
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].variables = this.variables;
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].variableName = "{{node.variableName}}_{{node.variableIndex}}";
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].accessType = "{{node.accessType}}";
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].valueType = "{{node.variableDataType}}"
+    {% else %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"] = new {{ node.fileName | getJSClassName }}();
+        {%  if node.__class == "PropertyNode" %}
+            {% comment %} -------------------------------------PropertyNode------------------------------------- {% endcomment %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].objects = [];
+        {% for guid in node.amgObject %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].objects.push(this.graphUtils.guidToPointer("{{guid.a}}", "{{guid.b}}"));
+        {% endfor %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].property = "{{node.propertyName}}";
+        this.nodes["{{node.__uniqueId | getIdentifierById}}"].propertyFunc = new {{ node.propertyScript | getPropertyScriptName }}();
+        this.nodes["{{node.__uniqueId | getIdentifierById}}"].valueType = "{{node.propertyDataType}}";
+        {% if node.propertyScript == "AnimatorProperty" %}
+        this.nodes["{{node.__uniqueId | getIdentifierById}}"].propertyFunc.initWrapModes(this.nodes["{{ node.__uniqueId | getIdentifierById }}"].objects, {{ node.wrapModes }});
+        {% endif %}
+        {{- node.propertyScriptAbsPath | includeAbsPath -}}
+        {% elsif node.__class == "AMGObjectNode" %}
+            {% comment %} -------------------------------------EMEntityNode or EMComponentNode or EMNodeResourceMaterial------------------------------------- {% endcomment %}
+            {%- assign amgObj = node | contained: "amgObject" -%}
+            {% if amgObj %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].object = this.graphUtils.guidToPointer("{{node.amgObject.a}}", "{{node.amgObject.b}}");
+            {% else %}
+                {{- "entity / component / material do not have amgObj value" | log -}}
+            {% endif %}
+        {% elsif node.__class == "ResourceNode" %}
+            {%- if node.isAudioResNode -%}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].resourcePath = "{{node.resPath}}";
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].resType = "audio";
+            {% endif %}
+            {%- if node.jsAssetUUID -%}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].jsAssetUUID = "{{ node.jsAssetUUID }}";
+            {% endif %}
+        {% elsif node.__class == "EMCameraNode" %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].object = this.graphUtils.guidToPointer("{{node.amgObject.a}}", "{{node.amgObject.b}}");
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].rt = this.graphUtils.guidToPointer("{{node.rt.a}}", "{{node.rt.b}}");
+        {% endif %}
+    {% endif %}
+
+    {%- assign hasSelectedType = node | contained: "curSelectedType" -%}
+    {% if hasSelectedType %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].valueType = "{{node.curSelectedType}}";
+    {% endif %}
+
+    {% comment %} -------------------------------------unconnected input port------------------------------------- {% endcomment %}
+    {% for port in node.inputPorts %}
+        {% if port.isConnect == false and port.valueTypeName != "Pulse" %}
+        this.nodes["{{ node.__uniqueId | getIdentifierById }}"].setInput({{port.portIndex}}, ()=>{ return {{port | getPortValueExpression}}; });
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+

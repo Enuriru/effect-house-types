@@ -1,0 +1,41 @@
+{
+	"name": "Cos",
+	"id": "789dec98-0748-c971-abd3-602073d44d2a",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Cos",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGCos.lua",
+	"js": "CGCos.js",
+	"version": "1.0",
+	"luaFuncName": "CGCos",
+	"category": "Math",
+	"description": "Calculate the cosine of an input radian",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

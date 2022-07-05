@@ -1,0 +1,309 @@
+[
+    {
+        "super": "ScriptComponent",
+        "fields": [
+            {
+                "name": "pBloomEnable",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomFastMode",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomHdr",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomThreshold",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomColor",
+                "type": "Vector4f",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomDiffuse",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomIntensity",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomSoftknee",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomClamp",
+                "type": "Int64",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomAnamorphicRatio",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomStarEnable",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomStarLod",
+                "type": "Int",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomStarRatio",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pBloomStarIntensity",
+                "type": "Double",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pFxaaEnable",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            },
+            {
+                "name": "pGrayScaleEnable",
+                "type": "Bool",
+                "comment": "",
+                "attributes": [
+                    {
+                        "name": "UI",
+                        "args": []
+                    }
+                ]
+            }
+        ],
+        "methods": [
+            {
+                "params": [
+                    {
+                        "name": "path",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "importCustomEffects",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "path",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "importBuitinEffects",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "path",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "importFramework",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "path",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "import",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "construct",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "new",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [],
+                "name": "constructor",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "comp",
+                        "comment": "",
+                        "attributes": []
+                    },
+                    {
+                        "name": "sys",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "onStart",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "comp",
+                        "comment": "",
+                        "attributes": []
+                    },
+                    {
+                        "name": "deltaTime",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "onUpdate",
+                "comment": "",
+                "attributes": []
+            },
+            {
+                "params": [
+                    {
+                        "name": "sys",
+                        "comment": "",
+                        "attributes": []
+                    },
+                    {
+                        "name": "camera",
+                        "comment": "",
+                        "attributes": []
+                    },
+                    {
+                        "name": "eventType",
+                        "comment": "",
+                        "attributes": []
+                    }
+                ],
+                "name": "renderImageEffects",
+                "comment": "",
+                "attributes": []
+            }
+        ],
+        "name": "PostProcessLayer",
+        "attributes": []
+    }
+]

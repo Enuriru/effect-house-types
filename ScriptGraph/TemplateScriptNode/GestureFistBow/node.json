@@ -1,0 +1,45 @@
+{
+	"name": "Gesture (Fist Bow)",
+	"id": "f2e40e31-9806-3b72-2a23-dd6420ee917e",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGGestureFistBow.js",
+	"nodeEvent": "onUpdate",
+	"category": "Hand",
+	"TTEHVer": "1.0.0",
+	"graphAlgorithms": [
+		"2handGestureDetect"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Detect the \"fist bow\" hand gesture"
+}

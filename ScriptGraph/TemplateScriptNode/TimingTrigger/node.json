@@ -1,0 +1,45 @@
+{
+  "name": "Timer Trigger",
+  "id": "72e32e2d-4bda-6b3b-6af3-e28921cfe7bc",
+  "inputs": [
+    {
+      "name": "Count",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "9999",
+      "range": [[0, 9999, 1]],
+      "description": "Total number of triggers, when the value is 9999 for an infinite loop"
+    },
+    {
+      "name": "Interval",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "1",
+      "range": [[1, 99999999, 1]],
+      "description": "Triggered every interval of seconds, a minimum of 1"
+    },
+    {
+      "name": "trigger at first second",
+      "type": "Bool",
+      "item_type": "",
+      "default_value": "0",
+      "description": "Whether to trigger once at the first second"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger after a cycle of specifying an interval of seconds"
+    }
+  ],
+  "lua": "CGTimingTrigger.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGTimingTrigger",
+  "category": "Event",
+  "nodeEvent": ["onUpdate", "onStart"],
+  "description": "A cycle Timer",
+  "productTypes": ["InHouse", "Domestic"]
+}

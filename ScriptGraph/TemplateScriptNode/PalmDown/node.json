@@ -1,0 +1,45 @@
+{
+    "name": "Palm Down",
+    "id": "0b8fb6c7-e602-e8d1-44db-0970c254f05e",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a Palm Down gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a Palm Down gesture"
+        }
+    ],
+    "lua": "CGPalmDown.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGPalmDown",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches selected type, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

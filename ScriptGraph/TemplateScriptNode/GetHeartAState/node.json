@@ -1,0 +1,50 @@
+{
+    "name": "Get HeartA State",
+    "id": "2faed5c3-adb6-a6a4-8f3e-1978eab3a6a5",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if hand is making HeartA gesture"
+        }
+    ],
+    "lua": "CGGetHeartAState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetHeartAState",
+    "category": "Hand",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get HeartA state",
+    "productTypes": ["InHouse", "Domestic"]
+}

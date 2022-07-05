@@ -1,0 +1,129 @@
+{
+	"name": "Transit by Time",
+	"id": "d8d6548e-e155-7781-8066-0575a4002a3d",
+	"inputs": [
+		{
+			"name": "Start",
+			"description": "Start the transition at the \"from\" value",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Pause",
+			"description": "Pause the transition",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Resume",
+			"description": "Resume the transition",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stop",
+			"description": "Stop the transition",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "From",
+			"description": "Start value of the transition",
+			"type": "Double",
+			"displayType": "Number",
+			"dynamic": true
+		},
+		{
+			"name": "To",
+			"description": "End value of the transition",
+			"type": "Double",
+			"displayType": "Number",
+			"dynamic": true
+		},
+		{
+			"name": "Duration",
+			"description": "Duration of the transition",
+			"type": "Double",
+			"displayType": "Number",
+			"range": [
+				[
+					0,
+					"inf",
+					1
+				]
+			]
+		},
+		{
+			"name": "Interpolator",
+			"description": "Type of interpolators including Linear, Ease-in, Ease-out, Ease-in-out, Ease-out-in",
+			"type": "String",
+			"value_list": [
+				"Linear",
+				"Ease-in",
+				"Ease-out",
+				"Ease-in-out",
+				"Ease-out-in"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Loop",
+			"description": "Loop count of the transition",
+			"type": "Int",
+			"displayType": "Number",
+			"default_value": 1,
+			"range": [
+				[
+					1,
+					"inf",
+					1
+				]
+			]
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the transition begins",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the transition stay working",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the whole transition is finished",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Current",
+			"description": "Current interpolated value",
+			"type": "Double",
+			"displayType": "Number",
+			"dynamic": true
+		}
+	],
+	"category": "Utility",
+	"TTEHVer": "1.0.0",
+	"description": "Transit from value A to value B according to set interpolator within set time range; (supporting Number, Vec2, Vec3, Vec4, Color)",
+	"productTypes": [
+		"TTEH"
+	],
+	"js": "CGTransitByTime.js",
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"supportedValueTypes": [
+		"Double",
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"Color"
+	]
+}

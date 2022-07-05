@@ -1,0 +1,62 @@
+{
+    "name": "Get Little Finger Key Points",
+    "id": "823f0286-fee5-fc59-fdbe-73dfc1f5259d",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 2, 1]],
+            "description": "Index of hand to get little finger key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Tip",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the tip of little finger"
+        },
+        {
+            "name": "FIrst Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the first joint of little finger"
+        },
+        {
+            "name": "Second Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the second joint of little finger"
+        }
+    ],
+    "lua": "CGGetLittleFingerKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetLittleFingerKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["handDetect", "handDetectKeyPoint"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [2],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get key points on little finger",
+    "productTypes": ["InHouse", "Domestic"]
+}

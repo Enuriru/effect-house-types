@@ -1,0 +1,39 @@
+{
+	"name": "World to Screen",
+	"id": "3a7ccf47-8b74-a89f-64a2-9f5874985bc1",
+	"inputs": [
+		{
+			"name": "World pos",
+			"type": "Vector3f",
+			"item_type": "",
+			"description": "The world position to calculate from",
+			"displayType": "Vec3"
+		},
+		{
+			"name": "Camera",
+			"type": "Camera",
+			"description": "The camera whose screen will be the target to calculate the new position on",
+			"displayType": "Camera"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Screen pos",
+			"type": "Vector2f",
+			"item_type": "",
+			"description": "The screen position to calculate to",
+			"displayType": "Vec2"
+		}
+	],
+	"js": "CGWorldToScreen.js",
+	"lua": "CGWorldToScreen.lua",
+	"version": "1.0",
+	"category": "Transform",
+	"description": "Calculate the screen normalized position from world position",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

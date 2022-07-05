@@ -1,0 +1,43 @@
+{
+  "name": "PointInBoundingBox",
+  "id": "97b950f9-6b53-ca15-825d-79ec0c370c28",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Start detecting"
+    },
+    {
+      "name": "Detect Point",
+      "type": "Vector2f",
+      "item_type": "",
+      "description": "Input a point"
+    },
+    {
+      "name": "Bounding Rect",
+      "type": "Rect",
+      "item_type": "",
+      "description": "The normalized XYWH value of the judged rectangular box region (XY coordinates and width and height)"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "True",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "true when the point in the bounding box"
+    },
+    {
+      "name": "False",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "false when the point outside the bounding box"
+    }
+  ],
+  "lua": "CGPointInBoundingRect.lua",
+  "version": "1.0",
+  "category": "Detection",
+  "description": "Triggered when the point in the bounding box",
+  "productTypes": ["InHouse", "Domestic"]
+}

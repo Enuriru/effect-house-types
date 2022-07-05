@@ -1,0 +1,41 @@
+{
+	"name": "Asin",
+	"id": "ae494be6-4f4f-5b1b-4a69-afe623f943dc",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Asin",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGArcsin.lua",
+	"js": "CGArcsin.js",
+	"version": "1.0",
+	"luaFuncName": "CGArcsin",
+	"category": "Math",
+	"description": "Calculate the arcsine (in radians) of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

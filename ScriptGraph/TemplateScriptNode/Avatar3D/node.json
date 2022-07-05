@@ -1,0 +1,85 @@
+{
+    "name": "Avatar3D",
+    "id": "d35e52e3-9a0c-e42e-d080-65d338698050",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of avatar to detected"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Quaternions",
+            "type": "QuatVector",
+            "item_type": "",
+            "description": "Quaternion of joints"
+        },
+        {
+            "name": "Root",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "Root coordinate"
+        },
+        {
+            "name": "Joint Detected",
+            "type": "IntVector",
+            "item_type": "",
+            "description": "Joint detection status"
+        },
+        {
+            "name": "Avatar Detected",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Avatar detection status"
+        },
+        {
+            "name": "Focal Length",
+            "type": "Float",
+            "item_type": "",
+            "description": "Camera focal length"
+        },
+        {
+            "name": "Joints",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "3D position of joints"
+        },
+        {
+            "name": "Image Width",
+            "type": "Float",
+            "item_type": "",
+            "description": "Image Width"
+        },
+        {
+            "name": "Image Height",
+            "type": "Float",
+            "item_type": "",
+            "description": "Image Height"
+        }
+    ],
+    "lua": "CGAvatar3D.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGAvatar3D",
+    "category": "Algorithm",
+    "graphAlgorithms": ["avatar3d"],
+    "description": "Get avatar3D info",
+    "productTypes": ["InHouse"]
+}

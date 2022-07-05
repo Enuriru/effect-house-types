@@ -1,0 +1,30 @@
+{
+	"name": "Get Local Rotation",
+	"id": "217310b6-12c9-cbc4-3370-92e8589eef3d",
+	"inputs": [
+		{
+			"name": "Transform",
+			"description": "The transform of the target entity",
+			"type": "Transform",
+			"displayType": "Transform"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Rotation",
+			"description": "Local rotation",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGGetLocalRotation.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Get local rotation of a transform"
+}

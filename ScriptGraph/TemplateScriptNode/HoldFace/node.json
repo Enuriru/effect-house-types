@@ -1,0 +1,45 @@
+{
+    "name": "Hold Face",
+    "id": "0e56f4a4-aba4-9bbb-66f5-91d968af4a9d",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a Hold Face gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a Hold Face gesture"
+        }
+    ],
+    "lua": "CGHoldFace.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGHoldFace",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches HoldFace, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

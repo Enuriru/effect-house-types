@@ -1,0 +1,76 @@
+{
+	"name": "Audio Resource Controller",
+	"id": "0183363f-9fc6-a402-b0d4-2a63d597f826",
+	"inputs": [
+		{
+			"name": "Play",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Play the audio source"
+		},
+		{
+			"name": "Stop",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Stop the audio source"
+		},
+		{
+			"name": "Pause",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Pause the audio source"
+		},
+		{
+			"name": "Resume",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Resume the audio source"
+		},
+		{
+			"name": "Audio Resource",
+			"type": "Audio Source",
+			"description": "The audio source you want to play",
+			"displayType": "Audio Source"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "The audio stream. Connect it to a speaker to play.",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "On Play",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Execute next node when the audio source starts playing"
+		},
+		{
+			"name": "On Stop",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Execute next node when the audio source stops playing"
+		},
+		{
+			"name": "On Finish",
+			"type": "Pulse",
+			"displayType": "Exec",
+			"description": "Execute next node when the audio source finishes playing"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioController.js",
+	"category": "Audio",
+	"nodeEvent": [
+		"onUpdate",
+		"onEvent"
+	],
+	"description": "Connect to a speaker as an output to play and control the audio source.",
+	"productTypes": [
+		"TTEH"
+	],
+	"builtinClass": "AudioGeneralNode",
+	"audioNodeName": "AudioControlNode",
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "Speaker",
+	"id": "03cd6d30-fd31-3a17-40a8-c8b237afb900",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "The audio stream you want to play",
+			"displayType": "Audio Stream"
+		}
+	],
+	"outputs": [],
+	"audioNodeName": "SinkNode",
+	"scriptSupport": "js",
+	"js": "CGAudioSpeaker.js",
+	"category": "Audio",
+	"SDKVersion": "10.5.0",
+	"description": "Play the audio stream as an output.",
+	"productTypes": [
+		"TTEH"
+	],
+	"builtinClass": "AudioGeneralNode",
+	"TTEHVer": "1.0.0"
+}

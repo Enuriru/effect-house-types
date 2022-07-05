@@ -1,0 +1,86 @@
+{
+    "name": "Get Expression State",
+    "id": "361d7daf-e622-5382-1015-3b280949fdb0",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Expression",
+            "type": "List",
+            "default_value": "0",
+            "value_list": [
+                {
+                    "value": "ANGRY",
+                    "text": "Angry",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "DISGUST",
+                    "text": "Disgust",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "FEAR",
+                    "text": "Fear",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "HAPPY",
+                    "text": "Happy",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "SAD",
+                    "text": "Sad",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "SURPRISE",
+                    "text": "Surprise",
+                    "value_type": "FaceAttrExpression"
+                },
+                {
+                    "value": "NEUTRAL",
+                    "text": "Neutral",
+                    "value_type": "FaceAttrExpression"
+                }
+            ],
+            "description": "Expression to detect"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "0",
+            "range": [[0, 5, 1]],
+            "description": "Index of face to detect expression"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Expression Detected",
+            "type": "Bool",
+            "item_type": "",
+            "description": "True/false output indicates if the selected expression is detected"
+        }
+    ],
+    "lua": "CGGetExpressionState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetExpressionState",
+    "category": "Detection",
+    "graphAlgorithms": ["expressionDetect"],
+    "description": "Get the state of expression detection",
+    "productTypes": ["InHouse", "Domestic"]
+}

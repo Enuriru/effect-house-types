@@ -1,0 +1,75 @@
+{
+  "version": "5.0.1",
+  "node_id": "unknown",
+  "node_type": "graph_container_node",
+  "nodes": [
+    {
+      "version": "5.0.1",
+      "node_id": "filter",
+      "node_type": "processor_node",
+      "processor_name": "Filter",
+      "processor_state": {
+        "version": "5.0.1",
+        "parameters": [
+          {
+            "index": "0",
+            "name": "Filter Mode",
+            "plain_value": "0"
+          },
+          {
+            "index": "1",
+            "name": "Cutoff Freq",
+            "plain_value": "1000"
+          },
+          {
+            "index": "2",
+            "name": "Resonance",
+            "plain_value": "1"
+          },
+          {
+            "index": "3",
+            "name": "Gain dB",
+            "plain_value": "0"
+          },
+          {
+            "index": "4",
+            "name": "Morph",
+            "plain_value": "0"
+          }
+        ]
+      },
+      "ports": {
+        "input_audio_channels": [
+          "2"
+        ],
+        "output_audio_channels": [
+          "2"
+        ]
+      }
+    }
+  ],
+  "connections": [],
+  "ports": [
+    {
+    "port_direction": "input",
+    "port_type": "audio",
+    "port_index": "0",
+    "internal_node_id": "filter",
+    "internal_node_port_index": "0"
+    },
+    {
+      "port_direction": "input",
+      "port_type": "parameter_change",
+      "port_index": "0",
+      "internal_node_id": "filter",
+      "internal_node_port_index": "0"
+    },
+    {
+      "port_direction": "output",
+      "port_type": "audio",
+      "port_index": "0",
+      "internal_node_id": "filter",
+      "internal_node_port_index": "0"
+    }
+  ]
+}

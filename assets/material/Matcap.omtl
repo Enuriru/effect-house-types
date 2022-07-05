@@ -1,0 +1,160 @@
+{
+    "Shader": "Matcap",
+    "Pass" :
+     {
+        "Ausl" : "a1",
+        "Cull" : "Back",
+        "DepthWriteEnable" : "On",
+        "BlendMode" : "Normal",
+        "ZTest" : "LessEqual"
+     }
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+$Base property$
+_MatCapTexture(MatCap, 2D) = "Default_Material_Texture_Matcap"
+_AlbedoTexture(Base color, 2D) = "Default_Material_Texture_White"
+$Normal map$
+NormalMap(Normal map, Defs) = 0
+[NormalMap]_NormalMap(Normal map, 2D) = "Default_Material_Texture_Normal"
+$UV control$
+UvControl (UV control, Defs) = 0
+[UvControl] _Tiling(Tilling, Vec2) = [1.0, 1.0]
+[UvControl] _Offset(Offset, Vec2) = [0.0, 0.0]
+[UvControl] _Rotation (Rotation, Range(0.000000, 360.0)) = 0.000000
+---END UIPROPERTY
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    #pragma multi_compile AE_AMAZING_USE_BONES
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+        in vec2 attTexcoord0;
+        in vec3 attNormal;
+        #ifdef AE_AMAZING_USE_BONES
+            in vec4 attBoneIds;
+            in vec4 attWeights;
+        #endif
+        #ifdef NormalMap
+            in vec3 attTangent;
+        #endif
+    #pragma end
+
+    // Varyings: outputs of vertex shader, inputs for fragment shader
+    #pragma varying varyings
+        highp vec2 v_uv0;
+        highp vec3 v_nDirWS;
+        #ifdef NormalMap
+            highp vec3 v_tDirWS;
+            highp vec3 v_bDirWS;
+        #endif
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out highp vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes varyings
+        precision highp float;
+        #ifdef AE_AMAZING_USE_BONES
+            const int MAX_BONES = 50;
+            uniform mat4 u_Palatte[MAX_BONES];
+        #endif
+        uniform mat4 u_MVP;
+        uniform mat4 u_Model;
+        uniform mat4 u_TransposeInvModel;
+    #pragma end
+
+    // Fragment stage section in fragment shader
+    #pragma fs varyings targets
+        precision highp float;
+        uniform mat4 u_View;
+        uniform sampler2D _AlbedoTexture;
+        uniform sampler2D _MatCapTexture;
+        #ifdef NormalMap
+            uniform sampler2D _NormalMap;
+        #endif
+        #ifdef UvControl
+            uniform vec2 _Tiling;
+            uniform vec2 _Offset;
+            uniform float _Rotation;
+        #endif
+        // perform scaling, rotation & translation on UV space
+        vec2 UV_TRS(vec2 inputUV, vec2 uvCenter, vec2 uvPan, vec2 uvScale, float uvRotate)
+        {
+            vec2 minusCenterUV = inputUV - uvCenter;
+            float cosVal = cos(uvRotate);
+            float sinVal = sin(uvRotate);
+            mat2 rotateMat = mat2(cosVal, -sinVal, sinVal, cosVal);
+            
+            vec2 outputUV = minusCenterUV * uvScale;
+            outputUV = rotateMat * outputUV + uvCenter;
+            outputUV = outputUV + uvPan;
+            return outputUV;
+        }
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+        #ifdef AE_AMAZING_USE_BONES
+            mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x +
+                                    u_Palatte[int(attBoneIds.y)] * attWeights.y +
+                                    u_Palatte[int(attBoneIds.z)] * attWeights.z +
+                                    u_Palatte[int(attBoneIds.w)] * attWeights.w;
+            vec4 bm_postiton   = boneTransform * vec4(attPosition, 1.0);
+            vec3 bn_normal     = (boneTransform * vec4(attNormal, 0.0)).xyz;
+            v_nDirWS           = (u_TransposeInvModel * vec4(bn_normal, 0.0)).xyz;
+            #ifdef NormalMap
+                vec3 attBinormal = normalize(cross(attNormal,attTangent)); 
+                vec3 bm_tangent    = (boneTransform * vec4(attTangent, 0.0)).xyz;
+                vec3 bm_binormal   = (boneTransform * vec4(attBinormal, 0.0)).xyz;
+                v_tDirWS           = (u_Model * vec4(bm_tangent, 0.0)).xyz;
+                v_bDirWS           = (u_Model * vec4(bm_binormal, 0.0)).xyz;
+            #endif
+            gl_Position        = u_MVP * bm_postiton;
+        #else
+            v_nDirWS    = (u_TransposeInvModel * vec4(attNormal, 0.0)).xyz;
+            #ifdef NormalMap
+                vec3 attBinormal = normalize(cross(attNormal,attTangent)); 
+                v_tDirWS    = (u_Model * vec4(attTangent, 0.0)).xyz;
+                v_bDirWS    = (u_Model * vec4(attBinormal, 0.0)).xyz;
+            #endif
+            gl_Position = u_MVP * vec4(attPosition, 1.0);
+        #endif
+        v_uv0 = vec2(attTexcoord0.x, 1.0 - attTexcoord0.y);
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        vec2 uv = v_uv0;
+        #ifdef UvControl
+            // 360.0 / 6.283185307179586 = 57.295779513082
+            uv = UV_TRS(v_uv0.xy, vec2(0.5, 0.5), _Offset, _Tiling, _Rotation / 57.295779513082);
+        #endif
+        vec3 normal = v_nDirWS;
+        #ifdef NormalMap
+            mat3 TBN = mat3(normalize(v_tDirWS), normalize(v_bDirWS), normalize(v_nDirWS));
+            vec3 normalTS = texture(_NormalMap, uv).xyz;
+            normalTS = mix(vec3(0.5, 0.5, 1.0), normalTS, 1.0);
+            normalTS = normalize(normalTS * 2.0 - 1.0);
+            normal = TBN * normalTS;
+        #endif
+        normal = normalize((u_View * vec4(normal, 0.0)).xyz);
+        vec4 albedo = texture(_AlbedoTexture, uv);
+        vec2 matcapUV = normal.xy * 0.5 + 0.5;
+        matcapUV.y = 1.0 - matcapUV.y;
+        vec4 matcapCol = texture(_MatCapTexture, matcapUV);
+        o_fragColor = albedo * matcapCol;
+    }
+
+---END a1

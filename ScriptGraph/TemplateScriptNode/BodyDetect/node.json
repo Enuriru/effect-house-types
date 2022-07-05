@@ -1,0 +1,48 @@
+{
+	"name": "Body Detection",
+	"id": "231D4B9C-F4D9-A416-39EA-26B40C60E72D",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when any part of the body is detected.",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the body is in the camera viewport.",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the body disappeared.",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Execute when nothing is detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGBodyDetect.js",
+	"lua": "CGBodyDetect.lua",
+	"luaFuncName": "CGBodyDetect",
+	"category": "Body",
+	"subCategory": "Interaction",
+	"nodeEvent": "onUpdate",
+	"description": "Detect how a body is interacting with the camera viewport.",
+	"graphAlgorithms": [
+		"avatar3d"
+	],
+	"productTypes": [
+		"InHouse",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

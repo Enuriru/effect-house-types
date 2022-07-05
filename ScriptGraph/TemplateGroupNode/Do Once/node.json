@@ -1,0 +1,37 @@
+{
+	"name": "Do Once",
+	"id": "2f11c27c-3a3a-8958-c9c3-d99791065139",
+	"category": "Control",
+	"description": "Execute only once if not reset",
+	"groupTemplate": true,
+	"productTypes": [
+		"TTEH"
+	],
+	"foldable": false,
+	"expandable": false,
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Reset",
+			"type": "Pulse",
+			"description": "Reset so that it will do once again",
+			"displayType": "Exec"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		}
+	],
+	"version": "0.9.1",
+	"subgraphPath": "DoOnce.subgraph",
+	"TTEHVer": "1.0.0"
+}

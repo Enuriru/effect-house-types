@@ -1,0 +1,36 @@
+{
+  "name": "F0 Detection",
+  "id": "3b2764b3-e90f-16c1-2d4c-dd9b42b2c7df",
+  "description": "F0 Detection",
+  "inputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Enabled",
+      "type": "Bool",
+      "default_value": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "value",
+      "type": "Double"
+    }
+  ],
+
+  "category": "Audio",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["onUpdate"],
+  "scriptSupport": "js",
+  "js": "CGF0Detection.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioExtractorNode",
+  "audioNodeName": "f0_detection"
+}

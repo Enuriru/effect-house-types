@@ -1,0 +1,77 @@
+{
+	"name": "Gesture (Vow)",
+	"id": "1b5372b8-0679-1af4-6b06-25aa76b8dac6",
+	"inputs": [
+		{
+			"name": "Hand Index",
+			"description": "Which hand to track",
+			"type": "Int",
+			"displayType": "Number",
+			"range": [
+				[
+					0,
+					1,
+					1
+				]
+			]
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGGestureVow.js",
+	"nodeEvent": "onUpdate",
+	"category": "Hand",
+	"TTEHVer": "1.0.0",
+	"graphAlgorithms": [
+		"handGestureDetect"
+	],
+	"extraAlgorithms": [
+		{
+			"port": 0,
+			"values": [
+				1
+			],
+			"algorithms": [
+				"2handGestureDetect"
+			]
+		},
+		{
+			"port": 0,
+			"values": "connected",
+			"algorithms": [
+				"2handGestureDetect"
+			]
+		}
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Detect the \"vow\" hand gesture"
+}

@@ -1,0 +1,65 @@
+{
+    "Shader": "pupil_cutoff_faceu",
+    "Pass" :
+     {
+        "Ausl" : "a1",
+        "Cull" : "None",
+        "DepthTestEnable" : "Off",
+        "DepthWriteEnable" : "Off",
+        "UseFBOTexture" : "Off",
+        "UseFBOFetch" : "Off",
+        "UseCameraRT" : "Off",
+        "BlendMode" : "Particle Premulti Add"
+     }
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+    $Base property$
+    inputImageTexture(inputImageTexture, 2D) = "Default_Texture_Input0"
+    _MaskTexture(maskImageTexture, 2D) = "Default_Texture_EyeColorMaskTwoEyes"
+---END UIPROPERTY
+
+---BEGIN a1
+#version 300 es
+#pragma only_renderers glsl30 metal
+
+// Attributes: attributes in vertex shader
+#pragma input attributes
+    in vec3 attPosition;
+    in vec3 attTexcoord0;
+#pragma end
+
+#pragma varying varyings
+    highp vec2 texCoord;
+    highp vec2 maskTexCoord;
+#pragma end
+
+#pragma vs attributes varyings
+    uniform mat4 uMVPMatrix;
+    uniform mat4 uSTMatrix;
+#pragma end
+
+#pragma output targets
+    out highp vec4 o_FragColor;
+#pragma end
+
+#pragma fs varyings targets
+    uniform sampler2D inputImageTexture;
+    uniform sampler2D _MaskTexture;
+#pragma end
+
+void vertex(){
+    gl_Position = uMVPMatrix * vec4(attPosition.xy, 0.0, 1.0);
+    texCoord = 0.5 * gl_Position.xy + 0.5;
+    vec2 coord = (uSTMatrix * vec4(attTexcoord0.xy, 0.0, 1.0)).xy;
+    maskTexCoord = vec2(coord.x, 1.0 - coord.y);
+}
+
+void fragment(){
+    vec4 src = texture(inputImageTexture, texCoord);
+    float alpha = texture(_MaskTexture, maskTexCoord).r;
+    src = src * alpha;
+    o_FragColor = src;
+}
+---END a1

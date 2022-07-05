@@ -1,0 +1,444 @@
+{
+  "Camera": {
+    "Layers": {
+      "enabled": false,
+      "valueType": "DynamicBitset"
+    },
+    "Render texture": {
+      "enabled": true,
+      "accessType": ["GETTER"],
+      "script": "Property",
+      "valueType": "RenderTexture"
+    },
+    "Render order": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Viewport": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Rect"
+    },
+    "Camera type": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "FOV": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Ortho height": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Near": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Far": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Clear type": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Clear color": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Color"
+    }
+  },
+  "Transform": {
+    "Position": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector3f"
+    },
+    "Rotation": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector3f"
+    },
+    "Scale": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector3f"
+    }
+  },
+  "DirectionalLight": {
+    "Intensity": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Color": {
+      "enabled": true,
+      "script": "LightColorProperty",
+      "valueType": "Color"
+    }
+  },
+  "PointLight": {
+    "Intensity": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Color": {
+      "enabled": true,
+      "script": "LightColorProperty",
+      "valueType": "Color"
+    },
+    "Attenuation range": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    }
+  },
+  "SpotLight": {
+    "Intensity": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Color": {
+      "enabled": true,
+      "script": "LightColorProperty",
+      "valueType": "Color"
+    },
+    "Attenuation range": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Inner angle": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Outer angle": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    }
+  },
+  "Model": {
+    "Mesh": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Mesh"
+    },
+    "Material": {
+      "enabled": true,
+      "script": "SharedMaterials",
+      "valueType": "Material"
+    }
+  },
+  "3D Face Shape": {
+    "WhichFace": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Int"
+    }
+  },
+  "FaceInset": {
+    "Which Face": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Int"
+    },
+    "Input Texture": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "String"
+    },
+    "Face Area": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "String"
+    },
+    "Opacity": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Double"
+    },
+    "Blend Mode": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "String"
+    },
+    "Color": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Color"
+    },
+    "Feathering Scale": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Double"
+    },
+    "Feathering Quality": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Double"
+    },
+    "Outline Color": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Color"
+    },
+    "Outline Thickness": {
+      "enabled": true,
+      "script": "ScriptComponentPropertyV2",
+      "valueType": "Double"
+    }
+  },
+  "Face Mask": {
+    "Color": {
+      "enabled": true,
+      "script": "FaceMakeupMaterialProperty",
+      "valueType": "Color"
+    },
+    "Opacity": {
+      "enabled": true,
+      "script": "FaceMakeupMaterialProperty",
+      "valueType": "Double"
+    },
+    "Offset": {
+      "enabled": true,
+      "script": "FaceMakeupProperty",
+      "valueType": "Vector2f"
+    },
+    "Blend Mode": {
+      "enabled": false,
+      "script": "FaceMakeupMaterialProperty",
+      "valueType": "Int"
+    }
+  },
+  "Eye Color": {
+    "Color": {
+      "enabled": true,
+      "script": "FaceMakeupMaterialProperty",
+      "valueType": "Color"
+    },
+    "Opacity": {
+      "enabled": true,
+      "script": "FaceMakeupMaterialProperty",
+      "valueType": "Double"
+    }
+  },
+  "Animator": {
+    "Playback": {
+      "enabled": true,
+      "script": "AnimatorProperty",
+      "valueType": "Animaz"
+    },
+    "Play mode": {
+      "enabled": true,
+      "script": "AnimatorProperty",
+      "valueType": "Int"
+    }
+  },
+  "Face Binding": {
+    "Which face": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    }
+  },
+  "Filter": {
+    "Texture": {
+      "enabled": true,
+      "script": "FilterProperty",
+      "valueType": "Texture2D"
+    },
+    "Intensity": {
+      "enabled": true,
+      "script": "FilterProperty",
+      "valueType": "Double"
+    }
+  },
+  "Material": {
+    "Color": {
+      "enabled": true,
+      "script": "MaterialProperty",
+      "valueType": "Color"
+    },
+    "Texture": {
+      "enabled": true,
+      "script": "MaterialProperty",
+      "valueType": "Texture2D"
+    }
+  },
+  "Face Stretch": {
+    "Intensity": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Which Face": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    }
+  },
+  "Image": {
+    "Texture": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Texture2D"
+    },
+    "Opacity": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Color": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Color"
+    },
+    "Draw Mode": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Int"
+    },
+    "Start point": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Filled Range": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Ellipse X": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Ellipse Y": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    }
+  },
+  "Morpher": {
+    "channelWeight": {
+      "enabled": true,
+      "script": "MorpherChannelProperty",
+      "valueType": "Double"
+    }
+  },
+  "Bling": {
+    "Opacity": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
+    },
+    "Brightness": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
+    },
+    "Intensity": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
+    },
+    "Size": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
+    },
+    "SizeRandomness": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Double"
+    },
+    "Color1": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Color"
+    },
+    "Color2": {
+      "enabled": true,
+      "script": "BlingProperty",
+      "valueType": "Color"
+    }
+  },
+  "IFTransform2d": {
+    "Position": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector2f"
+    },
+    "Rotation": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Double"
+    },
+    "Scale 2D": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector2f"
+    },
+    "Size": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector2f"
+    },
+    "Pivot": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Vector2f"
+    },
+    "FlipX": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Bool"
+    },
+    "FlipY": {
+      "enabled": true,
+      "script": "Property",
+      "valueType": "Bool"
+    }
+  },
+  "AudioComponent": {
+    "Volume": {
+      "enabled": true,
+      "script": "ScriptComponentProperty",
+      "valueType": "Double"
+    }
+  },
+  "Liquify": {
+    "Radius": {
+      "enabled": true,
+      "script": "LiquifyProperty",
+      "valueType": "Double"
+    },
+    "Intensity X": {
+      "enabled": true,
+      "script": "LiquifyProperty",
+      "valueType": "Double"
+    },
+    "Intensity Y": {
+      "enabled": true,
+      "script": "LiquifyProperty",
+      "valueType": "Double"
+    },
+    "Liquify Area": {
+      "enabled": true,
+      "script": "LiquifyProperty",
+      "valueType": "String"
+    }
+  }
+}

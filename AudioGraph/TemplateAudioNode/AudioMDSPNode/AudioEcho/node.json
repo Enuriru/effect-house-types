@@ -1,0 +1,46 @@
+{
+  "name": "Echo",
+  "id": "d0964dcc-6a57-dd8d-0ea9-1c974ee9b563",
+  "description":"Echo is an Echo effect and in some cases is also called a delay effect. The echo effect will delay the input signal to some extent and then mix it with the original input signal to produce the output. In addition, the delayed signal is superimposed on the input through the feedback channel.",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Tap 1 Delay Time",
+      "type": "Double",
+      "default_value": "0.001",
+      "description": "Set Delay Time."
+    },
+    {
+      "name": "Tap 1 Feedback",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Sets the gain of feedback. The larger the value, the more signals will be returned to the input, the louder the echo will be, and the longer the bounce will disappear."
+    },
+    {
+      "name": "Tap 1 Gain dB",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Gain on the delay channel."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioEcho.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

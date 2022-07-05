@@ -1,0 +1,64 @@
+{
+	"name": "Logic Select ",
+	"id": "55b14d53-a6c9-28d3-615b-f019b0fa8429",
+	"inputs": [
+		{
+			"name": "Condition",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "1",
+			"description": "Boolean value that determines the result",
+			"displayType": "Boolean"
+		},
+		{
+			"name": "Then",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "The value to pass if condition is true",
+			"displayType": "Number"
+		},
+		{
+			"name": "Else",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "The value to pass if condition is false",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"description": "A value based on the inputs",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGSelect.lua",
+	"js": "CGSelect.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGSelect",
+	"category": "Logic",
+	"description": "Pass a value based on condition; (supporting Number, Boolean, Vec2, Vec3, Vec4, Color)",
+	"supportedValueTypes": [
+		"Int",
+		"Double",
+		"Bool",
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"Color"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,73 @@
+{
+	"name": "Hand Detection",
+	"id": "feb28bb4-2006-0066-8682-ff64fc1b8b56",
+	"inputs": [
+		{
+			"name": "Type",
+			"description": "Which type to detect; including Single hand, Both hands",
+			"type": "String",
+			"displayType": "String",
+			"value_list": [
+				"Single hand",
+				"Both hands"
+			]
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGHandDetection.js",
+	"nodeEvent": "onUpdate",
+	"category": "Hand",
+	"TTEHVer": "1.0.0",
+	"graphAlgorithms": [
+		"handDetect"
+	],
+	"extraAlgorithms": [
+		{
+			"port": 0,
+			"values": [
+				"Both hands"
+			],
+			"algorithms": [
+				"2handDetect"
+			]
+		},
+		{
+			"port": 0,
+			"values": "connected",
+			"algorithms": [
+				"2handDetect"
+			]
+		}
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"description": "Detect single hand or both hand appear and disappear"
+}

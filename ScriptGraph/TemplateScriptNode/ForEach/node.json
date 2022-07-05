@@ -1,0 +1,52 @@
+{
+	"name": "For Each",
+	"id": "a2d71510-a6b2-455a-7078-2114ba35c13c",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Collection",
+			"type": "General",
+			"item_type": "",
+			"description": "Enumerable array",
+			"displayType": "Array"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute after loops are finished",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Body",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute for each item in the array",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Item",
+			"type": "General",
+			"item_type": "",
+			"description": "Current item in the list",
+			"displayType": "Object"
+		}
+	],
+	"js": "CGForEach.js",
+	"version": "1.0",
+	"category": "Control",
+	"description": "For each loop control, the body will all execute on each frame, when it's done, it will execute the complete output",
+	"productTypes": [
+		"InHouse",
+		"Domestic"
+	],
+	"TTEHVer": "0.8.0"
+}

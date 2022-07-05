@@ -1,0 +1,35 @@
+{
+  "name": "Play(Audio)",
+  "id": "65b23457-7c4a-603f-374a-5a09ee3baae4",
+  "inputs":
+  [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Control flow"
+    },
+    {
+      "name": "Audio Source",
+      "type": "Audio Source",
+      "description": "Input Audio Stream"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Trigger Next Node"
+    },
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioPlay.js",
+  "category": "Audio",
+  "description": "Play Audio",
+  "productTypes": ["Deprecated"],
+  "builtinClass": "AudioGeneralNode"
+}

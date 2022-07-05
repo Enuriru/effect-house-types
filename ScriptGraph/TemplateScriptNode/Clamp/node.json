@@ -1,0 +1,59 @@
+{
+	"name": "Clamp",
+	"id": "1b80c1e7-ca78-9dfd-2b6d-0db9ac5edfcf",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		},
+		{
+			"name": "Min",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "The minimum value",
+			"displayType": "Number"
+		},
+		{
+			"name": "Max",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "The maximum value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGClamp.lua",
+	"js": "CGClamp.js",
+	"version": "1.0",
+	"luaFuncName": "CGClamp",
+	"category": "Math",
+	"description": "Calculate the clamping of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Spectrum Display",
+  "id": "6b7ef62c-07d1-fcf5-bbde-3d84ce9b63e8",
+  "description": "Track the estimated signal power of an audio source for 8 frequency bands",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Enabled",
+      "type": "Bool",
+      "default_value": "true"
+    },
+    {
+      "name": "db or byte",
+      "type": "Bool",
+      "default_value": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "band1",
+      "type": "Double"
+    },
+    {
+      "name": "band2",
+      "type": "Double"
+    },
+    {
+      "name": "band3",
+      "type": "Double"
+    },
+    {
+      "name": "band4",
+      "type": "Double"
+    },
+    {
+      "name": "band5",
+      "type": "Double"
+    },
+    {
+      "name": "band6",
+      "type": "Double"
+    },
+    {
+      "name": "band7",
+      "type": "Double"
+    },
+    {
+      "name": "band8",
+      "type": "Double"
+    }
+  ],
+
+
+  "category": "Audio",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["onUpdate"],
+  "scriptSupport": "js",
+  "js": "CGSpectrumDisplay.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioExtractorNode",
+  "audioNodeName": "spectrum_display"
+}

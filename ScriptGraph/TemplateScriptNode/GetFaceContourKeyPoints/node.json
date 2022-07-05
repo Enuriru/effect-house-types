@@ -1,0 +1,55 @@
+{
+    "name": "Get Face Contour Key Points",
+    "id": "cf390207-f688-ed57-8de1-42bbcdf54417",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get key points on face contour"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Left Temple",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the left temple"
+        },
+        {
+            "name": "Right Temple",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the right temple"
+        },
+        {
+            "name": "Jaw",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the lowest point of the jaw"
+        }
+    ],
+    "lua": "CGGetFaceContourKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetFaceContourKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get key points on the face contour",
+    "productTypes": ["InHouse", "Domestic"]
+}

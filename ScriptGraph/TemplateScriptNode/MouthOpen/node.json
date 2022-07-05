@@ -1,0 +1,69 @@
+{
+	"name": "Facial Movement (Mouth Open)",
+	"id": "30833e7d-8d4f-5866-751e-714dabb4b217",
+	"inputs": [
+		{
+			"name": "Face Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"range": [
+				[
+					0,
+					5,
+					1
+				]
+			],
+			"description": "Which face to track",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the mouth moves from \"closed\" state to \"open\" state",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Keep executing the next node when the mouth is open",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the action moves from \"open\" state to \"closed\" state",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the mouth is not open",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGMouthOpen.lua",
+	"js": "CGMouthOpen.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGMouthOpen",
+	"category": "Head & Face",
+	"subCategory": "Interaction",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"faceDetect"
+	],
+	"description": "Detect mouth open",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

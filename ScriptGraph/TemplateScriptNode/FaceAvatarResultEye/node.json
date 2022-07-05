@@ -1,0 +1,76 @@
+{
+	"name": "Face Avatar Result (Eye)",
+	"id": "4C7BBAF0-2C2A-9E07-8703-30C0A905A15B",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Blend Shape Channel",
+			"type": "String",
+			"value_list": [
+				"eyeBlinkLeft",
+				"eyeBlinkRight",
+				"eyeLookDownLeft",
+				"eyeLookDownRight",
+				"eyeLookInLeft",
+				"eyeLookInRight",
+				"eyeLookOutLeft",
+				"eyeLookOutRight",
+				"eyeLookUpLeft",
+				"eyeLookUpRight",
+				"eyeSquintLeft",
+				"eyeSquintRight",
+				"eyeWideLeft",
+				"eyeWideRight"
+			],
+			"description": "A scrollable dropdown list contains",
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Weight",
+			"type": "Double",
+			"item_type": "",
+			"description": "The value of weight channel",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGFaceAvatarResultEye.lua",
+	"js": "CGFaceAvatarResultEye.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"SDKVersion": "9.9.0",
+	"luaFuncName": "CGFaceAvatarResultEye",
+	"category": "Head & Face",
+	"graphAlgorithms": [
+		"naviAvatarDrive"
+	],
+	"description": "Provide face avatar drive blend shape channel value information",
+	"supportedNodeSwitchTypes": [
+		"Eye",
+		"Mouth and Jaw",
+		"Eyebrows",
+		"Cheek and Nose",
+		"Tongue"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,94 @@
+{
+	"name": "Facial Movement Detection",
+	"id": "174C331B-333D-8AB7-CD2A-3D252E090E64",
+	"inputs": [
+		{
+			"name": "Detect",
+			"description": "Face select includes Face 0, Face 1, Face 2, Face 3, Face 4, Any; Track any face if choosing Any",
+			"type": "String",
+			"value_list": [
+				"Face 0",
+				"Face 1",
+				"Face 2",
+				"Face 3",
+				"Face 4",
+				"Any"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Facial Movement",
+			"description": "Facial movement including Eye Blink Left, Eye Blink Right, Eye Blink Both, Eye Blink Either, Mouth Open, Mouth Pout, Eyebrow Wiggle",
+			"type": "String",
+			"value_list": [
+				"Eye Blink Left",
+				"Eye Blink Right",
+				"Eye Blink Both",
+				"Eye Blink Either",
+				"Mouth Open",
+				"Mouth Pout",
+				"Eyebrow Wiggle"
+			],
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the facial movement begins",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the facial movement stays, note that even with movements such as blink, the fastest eye blink will still have one frame as \"stay\"",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the facial movement ends",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the facial movement is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGFaceMovementDetection.js",
+	"nodeEvent": "onUpdate",
+	"category": "Head & Face",
+	"TTEHVer": "1.0.0",
+	"description": "Detect facial movement; Note that each facial movement has four states, \"begin\", \"stay\", \"end\", and \"none\", and for movement such as eye blink, even the fastest blink will still have one frame \"stay\" state.",
+	"productTypes": [
+		"TTEH"
+	],
+	"graphAlgorithms": [
+		"faceDetect"
+	],
+	"extraAlgorithms": [
+		{
+			"port": 1,
+			"values": [
+				"Eye Blink Left",
+				"Eye Blink Right",
+				"Eye Blink Both"
+			],
+			"algorithms": [
+				"faceDetectBlink"
+			]
+		},
+		{
+			"port": 1,
+			"values": [
+				"Mouth Pout"
+			],
+			"algorithms": [
+				"faceDetectDuMouth"
+			]
+		}
+	]
+}

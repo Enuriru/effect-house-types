@@ -1,0 +1,36 @@
+{
+  "name": "Stop(Audio)",
+  "id": "066d5b4b-1750-250e-db42-792fe191e308",
+  "inputs":
+  [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Control flow"
+    },
+    {
+      "name": "Audio Source",
+      "type": "Audio Source",
+      "description": "Input Audio Stream"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Trigger Next Node"
+    },
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioStop.js",
+  "category": "Audio",
+  "description": "Stop Audio",
+  "productTypes": ["Deprecated"],
+  "builtinClass": "AudioGeneralNode",
+  "audioNodeClass": "ExtractorNode"
+}

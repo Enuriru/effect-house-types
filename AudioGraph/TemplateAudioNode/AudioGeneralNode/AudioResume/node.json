@@ -1,0 +1,35 @@
+{
+  "name": "Resume(Audio)",
+  "id": "4f2f41e4-72ed-b3ec-35d3-ef11f5ab2628",
+  "inputs":
+  [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Control flow"
+    },
+    {
+      "name": "Audio Source",
+      "type": "Audio Source",
+      "description": "Input Audio Stream"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Trigger Next Node"
+    },
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioResume.js",
+  "category": "Audio",
+  "description": "Resume Audio",
+  "productTypes": ["Deprecated"],
+  "builtinClass": "AudioGeneralNode"
+}

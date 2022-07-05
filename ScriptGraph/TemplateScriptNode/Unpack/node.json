@@ -1,0 +1,123 @@
+{
+	"name": "Split",
+	"id": "ab48e932-45f8-d528-500e-e052b59df6cf",
+	"description": "Unpack a vector to numbers; (supporting Vec2, Vec3, Vec4, Color)",
+	"outputChangeFollowInput": [
+		{
+			"inputKey": "Vector2f",
+			"outputNames": [
+				"X",
+				"Y"
+			],
+			"outputTypes": [
+				"Double",
+				"Double"
+			],
+			"outputDescriptions": [
+				"unpacked numbers",
+				"unpacked numbers"
+			]
+		},
+		{
+			"inputKey": "Vector3f",
+			"outputNames": [
+				"X",
+				"Y",
+				"Z"
+			],
+			"outputTypes": [
+				"Double",
+				"Double",
+				"Double"
+			],
+			"outputDescriptions": [
+				"unpacked numbers",
+				"unpacked numbers",
+				"unpacked numbers"
+			]
+		},
+		{
+			"inputKey": "Vector4f",
+			"outputNames": [
+				"X",
+				"Y",
+				"Z",
+				"W"
+			],
+			"outputTypes": [
+				"Double",
+				"Double",
+				"Double",
+				"Double"
+			],
+			"outputDescriptions": [
+				"unpacked numbers",
+				"unpacked numbers",
+				"unpacked numbers",
+				"unpacked numbers"
+			]
+		},
+		{
+			"inputKey": "Color",
+			"outputNames": [
+				"R",
+				"G",
+				"B",
+				"A"
+			],
+			"outputTypes": [
+				"Double",
+				"Double",
+				"Double",
+				"Double"
+			],
+			"outputDescriptions": [
+				"unpacked numbers",
+				"unpacked numbers",
+				"unpacked numbers",
+				"unpacked numbers"
+			]
+		}
+	],
+	"inputs": [
+		{
+			"name": "Value",
+			"type": "Vector2f",
+			"description": "Value to split",
+			"dynamic": true,
+			"default_value": "0",
+			"item_type": "",
+			"displayType": "Vec2"
+		}
+	],
+	"outputs": [
+		{
+			"name": "X",
+			"type": "Double",
+			"item_type": "",
+			"description": "split numbers"
+		},
+		{
+			"name": "Y",
+			"type": "Double",
+			"item_type": "",
+			"description": "split numbers"
+		}
+	],
+	"js": "CGUnpackNode.js",
+	"lua": "CGUnpackNode.lua",
+	"luaFuncName": "CGUnpackNode",
+	"category": "Utility",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"Color"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

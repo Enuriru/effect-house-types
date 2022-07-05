@@ -1,0 +1,594 @@
+{
+    "__class": "VFXGraph",
+    "__uniqueId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+    "panelName": "Visual Effect Graph",
+    "graphType": "VFX",
+    "subGraphs": {
+        "__uniqueId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+        "__class": "VFXGraph",
+        "graphType": "VFX",
+        "containerId": "374200bf-96ec-3c80-69e2-9929abc76609",
+        "containerTitle": "Main graph",
+        "subGraph": []
+    },
+    "nodeList": [
+        {
+            "__class": "VFXGraphContextNodeSpawner",
+            "__uniqueId": "25660bc0-0fe4-6531-333e-5307f2cec44f",
+            "nodeName": "Spawner_9",
+            "displayName": "Spawner_9",
+            "error": false,
+            "inputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "52ac99c0-ce3f-32ec-c359-6b83697ae5d7",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": true,
+                    "portValue": {
+                        "type": "Default"
+                    },
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            ],
+            "outputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "6a6be8f0-d96c-b491-49d9-45c3d6e1d905",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": false,
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 254,
+                        "y": 0
+                    }
+                }
+            ],
+            "category": "default",
+            "nodeType": "DEFAULT",
+            "position": {
+                "x": 50000,
+                "y": 50000
+            },
+            "size": {
+                "width": 254,
+                "height": 150
+            },
+            "title": "Spawner",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "deletable": true,
+            "cloneable": true,
+            "blocklist": [
+                {
+                    "__class": "VFXGraphBlockNodeConstantSpawnRateV2",
+                    "__uniqueId": "788ac6e9-941b-ff9a-5287-82655a2f6d08",
+                    "nodeName": "ConstantSpawnRateV2_10",
+                    "displayName": "ConstantSpawnRateV2_10",
+                    "error": false,
+                    "inputPorts": [
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "df125559-16ff-82e1-d2a8-b490549060db",
+                            "portName": "spawnRateMin",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Real",
+                                "value": 1.001
+                            },
+                            "portIndex": 0,
+                            "valueTypeName": "Real",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "31ff99ec-6e45-94f2-c4fc-18f9f24062b4",
+                            "portName": "spawnRateMax",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Real",
+                                "value": 2.001
+                            },
+                            "portIndex": 1,
+                            "valueTypeName": "Real",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "bc1a3d3e-681e-dc0f-c7e4-bbb69c18e54a",
+                            "portName": "delayMin",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Real",
+                                "value": 0.0001
+                            },
+                            "portIndex": 2,
+                            "valueTypeName": "Real",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "aedc36dc-dc24-519f-63ae-f5b321714cb8",
+                            "portName": "delayMax",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Real",
+                                "value": 0.0001
+                            },
+                            "portIndex": 3,
+                            "valueTypeName": "Real",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    ],
+                    "outputPorts": [],
+                    "category": "default",
+                    "nodeType": "DEFAULT",
+                    "position": {
+                        "x": 50000,
+                        "y": 49900
+                    },
+                    "size": {
+                        "width": 254,
+                        "height": 120
+                    },
+                    "title": "ConstantSpawnRateV2",
+                    "deletable": true,
+                    "cloneable": true,
+                    "blockType": 2,
+                    "varName": "ConstantSpawnRateV2",
+                    "name": "ConstantSpawnRateV2",
+                    "attributes": [],
+                    "builtinVars": "[]",
+                    "useDalta": false
+                }
+            ]
+        },
+        {
+            "__class": "VFXGraphContextNodeInit",
+            "__uniqueId": "0312c209-320c-890f-b72f-38aa22021ddf",
+            "nodeName": "Init_11",
+            "displayName": "Init_11",
+            "error": false,
+            "inputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "0baf5d6c-1535-edff-6f7b-c08bd69b6a57",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": true,
+                    "portValue": {
+                        "type": "Default"
+                    },
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            ],
+            "outputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "0ab96a3a-cad6-c64f-5edc-7477a564e528",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": false,
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 254,
+                        "y": 0
+                    }
+                }
+            ],
+            "category": "default",
+            "nodeType": "DEFAULT",
+            "position": {
+                "x": 50100,
+                "y": 50000
+            },
+            "size": {
+                "width": 254,
+                "height": 150
+            },
+            "title": "Init",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "deletable": true,
+            "cloneable": true,
+            "blocklist": [
+                {
+                    "__class": "VFXGraphBlockNodeSetVelocityRandom",
+                    "__uniqueId": "5e1c7842-12dd-1f1e-ae24-fe0fc6c6ef95",
+                    "nodeName": "Node-5e1c7842_12",
+                    "displayName": "Node-5e1c7842_12",
+                    "error": false,
+                    "inputPorts": [
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "75d65aa9-eed6-498e-9928-2a78b51a5b88",
+                            "portName": "Min",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Vector3f",
+                                "value":{
+                                    "x":-10.0,
+                                    "y":-10.0,
+                                    "z":-10.0
+                                }
+                            },
+                            "portIndex": 0,
+                            "valueTypeName": "Vector3f",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "a15e40aa-4069-8c7e-350e-0536ea835d99",
+                            "portName": "Max",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Vector3f",
+                                "value":{
+                                    "x":10.0,
+                                    "y":10.0,
+                                    "z":10.0
+                                }
+                            },
+                            "portIndex": 1,
+                            "valueTypeName": "Vector3f",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    ],
+                    "outputPorts": [],
+                    "category": "default",
+                    "nodeType": "DEFAULT",
+                    "position": {
+                        "x": 50100,
+                        "y": 49900
+                    },
+                    "size": {
+                        "width": 254,
+                        "height": 120
+                    },
+                    "title": "SetVelocityRandom",
+                    "deletable": true,
+                    "cloneable": true,
+                    "blockType": 8,
+                    "varName": "SetVelocityRandom",
+                    "name": "SetVelocityRandom",
+                    "attributes": [
+                        4,
+                        1
+                    ],
+                    "builtinVars": "[]",
+                    "useDalta": false
+                },
+                {
+                    "__class": "VFXGraphBlockNodeCapacity",
+                    "__uniqueId": "58d01e40-0e06-0dfe-0aa6-3446558c22e6",
+                    "nodeName": "Capacity_13",
+                    "displayName": "Capacity_13",
+                    "error": false,
+                    "inputPorts": [
+                        {
+                            "__class": "VFXGraphPort",
+                            "__uniqueId": "2b3f1279-f4d0-4351-0f8b-ca72f1a03e4d",
+                            "portName": "capacity",
+                            "type": "DATA",
+                            "isInput": true,
+                            "portValue": {
+                                "type": "Int",
+                                "value": 2000
+                            },
+                            "portIndex": 0,
+                            "valueTypeName": "Int",
+                            "isConnect": false,
+                            "refEdges": [],
+                            "isDynamic": false,
+                            "centerPosition": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    ],
+                    "outputPorts": [],
+                    "category": "default",
+                    "nodeType": "DEFAULT",
+                    "position": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "size": {
+                        "width": 0,
+                        "height": 0
+                    },
+                    "title": "Capacity",
+                    "deletable": true,
+                    "cloneable": true,
+                    "blockType": 4,
+                    "varName": "Capacity",
+                    "name": "Capacity",
+                    "attributes": [
+                        3,
+                        8
+                    ],
+                    "builtinVars": "[]",
+                    "useDalta": false
+                }
+            ]
+        },
+        {
+            "__class": "VFXGraphContextNodeUpdate",
+            "__uniqueId": "44146800-3c47-1677-a81f-de9d4becab57",
+            "nodeName": "Update_14",
+            "displayName": "Update_14",
+            "error": false,
+            "inputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "46933d93-fa72-f340-94cf-f335a12a0e23",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": true,
+                    "portValue": {
+                        "type": "Default"
+                    },
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            ],
+            "outputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "bde1508c-e639-6d37-db9f-b189314db8d4",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": false,
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 254,
+                        "y": 0
+                    }
+                }
+            ],
+            "category": "default",
+            "nodeType": "DEFAULT",
+            "position": {
+                "x": 50200,
+                "y": 50000
+            },
+            "size": {
+                "width": 254,
+                "height": 150
+            },
+            "title": "Update",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "deletable": true,
+            "cloneable": true,
+            "blocklist": []
+        },
+        {
+            "__class": "VFXGraphContextNodeOutput",
+            "__uniqueId": "db83de43-384f-ac4f-beb1-1379c8c5fe1b",
+            "nodeName": "Output_15",
+            "displayName": "Output_15",
+            "error": false,
+            "inputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "eb1d38d4-5e9c-a5d2-aa0f-10be7c007cbf",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": true,
+                    "portValue": {
+                        "type": "Default"
+                    },
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 0,
+                        "y": 0
+                    }
+                }
+            ],
+            "outputPorts": [
+                {
+                    "__class": "VFXGraphPort",
+                    "__uniqueId": "fce6b851-086b-bb72-828f-4e4fcc075dc5",
+                    "portName": "",
+                    "type": "DEFAULT",
+                    "isInput": false,
+                    "portIndex": 0,
+                    "valueTypeName": "Default",
+                    "isConnect": false,
+                    "refEdges": [],
+                    "isDynamic": false,
+                    "centerPosition": {
+                        "x": 254,
+                        "y": 0
+                    }
+                }
+            ],
+            "category": "default",
+            "nodeType": "DEFAULT",
+            "position": {
+                "x": 50300,
+                "y": 50000
+            },
+            "size": {
+                "width": 254,
+                "height": 150
+            },
+            "title": "Output",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "deletable": true,
+            "cloneable": true,
+            "blocklist": []
+        }
+    ],
+    "edgeList": [
+        {
+            "__class": "Edge",
+            "__uniqueId": "c5da2a56-a1de-edec-9372-1188f1b9f4d5",
+            "edgeValid": true,
+            "inputPort": "6a6be8f0-d96c-b491-49d9-45c3d6e1d905",
+            "inputNode": "25660bc0-0fe4-6531-333e-5307f2cec44f",
+            "inputPortIndex": 0,
+            "inputPortType": "Default",
+            "outputPort": "0baf5d6c-1535-edff-6f7b-c08bd69b6a57",
+            "outputNode": "0312c209-320c-890f-b72f-38aa22021ddf",
+            "outputPortIndex": 0,
+            "outputPortType": "Default",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "sourcePortPosition": {
+                "x": 50000,
+                "y": 50000
+            },
+            "targetPortPosition": {
+                "x": 50100,
+                "y": 50000
+            },
+            "sourceNode": "25660bc0-0fe4-6531-333e-5307f2cec44f",
+            "targetNode": "0312c209-320c-890f-b72f-38aa22021ddf",
+            "sourcePort": "6a6be8f0-d96c-b491-49d9-45c3d6e1d905",
+            "targetPort": "0baf5d6c-1535-edff-6f7b-c08bd69b6a57",
+            "sourceNodeClass": "VFXGraphContextNodeSpawner",
+            "targetNodeClass": "VFXGraphContextNodeInit",
+            "uiConnectionValid": true
+        },
+        {
+            "__class": "Edge",
+            "__uniqueId": "ce60e90b-a902-30e5-ac8f-7dbd4a317629",
+            "edgeValid": true,
+            "inputPort": "0ab96a3a-cad6-c64f-5edc-7477a564e528",
+            "inputNode": "0312c209-320c-890f-b72f-38aa22021ddf",
+            "inputPortIndex": 0,
+            "inputPortType": "Default",
+            "outputPort": "46933d93-fa72-f340-94cf-f335a12a0e23",
+            "outputNode": "44146800-3c47-1677-a81f-de9d4becab57",
+            "outputPortIndex": 0,
+            "outputPortType": "Default",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "sourcePortPosition": {
+                "x": 50100,
+                "y": 50000
+            },
+            "targetPortPosition": {
+                "x": 50200,
+                "y": 50000
+            },
+            "sourceNode": "0312c209-320c-890f-b72f-38aa22021ddf",
+            "targetNode": "44146800-3c47-1677-a81f-de9d4becab57",
+            "sourcePort": "0ab96a3a-cad6-c64f-5edc-7477a564e528",
+            "targetPort": "46933d93-fa72-f340-94cf-f335a12a0e23",
+            "sourceNodeClass": "VFXGraphContextNodeInit",
+            "targetNodeClass": "VFXGraphContextNodeUpdate",
+            "uiConnectionValid": true
+        },
+        {
+            "__class": "Edge",
+            "__uniqueId": "23043253-5472-7ff0-a4ef-5c38c6c4305b",
+            "edgeValid": true,
+            "inputPort": "bde1508c-e639-6d37-db9f-b189314db8d4",
+            "inputNode": "44146800-3c47-1677-a81f-de9d4becab57",
+            "inputPortIndex": 0,
+            "inputPortType": "Default",
+            "outputPort": "eb1d38d4-5e9c-a5d2-aa0f-10be7c007cbf",
+            "outputNode": "db83de43-384f-ac4f-beb1-1379c8c5fe1b",
+            "outputPortIndex": 0,
+            "outputPortType": "Default",
+            "ownerId": "4d1a132e-8bb7-1eac-2547-9be30c80a6f7",
+            "sourcePortPosition": {
+                "x": 50200,
+                "y": 50000
+            },
+            "targetPortPosition": {
+                "x": 50300,
+                "y": 50000
+            },
+            "sourceNode": "44146800-3c47-1677-a81f-de9d4becab57",
+            "targetNode": "db83de43-384f-ac4f-beb1-1379c8c5fe1b",
+            "sourcePort": "bde1508c-e639-6d37-db9f-b189314db8d4",
+            "targetPort": "eb1d38d4-5e9c-a5d2-aa0f-10be7c007cbf",
+            "sourceNodeClass": "VFXGraphContextNodeUpdate",
+            "targetNodeClass": "VFXGraphContextNodeOutput",
+            "uiConnectionValid": true
+        }
+    ],
+    "containerId": "374200bf-96ec-3c80-69e2-9929abc76609",
+    "containerTitle": "Main graph"
+}

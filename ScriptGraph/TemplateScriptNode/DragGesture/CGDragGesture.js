@@ -1,0 +1,68 @@
+/**
+ * @file CGDragGesture.js
+ * @author liujiacheng
+ * @date 2021/8/23
+ * @brief CGDragGesture.js
+ * @copyright Copyright (c) 2021, ByteDance Inc, All Rights Reserved
+ */
+
+const {BaseNode} = require('./BaseNode');
+const Amaz = effect.Amaz;
+
+class CGDragGesture extends BaseNode {
+  constructor() {
+    super();
+    this.startPoint = new Amaz.Vector2f(0, 0);
+  }
+
+  beforeStart(sys) {
+    if (!this.haveRegisterListener) {
+      Amaz.AmazingManager.getSingleton('Input').addScriptListener(
+        sys.script,
+        Amaz.InputListener.ON_GESTURE_DRAG,
+        'onCallBack',
+        sys.script
+      );
+      this.__proto__.haveRegisterListener = true;
+    }
+  }
+
+  onStart(sys) {}
+
+  onComponentRemoved(sys, comp) {}
+
+  onDestroy(sys) {
+    Amaz.AmazingManager.getSingleton('Input').removeScriptListener(
+      sys.script,
+      Amaz.InputListener.ON_GESTURE_DRAG,
+      'onCallBack',
+      sys.script
+    );
+    this.__proto__.haveRegisterListener = false;
+  }
+
+  onEvent(sys, event) {
+    if (event.type === Amaz.EventType.TOUCH) {
+      const touch = event.args.get(0);
+      if (touch.type === Amaz.TouchType.TOUCH_BEGAN) {
+        this.startPoint = new Amaz.Vector2f(touch.x, touch.y);
+      }
+    }
+  }
+
+  onCallBack(userData, sender, eventType) {
+    if (eventType !== Amaz.InputListener.ON_GESTURE_DRAG) {
+      return;
+    }
+
+    if (sender !== null) {
+      this.outputs[1] = new Amaz.Vector2f(sender.x - this.startPoint.x, sender.y - this.startPoint.y);
+      this.outputs[2] = new Amaz.Vector2f(sender.x, sender.y);
+      if (this.nexts[0]) {
+        this.nexts[0]();
+      }
+    }
+  }
+}
+
+exports.CGDragGesture = CGDragGesture;

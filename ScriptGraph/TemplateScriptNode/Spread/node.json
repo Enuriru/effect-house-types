@@ -1,0 +1,45 @@
+{
+    "name": "Spread",
+    "id": "14e3015b-3703-c36d-b0a9-e52149cdaf47",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a Spread gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a Spread gesture"
+        }
+    ],
+    "lua": "CGSpread.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGSpread",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches spread gesture, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

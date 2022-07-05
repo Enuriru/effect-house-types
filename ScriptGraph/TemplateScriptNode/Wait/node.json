@@ -1,0 +1,45 @@
+{
+	"name": "Wait for Seconds",
+	"id": "fabb7d28-44dc-6c9b-19c2-05cb1e546b4a",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Start",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"description": "The number of seconds to wait",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when time is up",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGWait.lua",
+	"js": "CGWait.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGWait",
+	"category": "Time",
+	"description": "Delay a value by some time",
+	"nodeEvent": "onUpdate",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

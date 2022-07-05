@@ -1,0 +1,12 @@
+{
+    "uuid": "12345",
+    "type": "texture",
+    "subType": "face",
+    "rtti": "RenderTexture",
+    "properties": {
+      "flipUv": true,
+      "faceIndex": 0,
+      "textureResScale":2,
+      "meshPath": "default"
+    }
+  }

@@ -1,0 +1,72 @@
+{
+    "name": "Hand Info",
+    "id": "7aede0f5-d3b6-a35a-d9ab-8beb4236c147",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Rect",
+            "type": "Rect",
+            "item_type": "",
+            "description": "The detected area"
+        },
+
+        {
+            "name": "Rot angle",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Rotation angle of hand"
+        },
+        {
+            "name": "Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "2D key points of hand"
+        },
+        {
+            "name": "Scale",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "1",
+            "description": "Scale of current hand"
+        }
+    ],
+    "js": "CGHandInfo.js",
+    "lua": "CGHandInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGHandInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["handDetect", "handDetectKeyPoint", "handDetectKeyPoint3D", "handDetectLeftRight"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Hand info",
+    "productTypes": ["InHouse"]
+}

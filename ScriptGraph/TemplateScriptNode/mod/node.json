@@ -1,0 +1,51 @@
+{
+	"name": "Mod",
+	"id": "80267734-56d8-6dd5-11a3-59b797c3cbd6",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "Input value A",
+			"displayType": "Number"
+		},
+		{
+			"name": "B",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "Input value B",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "A%B",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGMod.lua",
+	"js": "CGMod.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGMod",
+	"category": "Math",
+	"description": "Calculate mod value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

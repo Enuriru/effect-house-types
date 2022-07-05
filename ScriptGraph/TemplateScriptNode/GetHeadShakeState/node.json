@@ -1,0 +1,43 @@
+{
+    "name": "Get Head Shake State",
+    "id": "8851f7d4-2970-9f08-325f-2becbb2ccd76",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if the head is shaking"
+        }
+    ],
+    "lua": "CGGetHeadShakeState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetHeadShakeState",
+    "category": "Face",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get head shaking state",
+    "productTypes": ["InHouse", "Domestic"]
+}

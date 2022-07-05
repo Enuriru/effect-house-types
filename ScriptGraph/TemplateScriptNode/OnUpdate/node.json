@@ -1,0 +1,38 @@
+{
+	"name": "Update",
+	"id": "76dd06cb-6f7a-60eb-e2fa-c9b10a0c78fc",
+	"copyEnable": true,
+	"groupEnable": true,
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Delta Time",
+			"type": "Double",
+			"item_type": "",
+			"description": "Delta time of each update event",
+			"displayType": "Number"
+		}
+	],
+	"js": "CGOnUpdate.js",
+	"lua": "CGOnUpdate.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGOnUpdate",
+	"category": "Event",
+	"subCategory": "Lifecycle",
+	"description": "Execute every frame",
+	"nodeEvent": "onUpdate",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

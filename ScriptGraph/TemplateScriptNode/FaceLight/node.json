@@ -1,0 +1,49 @@
+{
+    "name": "Face Light",
+    "id": "5df0a642-092a-8ce2-b27c-f6b452bbe3ae",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Has Lighting",
+            "type": "Bool",
+            "item_type": "",
+            "description": "If face has lighting"
+        },
+        {
+            "name": "Face Light RGB",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "Face light RGB"
+        }
+    ],
+    "lua": "CGFaceLightInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFaceLightInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["faceLight"],
+    "description": "Get face light info",
+    "productTypes": ["InHouse"]
+}

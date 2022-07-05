@@ -1,0 +1,86 @@
+{
+	"name": "Gesture (Victory)",
+	"id": "eb649a29-94dd-b376-a3bb-4a482fe17e26",
+	"inputs": [
+		{
+			"name": "Hand Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Which hand to track",
+			"displayType": "Number",
+			"range": [
+				[
+					0,
+					1,
+					1
+				]
+			]
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGVictory.lua",
+	"js": "CGVictory.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGVictory",
+	"category": "Hand",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"handGestureDetect"
+	],
+	"extraAlgorithms": [
+		{
+			"port": 0,
+			"values": [
+				1
+			],
+			"algorithms": [
+				"2handGestureDetect"
+			]
+		},
+		{
+			"port": 0,
+			"values": "connected",
+			"algorithms": [
+				"2handGestureDetect"
+			]
+		}
+	],
+	"description": "Detect the \"victory\" hand gesture ",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

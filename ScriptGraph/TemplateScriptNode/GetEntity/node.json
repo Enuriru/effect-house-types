@@ -1,0 +1,24 @@
+{
+    "name": "GetEntity",
+    "id": "2f0fed0f-5279-9602-3083-5e1f28163563",
+    "inputs": 
+    [
+    ],
+    "outputs":
+    [
+        {
+            "name": "Entity",
+            "type": "Entity",
+            "item_type": "",
+            "description": "Get the entity where the current compent is located"
+        }
+    ],
+    "lua": "CGGetEntity.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetEntity",
+    "category": "Utility",
+    "description": "Get current entity",
+    "withGraph": true,
+    "productTypes": ["InHouse"]
+}

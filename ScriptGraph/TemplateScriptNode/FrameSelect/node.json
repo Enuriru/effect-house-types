@@ -1,0 +1,40 @@
+{
+    "name": "Frame Select",
+    "id": "3e16ef4c-60a2-5c2a-3994-014982789aee",
+    "inputs":
+    [
+        {
+            "name": "Frames",
+            "type": "TextureList",
+            "item_type": "",
+            "description": "input render texture list"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "description": "Index of texture list"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "RT",
+            "type": "Texture",
+            "item_type": "",
+            "description": "The texture captured"
+        },
+        {
+            "name": "exist",
+            "type": "Bool",
+            "item_type": "",
+            "description": "return if texture in input texture list of specified index exists"
+        }
+    ],
+    "lua": "CGFrameSelect.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFrameSelect",
+    "category": "Utility",
+    "description": "Select a frame from input list",
+    "productTypes": ["InHouse"]
+}

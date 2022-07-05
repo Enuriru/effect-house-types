@@ -1,0 +1,92 @@
+{
+	"name": "Timer",
+	"id": "4fa40910-98a8-e9f2-ee28-15b4d2a6fb7c",
+	"inputs": [
+		{
+			"name": "Start",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Start the timer",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Pause",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Pause the timer",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Resume",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Resume the timer",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Duration",
+			"type": "Double",
+			"item_type": "",
+			"description": "Duration time",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Started",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the timer starts",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Tick",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Executes the next node each frame",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Completed",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the timer stops",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Elapsed Time",
+			"type": "Double",
+			"item_type": "",
+			"description": "The number of seconds elapsed since the timer started",
+			"displayType": "Number"
+		},
+		{
+			"name": "Progress",
+			"type": "Double",
+			"item_type": "",
+			"description": "The proportion of the duration that has elapsed (0-1)",
+			"displayType": "Number"
+		},
+		{
+			"name": "Remaining",
+			"type": "Double",
+			"item_type": "",
+			"description": "The number of seconds remaining until the timer is elapsed",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGTimer.lua",
+	"js": "CGTimer.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGTimer",
+	"category": "Time",
+	"nodeEvent": "onUpdate",
+	"description": "Timer ",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

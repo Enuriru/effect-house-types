@@ -1,0 +1,68 @@
+{
+	"name": "Vibrato",
+	"id": "d9e85b3d-3518-5b06-711e-46cbd7b15c29",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Rate",
+			"type": "Double",
+			"default_value": "1",
+			"range": [
+				[
+					0,
+					2,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "Rate of the effect[0,2]"
+		},
+		{
+			"name": "Semitones",
+			"type": "Double",
+			"default_value": "1",
+			"range": [
+				[
+					0,
+					2,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "Pitch shift amount in musical semitones [0,2]"
+		},
+		{
+			"name": "Enabled",
+			"description": "Enable this node",
+			"type": "ErrorType",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioEffectVibrato.js",
+	"category": "Audio",
+	"description": "A rapid, slight variation in pitch, producing a stronger or richer tone.",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioEffectNode",
+	"audioNodeName": "vibrato",
+	"TTEHVer": "1.0.0"
+}

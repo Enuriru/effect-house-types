@@ -1,0 +1,67 @@
+{
+	"name": "Face Avatar Result (Eyebrows)",
+	"id": "3520DD2B-613A-C531-639A-234E60E7F3F6",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Blend Shape Channel",
+			"type": "String",
+			"value_list": [
+				"browDownLeft",
+				"browDownRight",
+				"browInnerUp",
+				"browOuterUpLeft",
+				"browOuterUpRight"
+			],
+			"description": "A scrollable dropdown list contains",
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Weight",
+			"type": "Double",
+			"item_type": "",
+			"description": "The value of weight channel",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGFaceAvatarResultEyebrows.lua",
+	"js": "CGFaceAvatarResultEyebrows.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"SDKVersion": "9.9.0",
+	"luaFuncName": "CGFaceAvatarResultEyebrows",
+	"category": "Head & Face",
+	"graphAlgorithms": [
+		"naviAvatarDrive"
+	],
+	"description": "Provide face avatar drive blend shape channel value information",
+	"supportedNodeSwitchTypes": [
+		"Eye",
+		"Mouth and Jaw",
+		"Eyebrows",
+		"Cheek and Nose",
+		"Tongue"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,36 @@
+{
+	"name": "Negate",
+	"id": "804a898c-9ba2-7a84-cd68-722a2984171d",
+	"inputs": [
+		{
+			"name": "Value",
+			"type": "Bool",
+			"default_value": "0",
+			"item_type": "",
+			"description": "Boolean value",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean value",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGNot.js",
+	"lua": "CGNot.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGNot",
+	"category": "Logic",
+	"description": "Flip a boolean from true to false, or false to true",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,45 @@
+{
+	"name": "Gesture (Heart B)",
+	"id": "7a74407e-07bb-6cc8-ada7-2bb34b082e60",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGGestureHeartB.js",
+	"nodeEvent": "onUpdate",
+	"category": "Hand",
+	"TTEHVer": "1.0.0",
+	"graphAlgorithms": [
+		"2handGestureDetect"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Detect the \"heart (type B)\" hand gesture"
+}

@@ -1,0 +1,48 @@
+{
+    "name": "Equals",
+    "id": "f8e3a248-caf4-40db-306c-5e8ae91c8464",
+    "inputs":
+    [
+        {
+            "name": "Value1",
+            "type": "Double",
+            "item_type": "",
+            "default_value": "0",
+            "dynamic": true,
+            "description": "The base number"
+        },
+        {
+            "name": "Value2",
+            "type": "Double",
+            "item_type": "",
+            "default_value": "0",
+            "dynamic": true,
+            "description": "The number to compare to the base"
+        },
+        {
+            "name": "Tolerance",
+            "type": "Double",
+            "item_type": "",
+            "default_value": "0",
+            "dynamic": true,
+            "description": "A tolerance value for comparison"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Value",
+            "type": "Bool",
+            "item_type": "",
+            "dynamic": false,
+            "description": "A boolean signal of comparison result"
+        }
+    ],
+    "js": "CGEqual.js",
+    "lua": "CGEquals.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGEquals",
+    "category": "Logic",
+    "description": "Check if 2 numbers are equal, only support number comparison",
+    "productTypes": ["InHouse", "Domestic"]
+}

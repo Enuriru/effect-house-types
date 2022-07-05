@@ -1,0 +1,63 @@
+{
+	"name": "Get System Time",
+	"id": "bebc0a13-3c35-a1aa-7032-16dc5e1e0a58",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Year",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current year",
+			"displayType": "Number"
+		},
+		{
+			"name": "Month",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current month",
+			"displayType": "Number"
+		},
+		{
+			"name": "Day",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current day",
+			"displayType": "Number"
+		},
+		{
+			"name": "Hour",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current hour",
+			"displayType": "Number"
+		},
+		{
+			"name": "Minute",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current minute",
+			"displayType": "Number"
+		},
+		{
+			"name": "Second",
+			"type": "Int",
+			"item_type": "",
+			"description": "The current second",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGSystemTime.lua",
+	"js": "CGSystemTime.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGSystemTime",
+	"category": "Time",
+	"nodeEvent": "onUpdate",
+	"description": "Get the system time",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,62 @@
+{
+    "name": "Get Thumb Key Points",
+    "id": "167cadd6-8167-f589-31c6-0872135da06d",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 2, 1]],
+            "description": "Index of hand to get thumb key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Tip",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the tip of thumb"
+        },
+        {
+            "name": "FIrst Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the first joint of thumb"
+        },
+        {
+            "name": "Second Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the second joint of thumb"
+        }
+    ],
+    "lua": "CGGetThumbKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetThumbKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["handDetect", "handDetectKeyPoint"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [2],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get key points on thumb",
+    "productTypes": ["InHouse", "Domestic"]
+}

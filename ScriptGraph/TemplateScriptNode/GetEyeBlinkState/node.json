@@ -1,0 +1,43 @@
+{
+    "name": "Get Eye Blink State",
+    "id": "835af643-f394-b1bf-531f-7915a0972e5a",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if the eye is blinking"
+        }
+    ],
+    "lua": "CGGetEyeBlinkState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetEyeBlinkState",
+    "category": "Face",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get eye blinking state",
+    "productTypes": ["InHouse", "Domestic"]
+}

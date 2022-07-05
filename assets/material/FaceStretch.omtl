@@ -1,0 +1,116 @@
+{
+    "Shader": "FaceStretch",
+    "Pass" :
+     {
+        "Ausl" : "a1",
+        "Cull" : "None",
+        "ZTest" : "Always",
+        "DepthWriteEnable" : "Off",
+        "UseFBOFetch" : "Off",
+        "UseFBOTexture" : "On",
+        "BlendMode" : "FromShader"
+     }
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+---END UIPROPERTY
+
+---BEGIN a1
+#version 300 es
+
+#pragma only_renderers glsl30 metal
+
+// Attributes: attributes in vertex shader
+#pragma input attributes
+    in vec3 attPosition;
+    in vec2 attTexcoord0;
+#pragma end
+
+#pragma output targets
+    out highp vec4 o_FragColor;
+#pragma end
+
+#pragma varying varyings
+    highp vec2 textureCoordinate;
+#pragma end
+
+#pragma vs attributes varyings
+    precision highp float;
+    #define MAX_CTRL_COUNT 128
+    uniform vec4 u_ctrl_vec[MAX_CTRL_COUNT];
+    uniform int u_ctrl_count;
+    uniform vec2 u_scale;
+    uniform vec2 u_scale_inv;
+    uniform float u_ratio;
+
+vec2 calc_mls() {
+    vec2 fv = attTexcoord0 * u_scale;
+    // calc weights
+    float sum_weights = 0.0;
+    vec4 p_q_star = vec4(0.0, 0.0, 0.0, 0.0);
+    for(int i = 0; i < u_ctrl_count; i++) {
+        vec4 p_q = u_ctrl_vec[i];
+        vec2 q_v = p_q.zw - fv;
+        q_v = q_v * q_v;
+        float w = 1.0 / ((q_v.x + q_v.y) * 0.25 + 500.0 * u_ratio + 1e-5);
+        sum_weights += w;
+        p_q_star += w * p_q;
+    }
+
+    p_q_star /= sum_weights;
+    // calc deform
+    vec2 fv_hat = fv - p_q_star.zw;
+    vec2 vr = vec2(0.0, 0.0);
+    float ms = 0.0;
+    for(int i = 0; i < u_ctrl_count; i++) {
+        vec4 p_q = u_ctrl_vec[i];
+        vec4 p_q_hat = p_q - p_q_star;
+        vec2 q_v = p_q.zw - fv;
+        q_v = q_v * q_v;
+        float w = 1.0 / ((q_v.x + q_v.y) * 0.25 + 500.0 * u_ratio + 1e-5);
+        vec2 q_hat_rev = vec2(p_q_hat.w, p_q_hat.z);
+        vec2 p_hat_q_hat = p_q_hat.xy * p_q_hat.zw;
+        vec2 p_hat_q_hat_rev = p_q_hat.xy * q_hat_rev;
+        
+        float pxqx_pyqy = p_hat_q_hat.x + p_hat_q_hat.y;
+        float pxqy_pyqx = p_hat_q_hat_rev.x - p_hat_q_hat_rev.y;
+        
+        vec2 w_fv_hat = w * fv_hat;
+        vec2 w_fv_hat_rev = vec2(w_fv_hat.y, w_fv_hat.x);
+        
+        vec2 pqxy = vec2(pxqy_pyqx, - pxqy_pyqx);
+        w_fv_hat *= pxqx_pyqy;
+        w_fv_hat_rev *= pqxy;
+        
+        vr += w_fv_hat + w_fv_hat_rev;
+        
+        vec2 q_hat = p_q_hat.zw;
+        q_hat *= q_hat;
+        ms += w * (q_hat.x + q_hat.y);
+    }
+    vec2 v = vr / ms + p_q_star.xy;
+    return v;
+}
+#pragma end
+
+#pragma fs varyings targets
+precision highp float;
+uniform sampler2D u_FBOTexture;
+#pragma end
+
+void vertex(){
+    gl_Position = vec4(attPosition, 1.);
+    if(u_ctrl_count > 0) {
+        vec2 v = calc_mls();
+        v = v * u_scale_inv;
+        textureCoordinate = clamp(v, 0.0, 1.0);
+    } else {
+        textureCoordinate = clamp(attTexcoord0, 0.0, 1.0);
+    }
+}
+
+void fragment(){
+    o_FragColor = texture(u_FBOTexture, textureCoordinate);
+}
+---END a1

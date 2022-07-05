@@ -1,0 +1,70 @@
+{
+    "name": "Number Comparison",
+    "id": "db547e8d-c7d4-f20e-351b-1c14d679ba0d",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "Trigger from last node"
+      },
+      {
+        "name": "Number A",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Left number of the comparison"
+      },
+      {
+        "name": "Number B",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Right number of the comparison"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "A > B",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "If A is greater than B, trigger next node"
+      },
+      {
+        "name": "A >= B",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "If A is greater than or equal to B, trigger next node"
+      },
+      {
+        "name": "A = B",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "If A is equal to B, trigger next node"
+      },
+      {
+        "name": "A <= B",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "If A is less than or equal to B, trigger next node"
+      },
+      {
+        "name": "A < B",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "If A is less than B, trigger next node"
+      }
+    ],
+    "lua": "CGNumberComparison.lua",
+    "version": "1.0",
+    "category": "Calculation",
+    "description": "Comparison of two numbers",
+    "supportedValueTypes": [
+        "Int",
+        "Float",
+        "Double"
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+  }

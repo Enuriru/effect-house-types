@@ -1,0 +1,46 @@
+{
+	"name": "Face Avatar Drive",
+	"id": "0D384124-84BC-383B-12C8-B9CBBA824919",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Deformation",
+			"type": "MorpherComponent",
+			"item_type": "",
+			"description": "Match the name of all 52 blendShape channels in the input deformation component with the avatarDrive algorithm, and drive the channel weight by the algorithm",
+			"displayType": "Deformation"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGFaceAvatarDrive.lua",
+	"js": "CGFaceAvatarDrive.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"SDKVersion": "9.9.0",
+	"luaFuncName": "CGFaceAvatarDrive",
+	"category": "Head & Face",
+	"graphAlgorithms": [
+		"naviAvatarDrive"
+	],
+	"description": "Drive the deformation component with Face Avatar Drive, resulting in movement that matches facial expressions",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

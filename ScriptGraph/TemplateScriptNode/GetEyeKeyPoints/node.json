@@ -1,0 +1,79 @@
+{
+    "name": "Get Eye Key Points",
+    "id": "20096311-5fdb-975d-0e7b-b7dcecd5631a",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get eye key points"
+        },
+        {
+            "name": "Eye",
+            "type": "List",
+            "default_value": "0",
+            "value_list": [
+                {
+                    "value": "Left",
+                    "text": "Left",
+                    "value_type": "String"
+                },
+                {
+                    "value": "Right",
+                    "text": "Right",
+                    "value_type": "String"
+                }
+            ],
+            "description": "Select left or right eye to get eye key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Inner Eye Corner",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the inner corner of eye"
+        },
+        {
+            "name": "Outer Eye Corner",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the outer corner of eye"
+        },
+        {
+            "name": "Pupil",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the pupil"
+        },
+        {
+            "name": "Middle Point",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized Key point on the middle of two eyes"
+        }
+    ],
+    "lua": "CGGetEyeKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetEyeKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get eye key points",
+    "productTypes": ["InHouse", "Domestic"]
+}

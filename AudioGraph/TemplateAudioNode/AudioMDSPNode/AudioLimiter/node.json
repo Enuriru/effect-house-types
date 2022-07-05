@@ -1,0 +1,46 @@
+{
+  "name": "Limiter",
+  "id": "6e560f2f-b96a-e260-9b24-0901b231293f",
+  "description":"Its main function is to limit the volume and is usually used at the end of a graph as a protection.",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Input Gain dB",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Gain of input signal."
+    },
+    {
+      "name": "Ceiling dB",
+      "type": "Double",
+      "default_value": "-0.3",
+      "description": "The maximum reachable signal amplitude, which is also the threshold at which Limiter is activated."
+    },
+    {
+      "name": "Release",
+      "type": "Double",
+      "default_value": "500",
+      "description": "Determines how long it takes to uncompress the signal when the input signal falls below the Ceiling dB. The larger the value, the longer it takes."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioLimiter.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

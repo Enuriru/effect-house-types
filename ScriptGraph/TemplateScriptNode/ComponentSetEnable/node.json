@@ -1,0 +1,57 @@
+{
+	"name": "Set Enabled",
+	"id": "103fe4b6-9a3b-dd7f-0456-761c663fef31",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Object",
+			"type": "Component",
+			"item_type": "",
+			"description": "Component",
+			"displayType": "Component"
+		},
+		{
+			"name": "Value",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Enable/disable component",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Value",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGSetEnable.js",
+	"lua": "CGSetEnable.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGSetEnable",
+	"category": "Utility",
+	"description": "Enable component",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,68 @@
+{
+	"name": "Megaphone",
+	"id": "d86aca5d-a249-e9b1-3fc2-7e067f6b2499",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Low pass",
+			"type": "Double",
+			"default_value": "4000",
+			"range": [
+				[
+					20,
+					20000,
+					1
+				]
+			],
+			"displayType": "Number",
+			"description": "The low pass frequency gate value[20, 20000]"
+		},
+		{
+			"name": "High pass",
+			"type": "Double",
+			"default_value": "500",
+			"range": [
+				[
+					20,
+					20000,
+					1
+				]
+			],
+			"displayType": "Number",
+			"description": "The low pass frequency gate value[20, 20000]"
+		},
+		{
+			"name": "Enabled",
+			"description": "Enable this node",
+			"type": "ErrorType",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioEffectMegaphone.js",
+	"category": "Audio",
+	"description": "Simulates the audio effect of speaking with a megaphone",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioEffectNode",
+	"audioNodeName": "megaphone",
+	"TTEHVer": "1.0.0"
+}

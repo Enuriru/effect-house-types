@@ -1,0 +1,30 @@
+{
+    "name": "Screen Pinch",
+    "id": "7a155dd6-0c22-6045-48c6-add091847353",
+    "inputs":
+    [
+    ],
+    "outputs": [
+        {
+            "name": "Pinch",
+            "type": "Pulse",
+            "description": "Trigger next node when screen pinch happened"
+        },
+        {
+            "name": "Scale",
+            "type": "Double",
+            "description": "Pinch scale"
+        }
+    ],
+    "js": "CGScreenPinch.js",
+    "lua": "CGScreenPinch.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGScreenPinch",
+    "nodeEvent": ["onEvent"],
+    "category": "Event",
+    "subCategory": "Input",
+    "graphAlgorithms": ["TouchGes"],
+    "description": "Capture screen pinch event",
+    "productTypes": ["InHouse", "Domestic", "Pending"]
+}

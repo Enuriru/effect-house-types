@@ -1,0 +1,52 @@
+{
+  "name": "On-Set Detection",
+  "id": "793ffb44-14e0-74e7-42b4-5f9c55b3fa7d",
+  "description": "The amplitude of the nearest rhythm point of the current frame at the time of detection",
+  "inputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Enabled",
+      "type": "Bool",
+      "default_value": "true"
+    },
+    {
+      "name": "Keep",
+      "type": "Bool"
+    },
+    {
+      "name": "threshold",
+      "type": "Double",
+      "default_value": "50.0",
+      "range": [
+        [
+          40,
+          200,
+          1
+        ]
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "value",
+      "type": "Double"
+    }
+  ],
+
+  "category": "Audio",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["onUpdate" ,"beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGOnSetDetection.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioExtractorNode",
+  "audioNodeName": "onset_detection"
+}

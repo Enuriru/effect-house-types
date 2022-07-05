@@ -1,0 +1,29 @@
+{
+	"name": "Video Record Start",
+	"id": "5330c175-41e2-7791-a132-43884ea72b73",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Next",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Exec next node",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGRecordVideo.lua",
+	"js": "CGRecordVideo.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGRecordVideo",
+	"category": "Event",
+	"subCategory": "Effect Application",
+	"nodeEvent": "onEvent",
+	"description": "Execute when camera starts recording video",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,28 @@
+{
+	"name": "Get Time",
+	"id": "47f8c991-21f4-f918-b612-d32166adbbd0",
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Time in Seconds",
+			"type": "Double",
+			"item_type": "",
+			"description": "The number of seconds elapsed since the timer started",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGRuntime.lua",
+	"js": "CGRuntime.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGRuntime",
+	"category": "Time",
+	"nodeEvent": "onUpdate",
+	"description": "Track the time since the start of the effect in seconds",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

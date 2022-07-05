@@ -1,0 +1,81 @@
+--include all needed file first
+
+{% for node in nodeList %}
+    {{- node | log -}}
+    {% if node.__class == "Group" or node.__class == 'PlaceholderNode' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup'%}
+        {{- 'Group Node or PlaceholderNode' | log -}}
+        {% continue %}
+    {% endif %}
+    {{- node.displayName | registerNode: node.nodeName, node.__uniqueId  -}}
+    {%- assign hasLuaFile = node | contained: "fileName" -%}
+    {%- assign hasGuid = node | contained: "templateGuid" -%}
+    {% if hasGuid %}
+        {%-assign hasRegistered = node.fileName | registerLuaFile: node.templateGuid %}
+        {% if hasRegistered == false %}
+            {{- node.absolutePath | includeAbsPath -}}
+    lua.{{ node.templateGuid | getLuaObjNameById }} = includeRelativePath("{{node.fileName}}")
+        {% endif %}
+    {% elsif hasLuaFile %}
+        {%-assign hasRegistered = node.fileName | registerLuaFile: node.__uniqueId %}
+        {% if hasRegistered == false %}
+            {{- node.absolutePath | includeAbsPath -}}
+    lua.{{ node.__uniqueId | getLuaObjNameById }} = includeRelativePath("{{node.fileName}}")
+        {% endif %}
+    {% else %}
+        {{- "include path error, unhandled case !" | log -}}
+    {% endif %}
+{% endfor %}
+
+{% for node in nodeList %}
+    {% if node.__class == "Group" or node.__class == 'PlaceholderNode' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup'%}
+        {{- 'Group Node or PlaceholderNode or CommentNode' | log -}}
+        {% continue %}
+    {% endif %}
+    {% if node.__class == "ScriptTemplateNode" %}
+        {% comment %} -------------------------------------TemplateLuaNode------------------------------------- {% endcomment %}
+    nodes["{{ node.__uniqueId | getIdentifierById }}"] = lua.{{node.templateGuid | getLuaObjNameById}}.new()
+    {% elsif node.__class == "VariableNode" %}
+        {% comment %} -------------------------------------VariableNode------------------------------------- {% endcomment %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"] = lua.{{node.__uniqueId | getLuaObjNameById}}.new()
+    nodes["{{node.__uniqueId | getIdentifierById}}"].variables = variables
+    nodes["{{node.__uniqueId | getIdentifierById}}"].variableName = "{{node.variableName}}_{{node.variableIndex}}"
+    nodes["{{node.__uniqueId | getIdentifierById}}"].accessType = "{{node.accessType}}"
+    nodes["{{node.__uniqueId | getIdentifierById}}"].valueType = "{{node.variableDataType}}"
+    {% else %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"] = lua.{{ node.__uniqueId | getLuaObjNameById }}.new()
+        {%  if node.__class == "PropertyNode" %}
+            {% comment %} -------------------------------------PropertyNode------------------------------------- {% endcomment %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"].object = Amaz.AmazingUtil.guidToPointer(Amaz.Guid("{{node.amgObject.a}}", "{{node.amgObject.b}}"))
+    nodes["{{node.__uniqueId | getIdentifierById}}"].property = "{{node.propertyName}}"
+    nodes["{{node.__uniqueId | getIdentifierById}}"].propertyFunc = lua.{{ node.propertyScript | getPropertyScriptName }}.new()
+    nodes["{{node.__uniqueId | getIdentifierById}}"].valueType = "{{node.propertyDataType}}"
+    {{- node.propertyScriptAbsPath | includeAbsPath -}}
+        {% elsif node.__class == "AMGObjectNode" %}
+            {% comment %} -------------------------------------EMEntityNode or EMComponentNode or EMNodeResourceMaterial------------------------------------- {% endcomment %}
+            {%- assign amgObj = node | contained: "amgObject" -%}
+            {% if amgObj %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"].object = Amaz.AmazingUtil.guidToPointer(Amaz.Guid("{{node.amgObject.a}}", "{{node.amgObject.b}}"))
+            {% else %}
+                {{- "entity / component / material do not have amgObj value" | log -}}
+            {% endif %}
+        {% elsif node.__class == "ResourceNode" %}
+        {% elsif node.__class == "EMCameraNode" %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"].object = Amaz.AmazingUtil.guidToPointer(Amaz.Guid("{{node.amgObject.a}}", "{{node.amgObject.b}}"))
+    nodes["{{node.__uniqueId | getIdentifierById}}"].rt = Amaz.AmazingUtil.guidToPointer(Amaz.Guid("{{node.rt.a}}", "{{node.rt.b}}"))
+        {% endif %}
+    {% endif %}
+
+    {%- assign hasSelectedType = node | contained: "curSelectedType" -%}
+    {% if hasSelectedType %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"].valueType = "{{node.curSelectedType}}"
+    {% endif %}
+
+    {% comment %} -------------------------------------unconnected input port------------------------------------- {% endcomment %}
+    {% for port in node.inputPorts %}
+        {% if port.isConnect == false and port.valueTypeName != "Pulse" %}
+    nodes["{{node.__uniqueId | getIdentifierById}}"]:setInput({{port.portIndex}}, function() return {{port | getPortValueExpression}} end)
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+

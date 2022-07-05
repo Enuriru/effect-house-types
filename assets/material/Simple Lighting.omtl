@@ -1,0 +1,775 @@
+{
+    "Shader": "SimpleLighting",
+    "Pass" :
+     {
+        "Ausl" : "a1",
+        "Cull" : "Back",
+        "DepthWriteEnable" : "On",
+        "BlendMode" : "Normal",
+        "ZTest" : "LessEqual"
+     }
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+$Albedo$
+_AlbedoColor(Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+Albedo(Texture on, Defs) = 0
+[Albedo]_AlbedoTexture(Texture, 2D) = "Default_Material_Texture_White"
+$Normal$
+NormalMap(Normal, Defs) = 0
+[NormalMap]_NormalMap(Texture, 2D) = "Default_Material_Texture_Normal"
+[NormalMap]_NormalIntensity(Strength, Range(0, 10.0)) = 1.0
+$Specular$
+Specular(Specular, Defs) = 0
+[Specular]_SpecularTexture(Texture, 2D) = "Default_Material_Texture_White"
+[Specular]_SpecularColor(Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+[Specular]_SpecularIntensity(Intensity, Range(0, 10.0)) = 1.0
+[Specular]_SpecularPower(Power, Range(1.0, 100.0)) = 32.0
+$Emissive$
+Emissive(Emissive, Defs) = 0
+[Emissive]_EmissiveTexture(Texture, 2D) = "Default_Material_Texture_White"
+[Emissive]_EmissiveIntensity(Intensity, Range(0, 10.0)) = 0.0
+[Emissive]_EmissiveColor(Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+$Ambient$
+_AmbientColor(Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+_AmbientIntensity(Intensity, Range(0, 10.0)) = 0.25
+$Shadow$
+Shadow(Shadow on, Defs) = 1
+$UV control$
+UvControl(UV control, Defs) = 0
+[UvControl]_Tiling(Tilling, Vec2) = [1.0, 1.0]
+[UvControl]_Offset(Offset, Vec2) = [0.0, 0.0]
+[UvControl]_Rotation(Rotation, Range(0.0, 360.0)) = 0.0
+---END UIPROPERTY
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    #pragma multi_compile AE_AMAZING_USE_BONES
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+        in vec2 attTexcoord0;
+        in vec3 attNormal;
+        #ifdef AE_AMAZING_USE_BONES
+            in vec4 attBoneIds;
+            in vec4 attWeights;
+        #endif
+        #ifdef NormalMap
+            in vec3 attTangent;
+        #endif
+    #pragma end
+
+    // Varyings: outputs of vertex shader, inputs for fragment shader
+    #pragma varying varyings
+        highp vec2 v_uv0;
+        highp vec3 v_nDirWS;
+        highp vec3 v_posWS;
+        #ifdef NormalMap
+            highp vec3 v_tDirWS;
+            highp vec3 v_bDirWS;
+        #endif
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out highp vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes varyings
+        precision highp float;
+        uniform mat4 u_MVP;
+        uniform mat4 u_Model;
+        uniform mat4 u_TransposeInvModel;
+        #ifdef AE_AMAZING_USE_BONES
+            const int MAX_BONES = 50;
+            uniform mat4 u_Palatte[MAX_BONES];
+        #endif
+        #ifdef UvControl
+            uniform vec2 _Tiling;
+            uniform vec2 _Offset;
+            uniform float _Rotation;
+        #endif
+
+        // perform scaling, rotation & translation on UV space
+        vec2 UV_TRS(vec2 inputUV, vec2 uvCenter, vec2 uvPan, vec2 uvScale, float uvRotate)
+        {
+            vec2 minusCenterUV = inputUV - uvCenter;
+            float cosVal = cos(uvRotate);
+            float sinVal = sin(uvRotate);
+            mat2 rotateMat = mat2(cosVal, -sinVal, sinVal, cosVal);
+            
+            vec2 outputUV = minusCenterUV * uvScale;
+            outputUV = rotateMat * outputUV + uvCenter;
+            outputUV = outputUV + uvPan;
+            return outputUV;
+        }
+    #pragma end
+
+    // Fragment stage section in fragment shader
+    #pragma fs varyings targets
+        precision highp float;
+        uniform vec4 _AlbedoColor;
+    #ifdef Albedo
+        uniform sampler2D _AlbedoTexture;
+    #endif
+    #ifdef NormalMap
+        uniform sampler2D _NormalMap;
+        uniform float _NormalIntensity;
+    #endif
+    #ifdef Specular
+        uniform sampler2D _SpecularTexture;
+        uniform float _SpecularIntensity;
+        uniform vec4 _SpecularColor;
+        uniform float _SpecularPower;
+    #endif
+    #ifdef Emissive
+        uniform sampler2D _EmissiveTexture;
+        uniform float _EmissiveIntensity;
+        uniform vec4 _EmissiveColor;
+    #endif
+    uniform vec4 _AmbientColor;
+    uniform float _AmbientIntensity;
+    // uniform vec4 u_DirLightsDirection[3];
+    // uniform vec4 u_DirLightsColor[3];
+    uniform vec4 u_WorldSpaceCameraPos;
+
+        const int   MAX_NUM_DIR     = 3;
+        const int   MAX_NUM_POINT   = 8;
+        const int   MAX_NUM_SPOT    = 8;
+        const int   MAX_NUM_AREA    = 8;
+
+        //           DirLight
+        uniform      float                 u_DirLightNum;
+        uniform      float                 u_DirLightsEnabled[MAX_NUM_DIR];
+        uniform      vec4                  u_DirLightsDirection[MAX_NUM_DIR];
+        uniform      vec4                  u_DirLightsColor[MAX_NUM_DIR];
+        uniform      float                 u_DirLightsIntensity[MAX_NUM_DIR];
+        //           PointLight
+        uniform      float                 u_PointLightNum;
+        uniform      float                 u_PointLightsEnabled[MAX_NUM_POINT];
+        uniform      vec4                  u_PointLightsPosition[MAX_NUM_POINT];
+        uniform      vec4                  u_PointLightsColor[MAX_NUM_POINT];
+        uniform      float                 u_PointLightsIntensity[MAX_NUM_POINT];
+        uniform      float                 u_PointLightsAttenRangeInv[MAX_NUM_POINT];
+        //           SpotLight
+        uniform      float                 u_SpotLightNum;
+        uniform      float                 u_SpotLightsEnabled[MAX_NUM_SPOT];
+        uniform      vec4                  u_SpotLightsDirection[MAX_NUM_SPOT];
+        uniform      vec4                  u_SpotLightsPosition[MAX_NUM_SPOT];
+        uniform      vec4                  u_SpotLightsColor[MAX_NUM_SPOT];
+        uniform      float                 u_SpotLightsIntensity[MAX_NUM_SPOT];
+        uniform      float                 u_SpotLightsInnerAngleCos[MAX_NUM_SPOT];
+        uniform      float                 u_SpotLightsOuterAngleCos[MAX_NUM_SPOT];
+        uniform      float                 u_SpotLightsAttenRangeInv[MAX_NUM_SPOT];
+
+        float Pow2 (float x)
+    {
+        return x * x;
+    }
+
+    float Pow4 (float x)
+    {
+        float x2 = x * x;
+        return x2 * x2;
+    }
+
+
+    float saturate(float x)
+    {
+        return clamp(x, 0.0, 1.0);
+    }
+
+    vec3 saturate(vec3 v)
+    {
+        v.x = clamp(v.x, 0.0, 1.0);
+        v.y = clamp(v.y, 0.0, 1.0);
+        v.z = clamp(v.z, 0.0, 1.0);
+        return v;
+    }
+// ------ Build Surface -----
+
+    struct SurfaceParams
+{
+    vec3        albedo;
+    vec3        nDir;
+    vec3        pos;
+    vec3        emissive;
+};
+
+
+    SurfaceParams BuildSurfaceParams(vec3 albedo, vec3 nDir, vec3 pos, vec3 emissive)
+    {
+        SurfaceParams S;
+            S.albedo = albedo;
+            S.nDir = nDir;
+            S.pos = pos;
+            S.emissive = emissive;
+        return S;
+    }
+
+   struct LightParams
+    {
+        float       enable;
+        vec3        lDir;
+        vec3        color;
+        float       intensity;
+        vec3        attenuate;
+    };
+
+    // ---------------------- Shadow ----------------------
+    #ifdef Shadow
+        #define SELFSHADOW_COS_MAX 0.00872653549837393496488821397358
+        #define PI 3.14159
+        #define SAMPLE_BOX_SIZE 4
+        float DecodeFloat(const vec4 value)
+        {
+            const vec4 bitSh = vec4(1.0/(256.0*256.0), 1.0/(256.0), 1.0, 0.0);
+            return(dot(value, bitSh));
+        }
+
+        float rand(vec2 co)
+        {
+            return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+
+        float StaticPoissonPCF(vec2 size, vec2 uv, float depth, float softness, sampler2D shadowmap){
+            float result = 0.0;
+            float inv_num = 1.0 / float(SAMPLE_BOX_SIZE * SAMPLE_BOX_SIZE);
+            const int sample_size = SAMPLE_BOX_SIZE * SAMPLE_BOX_SIZE;
+
+            float shadow_factor = 0.0;
+            float shadow_sum = 0.0;
+            float shadow_alpha = 0.0;
+            for (int i = 0; i < SAMPLE_BOX_SIZE; i++) {
+                float float_i = float(i);
+                for (int j = 0; j < SAMPLE_BOX_SIZE; j++) {
+                    float float_j = float(j);
+                    float jitter_x = rand(uv + vec2(float_i, float_j));
+                    float jitter_y = rand(uv + vec2(float_i * 2.0, float_j * 3.0));
+                    float r = sqrt(float_i + jitter_x);
+                    float theta = 2.0 * PI * (float(j) + jitter_y) * inv_num;
+                    vec2 sampleUV = uv + vec2(r * cos(theta), r * sin(theta)) * softness / size;
+                    vec4 data = texture(shadowmap, sampleUV);
+                    float decodeDepth = DecodeFloat(data);
+                    float noShadow = float(depth <= decodeDepth);
+                    shadow_sum += noShadow;
+                    shadow_alpha += max(data.a, noShadow);
+                }
+            }
+            shadow_factor = shadow_sum / float(sample_size);
+            shadow_alpha /= float(sample_size);
+            return shadow_factor;
+        }
+
+        struct SoftShadowParams
+        {
+            vec3        shadowUV;
+            vec2        offsetUV;
+            float       depth;
+            float       positiveExp; // EVSM
+            float       negativeExp; // EVSM
+            float       mipmapLevel;
+            float       bias;
+            float       softness;
+            vec2       textureSize;
+        };
+
+                uniform sampler2D u_DirLight0ShadowTexture;
+                uniform float u_DirLight0ShadowBias;
+                uniform mat4 u_DirLight0ShadowMatrix;
+                uniform vec2 u_DirLight0ShadowTextureSize;
+                uniform float u_DirLight0ShadowStrength;
+                uniform float u_DirLight0ShadowSoftness;
+                uniform float u_DirLight0ShadowSoft;
+                uniform vec4 u_DirLight0ShadowColor;
+                uniform vec2 u_DirLight0ShadowBoundingBoxSize;
+                uniform float u_DirLight0SelfShadowGradient;
+
+                vec4 Shadowing(SurfaceParams S, LightParams L)
+                {
+                    const int sample_size = SAMPLE_BOX_SIZE * SAMPLE_BOX_SIZE;
+                    float nl = max(dot(S.nDir, L.lDir), 0.0);
+                    vec4 proj_pos = u_DirLight0ShadowMatrix * vec4(S.pos, 1.0);
+                    vec3 shadow_coord = proj_pos.xyz / proj_pos.w;
+                    if(shadow_coord.x < 0.0 || shadow_coord.y < 0.0 || shadow_coord.x > 1.0 || shadow_coord.y > 1.0)
+                        return vec4(u_DirLight0ShadowColor.xyz, 1.0);
+
+                    shadow_coord.z = clamp(shadow_coord.z, 0.0, 1.0);
+                    float bias = u_DirLight0ShadowBias + clamp(tan(acos(nl)) / 1000.0, 0.0, 0.001);
+                    bias = clamp(bias, 0.0, 1.0);
+
+                    float shadow_factor = 0.0;
+                    float shadow_sum = 0.0;
+                    float shadow_alpha = 0.0;
+                    vec2 inv_tex_size = vec2(1.0) / u_DirLight0ShadowTextureSize;
+                    float inv_num = 1.0 / float(SAMPLE_BOX_SIZE * SAMPLE_BOX_SIZE);
+                    if (u_DirLight0ShadowSoft > 0.0) {
+                      for (int i = 0; i < SAMPLE_BOX_SIZE; i++) {
+                        float float_i = float(i);
+                        for (int j = 0; j < SAMPLE_BOX_SIZE; j++) {
+                          float float_j = float(j);
+                          float jitter_x = rand(shadow_coord.xy + vec2(float_i, float_j));
+                          float jitter_y = rand(shadow_coord.xy + vec2(float_i * 2.0, float_j * 3.0));
+                          float r = sqrt(float_i + jitter_x);
+                          float theta = 2.0 * PI * (float(j) + jitter_y) * inv_num;
+
+                          vec4 data = texture(u_DirLight0ShadowTexture, shadow_coord.xy + vec2(r * cos(theta), r * sin(theta)) * u_DirLight0ShadowSoftness * inv_tex_size);
+                          float depth = DecodeFloat(data);
+                          float noShadow = float(shadow_coord.z <= depth + bias);
+                          shadow_sum += noShadow;
+                          shadow_alpha += max(data.a, noShadow);
+                        }
+                      }
+                      shadow_factor = shadow_sum / float(sample_size);
+                      shadow_alpha /= float(sample_size);
+                    } else {
+                      vec4 data = texture(u_DirLight0ShadowTexture, shadow_coord.xy);
+                      float depth = DecodeFloat(data);
+                      float noShadow = float(shadow_coord.z <= depth + bias);
+                      shadow_factor = noShadow;
+                      shadow_alpha = max(data.a, noShadow);
+                    }
+
+                    if(u_DirLight0SelfShadowGradient > 0.0001) {
+                        shadow_factor = min(clamp((nl - SELFSHADOW_COS_MAX) * u_DirLight0SelfShadowGradient, 0.0, 1.0), shadow_factor);
+                    }
+
+                    if (shadow_factor < 1.0) {
+                      shadow_factor = mix(1.0, shadow_factor, u_DirLight0ShadowStrength * shadow_alpha);
+                    }
+
+                    return vec4(u_DirLight0ShadowColor.xyz, shadow_factor);
+                }
+
+                uniform      sampler2D             u_SpotLight0ShadowTexture;
+                uniform      mat4                  u_SpotLight0ShadowMatrix;
+                uniform      vec2                  u_SpotLight0ShadowTextureSize;
+                uniform      float                 u_SpotLight0ShadowBias;
+                uniform      float                 u_SpotLight0ShadowStrength;
+                uniform      float                 u_SpotLight0ShadowSoftness;
+                uniform      float                 u_SpotLight0ShadowSoft;
+                uniform      float                 u_SpotLight0ShadowBlurSize;
+                uniform      vec4                  u_SpotLight0ShadowColor;
+                uniform      float                 u_SpotLight0SelfShadowGradient;
+
+                SoftShadowParams GetSpotSoftShadowParams(SurfaceParams S, LightParams L) {
+                    vec4 posSS = u_SpotLight0ShadowMatrix * vec4(S.pos, 1.0);
+                    posSS.xyz /= posSS.w;
+                    posSS.xyz = posSS.xyz * 0.5 + 0.5;
+                    SoftShadowParams SS;
+                    float nl = max(dot(S.nDir, L.lDir), 0.0);
+                    SS.bias = u_SpotLight0ShadowBias + clamp(tan(acos(nl)) / 1000.0, 0.0, 0.001);
+                    SS.bias = clamp(SS.bias, 0.0, 1.0);
+                    SS.shadowUV.xy = posSS.xy;
+                    SS.offsetUV = vec2(0.);
+                    SS.depth = clamp(posSS.z, 0.0, 1.0) - SS.bias; 
+                    SS.softness = u_SpotLight0ShadowSoftness;
+                    SS.textureSize = u_SpotLight0ShadowTextureSize;
+                    return SS;
+                }
+
+                vec4 SpotShadowing(SurfaceParams S, LightParams L)
+                {
+                    SoftShadowParams SS;
+                    SS = GetSpotSoftShadowParams(S, L);
+                    float nl = max(dot(S.nDir, L.lDir), 0.0);
+                    if(SS.shadowUV.x < 0.0 || SS.shadowUV.y < 0.0 || SS.shadowUV.x > 1.0 || SS.shadowUV.y > 1.0)
+                        return vec4(u_SpotLight0ShadowColor.xyz, 1.0);
+                    float shadowVal = 1.;
+                    float shadow_factor = 0.0;
+                    float shadow_sum = 0.0; 
+                    if (u_SpotLight0ShadowSoft > 0.0) {
+                        shadow_factor = StaticPoissonPCF(SS.textureSize, SS.shadowUV.xy, SS.depth, SS.softness, u_SpotLight0ShadowTexture); // Old SS method
+                    }else{
+                        vec4 data = texture(u_SpotLight0ShadowTexture, SS.shadowUV.xy);
+                        float depth = DecodeFloat(data);
+                        float noShadow = float(SS.depth <= depth);
+                        shadow_factor = noShadow;
+                    }
+
+                    if (shadow_factor < 1.0) {
+                      shadow_factor = mix(1.0, shadow_factor, u_SpotLight0ShadowStrength);
+                    }
+
+                    return vec4(u_SpotLight0ShadowColor.xyz, shadow_factor);
+                }
+
+                uniform      samplerCube           u_PointLight0ShadowTexture;
+                uniform      vec2                  u_PointLight0ShadowTextureSize;
+                uniform      float                 u_PointLight0ShadowBias;
+                uniform      float                 u_PointLight0ShadowStrength;
+                uniform      float                 u_PointLight0ShadowSoftness;
+                uniform      float                 u_PointLight0ShadowSoft;
+                uniform      float                 u_PointLight0ShadowBlurSize;
+                uniform      vec4                  u_PointLight0ShadowColor;
+                uniform      float                 u_PointLight0SelfShadowGradient;
+                uniform      vec2                  u_PointLight0ShadowBoundingBoxSize;
+
+                SoftShadowParams GetPointSoftShadowParams(SurfaceParams S, LightParams L) {
+                    vec3 fragToLight = S.pos - u_PointLightsPosition[0].xyz;
+                    vec3 coord = normalize(S.pos - u_PointLightsPosition[0].xyz);//normalize(fragToLight);
+                    SoftShadowParams SS;
+                    float nl = max(dot(S.nDir, L.lDir), 0.0);
+                    SS.bias = u_PointLight0ShadowBias + clamp(tan(acos(nl)) / 1000.0, 0.0, 0.001);
+                    SS.bias = clamp(SS.bias, 0.0, 1.0);
+                    SS.shadowUV = coord;
+                    SS.offsetUV = vec2(0.);
+                    SS.depth = clamp(length(fragToLight) * u_PointLight0ShadowBoundingBoxSize.y, 0.0, 1.0) - SS.bias; 
+                    SS.softness = u_PointLight0ShadowSoftness;
+                    SS.textureSize = u_PointLight0ShadowTextureSize;
+                    return SS;
+                }
+
+                float PointSampleShadowMapUV(vec3 shadowUV, float depth) {
+                    float depthInShadowMap = DecodeFloat(texture(u_PointLight0ShadowTexture, shadowUV));
+                    return step(depth, depthInShadowMap);
+                }
+
+                float PointSampleShadowMapPoisson9(vec2 size, vec3 uv, float depth, float softness){
+                    float result = 0.0;
+                    float uvStep = 1.0 / size.x * softness * size.x * 0.01;
+                    const vec3 sampleOffsetDirections[20] = vec3[]
+                    ( vec3( 1, 1, 1), vec3( 1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1),
+                    vec3( 1, 1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+                    vec3( 1, 1, 0), vec3( 1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
+                    vec3( 1, 0, 1), vec3(-1, 0, 1), vec3( 1, 0, -1), vec3(-1, 0, -1),
+                    vec3( 0, 1, 1), vec3( 0, -1, 1), vec3( 0, -1, -1), vec3( 0, 1, -1) );
+                    for(int i=0;i<20;i++)
+                    {
+                        result += PointSampleShadowMapUV(uv + sampleOffsetDirections[i] * uvStep, depth);
+                    }
+                    return result * 0.05;
+                }
+
+                float PointStaticPoissonPCF(SurfaceParams S, LightParams L, SoftShadowParams SS) {
+                    float softness = SS.softness;
+                    return PointSampleShadowMapPoisson9(SS.textureSize, SS.shadowUV, SS.depth, softness);
+                }
+
+                vec4 PointShadowing(SurfaceParams S, LightParams L)
+                {
+                    SoftShadowParams SS;
+                    SS = GetPointSoftShadowParams(S, L);
+                    float nl = max(dot(S.nDir, L.lDir), 0.0);
+                    float shadowVal = 1.;
+                    float shadow_factor = 0.0;
+                    float shadow_sum = 0.0; 
+                    if (u_PointLight0ShadowSoft > 0.0) {
+                        shadow_factor = PointStaticPoissonPCF(S, L, SS); // Old SS method
+                    }else{
+                        vec4 data = texture(u_PointLight0ShadowTexture, SS.shadowUV.xyz);
+                        float depth = DecodeFloat(data);
+                        float noShadow = float(SS.depth <= depth);
+                        shadow_factor = noShadow;
+                    }
+
+                    return vec4(u_PointLight0ShadowColor.xyz, shadow_factor);
+                }
+    #endif
+
+// ------ Build Lights ------
+    struct LightGroupParams
+    {
+                LightParams DirLights[MAX_NUM_DIR];
+
+                LightParams PointLights[MAX_NUM_POINT];
+
+                LightParams SpotLights[MAX_NUM_SPOT];
+
+        float dummy;
+    };
+
+     LightParams BuildDirLightParams(SurfaceParams S, int index)
+    {
+        LightParams ML;
+        ML.enable    = u_DirLightsEnabled[index] * step(float(index) + 0.5, u_DirLightNum);        
+        ML.lDir      = normalize(-u_DirLightsDirection[index].xyz);
+        ML.color     = u_DirLightsColor[index].xyz;
+        ML.intensity = u_DirLightsIntensity[index] * ML.enable;
+        ML.attenuate = vec3(1.0, 1.0, 1.0);
+        return ML;
+    }
+
+    LightParams BuildPointLightParams(SurfaceParams S, int index)
+    {
+        vec3 lVec        = vec3(0.0);
+        float lDist      = 0.0;
+        LightParams PL1;
+        PL1.enable       = u_PointLightsEnabled[index] * step(float(index) + 0.5, u_PointLightNum);
+        lVec             = u_PointLightsPosition[index].xyz - S.pos;
+        lDist            = length(lVec);
+        PL1.lDir         = lVec / lDist;
+        PL1.color        = u_PointLightsColor[index].xyz;
+        PL1.intensity    = u_PointLightsIntensity[index] * PL1.enable;
+        float lWorldDist = lDist;
+        lDist           *= u_PointLightsAttenRangeInv[index];
+        //This formula comes from chapter 5.2.2.3 of this website (https://google.github.io/filament/Filament.md.html#lighting/directlighting/punctuallights)
+        float attenuate  = Pow2(saturate(1.0 - Pow4(lDist))) / max(Pow2(lWorldDist), Pow2(0.01));
+        #ifdef AE_USE_POINT_COOKIE
+        if(index == 0)
+        {
+            vec2 iescoord = ShpericalSampleing(PL1.lDir);
+            attenuate *= texture(u_PointLight0CookieTexture, iescoord).r;
+        }
+        #endif
+        PL1.attenuate    = vec3(attenuate,attenuate,attenuate);
+        return PL1;
+    }
+
+    LightParams BuildSpotLightParams(SurfaceParams S, int index)
+    {
+        vec3 lVec        = vec3(0.0);
+        float lDist      = 0.0;
+
+        vec3 spotDir     = vec3(0.0);
+        float angleAtten = 0.0;
+
+        LightParams SL1;
+        SL1.enable       = u_SpotLightsEnabled[index] * step(float(index) + 0.5, u_SpotLightNum);
+        lVec             = u_SpotLightsPosition[index].xyz - S.pos;
+        lDist            = length(lVec);
+        SL1.lDir         = lVec / lDist;
+        SL1.color        = u_SpotLightsColor[index].xyz;
+        SL1.intensity    = u_SpotLightsIntensity[index] * SL1.enable;
+        float lWorldDist = lDist;
+        lDist           *= u_SpotLightsAttenRangeInv[index];
+        //This formula comes from chapter 5.2.2.3 of this website (https://google.github.io/filament/Filament.md.html#lighting/directlighting/punctuallights)
+        float attenuate  = Pow2(saturate(1.0 - Pow4(lDist))) / max(Pow2(lWorldDist), Pow2(0.01));
+        #ifdef AE_USE_SPOT_COOKIE
+        if(index == 0)
+        {
+            vec2 iescoord = GetIESTextureCoordinate(SL1.lDir);
+            attenuate *= texture(u_SpotLight0CookieTexture, iescoord).r;
+        }
+        #endif
+        spotDir          = normalize(-u_SpotLightsDirection[index].xyz);
+        angleAtten       = max(0.0, dot(SL1.lDir, spotDir));
+        attenuate       *= smoothstep(u_SpotLightsOuterAngleCos[index], u_SpotLightsInnerAngleCos[index], angleAtten);
+        SL1.attenuate    = vec3(attenuate,attenuate,attenuate);
+        return SL1;
+    }
+
+    LightGroupParams BuildLightGroupParams(SurfaceParams S)
+    {
+        LightGroupParams LG;
+        LG.dummy = 0.0;
+
+                LG.DirLights[0] = BuildDirLightParams(S, 0);
+                #ifdef Shadow
+                    if(LG.DirLights[0].enable > 0.5)
+                    {
+                        vec4 shadowFactor = Shadowing(S, LG.DirLights[0]);
+                        LG.DirLights[0].attenuate = mix(shadowFactor.rgb, LG.DirLights[0].attenuate, shadowFactor.a);
+                    }
+                #endif
+                LG.DirLights[1] = BuildDirLightParams(S, 1);
+                LG.DirLights[2] = BuildDirLightParams(S, 2);
+
+                
+                
+                LG.PointLights[0] = BuildPointLightParams(S, 0);
+                #ifdef Shadow
+                if(LG.PointLights[0].enable > 0.5)
+                {
+                    vec4 pointShadowFactor = PointShadowing(S, LG.PointLights[0]);
+                    LG.PointLights[0].attenuate = mix(pointShadowFactor.rgb, LG.PointLights[0].attenuate, pointShadowFactor.a);
+                }
+                #endif
+               LG.PointLights[1] = BuildPointLightParams(S, 1);
+               LG.PointLights[2] = BuildPointLightParams(S, 2);
+
+               LG.SpotLights[0] = BuildSpotLightParams(S, 0);
+               #ifdef Shadow
+                    if(LG.SpotLights[0].enable > 0.5)
+                    {
+                        vec4 spotShadowFactor = SpotShadowing(S, LG.SpotLights[0]);
+                        LG.SpotLights[0].attenuate = mix(spotShadowFactor.rgb, LG.SpotLights[0].attenuate, spotShadowFactor.a);
+                    }
+                #endif
+               LG.SpotLights[1] = BuildSpotLightParams(S, 1);
+               LG.SpotLights[2] = BuildSpotLightParams(S, 2);
+        return LG;
+    }
+
+    vec3 Diffuse_Low(SurfaceParams S, LightParams L)
+    {
+
+    // diffuse
+    vec3 lightDir = L.lDir;
+    float diff = max(dot(lightDir, S.nDir), 0.0);
+    vec3 diffuse = diff * S.albedo * L.color * L.intensity * L.attenuate;
+    return diffuse;
+    // vec4 result = vec4(ambient + diffuse, 1.0);
+    // vec4 result = vec4(color, 1.0);
+    }
+
+
+#ifdef Specular
+    vec3 Specular_Low(SurfaceParams S, LightParams L)
+    {
+        // specular
+        vec3 viewDir = normalize(u_WorldSpaceCameraPos.xyz - S.pos);
+        vec3 halfwayDir = normalize(L.lDir + viewDir); 
+        float vdh =  max(dot(S.nDir, halfwayDir), 0.0);
+        float spec = clamp(pow(vdh, _SpecularPower) * _SpecularIntensity, 0.0, 1.0);
+        // Fresnel
+        // float t = pow(1.0 - vdh, 5);
+        // vec3 f0 = vec3(0.04);
+        // float f = f0 + (1.0 - f0) * t;
+        float f = 1.0;
+        vec3 specular = f * L.color.rgb * spec * _SpecularColor.rgb * L.attenuate * L.intensity;
+        return specular;
+    }
+#endif
+
+    void DoLight(SurfaceParams S, LightParams L, inout vec3 Fd, inout vec3 Fr)
+    { 
+        if(L.enable > 0.5) 
+        { 
+            float coatAttenuate = 1.0; 
+            Fd += Diffuse_Low(S, L) * coatAttenuate; 
+            #ifdef Specular
+                Fr += Specular_Low(S, L) * coatAttenuate; 
+            #endif
+        }  
+    }
+
+     // ---------------- Lighting ---------------------
+    vec3 Lighting(
+        SurfaceParams S,
+        LightGroupParams LG)
+    {
+         // ------ LightMode ------
+        vec3 Fd = vec3(0.0);
+        vec3 Fr = vec3(0.0);
+        vec3 finalRGB = vec3(0.0); 
+
+               DoLight(S, LG.DirLights[0], Fd, Fr);
+
+               DoLight(S, LG.DirLights[1], Fd, Fr);
+           
+               DoLight(S, LG.DirLights[2], Fd, Fr);
+
+
+                DoLight(S, LG.PointLights[0], Fd, Fr);
+                DoLight(S, LG.PointLights[1], Fd, Fr);
+                DoLight(S, LG.PointLights[2], Fd, Fr);
+                DoLight(S, LG.PointLights[3], Fd, Fr);
+                DoLight(S, LG.PointLights[4], Fd, Fr);
+                DoLight(S, LG.PointLights[5], Fd, Fr);
+                DoLight(S, LG.PointLights[6], Fd, Fr);
+                DoLight(S, LG.PointLights[7], Fd, Fr);
+
+
+                DoLight(S, LG.SpotLights[0], Fd, Fr);
+                DoLight(S, LG.SpotLights[1], Fd, Fr);
+                DoLight(S, LG.SpotLights[2], Fd, Fr);
+                DoLight(S, LG.SpotLights[3], Fd, Fr);
+                DoLight(S, LG.SpotLights[4], Fd, Fr);
+                DoLight(S, LG.SpotLights[5], Fd, Fr);
+                DoLight(S, LG.SpotLights[6], Fd, Fr);
+                DoLight(S, LG.SpotLights[7], Fd, Fr);
+
+
+        #ifdef Emissive
+                Fd += S.emissive;
+        #endif   
+
+        finalRGB = Fd + Fr;
+        return finalRGB;
+    }
+
+ 
+    vec4 MainEntry(vec3 albedo, vec3 nDir, vec3 pos, vec3 emissiv)
+    {
+        // ------ RenderData ------
+        SurfaceParams S     = BuildSurfaceParams(albedo, nDir, pos, emissiv);
+        LightGroupParams LG = BuildLightGroupParams(S);
+       
+        // ------ Lighting ------
+        vec3 finalRGB       = Lighting(S, LG);
+
+        vec4 result         = vec4(finalRGB, 1.0);
+        
+        return result;
+    }
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+        #ifdef AE_AMAZING_USE_BONES
+            mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x +
+                                  u_Palatte[int(attBoneIds.y)] * attWeights.y +
+                                  u_Palatte[int(attBoneIds.z)] * attWeights.z +
+                                  u_Palatte[int(attBoneIds.w)] * attWeights.w;
+            vec4 bm_postiton   = boneTransform * vec4(attPosition, 1.0);
+            vec3 bn_normal     = (boneTransform * vec4(attNormal, 0.0)).xyz;
+            v_posWS            = (u_Model * bm_postiton).xyz;
+            v_nDirWS           = (u_TransposeInvModel * vec4(bn_normal, 0.0)).xyz;
+            #ifdef NormalMap
+                vec3 attBinormal = normalize(cross(attNormal,attTangent));
+                vec3 bm_tangent    = (boneTransform * vec4(attTangent, 0.0)).xyz;
+                vec3 bm_binormal   = (boneTransform * vec4(attBinormal, 0.0)).xyz;
+                v_tDirWS           = (u_Model * vec4(bm_tangent, 0.0)).xyz;
+                v_bDirWS           = (u_Model * vec4(bm_binormal, 0.0)).xyz;
+            #endif
+            gl_Position        = u_MVP * bm_postiton;
+        #else
+            v_posWS     = (u_Model * vec4(attPosition, 1.0)).xyz;
+            v_nDirWS    = (u_TransposeInvModel * vec4(attNormal, 0.0)).xyz;
+            #ifdef NormalMap
+                vec3 attBinormal = normalize(cross(attNormal,attTangent));
+                v_tDirWS    = (u_Model * vec4(attTangent, 0.0)).xyz;
+                v_bDirWS    = (u_Model * vec4(attBinormal, 0.0)).xyz;
+            #endif
+            gl_Position = u_MVP * vec4(attPosition, 1.0);
+        #endif
+
+   
+        v_uv0 = vec2(attTexcoord0.x, 1.0 - attTexcoord0.y);
+
+        #ifdef UvControl
+            // 360.0 / 6.283185307179586 = 57.295779513082
+            v_uv0 = UV_TRS(v_uv0.xy, vec2(0.5, 0.5), _Offset, _Tiling, _Rotation / 57.295779513082);
+        #endif
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        vec2 uv = v_uv0;
+        vec3 normal = v_nDirWS;
+        #ifdef NormalMap
+            mat3 TBN = mat3(normalize(v_tDirWS), normalize(v_bDirWS), normalize(v_nDirWS));
+            vec3 normalTS = texture(_NormalMap, uv).xyz;
+            normalTS = mix(vec3(0.5, 0.5, 1.0), normalTS, _NormalIntensity);
+            normalTS = normalize(normalTS * 2.0 - 1.0);
+            normal = TBN * normalTS;
+        #endif
+
+        vec3 color = _AlbedoColor.xyz;
+        #ifdef Albedo
+            color = color * texture(_AlbedoTexture, uv).rgb;
+        #endif
+        // ambient
+        vec3 ambient = _AmbientColor.rgb * color * _AmbientIntensity;
+
+        vec3 emissive = vec3(0.0);
+        // Emissive
+        #ifdef Emissive
+            emissive = texture(_EmissiveTexture, uv).rgb * _EmissiveIntensity * _EmissiveColor.rgb;
+        #endif
+
+        vec4 result = vec4(ambient, 1.0);
+        result.rgb += MainEntry(color, normal, v_posWS, emissive).rgb;
+        o_fragColor = result;
+    }
+
+---END a1

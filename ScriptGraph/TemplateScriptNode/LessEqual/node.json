@@ -1,0 +1,50 @@
+{
+	"name": "Less or Equal",
+	"id": "cb941636-9371-2aef-6541-1acf48798be1",
+	"inputs": [
+		{
+			"name": "Value 1",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "Input value 1",
+			"displayType": "Number"
+		},
+		{
+			"name": "Value 2",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"default_value": "0",
+			"description": "Input value 2",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean value",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGLessEqual.js",
+	"lua": "CGLessEqual.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGLessEqual",
+	"category": "Logic",
+	"description": "Check if one value is less than or equal to another",
+	"supportedValueTypes": [
+		"Int",
+		"Double"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

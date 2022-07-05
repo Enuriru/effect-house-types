@@ -1,0 +1,69 @@
+{
+  "name": "Texture Pulse Control Sequence",
+  "id": "12063f6f-bf6e-638c-5684-5c8bbcc6bf5b",
+  "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "Execute the node when triggered"
+      },
+      {
+        "name": "Texture1",
+        "type": "Texture",
+        "item_type": "",
+        "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+      },
+      {
+        "name": "Texture2",
+        "type": "Texture",
+        "item_type": "",
+        "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+      },
+      {
+        "name": "Texture3",
+        "type": "Texture",
+        "item_type": "",
+        "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+      },
+      {
+        "name": "Texture4",
+        "type": "Texture",
+        "item_type": "",
+        "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+      },
+      {
+        "name": "Texture5",
+        "type": "Texture",
+        "item_type": "",
+        "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+      },
+      {
+        "name": "Random Choice",
+        "type": "Bool",
+        "item_type": "",
+        "description": "Determine whether to start the sequentially from the first tile resource or to choose a random one"
+      }
+  ],
+  "outputs": [
+      {
+        "name": "Triggered",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "Trigger next node"
+      },
+      {
+        "name": "Attached to",
+        "type": "Texture",
+        "item_type": "",
+        "description": "The target which texture attached to"
+      }
+  ],
+  "lua": "CGTexturePulseSequence.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Control",
+  "nodeEvent": ["onStart"],
+  "description": "Each time it is triggered, the first texture is added to the material, and the second texture is added to the material when it is triggered again. Only works on ports of connected texture resources. Random start can be configured.",
+  "productTypes": ["InHouse", "Domestic"]
+}

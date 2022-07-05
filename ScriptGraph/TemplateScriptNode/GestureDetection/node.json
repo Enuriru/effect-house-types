@@ -1,0 +1,92 @@
+{
+	"name": "Gesture Detection",
+	"id": "67144819-16ad-b75d-18d3-0b965c0bafdb",
+	"inputs": [
+		{
+			"name": "Detect",
+			"description": "Decide which hand for gesture detection, including Hand 0, Hand 1, Either, the device will track either hand if choosing Either.",
+			"type": "String",
+			"value_list": [
+				"Hand 0",
+				"Hand 1",
+				"Either"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Gesture",
+			"description": "Gesture types including Backhand 3-finger Pointing Up, 4-finger Pointing Up, Fist, Open Palm, \"I Love You\", Horns, Index Finger Up, Victory, Thumb Up, Hand Heart (Thumb Up), Hand Heart (Thumb Down), Open Fist Heart, Finger Heart, Index Pointing, 2-finger Pointing, 3-Finger Pointing Up, OK, \"Call Me\", V (Thumb and Index ), Touching Palms, Kung Fu Salute (Fist Uncovered), \"Pray\", Palm Up, Kung Fu Salute(Fist Covered), Wrist V, Salute, Palm to Front, Pinched Fingers, Thumb Down, Index and Middle Pointing Up",
+			"type": "String",
+			"value_list": [
+				"Backhand 3-Finger Pointing Up",
+				"4-Finger Pointing Up",
+				"Fist",
+				"Open Palm",
+				"\"I Love You\"",
+				"Horns",
+				"Index Pointing up",
+				"Victory",
+				"Thumb up",
+				"Hand Heart(Thumb Up)",
+				"Hand Heart(Thumb Down)",
+				"Open Fist Heart",
+				"Finger Heart",
+				"Index Pointing",
+				"2-Finger Pointing",
+				"3-Finger Pointing Up",
+				"OK",
+				"\"Call Me\"",
+				"V(Thumb and Index)",
+				"Touching Palms",
+				"Kung Fu Salute(Fist Uncovered)",
+				"\"Pray\"",
+				"Palm up",
+				"Kung Fu Salute (Fist Covered)",
+				"Wrist V",
+				"Salute",
+				"Palm To Front",
+				"Pinched Fingers",
+				"Thumb down",
+				"Index and Middle Pointing Up"
+			],
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the hand gesture moves from \"undetected\" state to \"detected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the hand gesture stays detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the hand gesture moves from \"detected\" state to \"undetected\" state",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the hand gesture is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"js": "CGGestureDetection.js",
+	"nodeEvent": "onUpdate",
+	"category": "Hand",
+	"TTEHVer": "1.0.0",
+	"description": "Detect gestures (for gesture preview, please check preview>hand)",
+	"productTypes": [
+		"TTEH"
+	],
+	"graphAlgorithms": [
+		"2handGestureDetect"
+	]
+}

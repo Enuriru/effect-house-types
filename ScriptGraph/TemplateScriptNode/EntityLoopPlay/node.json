@@ -1,0 +1,96 @@
+{
+    "name": "Entity Loop Play",
+    "id": "f01cb2c1-e818-1a6c-268a-0eca7ec903fd",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, start to play entities in sequence"
+      },
+      {
+        "name": "Pause",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, pause the play"
+      },
+      {
+        "name": "Entity 1",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 2",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 3",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 4",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 5",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Random Start",
+        "type": "Bool",
+        "default_value": "0",
+        "item_type": "",
+        "description": "If it's selected, the sequence will begin with a random entity"
+      },
+      {
+        "name": "Times",
+        "type": "Int",
+        "default_value": "1",
+        "range": [[1, 9999, 1]],
+        "description": "Specify how many times the sequence should be played"
+      },
+      {
+        "name": "Interval",
+        "type": "Double",
+        "default_value": "0",
+        "item_type": "",
+        "range" : [[0, "Inf", 0.01]],
+        "description": "Time passes between two entities in sequence"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the play starts, trigger next node"
+      },
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "Trigger next node upon each entity is played"
+      }
+    ],
+    "lua": "CGEntityLoopPlay.lua",
+    "luaFuncName": "CGEntityLoopPlay",
+    "version": "1.0",
+    "category": "Control",
+    "description": "Play entities in sequence",
+    "nodeEvent": "onUpdate",
+    "productTypes": ["InHouse", "Domestic"]
+  }

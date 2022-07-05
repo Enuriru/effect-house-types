@@ -1,0 +1,124 @@
+{
+  "basePath": "./BuiltinResource/Icon",
+  "categories": [
+    {
+      "category": "Event",
+      "iconPath": "graph_event_icon.svg",
+      "backgroundColor": "#153717",
+      "fontColor": "#5FFC69",
+      "titleBarBackgroundColor": "#215825"
+    },
+    {
+      "category": "Logic",
+      "iconPath": "graph_logic_icon.svg",
+      "backgroundColor": "#5E225B",
+      "fontColor": "#FE5DF7",
+      "titleBarBackgroundColor": "#592156"
+    },
+    {
+      "category": "Control",
+      "iconPath": "graph_control_icon.svg",
+      "backgroundColor": "#47301B",
+      "fontColor": "#FFC365",
+      "titleBarBackgroundColor": "#594423"
+    },
+    {
+      "category": "Math",
+      "iconPath": "graph_math_icon.svg",
+      "backgroundColor": "#211B46",
+      "fontColor": "#8F7CFF",
+      "titleBarBackgroundColor": "#2A2257"
+    },
+    {
+      "category": "Time",
+      "iconPath": "graph_time_icon.svg",
+      "backgroundColor": "#45451E",
+      "fontColor": "#F7F56A",
+      "titleBarBackgroundColor": "#565625"
+    },
+    {
+      "category": "Utility",
+      "iconPath": "graph_utility_icon.svg",
+      "backgroundColor": "#3F454B",
+      "fontColor": "#C4C4C4",
+      "titleBarBackgroundColor": "#3F454B"
+    },
+    {
+      "category": "Transform",
+      "iconPath": "graph_transform_icon.svg",
+      "backgroundColor": "#3D4A59",
+      "fontColor": "#A4C8F1",
+      "titleBarBackgroundColor": "#3D4A59"
+    },
+    {
+      "category": "Debug",
+      "iconPath": "graph_debug_icon.svg",
+      "backgroundColor": "#000000d4",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#000000d4"
+    },
+    {
+      "category": "Head & Face",
+      "iconPath": "graph_head_icon.svg",
+      "backgroundColor": "#142D37",
+      "fontColor": "#5DCCF8",
+      "titleBarBackgroundColor": "#213757"
+    },
+    {
+      "category": "Hand",
+      "iconPath": "graph_hand_icon.svg",
+      "backgroundColor": "#18365A",
+      "fontColor": "#5DCCF8",
+      "titleBarBackgroundColor": "#213757"
+    },
+    {
+      "category": "Variable",
+      "iconPath": "graph_variable_icon.svg",
+      "backgroundColor": "#214757",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#214757"
+    },
+    {
+      "category": "Pin",
+      "iconPath": "graph_pin_node_icon.svg",
+      "backgroundColor": "#214757",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#214757"
+    },
+    {
+      "category": "Group",
+      "iconPath": "graph_group_icon.svg",
+      "backgroundColor": "#121212cc",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#121212cc"
+    },
+    {
+      "category": "Input_Placeholder",
+      "iconPath": "graph_input_placeholder_icon.svg",
+      "backgroundColor": "#121212cc",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#121212cc"
+    },
+    {
+      "category": "Output_Placeholder",
+      "iconPath": "Graph_Output_Placeholder_Icon.svg",
+      "backgroundColor": "#121212cc",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#121212cc"
+    },
+    {
+      "category": "Body",
+      "iconPath": "graph_body_icon.svg",
+      "backgroundColor": "#18365A",
+      "fontColor": "#5DCCF8",
+      "titleBarBackgroundColor": "#213757"
+    },
+    {
+      "category": "Audio",
+      "iconPath": "graph_audio_icon.svg",
+      "backgroundColor": "#532563",
+      "fontColor": "#FFFFFF",
+      "titleBarBackgroundColor": "#532563"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+    "name": "MatrixGetColumn",
+    "id": "7b65068a-1e7b-6bae-ee98-626ef55b8441",
+    "description": "Get a column of a matrix by index",
+    "inputs": [
+        {
+            "name": "Matrix",
+            "type": "Matrix3x3f",
+            "description": "A matrix",
+            "item_type": ""
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "description": "Index of column",
+            "default_value": "0",
+            "item_type": ""
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Column",
+            "type": "Vector3f",
+            "item_type": "",
+            "dynamic": true,
+            "description": "Selected value from vector"
+        }
+    ],
+    "lua": "CGMatrixGetColumn.lua",
+    "luaFuncName": "CGMatrixGetColumn",
+    "builtinClass": "EMNodeMatrixGetColumn",
+    "category": "Utility",
+    "supportedValueTypes": [
+        "Matrix3x3f",
+        "Matrix4x4f"
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+}

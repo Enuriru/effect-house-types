@@ -1,0 +1,65 @@
+{
+	"name": "Select",
+	"id": "ED640EBF-793B-192F-88F6-C89E94204E36",
+	"inputs": [
+		{
+			"name": "Index",
+			"description": "Controlling which item to be selected, it will be rounded to 0, 1, 2 etc; For example, if the input is 1.4, it will be recognized 1, if it is 1.5, it will be 2, so on and so forth",
+			"type": "Int",
+			"displayType": "Number"
+		},
+		{
+			"name": "Item 0",
+			"type": "Double",
+			"dynamic": true,
+			"description": "Any input item according to set type, will be selected if index is 0",
+			"displayType": "Number"
+		},
+		{
+			"name": "Item 1",
+			"type": "Double",
+			"dynamic": true,
+			"description": "Any input item according to set type, will be selected if index is 1",
+			"displayType": "Number"
+		},
+		{
+			"name": "Item 2",
+			"type": "Double",
+			"dynamic": true,
+			"description": "Any input item according to set type, will be selected if index is 2",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Item",
+			"type": "Double",
+			"dynamic": true,
+			"description": "Selected item according to the current index input",
+			"displayType": "Number"
+		}
+	],
+	"category": "Utility",
+	"TTEHVer": "1.0.0",
+	"description": "Select an item according to the input index. Supporting Number, Vec2, Vec3, Vec4, String, Color, Texture 2D, Rect, Material",
+	"productTypes": [
+		"TTEH"
+	],
+	"js": "CGIndexSelect.js",
+	"addableInput": {
+		"index": 3,
+		"baseName": "Item ",
+		"increaseStartIndex": 3
+	},
+	"supportedValueTypes": [
+		"Double",
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"String",
+		"Color",
+		"Texture2D",
+		"Rect",
+		"Material"
+	]
+}

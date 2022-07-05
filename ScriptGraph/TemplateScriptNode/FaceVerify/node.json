@@ -1,0 +1,55 @@
+{
+    "name": "Face Verify",
+    "id": "697e1c50-7da9-4dfd-ee81-a6bc480bdab0",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Features",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "Face features"
+        },
+        {
+            "name": "Face Status",
+            "type": "FACE_TRACKING_STATUS",
+            "item_type": "",
+            "description": "Face status"
+        },
+        {
+            "name": "Valid Face",
+            "type": "Int",
+            "item_type": "",
+            "description": "Number of valid faces"
+        }
+    ],
+    "lua": "CGFaceVerify.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFaceVerify",
+    "category": "Algorithm",
+    "graphAlgorithms": ["faceVerify"],
+    "description": "Get face verify info",
+    "productTypes": ["InHouse"]
+}

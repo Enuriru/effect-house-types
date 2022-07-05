@@ -1,0 +1,45 @@
+{
+    "name": "HeartA",
+    "id": "02c434a2-4e3a-5eb7-3b83-c7915363d9ad",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a HeartA gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a HeartA gesture"
+        }
+    ],
+    "lua": "CGHeartA.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGHeartA",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches HeartA, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

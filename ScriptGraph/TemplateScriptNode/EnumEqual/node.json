@@ -1,0 +1,31 @@
+{
+    "name": "Enum Equal",
+    "id": "68de5e4e-b6ed-9310-43a8-b1d363148bf9",
+    "inputs":
+    [
+        {
+            "name": "EnumInput",
+            "type": "Enum",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Input enum value"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "isEqual",
+            "type": "Bool",
+            "item_type": "",
+            "description": "If two enum are equal"
+        }
+    ],
+    "lua": "CGEnumEqual.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "builtinClass": "EMNodeEnumEqual",
+    "luaFuncName": "CGEnumEqual",
+    "category": "Logic",
+    "description": "Compare two enum and return if they are equal",
+    "productTypes": ["InHouse"]
+}

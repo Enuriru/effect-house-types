@@ -1,0 +1,144 @@
+{
+  "name": "Spin Around 3D",
+  "id": "ac202086-d6f8-0fb3-c6b3-95e547e18211",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Rotate when triggered"
+    },
+    {
+      "name": "Pause",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Pause rotating when triggered"
+    },
+    {
+      "name": "Resume",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Resume rotating when triggered"
+    },
+    {
+      "name": "Stop",
+      "type": "Pulse",
+      "item_type": "",
+      "description:": "Stop rotating when triggered"
+    },
+    {
+      "name": "Transform",
+      "type": "Transform",
+      "item_type": "",
+      "description": "Transform of 3d object"
+    },
+    {
+      "name": "Spin Origin",
+      "type": "Vector3f",
+      "item_type": "",
+      "description": "Origin of the rotate circle"
+    },
+    {
+      "name": "The axis of rotation",
+      "type": "Vector3f",
+      "item_type": "",
+      "description": "An axis system connected at the origin of a surround point around which the surround object is rotated, It will be converted to a unit vector"
+    },
+    {
+      "name": "Rotation Angle",
+      "type": "Double",
+      "item_type": "",
+      "description": "The Angle of rotation, 360 degrees is one circle"
+    },
+    {
+      "name": "Curve",
+      "type": "String",
+      "default_value": "0",
+      "description": "Curve of velocity",
+      "value_list": [
+        {
+          "value": "Linear",
+          "text": "Linear",
+          "value_type": "String"
+        },
+        {
+          "value": "Ease In",
+          "text": "Ease In",
+          "value_type": "String"
+        },
+        {
+          "value": "Ease Out",
+          "text": "Ease Out",
+          "value_type": "String"
+        },
+        {
+          "value": "Ease In-Out",
+          "text": "Ease In-Out",
+          "value_type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Single rotation time",
+      "type": "Double",
+      "item_type": "",
+      "range": [[0, "Inf", 0.01]],
+      "description": "The time required to complete one cycle of rotation"
+    },
+    {
+      "name": "Number of Rotations",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "1",
+      "range": [[1, 9999, 1]],
+      "description": "The number of repetitions of the rotation, 9999 for an infinite loop"
+    },
+    {
+      "name": "Cancel Self Rotating",
+      "type": "Bool",
+      "item_type": "",
+      "default_value": "0",
+      "description": "Cancels the rotation of the rotated object"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Persistent Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Persistent Trigger While Rotating"
+    },
+    {
+      "name": "Spin Start Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger at the start of single rotation"
+    },
+    {
+      "name": "Spin End Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger at the end of single rotation"
+    },
+    {
+      "name": "Object Position",
+      "type": "Vector3f",
+      "item_type": "",
+      "description": "Real-time location data"
+    },
+    {
+      "name": "Object Orientation",
+      "type": "Vector3f",
+      "item_type": "",
+      "description": "Real-time orientation data"
+    }
+  ],
+  "lua": "CGSpinAround3D.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGSpinAround3D",
+  "category": "Control",
+  "nodeEvent": ["onUpdate", "onStart"],
+  "description": "Execute procedures one by one",
+  "productTypes": ["InHouse", "Domestic"]
+}

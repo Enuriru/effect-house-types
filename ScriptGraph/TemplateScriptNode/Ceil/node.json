@@ -1,0 +1,40 @@
+{
+	"name": "Ceil",
+	"id": "ef3a3cfe-e98b-e941-8346-a38b27e99a5c",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGCeil.lua",
+	"js": "CGCeil.js",
+	"version": "1.0",
+	"luaFuncName": "CGCeil",
+	"category": "Math",
+	"description": "Calculate the ceiling of an input value",
+	"supportedValueTypes": [
+		"Double"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

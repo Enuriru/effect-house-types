@@ -1,0 +1,92 @@
+{
+    "name": "Cloth Mesh",
+    "id": "41a435be-4b4e-815f-63b6-9117bce2ddfd",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of cloth"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Track ID",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Type",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Score",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "X0",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Y0",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "X1",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Y1",
+            "type": "Float",
+            "item_type": "",
+            "default_value": "0",
+            "description": ""
+        },
+        {
+            "name": "Vertices",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": ""
+        }
+    ],
+    "lua": "CGClothMesh.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGClothMesh",
+    "category": "Algorithm",
+    "graphAlgorithms": ["clothmesh"],
+    "description": "Get cloth mesh info",
+    "productTypes": ["InHouse"]
+}

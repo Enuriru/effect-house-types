@@ -1,0 +1,49 @@
+{
+	"name": "Snapshot",
+	"id": "98837be9-ae80-839b-be7f-d64ad2ec7a2c",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"description": "Enter this execution",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Camera Texture",
+			"type": "RenderTexture",
+			"description": "Render texture of the camera to take a snapshot from",
+			"displayType": "Render Texture"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Snapshot Texture",
+			"type": "Texture2D",
+			"item_type": "",
+			"description": "The output texture of the snapshot",
+			"displayType": "Texture 2D"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGGrabFrame.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Control",
+	"nodeEvent": [
+		"beforeStart",
+		"onCallBack",
+		"onDestroy"
+	],
+	"description": "Take a snapshot of a render texture from a camera",
+	"productTypes": [
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

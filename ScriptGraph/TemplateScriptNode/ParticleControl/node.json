@@ -1,0 +1,65 @@
+{
+  "name": "ParticleController",
+  "id": "27e3d784-0679-48fa-1d40-c1527eff09f8",
+  "inputs":
+  [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Start to emit particle"
+    },
+    {
+      "name": "Stop",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Stop to emit particle"
+    },
+    {
+      "name": "Pause",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Pause to emit particle"
+    },
+    {
+      "name": "Resume",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Resume to emit particle"
+    },
+    {
+      "name": "ParticleComponent",
+      "type": "ParticleComponent",
+      "item_type": "",
+      "description": "Particle Component"
+    }
+  ],
+  "outputs":
+  [
+    {
+      "name": "Execute Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger when the node executed"
+    },
+    {
+      "name": "Start Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger when particle start emitting"
+    },
+    {
+      "name": "Stop Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger when particle stop emitting"
+    }
+  ],
+  "lua": "CGParticleController.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGParticleController",
+  "category": "Control",
+  "description": "Support for controlling the particle system",
+  "productTypes": ["InHouse", "Domestic"]
+}

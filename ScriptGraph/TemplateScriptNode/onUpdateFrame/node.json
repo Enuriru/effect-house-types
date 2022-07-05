@@ -1,0 +1,44 @@
+{
+    "name": "OnUpdateFrame",
+    "id": "f5edb771-b130-29f0-855c-3b7e9e86cfc2",
+    "inputs":
+    [
+        {
+            "name": "Trigger Times",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 9999, 1]],
+            "description": "Specify the total times of trigger"
+        },
+        {
+            "name": "Interval",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, "Inf", 1]],
+            "description": "Specify how many frames are passed between two triggers"
+        },
+        {
+            "name": "First Frame",
+            "type": "Bool",
+            "default_value": "0",
+            "description": "If first trigger happens at the first frame"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        }
+    ],
+    "lua": "CGOnUpdateFrame.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGOnUpdateFrame",
+    "category": "Event",
+    "nodeEvent": "onUpdate",
+    "description": "Trigger next node continuously at specified frames",
+    "productTypes": ["InHouse", "Domestic"]
+}

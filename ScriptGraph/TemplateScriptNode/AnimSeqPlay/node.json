@@ -1,0 +1,40 @@
+{
+	"name": "Seq Animation::Play",
+	"id": "3f186e1f-c56e-b78d-2184-8b55bffedb7b",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Animation",
+			"type": "AnimSeqComponent",
+			"item_type": "",
+			"description": "The animation to play",
+			"displayType": "Seq Animation Component"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAnimSeqPlay.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Utility",
+	"description": "Play the animation sequence",
+	"productTypes": [
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

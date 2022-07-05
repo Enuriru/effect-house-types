@@ -1,0 +1,41 @@
+{
+	"name": "Sin",
+	"id": "f885cf29-a3a1-3bf8-68af-482609e36ff0",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Sin",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGSin.lua",
+	"js": "CGSin.js",
+	"version": "1.0",
+	"luaFuncName": "CGSin",
+	"category": "Math",
+	"description": "Calculate the sin of an input radian",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

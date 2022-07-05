@@ -1,0 +1,133 @@
+{
+	"name": "Animation Sequence Controller",
+	"id": "3abaf27a-7afc-34ad-47cf-1532d2bf99b6",
+	"inputs": [
+		{
+			"name": "Play",
+			"description": "Play the Animation Sequence from the frame index set to play from",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stop",
+			"description": "Stop the Animation Sequence and turn off the visual",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Pause",
+			"description": "Pause the Animation Sequence without turning off the visual",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Resume",
+			"description": "Resume the Animation Sequence from the current paused index",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Component",
+			"description": "The Animation Sequence component",
+			"type": "AnimSeqComponent",
+			"displayType": "Animation Sequence"
+		},
+		{
+			"name": "From",
+			"description": "Frame index to play from, the first frame starting from 0",
+			"type": "Int",
+			"displayType": "Number",
+			"range": [
+				[
+					0,
+					"inf",
+					1
+				]
+			]
+		},
+		{
+			"name": "To",
+			"description": "Frame index to play to, maximum effective number is total frame count - 1",
+			"type": "Int",
+			"displayType": "Number",
+			"range": [
+				[
+					0,
+					"inf",
+					1
+				]
+			]
+		},
+		{
+			"name": "Loop",
+			"description": "Loop times of the Animation Sequence to play",
+			"type": "Int",
+			"displayType": "Number",
+			"default_value": "1",
+			"range": [
+				[
+					1,
+					"inf",
+					1
+				]
+			]
+		},
+		{
+			"name": "Stop on Last",
+			"description": "It will stop on last frame when it ends if selected",
+			"type": "Bool",
+			"displayType": "Bool"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"description": "Execute the next node",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Play",
+			"description": "Execute the next node when the whole Animation Sequence plays the first frame",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Each Play",
+			"description": "Execute the next node when the Animation Sequence plays its first frame every time during the loop",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Each Stop",
+			"description": "Execute the next node when the Animation Sequence plays its last frame every time during the loop",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Stop",
+			"description": "Execute the next node when the whole Animation Sequence stops",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Current Frame",
+			"description": "The current frame index playing",
+			"type": "Int",
+			"displayType": "Number"
+		}
+	],
+	"category": "Utility",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onCallBack",
+		"onDestroy"
+	],
+	"scriptSupport": "js",
+	"js": "CGAnimationSequenceController.js",
+	"description": "Control Animation Sequence and its relevant properties, note that the first animation frame index start from zero"
+}

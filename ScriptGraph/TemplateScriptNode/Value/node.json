@@ -1,0 +1,41 @@
+{
+    "name": "Value",
+    "id": "7da1e66f-8bfc-590b-d46a-5925103acc10",
+    "description": "A value watcher, won't change value, just for runtime monitor",
+    "inputs": [
+        {
+            "name": "Value",
+            "type": "Int",
+            "description": "The value to output",
+            "default_value": "0",
+            "dynamic": true,
+            "item_type": ""
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Output",
+            "type": "Int",
+            "item_type": "",
+            "dynamic": true,
+            "description": "The input value"
+        }
+    ],
+    "lua": "CGValue.lua",
+    "luaFuncName": "CGValue",
+    "category": "Utility",
+    "supportedValueTypes": [
+        "Int",
+        "Bool",
+        "Float",
+        "Double",
+        "Vector2f",
+        "Vector3f",
+        "Vector4f",
+        "Quaternionf",
+        "Color",
+        "String",
+        "Rect"
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+}

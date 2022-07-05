@@ -1,0 +1,71 @@
+{
+	"name": "Facial Movement (Eye Blink)",
+	"id": "0fb5c3ee-b6f2-a0a2-4878-7d49bafa6fba",
+	"inputs": [
+		{
+			"name": "Face Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Which face to track",
+			"displayType": "Number"
+		},
+		{
+			"name": "Which Eye",
+			"type": "String",
+			"value_list": [
+				"Left",
+				"Right",
+				"Both"
+			],
+			"description": "Left, right, both eye(s) to track",
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the action begins",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the action stays",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the action ends",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the action is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGEyeBlink.lua",
+	"js": "CGEyeBlink.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGEyeBlink",
+	"category": "Head & Face",
+	"subCategory": "Interaction",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"faceDetectBlink"
+	],
+	"description": "Detect eye blink",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

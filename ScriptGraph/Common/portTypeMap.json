@@ -1,0 +1,137 @@
+{
+	"typeMap": [
+		{
+			"EngineType": "Pulse",
+			"DisPlayType": [
+				"Exec"
+			]
+		},
+		{
+			"EngineType": "Int",
+			"DisPlayType": [
+				"Number"
+			]
+		},
+		{
+			"EngineType": "Bool",
+			"DisPlayType": [
+				"Boolean"
+			]
+		},
+		{
+			"EngineType": "Double",
+			"DisPlayType": [
+				"Number"
+			]
+		},
+		{
+			"EngineType": "Vector2f",
+			"DisPlayType": [
+				"Vec2"
+			]
+		},
+		{
+			"EngineType": "AnimSeqComponent",
+			"DisPlayType": [
+				"Seq Animation Component"
+			]
+		},
+		{
+			"EngineType": "any",
+			"DisPlayType": [
+				"Any"
+			]
+		},
+		{
+			"EngineType": "Entity",
+			"DisPlayType": [
+				"Scene Object"
+			]
+		},
+		{
+			"EngineType": "RenderTexture",
+			"DisPlayType": [
+				"Render Texture"
+			]
+		},
+		{
+			"EngineType": "Texture2D",
+			"DisPlayType": [
+				"Texture 2D"
+			]
+		},
+		{
+			"EngineType": "Vector3f",
+			"DisPlayType": [
+				"Vec3"
+			]
+		},
+		{
+			"EngineType": "Vector4f",
+			"DisPlayType": [
+				"Vec4"
+			]
+		},
+		{
+			"EngineType": "MeshRenderer",
+			"DisPlayType": [
+				"Model"
+			]
+		},
+		{
+			"EngineType": "AudioComponent",
+			"DisPlayType": [
+				"Audio Player"
+			]
+		}
+	],
+	"allRealType": [
+		"Pulse",
+		"Animator",
+		"Int",
+		"Bool",
+		"Double",
+		"AudioClip",
+		"Audio Source",
+		"Rect",
+		"Vector2f",
+		"Component",
+		"MorpherComponent",
+		"String",
+		"AnimSeqComponent",
+		"Transform",
+		"Vector3f",
+		"any",
+		"Entity",
+		"RenderTexture",
+		"Texture2D",
+		"Camera",
+		"Audio Stream",
+		"AudioComponent",
+		"ErrorType"
+	],
+	"allDisplayType": [
+		"Exec",
+		"Animator",
+		"Number",
+		"Boolean",
+		"Audio Clip",
+		"Audio Source",
+		"Rect",
+		"Vec2",
+		"Component",
+		"Deformation",
+		"String",
+		"Seq Animation Component",
+		"Transform",
+		"Vec3",
+		"Any",
+		"Scene Object",
+		"Render Texture",
+		"Texture 2D",
+		"Camera",
+		"Audio Stream",
+		"Animation Sequence",
+		"Bool"
+	]
+}

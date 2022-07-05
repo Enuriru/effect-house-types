@@ -1,0 +1,60 @@
+{
+  "curGraphType": "SCRIPT",
+  "version": "0.0.0",
+  "graph": [
+    {
+      "__class": "ScriptGraph",
+      "__uniqueId": "487b4c38-106b-e711-61e8-01dd9cebcbe1",
+      "panelName": "",
+      "graphType": "UNDEFINED",
+      "subGraphs": {"__uniqueId": "487b4c38-106b-e711-61e8-01dd9cebcbe1", "parent": null, "subGraph": []},
+      "nodeList": [],
+      "edgeList": [],
+      "variableList": []
+    },
+    {
+      "__class": "ScriptGraph",
+      "__uniqueId": "487b4c38-106b-e711-61e8-01dd9cebcbe1",
+      "panelName": "Script Graph",
+      "graphType": "SCRIPT",
+      "subGraphs": {"__uniqueId": "487b4c38-106b-e711-61e8-01dd9cebcbe1", "parent": null, "subGraph": []},
+      "nodeList": [
+        {
+          "__class": "ScriptTemplateNode",
+          "__uniqueId": "ecd421cc-df04-ba49-c539-c33a396c6743",
+          "nodeName": "Record Video Ended_2",
+          "displayName": "Record_Video_Ended_2",
+          "inputPorts": [],
+          "outputPorts": [
+            {
+              "__class": "ScriptPort",
+              "__uniqueId": "48401c12-f24b-0a79-dff9-7db472cd4415",
+              "portName": "Next",
+              "type": "CONTROL",
+              "isInput": false,
+              "portIndex": 0,
+              "valueTypeName": "Pulse",
+              "isConnect": false,
+              "refEdges": [],
+              "isDynamic": false,
+              "centerPosition": {"x": 50325, "y": 50345}
+            }
+          ],
+          "absolutePath": "/Users/admin/Documents/orion/src/Business/Graph/Business/Script/Resource/TemplateScriptNode/RecordVideoEnd/CGRecordVideoEnd.lua",
+          "fileName": "CGRecordVideoEnd.lua",
+          "templateGuid": "87ffbd93-5404-3b8e-d7d2-58f525b21b37",
+          "onCallback": ["onEvent"],
+          "curSelectedType": "",
+          "category": "Event",
+          "nodeType": "DEFAULT",
+          "position": {"x": 50192.307692307695, "y": 50300.07692307692},
+          "size": {"width": 146, "height": 70},
+          "title": "Record Video Ended",
+          "ownerId": "487b4c38-106b-e711-61e8-01dd9cebcbe1"
+        }
+      ],
+      "edgeList": [],
+      "variableList": []
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+    "name": "Face Action Detection",
+    "id": "7885c65b-ab1e-5faf-6372-15ba68d7e71d",
+    "inputs":
+    [
+        {
+            "name": "Face Action",
+            "type": "List",
+            "default_value": "0",
+            "value_list": [
+                {
+                    "value": "EYE_BLINK",
+                    "text": "Eye Blink",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "EYE_BLINK_LEFT",
+                    "text": "Left Eye Blink",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "EYE_BLINK_RIGHT",
+                    "text": "Right Eye Blink",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "BROW_JUMP",
+                    "text": "Brow Jump",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "HEAD_PITCH",
+                    "text": "Nod Head",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "MOUTH_AH",
+                    "text": "Mouth Open",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "HEAD_YAW",
+                    "text": "Shake Head",
+                    "value_type": "FaceAction"
+                },
+                {
+                    "value": "MOUTH_POUT",
+                    "text": "Mouth Pout",
+                    "value_type": "FaceAction"
+                }
+            ],
+            "description": "Face Action to detect"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "0",
+            "range": [[0, 5, 1]],
+            "description": "Index of face to select"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Face Action Detected",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Will trigger continuously if current face action match selected type"
+        },
+        {
+            "name": "Face Action Not Detected",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Will trigger continuously if current face action does NOT match selected type"
+        },
+        {
+            "name": "Face Action appear",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when selected face action appear"
+        },
+        {
+            "name": "Face Action disappear",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when selected face action disappear"
+        }
+    ],
+    "lua": "CGFaceActionDetection.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFaceActionDetection",
+    "category": "Event",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["faceDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": ["MOUTH_POUT"],
+            "algorithms": ["faceDetectDuMouth"]
+        }
+    ],
+    "description": "Detect face action in camera",
+    "productTypes": ["InHouse", "Domestic"]
+}

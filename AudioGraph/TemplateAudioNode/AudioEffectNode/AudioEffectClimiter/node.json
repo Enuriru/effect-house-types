@@ -1,0 +1,39 @@
+{
+  "name": "Climiter",
+  "id": "e1bf28fa-bb45-d096-7e9b-30290ee8bba2",
+  "inputs":
+  [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Input Audio Stream"
+    },
+    {
+      "name": "gate",
+      "type": "Double",
+      "default_value": "1",
+      "range": [[0, 1, 0.1]]
+    },
+    {
+      "name": "pregain_dB",
+      "type": "Double",
+      "default_value": "0",
+      "range": [[-100, 100, 1]]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioEffectClimiter.js",
+  "category": "Audio",
+  "description": "limiter Effect",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["beforeStart", "onUpdate"],
+  "builtinClass": "AudioEffectNode",
+  "audioNodeName": "climiter"
+}

@@ -1,0 +1,35 @@
+{
+    "name": "Log",
+    "id": "39e6c8a0-e9e1-4b95-159a-617a4247fb48",
+    "inputs": [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger current node to execute"
+        },
+        {
+            "name": "Text",
+            "type": "String",
+            "item_type": "",
+            "description": "Content to log"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Trigger next node to execute"
+        }
+    ],
+    "js": "CGLog.js",
+    "lua": "CGLog.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGLog",
+    "category": "Utility",
+    "description": "Print a log",
+    "productTypes": ["InHouse"]
+}

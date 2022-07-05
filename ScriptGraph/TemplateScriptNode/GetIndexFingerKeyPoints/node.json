@@ -1,0 +1,62 @@
+{
+    "name": "Get Index Finger Key Points",
+    "id": "e0d9b951-6c5b-09a8-3a4e-48cd4a4148be",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 2, 1]],
+            "description": "Index of hand to get index finger key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Tip",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the tip of index finger"
+        },
+        {
+            "name": "FIrst Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the first joint of index finger"
+        },
+        {
+            "name": "Second Joint",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the second joint of index finger"
+        }
+    ],
+    "lua": "CGGetIndexFingerKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetIndexFingerKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["handDetect", "handDetectKeyPoint"],
+    "extraAlgorithms": [
+        {
+            "port": 1,
+            "values": [2],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "Get key points on index finger",
+    "productTypes": ["InHouse", "Domestic"]
+}

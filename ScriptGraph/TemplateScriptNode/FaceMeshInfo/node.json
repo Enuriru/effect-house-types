@@ -1,0 +1,79 @@
+{
+    "name": "Face Mesh Info",
+    "id": "3eae2ec1-3a1c-fc28-772a-69029941edac",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Vertexes",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Vertexes of 3D face mesh"
+        },
+        {
+            "name": "Landmarks",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Landmarks of 3D face mesh"
+        },
+        {
+            "name": "Parameters",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "Paramters of 3D face algorithm"
+        },
+        {
+            "name": "Normals",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Normals of 3D face mesh"
+        },
+        {
+            "name": "Tangents",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Tangents of 3D face mesh"
+        },
+        {
+            "name": "MVP",
+            "type": "Matrix4x4f",
+            "item_type": "",
+            "description": "MVP of 3D face mesh"
+        },
+        {
+            "name": "ModelMatrix",
+            "type": "Matrix4x4f",
+            "item_type": "",
+            "description": "Model of 3D face mesh"
+        }
+    ],
+    "lua": "CGFaceMeshInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFaceMeshInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["3dFaceMeshPerspective"],
+    "description": "Get face mesh info",
+    "productTypes": ["InHouse"]
+}

@@ -1,0 +1,14 @@
+{
+    "uuid": "1f77a955-1cfe-27b5-906d-3c47249cf8dd",
+    "type": "texture",
+    "subType": "segmentation",
+    "rtti": "RenderTexture",
+    "properties": {
+      "segmentationType": "body",
+      "invert": false,
+      "smoothness": 0.75,
+      "useCutoutTexture": true,
+      "cutoutTexture": "custom://Default_Camera_Input"
+    }
+  }
+    

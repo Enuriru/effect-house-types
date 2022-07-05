@@ -1,0 +1,103 @@
+{
+	"Shader":"Segment",
+	"Pass":
+		{
+			"Cull" : "Back",
+			"DepthWriteEnable" : "Off",
+			"ZTest" : "LessEqual",
+			"BlendMode": "Transparent",
+      		"Ausl" : "a1"
+		}
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+$Base property$
+_BaseColor(Albedo Color, Color) = [1.0, 1.0, 1.0, 1.0]
+BackgroundTex (Texture on, Defs) = 1
+[BackgroundTex] _BaseTexture(Texture, 2D) = "Default_Segmentation_Portrait"
+
+// UVControl
+$UV control$
+_Tiling(Tilling, Vec2) = [1.0, 1.0]
+_Offset(Offset, Vec2) = [0.0, 0.0]
+_Rotation(Rotation, Range(0.0, 360.0)) = 0.0
+---END UIPROPERTY
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+        in vec2 attTexcoord0;
+    #pragma end
+
+    // Varyings: outputs of vertex shader, inputs for fragment shader
+    #pragma varying varyings
+        highp vec2 g_vary_uv0;
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out highp vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes varyings
+        precision highp float;
+        uniform vec2 _Offset;
+        uniform vec2 _Tiling;
+        uniform float _Rotation;
+
+        const float degtorad = 0.0174533;
+        
+        vec2 UV_TRS(vec2 inputUV, vec2 uvCenter, vec2 uvPan, vec2 uvScale, float uvRotate)
+        {
+            vec2 minusCenterUV = inputUV - uvCenter;
+            float cosVal = cos(uvRotate);
+            float sinVal = sin(uvRotate);
+            mat2 rotateMat = mat2(vec2(cosVal, -sinVal), vec2(sinVal, cosVal));
+            vec2 outputUV = minusCenterUV * uvScale;
+            outputUV = (rotateMat * outputUV) + uvCenter;
+            outputUV += uvPan;
+            return outputUV;
+        }
+    #pragma end
+
+    // Fragment stage section in fragment shader
+    #pragma fs varyings targets
+        precision mediump float;
+        precision highp int;
+        uniform vec4 _BaseColor;
+    #ifdef BackgroundTex
+        uniform sampler2D _BaseTexture;
+    #endif
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+         vec2 v_uv0 = vec2(attTexcoord0.x, 1.0 - attTexcoord0.y);
+        vec2 param = v_uv0;
+        vec2 param_1 = vec2(0.5);
+        vec2 param_2 = _Offset;
+        vec2 param_3 = _Tiling;
+        float param_4 = _Rotation * degtorad;
+        g_vary_uv0 = UV_TRS(param, param_1, param_2, param_3, param_4);
+        gl_Position = sign(vec4(attPosition, 1.0));
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        vec4 finalColor = vec4(_BaseColor);
+    #ifdef BackgroundTex
+        finalColor = texture(_BaseTexture, g_vary_uv0);
+    #endif
+        o_fragColor = finalColor;
+    }
+
+---END a1

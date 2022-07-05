@@ -1,0 +1,83 @@
+{
+	"name": "Delay",
+	"id": "d23d8f29-4e02-f2b1-6bb7-7423f442857d",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Feedback",
+			"type": "Double",
+			"default_value": "500",
+			"displayType": "Number",
+			"description": "Input threshold value [0,1]"
+		},
+		{
+			"name": "Dry",
+			"type": "Double",
+			"default_value": "0.2",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The volume of the original audio source from last node [0,1]"
+		},
+		{
+			"name": "Wet",
+			"type": "Double",
+			"default_value": "1",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The volume of the delay effect [0,1]"
+		},
+		{
+			"name": "Enabled",
+			"type": "Double",
+			"default_value": "0.2",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Boolean",
+			"description": "Enable this node"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioEffectDelay.js",
+	"category": "Audio",
+	"description": "Decaying echo audio effect ",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioEffectNode",
+	"audioNodeName": "delay",
+	"TTEHVer": "1.0.0"
+}

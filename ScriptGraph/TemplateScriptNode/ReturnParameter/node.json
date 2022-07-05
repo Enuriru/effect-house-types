@@ -1,0 +1,16 @@
+{
+    "name": "Return Parameter",
+    "id": "ab12e9f2-25f8-d528-500e-eaz2b12df6cf",
+    "description": "Function return parameter node, only add in function graph",
+    "inputs": [
+
+    ],
+    "outputs": [
+
+    ],
+    "builtinClass": "EMFunctionReturnParameterNode",
+    "lua": "CGReturnParameter.lua",
+    "luaFuncName": "CGReturnParameter",
+    "category": "Utility",
+    "productTypes": ["InHouse"]
+}

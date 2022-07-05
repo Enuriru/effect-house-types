@@ -1,0 +1,49 @@
+{
+	"name": "Lerp",
+	"id": "aac82bad-208a-7eb8-e5db-7dcced7fa267",
+	"inputs": [
+		{
+			"name": "Start",
+			"type": "Double",
+			"item_type": "",
+			"description": "The lower bound of the range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Stop",
+			"type": "Double",
+			"item_type": "",
+			"description": "The upper bound of the range",
+			"displayType": "Number"
+		},
+		{
+			"name": "Step",
+			"type": "Double",
+			"item_type": "",
+			"description": "The normalized [0,1] value within the range to return",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"description": "A value between start and stop",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGLerp.lua",
+	"js": "CGLerp.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGLerp",
+	"category": "Math",
+	"description": "Linearly interpolate a value within a range",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

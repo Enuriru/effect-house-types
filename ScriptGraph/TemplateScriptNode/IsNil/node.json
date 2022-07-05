@@ -1,0 +1,30 @@
+{
+	"name": "Is Nil",
+	"id": "d23a958e-7dfc-8a84-7fa3-8e80e188e728",
+	"description": "Check if input value is nil; (support any types of value)",
+	"inputs": [
+		{
+			"name": "Value",
+			"type": "any",
+			"description": "Input value",
+			"displayType": "Any"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Bool",
+			"description": "Boolean value, true if nil",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGisNil.js",
+	"lua": "CGIsNil.lua",
+	"category": "Logic",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

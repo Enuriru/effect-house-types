@@ -1,0 +1,19 @@
+{
+  "name": "ScreenHeight",
+  "id": "367f3937-788d-2b0a-f38d-b97fdc937187",
+  "inputs": [
+  ],
+  "outputs": [
+    {
+      "name": "ScreenHeight",
+      "type": "Int",
+      "item_type":"",
+      "description": "Get current screen height"
+    }
+  ],
+  "lua": "CGGetScreenHeight.lua",
+  "version": "1.0",
+  "category": "Utility",
+  "description": "Get current screen height",
+  "productTypes": ["InHouse", "Domestic"]
+}

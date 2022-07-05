@@ -1,0 +1,8 @@
+    -- load all resource on start
+{% for resource in resourcePathMap %}
+    nodes["{{resource[0] | getIdentifierById}}"].resource = sys.scene.assetMgr:SyncLoad("{{resource[1]}}")
+{% endfor %}
+    -- load texture variable on start 
+{% for variableRes in variableResourceMap %}
+    variables["{{variableRes[0]}}_{{variableRes[1]}}"] = sys.scene.assetMgr:SyncLoad("{{variableRes[2]}}")
+{% endfor %}

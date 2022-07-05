@@ -1,0 +1,55 @@
+{
+	"name": "Mixer",
+	"id": "1ffebae9-e42d-0990-eb50-647d174e8eb9",
+	"inputs": [
+		{
+			"name": "Audio 1",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Volume 1",
+			"type": "Double",
+			"default_value": "1.0",
+			"description": "Input value",
+			"displayType": "Number"
+		},
+		{
+			"name": "Audio 2",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Volume2",
+			"type": "Double",
+			"default_value": "1.0",
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioMixer.js",
+	"category": "Audio",
+	"description": "Mix the volume for two audio streams",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate",
+		"onInit"
+	],
+	"builtinClass": "AudioGeneralNode",
+	"audioNodeName": "GainNode",
+	"TTEHVer": "1.0.0"
+}

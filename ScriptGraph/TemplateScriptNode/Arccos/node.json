@@ -1,0 +1,41 @@
+{
+	"name": "Acos",
+	"id": "cbed79f9-0bf5-521c-b3fa-6d53c816adb2",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Acos",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGArccos.lua",
+	"js": "CGArccos.js",
+	"version": "1.0",
+	"luaFuncName": "CGArccos",
+	"category": "Math",
+	"description": "Calculate the arccosine (in radians) of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,55 @@
+{
+    "name": "Nail Key Points",
+    "id": "7f2b7f22-baa7-7ecc-865b-13cac548fdf4",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of nail"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Rect",
+            "type": "Rect",
+            "item_type": "",
+            "description": "Rectangle area of nail"
+        },
+        {
+            "name": "Key Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "Key points of nail"
+        },
+        {
+            "name": "Finger",
+            "type": "Int",
+            "item_type": "",
+            "description": "Finger type"
+        }
+    ],
+    "lua": "CGNailKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGNailKeyPoints",
+    "category": "Algorithm",
+    "graphAlgorithms": ["nailKeyPoint"],
+    "description": "Get nail key points",
+    "productTypes": ["InHouse"]
+}

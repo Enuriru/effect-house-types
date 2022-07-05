@@ -1,0 +1,50 @@
+{
+	"name": "Pow",
+	"id": "fa93c430-ae26-fbaa-a8a1-38b1d987fb5b",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value A",
+			"displayType": "Number"
+		},
+		{
+			"name": "B",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value B",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Pow",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGPower.lua",
+	"js": "CGPower.js",
+	"version": "1.0",
+	"luaFuncName": "CGPower",
+	"category": "Math",
+	"description": "Calculate the exponentiation with base and power value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

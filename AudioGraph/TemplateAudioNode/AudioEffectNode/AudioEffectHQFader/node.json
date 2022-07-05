@@ -1,0 +1,72 @@
+{
+  "name": "HQ Fader",
+  "id": "f0746fbf-b24e-ba31-2866-ceb0a720f44a",
+  "inputs":
+  [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Input Audio Stream"
+    },
+    {
+      "name": "peak",
+      "type": "Double",
+      "default_value": "0",
+      "range": [[0, 1, 0.1]]
+    },
+    {
+      "name": "hardLimit",
+      "type": "Double",
+      "default_value": "1",
+      "range": [[0, 1, 0.1]]
+    },
+    {
+      "name": "targetLoudness",
+      "type": "Double",
+      "default_value": "-22",
+      "range": [[-30, 0, 1]]
+    },
+    {
+      "name": "loudness",
+      "type": "Double",
+      "default_value": "-9",
+      "range": [[-90, 12, 1]]
+    },
+    {
+      "name": "volume",
+      "type": "Double",
+      "default_value": "0.5",
+      "range": [[0, 1, 0.1]]
+    },
+    {
+      "name": "on",
+      "type": "Bool",
+      "default_value": "1"
+    },
+    {
+      "name": "normalizedToTargetLoudness",
+      "type": "Bool",
+      "default_value": "0"
+    },
+    {
+      "name": "normalizedToPeak",
+      "type": "Bool",
+      "default_value": "0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioEffectHQFader.js",
+  "category": "Audio",
+  "description": "HQ Fader Effect",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["beforeStart", "onUpdate"],
+  "builtinClass": "AudioEffectNode",
+  "audioNodeName": "hq_fader"
+}

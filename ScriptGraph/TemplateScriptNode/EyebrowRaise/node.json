@@ -1,0 +1,59 @@
+{
+	"name": "Facial Movement (Wiggle Eyebrow)",
+	"id": "1c363a7f-bb9f-0ca9-eaf5-bcc908f68f35",
+	"inputs": [
+		{
+			"name": "Face Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Which face to track",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the eyebrow begins wiggling",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the eyebrow stays wiggling",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the eyebrow ends wiggling",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the eyebrow is not wiggling",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGEyebrowRaise.lua",
+	"js": "CGEyebrowRaise.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGEyebrowRaise",
+	"category": "Head & Face",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"faceDetect"
+	],
+	"description": "Detect eyebrow wiggle",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

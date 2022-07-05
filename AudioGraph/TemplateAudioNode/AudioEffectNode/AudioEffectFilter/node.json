@@ -1,0 +1,51 @@
+{
+  "name": "Biquad Filter",
+  "id": "55a020ff-4c6d-5e58-8171-df4541145399",
+  "inputs":
+  [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Input Audio Stream"
+    },
+    {
+      "name": "freq",
+      "type": "Double",
+      "default_value": "100",
+      "range": [[10, 20000, 1]]
+    },
+    {
+      "name": "gain",
+      "type": "Double",
+      "default_value": "1",
+      "range": [[0, 10, 0.1]]
+    },
+    {
+      "name": "quality",
+      "type": "Double",
+      "default_value": "1",
+      "range": [[1, 2, 0.1]]
+    },
+    {
+      "name": "filter_type",
+      "type": "Int",
+      "default_value": "0",
+      "range": [[0, 1, 1]]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioEffectFilter.js",
+  "category": "Audio",
+  "description": "Filter Effect",
+  "productTypes": ["TTEH"],
+  "nodeEvent": ["beforeStart", "onUpdate"],
+  "builtinClass": "AudioEffectNode",
+  "audioNodeName": "biquad_filter"
+}

@@ -1,0 +1,91 @@
+{% comment %} -------------------------------------network connection------------------------------------- {% endcomment %}
+
+{% for edge in edgeList %}
+    {% if edge.edgeValid %}
+        {%- assign isExist = edge.__uniqueId | isEdgeExist -%}
+        {% if isExist == false %}
+            {{- edge | registerEdge -}}
+            {% if edge.needExtraInputValue %}
+                {% if edge.outputPortType != "Pulse" %}
+                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
+                    {% if isPortConnectionValid == false %}
+        this.nodes["{{edge.outputNode | getIdentifierById}}"].setInput({{ edge.outputPortIndex }}, ()=>{ return {{ edge.inputPortMetaData | getPortValueExpression }} });
+                    {{- edge | registerPortConnection -}}
+                    {% endif %}
+                {% endif %}
+            {% elsif edge.needExtraOutputValue %}
+                {% if edge.inputPortType == "Pulse" %}
+                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
+                    {% if isPortConnectionValid == false %}
+        this.nodes["{{edge.inputNode | getIdentifierById}}"].setNext({{edge.inputPortIndex}}, ()=>{
+                        {% if isPreview %}
+                            {% if edge.ExtraOutputTriggerSyncArray %}
+                                {% for triggerPortId in edge.ExtraOutputTriggerSyncArray %}
+        this.graphUtils.setWatchValue("{{triggerPortId}}", true);
+                                {% endfor %}
+                            {% else %}
+        this.graphUtils.setWatchValue("{{edge.outputUIPort}}", true);
+                            {% endif %}
+                        {% endif %}
+            if (this.executionDepth >= 1000) {
+                return;
+            }
+            this.executionDepth++;
+            this.nodes["{{edge.outputNode | getIdentifierById}}"].execute({{edge.outputPortIndex}})
+            this.executionDepth--;
+                        {{- edge | registerPortConnection -}}
+        });
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if edge.inputPortType == "Pulse" %}
+                    {%- assign isPortConnectionValid = edge | hasPortPairConnection -%}
+                    {% if isPortConnectionValid == false %}
+        this.nodes["{{edge.inputNode | getIdentifierById}}"].setNext({{edge.inputPortIndex}}, ()=>{
+                        {% if isPreview %}
+            this.graphUtils.setWatchValue("{{edge.outputPort}}", true)
+                        {% endif %}
+            if (this.executionDepth >= 1000) {
+                return;
+            }
+            this.executionDepth++;
+            this.nodes["{{edge.outputNode | getIdentifierById}}"].execute({{edge.outputPortIndex}})
+            this.executionDepth--;
+                    {{- edge | registerPortConnection -}}
+        });
+                    {% endif %}
+                {% else %}
+                    {% if edge.audioStreamConnection or edge.audioSourceConnection %}
+                        {% continue %}
+                    {% endif %}
+        this.nodes["{{edge.outputNode | getIdentifierById}}"].setInput({{edge.outputPortIndex}}, ()=>{
+            if (this.nodes["{{edge.inputNode | getIdentifierById}}"].lastOutputs[{{edge.inputPortIndex}}] === undefined) {
+                this.nodes["{{edge.inputNode | getIdentifierById}}"].lastOutputs[{{edge.inputPortIndex}}] = {{ edge.inputPortType | getDefaultValueExpression }};
+            }
+            var __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}});
+            if (__portValue !== null && __portValue !== undefined) {
+                this.nodes["{{edge.inputNode | getIdentifierById}}"].lastOutputs[{{edge.inputPortIndex}}] = __portValue;
+            } else {
+                // if portValue is invalid, use the value in last frame
+                __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].lastOutputs[{{edge.inputPortIndex}}];
+            }
+                    {% if isPreview and supportedPreviewDataType%}
+                        {%- assign isSupportType = supportedPreviewDataType | contained: edge.inputPortType -%}
+                        {% if isSupportType and isPreview %}
+            if (__portValue !== null) {
+                this.graphUtils.setWatchValue("{{edge.outputPort}}", __portValue);
+            }
+                        {% elsif edge.outputPortType == "Enum" and isPreview %}
+            if (__portValue !== null) {
+                this.graphUtils.setWatchValue("{{edge.outputPort}}", __portValue);
+            }
+                        {% endif %}
+                    {% endif %}
+            return __portValue;});
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        // error connection {{ edge.__uniqueId }}
+    {% endif %}
+{% endfor %}

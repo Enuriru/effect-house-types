@@ -1,0 +1,40 @@
+{
+	"name": "Peek",
+	"id": "84CEBF56-60A1-4C3D-8064-4D10B9D91581",
+	"inputs": [
+		{
+			"name": "Data",
+			"description": "The data as its output type to be observed",
+			"type": "Double",
+			"displayType": "Number",
+			"dynamic": true
+		}
+	],
+	"outputs": [
+		{
+			"name": "Data",
+			"description": "The data observed as its output type",
+			"type": "Double",
+			"displayType": "Number",
+			"dynamic": true
+		}
+	],
+	"category": "Utility",
+	"TTEHVer": "1.0.0",
+	"description": "Observe the data output; (supporting Number, Bool, Vec2, Vec3, Vec4, Color, String, Rect)",
+	"supportedValueTypes": [
+		"Double",
+		"Int",
+		"Bool",
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"Color",
+		"String",
+		"Rect"
+	],
+	"productTypes": [
+		"TTEH"
+	],
+	"js": "CGPeek.js"
+}

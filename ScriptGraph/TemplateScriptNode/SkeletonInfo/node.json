@@ -1,0 +1,67 @@
+{
+    "name": "Skeleton Info",
+    "id": "73e41913-5d8c-1225-3a63-243dad3232c7",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of 2D skeleton to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Rect",
+            "type": "Rect",
+            "item_type": "",
+            "description": "Rectangle area of 2D skeleton"
+        },
+        {
+            "name": "Key Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "2D key points of 2D skeleton"
+        },
+        {
+            "name": "Points Detected",
+            "type": "IntVector",
+            "item_type": "",
+            "description": "2D key points detection status"
+        },
+        {
+            "name": "Points Score",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "2D key points score"
+        },
+        {
+            "name": "Orientation",
+            "type": "Int",
+            "item_type": "",
+            "description": "Orientation of 2D skeleton"
+        }
+    ],
+    "lua": "CGSkeletonInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGSkeletonInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["skeletonDetect"],
+    "description": "Get 2D skeleton info",
+    "productTypes": ["InHouse"]
+}

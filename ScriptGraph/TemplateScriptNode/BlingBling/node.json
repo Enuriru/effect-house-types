@@ -1,0 +1,34 @@
+{
+    "name": "BlingBling",
+    "id": "aa825e07-0a76-6984-d791-f3ba3680efa0",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "BlingResult",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Result detected, output a vector of Vector3f"
+        }
+    ],
+    "lua": "CGBlingBling.lua",
+    "luaFuncName": "CGBlingBling",
+    "category": "Algorithm",
+    "description": "Blingbling algorithm result",
+    "graphAlgorithms": ["bling"],
+    "productTypes": ["InHouse"]
+}

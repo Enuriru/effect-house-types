@@ -1,0 +1,40 @@
+{
+	"name": "Seq Animation::Resume",
+	"id": "f9e01fb3-1500-cd6b-68ae-081f034aa1e2",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Animation",
+			"type": "AnimSeqComponent",
+			"item_type": "",
+			"description": "The animation to resume",
+			"displayType": "Seq Animation Component"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAnimSeqResume.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Utility",
+	"description": "Resume the animation sequence",
+	"productTypes": [
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

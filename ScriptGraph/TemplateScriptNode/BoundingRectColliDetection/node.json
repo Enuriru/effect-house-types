@@ -1,0 +1,49 @@
+{
+  "name": "BoundingRectCollisionDetection",
+  "id": "e87b7356-0342-59de-af71-4fa3a14a5963",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Start detecting"
+    },
+    {
+      "name": "Judge Rect",
+      "type": "Rect",
+      "item_type": "",
+      "description": "The normalized XYWH value XY coordinate and width and height of the judged rectangular box)"
+    },
+    {
+      "name": "Target Rect",
+      "type": "Rect",
+      "item_type": "",
+      "description": "Normalized XYWH (XY coordinates and width and height) of the judged rectangular box region"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Intersect",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node when the two rectangles intersect"
+    },
+    {
+      "name": "Contain",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node when one rectangle contains the other"
+    },
+    {
+      "name": "Apart",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node when the two rectangles are apart"
+    }
+  ],
+  "lua": "CGBoundingRectCollisionDetection.lua",
+  "version": "1.0",
+  "category": "Detection",
+  "description": "Determines if a rectangle box is within the target rectangle box",
+  "productTypes": ["InHouse", "Domestic"]
+}

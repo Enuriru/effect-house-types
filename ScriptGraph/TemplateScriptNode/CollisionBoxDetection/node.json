@@ -1,0 +1,48 @@
+{
+  "name": "CollisionBoxDetection",
+  "id": "6f98a613-3585-c91a-aef8-177144e39d13",
+  "inputs":
+  [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Start to collision detection"
+    },
+    {
+      "name": "Collider Component",
+      "type": "Collider3D",
+      "item_type": "",
+      "description": "Collision box components"
+    },
+    {
+      "name": "Collider3D Component",
+      "type": "Collider3D",
+      "item_type": "",
+      "description": "Collision box components"
+    }
+  ],
+  "outputs":
+  [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Triggered when a collision occurs"
+    },
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Triggered when a collision does not occur"
+    }
+  ],
+  "lua": "CGCollisionBoxDetection.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGCollisionBoxDetection",
+  "category": "Detection",
+  "nodeEvent": ["onStart","onCallBack"],
+  "description": "Detects the collision condition of the collision box",
+  "productTypes": ["InHouse", "Domestic"]
+}

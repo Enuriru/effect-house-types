@@ -1,0 +1,13 @@
+{% for node in nodeList %}
+    {% if node.__class == "AudioExtractorNode" or node.__class == "AudioGeneralNode" or node.__class == "AudioMDSPNode" or node.__class == "AudioNode" or node.__class == "AudioEffectNode"%}
+        {% if node.audioNodeName %}
+    this.audioAssembler.createAudioNode(this, this.nodes["{{ node.__uniqueId | getIdentifierById }}"]);
+        {% endif %}
+        {% if node.audioConfigFilePath %}
+            {{- node.audioConfigFilePath | includeAudioConfigPath -}}
+        {% endif %}
+        {% if node.audioResDuration %}
+    this.nodes["{{ node.__uniqueId | getIdentifierById }}"].duration = {{ node.audioResDuration }};
+        {% endif %}
+    {% endif %}
+{% endfor %}

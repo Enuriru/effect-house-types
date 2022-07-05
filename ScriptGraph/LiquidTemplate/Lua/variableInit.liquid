@@ -1,0 +1,5 @@
+    -- init all variables
+
+{% for variable in variableList %}
+    variables["{{variable.variableName}}_{{variable.variableIndex}}"] = {{variable | getVariableValueExpression}}
+{% endfor %}

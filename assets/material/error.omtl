@@ -1,0 +1,72 @@
+{
+    "Shader":"Error",
+    "Pass":
+    [
+        {
+            "Ausl":"a1",
+            "Cull":"Back",
+            "DepthWriteEnable":"On",
+            "ZTest":"LessEqual"
+        }
+    ]
+}
+---ENDJSON
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    #pragma multi_compile AE_AMAZING_USE_BONES
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+        #ifdef AE_AMAZING_USE_BONES
+            in vec4 attBoneIds;
+            in vec4 attWeights;
+        #endif
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes
+        precision highp float;
+        #ifdef AE_AMAZING_USE_BONES
+            const int MAX_BONES = 50;
+            uniform mat4 u_Palatte[MAX_BONES];
+        #endif
+            uniform mat4 u_MVP;
+    #pragma end
+
+    #pragma fs targets
+        precision highp float;
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+        vec4 homogeneous_pos = vec4(attPosition, 1.0);
+
+        #ifdef AE_AMAZING_USE_BONES
+            mat4 boneTransform = u_Palatte[int(attBoneIds.x)] * attWeights.x;
+            boneTransform += u_Palatte[int(attBoneIds.y)] * attWeights.y;
+            boneTransform += u_Palatte[int(attBoneIds.z)] * attWeights.z;
+            boneTransform += u_Palatte[int(attBoneIds.w)] * attWeights.w;
+            gl_Position = u_MVP * boneTransform * vec4(attPosition, 1.0);
+        #else
+            gl_Position = u_MVP * homogeneous_pos;
+        #endif
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        o_fragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    }
+
+---END a1

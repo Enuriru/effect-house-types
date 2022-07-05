@@ -1,0 +1,81 @@
+{
+	"name": "Facial Expression Detection",
+	"id": "c4b0c8c1-cdd1-8f0e-936d-0944b30af5de",
+	"inputs": [
+		{
+			"name": "Which Face",
+			"description": "Face select including Face 0, Face 1, Face 2, Face 3, Face 4, Any; Track any face if choosing Any",
+			"type": "String",
+			"value_list": [
+				"Face 0",
+				"Face 1",
+				"Face 2",
+				"Face 3",
+				"Face 4",
+				"Any"
+			],
+			"displayType": "String"
+		},
+		{
+			"name": "Facial Expression",
+			"type": "String",
+			"value_list": [
+				"Happy",
+				"Angry",
+				"Surprise",
+				"Disgust",
+				"Fear",
+				"Sad",
+				"Neutral"
+			],
+			"description": "Expression to detect including Happy, Angry, Surprise, Disgust, Fear, Sad, Neutral",
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the expression begins",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Keep executing the next node when the expression stays",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the expression ends",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the expression is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGExpressionDetection.lua",
+	"js": "CGExpressionDetection.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGExpressionDetection",
+	"category": "Head & Face",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"expressionDetect"
+	],
+	"description": "Detect facial expression",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

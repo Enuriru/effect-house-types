@@ -1,0 +1,26 @@
+{
+    "name": "NormalizedTopixel",
+    "id": "a045d123-613f-82f5-29f2-2679dace3485",
+    "inputs": [
+      {
+        "name": "Normalized Point",
+        "type": "Vector2f",
+        "item_type": "",
+        "description": "Normalized 2D point"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Pixel",
+        "type": "Vector2f",
+        "item_type":"",
+        "description": "Pixel"
+      }
+    ],
+    "lua": "CGNormalizedToPixel.lua",
+    "luaFuncName": "CGNormalizedToPixel",
+    "version": "1.0",
+    "category": "Transform",
+    "description": "Transform normalized 2D point to pixel",
+    "productTypes": ["InHouse", "Domestic"]
+  }

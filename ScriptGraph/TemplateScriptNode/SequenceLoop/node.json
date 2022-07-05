@@ -1,0 +1,69 @@
+{
+  "name": "Sequence Loop",
+  "id": "ef44d2e8-e9c4-a592-56ec-2409ec145b39",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "description": "Trigger current node to execute"
+    },
+    {
+      "name": "Stop",
+      "type": "Pulse",
+      "description:": "The execution of the loop is stopped when triggered"
+    },
+    {
+      "name": "IsRandom",
+      "type": "Bool",
+      "description": "Random Start"
+    },
+    {
+      "name": "Loop Number",
+      "type": "Int",
+      "default_value": "1",
+      "range": [[1, 9999, 1]],
+      "description": "Defines the total number of loops to execute. 9999 is an infinite loop"
+    },
+    {
+      "name": "Interval",
+      "type": "Double",
+      "range" : [[0, "Inf", 0.01]],
+      "description": "The interval between subsequent triggers, in seconds"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Procedure 1",
+      "type": "Pulse",
+      "description": "First procedure to execute"
+    },
+    {
+      "name": "Procedure 2",
+      "type": "Pulse",
+      "description": "Second procedure to execute"
+    },
+    {
+      "name": "Procedure 3",
+      "type": "Pulse",
+      "description": "Third procedure to execute"
+    },
+    {
+      "name": "Procedure 4",
+      "type": "Pulse",
+      "description": "Fourth procedure to execute"
+    },
+    {
+      "name": "Procedure 5",
+      "type": "Pulse",
+      "description": "Fifth procedure to execute"
+    }
+  ],
+  "lua": "CGSequenceLoop.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGSequenceLoop",
+  "category": "Control",
+  "nodeEvent": ["onUpdate"],
+  "description": "Execute procedures sequence repeatedly",
+  "productTypes": ["InHouse", "Domestic"]
+}

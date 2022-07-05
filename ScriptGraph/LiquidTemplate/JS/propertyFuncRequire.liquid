@@ -1,0 +1,5 @@
+// Require all property function script
+
+{% for script in propertyScript %}
+const { {{ script | getPropertyScriptName }} } = require("./{{script}}");
+{% endfor %}

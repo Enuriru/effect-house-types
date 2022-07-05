@@ -1,0 +1,46 @@
+{
+    "builtin": true,
+    "category": "Face",
+    "description": "Face track",
+    "id": "dd373c5e10624e0ea98b4ee2ba4fc1f2",
+    "inputs": [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "description": "Trigger Face trace to execute"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "lua": "CGTrackFace.lua",
+    "luaFuncName": "CGTrackFace",
+    "name": "TrackFace",
+    "outputs": [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "description": "Trigger next node to execute"
+        },
+        {
+            "description": "if the specified index face exists",
+            "dynamic": false,
+            "name": "IsFound",
+            "type": "Bool"
+        },
+        {
+            "description": "",
+            "dynamic": false,
+            "name": "TrackRect",
+            "type": "Vector4f"
+        }
+    ],
+    "graphAlgorithms": ["faceDetect"],
+    "supportedValueTypes": [
+    ],
+    "productTypes": ["InHouse", "Domestic"]
+}

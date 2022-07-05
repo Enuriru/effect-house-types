@@ -1,0 +1,119 @@
+{
+    "name": "Number Transition",
+    "id": "089ac1dc-6358-52ef-ecbf-73c49ec595b0",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "Trigger from last node, transition starts or resumes"
+      },
+      {
+        "name": "Pause",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "Trigger from last node, transition is paused"
+      },
+      {
+        "name": "Start",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Initial value of the transition"
+      },
+      {
+        "name": "End",
+        "type": "Int",
+        "default_value": "0",
+        "item_type": "",
+        "dynamic": true,
+        "description": "Target value of the transition"
+      },
+      {
+        "name": "Duration",
+        "type": "Double",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Duration of the transition"
+      },
+      {
+        "name": "Curve",
+        "type": "List",
+        "default_value": "0",
+        "description": "",
+        "value_list": [
+          {
+              "value": "Linear",
+              "text": "Linear",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease In",
+              "text": "Ease In",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease Out",
+              "text": "Ease Out",
+              "value_type": "String"
+          },
+          {
+              "value": "Ease In-Out",
+              "text": "Ease In-Out",
+              "value_type": "String"
+          }
+        ]
+      },
+      {
+        "name": "Times",
+        "type": "Int",
+        "default_value": "1",
+        "range": [[1, 9999, 1]],
+        "description": "Specify how many times the transition should be performed"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the value changes, trigger next node"
+      },
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the transition begins, trigger next node"
+      },
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the transition ends, trigger next node"
+      },
+      {
+        "name": "Output",
+        "type": "Int",
+        "item_type":"",
+        "dynamic": true,
+        "description": "Output the transition value at each frame"
+      }
+    ],
+    "lua": "CGNumberTransition.lua",
+    "luaFuncName": "CGNumberTransition",
+    "version": "1.0",
+    "category": "Calculation",
+    "description": "Transition the value from the initial one to the target one",
+    "supportedValueTypes": [
+        "Int",
+        "Float",
+        "Double",
+        "Vector2f",
+        "Vector3f",
+        "Vector4f",
+        "Color"
+    ],
+    "nodeEvent": "onUpdate",
+    "productTypes": ["InHouse", "Domestic"]
+  }

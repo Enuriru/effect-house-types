@@ -1,0 +1,41 @@
+{
+	"name": "Exp",
+	"id": "374f7216-1efe-16cc-1d3c-5d5a9d645533",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exp",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGExponential.lua",
+	"js": "CGExponential.js",
+	"version": "1.0",
+	"luaFuncName": "CGExponential",
+	"category": "Math",
+	"description": "Calculate the exponential of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

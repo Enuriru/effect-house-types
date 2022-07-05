@@ -1,0 +1,35 @@
+{
+	"name": "Get Visibility",
+	"id": "cfeddcf4-f11a-8907-cb1c-d45548103bc4",
+	"inputs": [
+		{
+			"name": "Target",
+			"type": "Entity",
+			"item_type": "",
+			"description": "Scene Object",
+			"displayType": "Scene Object"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Value",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean",
+			"displayType": "Boolean"
+		}
+	],
+	"lua": "CGEntityGetVisible.lua",
+	"js": "CGEntityGetVisible.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGEntityGetVisible",
+	"category": "Utility",
+	"description": "Get entity visibility",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

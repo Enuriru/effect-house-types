@@ -1,0 +1,46 @@
+{
+  "name": "Vibrato",
+  "id": "12a677ff-fc83-a5af-8b25-793ebb103e9c",
+  "description":"Create a trill effect.",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Rate Hz",
+      "type": "Double",
+      "default_value": "4",
+      "description": "Oscillation frequency of LFO, that is, oscillation frequency of vibrato."
+    },
+    {
+      "name": "Depth Semitone",
+      "type": "Double",
+      "default_value": "0.5",
+      "description": "The interval of pitch variation of a tremolo, measured in semitones."
+    },
+    {
+      "name": "Wetness",
+      "type": "Double",
+      "default_value": "1",
+      "description": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioVibrato.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

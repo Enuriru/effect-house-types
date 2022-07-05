@@ -1,0 +1,34 @@
+{
+    "name": "BlingHighLight",
+    "id": "a2b3e81f1-69c5-db16-48a5-1a2196c2b5d5",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "BlingResult",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Result detected, output a vector of Vector3f"
+        }
+    ],
+    "lua": "CGBlingHighLight.lua",
+    "luaFuncName": "CGBlingHighLight",
+    "category": "Algorithm",
+    "description": "BlingHighLight algorithm result",
+    "graphAlgorithms": ["blingHighLight"],
+    "productTypes": ["InHouse"]
+}

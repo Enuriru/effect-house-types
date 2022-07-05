@@ -1,0 +1,29 @@
+
+    {% for resInfo in resourcePathMap %}
+        if (this.scene.assetMgr) {
+            this.resource["{{resInfo[0]}}"] = this.scene.assetMgr.SyncLoad("{{resInfo[1]}}");
+        } else {
+            console.error("AssertManager is undefined");
+        }
+    {% endfor %}
+    {% for variableRes in variableResourceMap %}
+        if (this.scene.assetMgr) {
+            this.variables["{{variableRes[0]}}_{{variableRes[1]}}"] = this.scene.assetMgr.SyncLoad("{{variableRes[2]}}");
+        } else {
+            console.error("AssertManager is undefined");
+        }
+    {% endfor %}
+    {% for object in propertyObjectMap %}
+        if (this.scene.assetMgr) {
+            this.nodes["{{object[0] | getIdentifierById}}"].objects.push(this.scene.assetMgr.SyncLoad("{{object[1]}}"));
+        } else {
+            console.error("AssertManager is undefined");
+        }
+    {% endfor %}
+    {% for object in resourceNodeObjectMap %}
+        if (this.scene.assetMgr) {
+            this.nodes["{{object[0] | getIdentifierById}}"].resource = this.scene.assetMgr.SyncLoad("{{object[1]}}");
+        } else {
+            console.error("AssertManager is undefined");
+        }
+    {% endfor %}

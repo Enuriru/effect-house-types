@@ -1,0 +1,27 @@
+{
+  "name": "Audio Source",
+  "id": "b14284a7-bf2e-0834-7934-ffc130cbee87",
+  "inputs":
+  [
+    {
+      "name": "Audio File",
+      "type": "AudioClip",
+      "description": "Input Audio File"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Source",
+      "type": "Audio Source",
+      "description": "Output Audio Source"
+    }
+  ],
+  "audioNodeName": "FileSourceNode",
+  "scriptSupport": "js",
+  "js": "CGAudioSource.js",
+  "category": "Audio",
+  "description": "Get audio stream",
+  "nodeEvent": ["beforeStart"],
+  "productTypes": ["Deprecated"],
+  "builtinClass": "AudioGeneralNode"
+}

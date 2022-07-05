@@ -1,0 +1,30 @@
+{
+	"name": "Get World Rotation",
+	"id": "1a59e6db-fe89-c124-4373-c8b184f5d1d5",
+	"inputs": [
+		{
+			"name": "Transform",
+			"description": "The transform of the target entity",
+			"type": "Transform",
+			"displayType": "Transform"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Rotation",
+			"description": "World rotation",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGGetWorldRotation.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Get world rotation of a transform"
+}

@@ -1,0 +1,30 @@
+{
+	"name": "Get World Position",
+	"id": "5199e196-9e35-63b9-f398-1498904954cc",
+	"inputs": [
+		{
+			"name": "Transform",
+			"description": "The transform of the target entity",
+			"type": "Transform",
+			"displayType": "Transform"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Position",
+			"description": "World position",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGGetWorldPosition.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Get world position of a transform"
+}

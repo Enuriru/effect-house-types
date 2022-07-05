@@ -1,0 +1,46 @@
+{
+    "name": "Thumb Down",
+    "id": "b9ecfcf0-0d71-2535-70f4-a498976efe7c",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of hand to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start making a Thumb Down gesture"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop making a Thumb Down gesture"
+        }
+    ],
+    "lua": "CGThumbDown.lua",
+    "js": "CGThumbDown.js",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGThumbDown",
+    "category": "Hand",
+    "nodeEvent": "onUpdate",
+    "graphAlgorithms": ["handDetect"],
+    "extraAlgorithms": [
+        {
+            "port": 0,
+            "values": [1],
+            "algorithms": ["2handDetect"]
+        }
+    ],
+    "description": "If input hand's action matches thumb down, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

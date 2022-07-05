@@ -1,0 +1,54 @@
+{
+  "name": "TimeSchedule",
+  "id": "eaeb1d22-3c69-984d-5243-c0e142f3a71a",
+  "inputs":
+  [
+    {
+      "name": "Run",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "A trigger starts the schedule"
+    },
+    {
+      "name": "Duration",
+      "type": "Double",
+      "default_value": "1",
+      "item_type": "",
+      "description": "Time duration"
+    }
+  ],
+  "outputs":
+  [
+    {
+      "name": "Started",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "A signal trigger if schedule starts"
+    },
+    {
+      "name": "Running",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "trigger every frame while the node is running"
+    },
+    {
+      "name": "Completed",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger this if schdule is completed"
+    },
+    {
+      "name": "Progress",
+      "type": "Double",
+      "item_type": "",
+      "description": "Number from 0~1 that represent the progress of the time duration"
+    }
+  ],
+  "lua": "CGTimeSchedule.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Time",
+  "nodeEvent": "onUpdate",
+  "description": "Calculating progress of given duration",
+    "productTypes": ["InHouse", "Domestic"]
+}

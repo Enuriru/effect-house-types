@@ -1,0 +1,60 @@
+{
+	"name": "Face Detection",
+	"id": "e14ecca1-0c11-3918-d186-56f4fa44b49b",
+	"inputs": [
+		{
+			"name": "Which Face",
+			"description": "Face select including Face 0, Face 1, Face 2, Face 3, Face 4",
+			"type": "String",
+			"value_list": [
+				"Face 0",
+				"Face 1",
+				"Face 2",
+				"Face 3",
+				"Face 4"
+			],
+			"displayType": "String"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"description": "Execute the next node when the face is detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when face stays in the scene",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when face is not detected",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when face is not in the scene",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"category": "Head & Face",
+	"TTEHVer": "1.0.0",
+	"description": "Detect face",
+	"js": "CGFaceDetection.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"nodeEvent": "onUpdate",
+	"graphAlgorithms": [
+		"faceDetect"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	]
+}

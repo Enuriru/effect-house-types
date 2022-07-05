@@ -1,0 +1,99 @@
+{
+  "name": "IFSequenceController",
+  "id": "fdd1d5ad-8480-1caa-27ee-05d5b0ee40d2",
+  "inputs": [
+    {
+      "name": "Play",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Play animation sequence"
+    },
+    {
+      "name": "Stop",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Stop animation sequence"
+    },
+    {
+      "name": "Pause",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Puase animation sequence"
+    },
+    {
+      "name": "ResetAnim",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Reset animation sequence"
+    },
+    {
+      "name": "AnimSeq Comp",
+      "type": "AnimSeqComponent",
+      "item_type": "",
+      "description": "Input an animation sequence component"
+    },
+    {
+      "name": "FrameFrom",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "0",
+      "range": [[0, 9999, 1]],
+      "description": "Controls which frame the animation starts playing from"
+    },
+    {
+      "name": "FrameTo",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "9999",
+      "range": [[0, 9999, 1]],
+      "description": "Controls which frame the animation starts playing from"
+    },
+    {
+      "name": "LoopCount",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "1",
+      "range": [[1, 9999, 1]],
+      "description": "Number of animation loops"
+    },
+    {
+      "name": "Stay Last Frame",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Whether the end of a sequence of frames stays on the last frame displayed on the screen"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Triggered",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Will be triggered once the controller worked"
+    },
+    {
+      "name": "OnStart",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Callback when the animation start to play"
+    },
+    {
+      "name": "OnEnd",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Callback when the animation finish playing"
+    },
+    {
+      "name": "Current Frame",
+      "type": "Int",
+      "item_type": "",
+      "description": "Output the current frame"
+    }
+  ],
+  "lua": "CGSequenceController.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Control",
+  "nodeEvent": ["onStart","onUpdate", "onCallBack"],
+  "description": "Control the animation sequence component plays the way it is selected",
+  "productTypes": ["InHouse", "Domestic"]
+}

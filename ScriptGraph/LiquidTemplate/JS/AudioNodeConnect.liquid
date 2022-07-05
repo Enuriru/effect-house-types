@@ -1,0 +1,38 @@
+//connect audio graph
+{% for edge in edgeList %}
+    {% if edge.edgeValid %}
+       {%- if edge.needExtraInputValue or edge.needExtraOutputValue -%}
+           {% continue %}
+           {% comment %} -------------------------------------Group Port or Placeholder Port Connection------------------------------------- {% endcomment %}
+       {%- endif  -%}
+       {%- if edge.audioStreamConnection or edge.audioSourceConnection -%}
+    this.nodes["{{edge.outputNode | getIdentifierById}}"].setInput({{edge.outputPortIndex}}, ()=>{
+        var __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}});
+        return __portValue;
+    });
+       {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% for edge in edgeList %}
+    {% if edge.edgeValid %}
+        {%- if edge.needExtraInputValue or edge.needExtraOutputValue -%}
+            {% continue %}
+            {% comment %} -------------------------------------Group Port or Placeholder Port Connection------------------------------------- {% endcomment %}
+        {%- endif  -%}
+        {% if edge.audioStreamConnection %}
+    if (this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}) && this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode && this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}) !== this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode) {
+        this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}).connect(this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode);
+        {% comment %}
+        if (this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNodeName === 'SinkNode') {
+            this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}}).pout(0).connect(this.nodes["{{edge.outputNode | getIdentifierById}}"].audioNode.pin(1));
+        }
+        {% endcomment %}
+    }
+        {% endif %}
+        {% if edge.audioSourceConnection %}
+    this.nodes["{{edge.outputNode | getIdentifierById}}"].duration = this.nodes["{{edge.inputNode | getIdentifierById}}"].duration;
+        {% endif %}
+    {% endif %}
+{% endfor %}

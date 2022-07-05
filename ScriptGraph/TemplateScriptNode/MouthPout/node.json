@@ -1,0 +1,60 @@
+{
+	"name": "Facial Movement (Mouth Pout)",
+	"id": "17232b13-8707-bb40-5365-1a8661933670",
+	"inputs": [
+		{
+			"name": "Face Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Which face to track",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Begin",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the mouth begins pouting",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stay",
+			"description": "Keep executing the next node when the mouth stays pouting",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "End",
+			"description": "Execute the next node when the mouth ends pouting",
+			"type": "Pulse",
+			"displayType": "Exec"
+		},
+		{
+			"name": "None",
+			"description": "Keep executing the next node when the mouth is not pouting",
+			"type": "Pulse",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGMouthPout.lua",
+	"js": "CGMouthPout.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGMouthPout",
+	"category": "Head & Face",
+	"subCategory": "Interaction",
+	"nodeEvent": "onUpdate",
+	"description": "Detect mouth pout",
+	"graphAlgorithms": [
+		"faceDetectDuMouth"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,35 @@
+{
+	"name": "Get Enabled",
+	"id": "f67b4c10-08f4-19de-156b-c6fde3d282f0",
+	"inputs": [
+		{
+			"name": "Target",
+			"type": "Component",
+			"item_type": "",
+			"description": "Component",
+			"displayType": "Component"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Value",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Return true if it is enabled",
+			"displayType": "Boolean"
+		}
+	],
+	"lua": "CGGetEnable.lua",
+	"js": "CGGetEnable.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGGetEnable",
+	"category": "Utility",
+	"description": "Get the enable status of component",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

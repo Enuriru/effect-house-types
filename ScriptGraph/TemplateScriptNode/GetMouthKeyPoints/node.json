@@ -1,0 +1,49 @@
+{
+    "name": "Get Mouth Key Points",
+    "id": "479ab875-ab7c-cda5-938a-edf3e649cad5",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get mouth key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Left Mouth Corner",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the left mouth corner"
+        },
+        {
+            "name": "Right Mouth Corner",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point beside the right mouth corner"
+        }
+    ],
+    "lua": "CGGetMouthKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetMouthKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get mouth key points",
+    "productTypes": ["InHouse", "Domestic"]
+}

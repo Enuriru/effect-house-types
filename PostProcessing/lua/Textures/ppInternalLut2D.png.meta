@@ -1,0 +1,24 @@
+%YAML 1.1
+--- !PngMeta &1
+name: ""
+guid: {a: 4918111080675449309, b: 8122689455999361969}
+innerAlphaPremul: true
+outerAlphaPremul: false
+filterMin:
+  __class: FilterMode
+  value: LINEAR
+filterMag:
+  __class: FilterMode
+  value: LINEAR
+filterMipmap:
+  __class: FilterMipmapMode
+  value: NONE
+wrapModeS:
+  __class: WrapMode
+  value: CLAMP
+wrapModeT:
+  __class: WrapMode
+  value: CLAMP
+wrapModeR:
+  __class: WrapMode
+  value: CLAMP

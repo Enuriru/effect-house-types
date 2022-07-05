@@ -1,0 +1,37 @@
+{
+    "name": "Head Shake",
+    "id": "b9796754-3aaa-5dda-6982-ff750015505e",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start shaking"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop shaking"
+        }
+    ],
+    "lua": "CGHeadShake.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGHeadShake",
+    "category": "Face",
+    "nodeEvent": "onUpdate",
+    "description": "If input hand's action matches selected type, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

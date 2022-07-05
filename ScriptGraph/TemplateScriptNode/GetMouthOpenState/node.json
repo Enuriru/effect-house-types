@@ -1,0 +1,43 @@
+{
+    "name": "Get Mouth Open State",
+    "id": "b7516f2d-5ea7-7e97-5154-6608446608e8",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Open State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if the mouth is opening"
+        }
+    ],
+    "lua": "CGGetMouthOpenState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetMouthOpenState",
+    "category": "Face",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get mouth open state",
+    "productTypes": ["InHouse", "Domestic"]
+}

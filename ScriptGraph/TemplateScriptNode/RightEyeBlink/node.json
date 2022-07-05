@@ -1,0 +1,37 @@
+{
+    "name": "Right Eye Blink",
+    "id": "9e119760-7ee5-ec9f-2191-c06df02a15a9",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start blinking right eye"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop blinking right eye"
+        }
+    ],
+    "lua": "CGRightEyeBlink.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGRightEyeBlink",
+    "category": "Face",
+    "nodeEvent": "onUpdate",
+    "description": "If face in camera is blinking right eye, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

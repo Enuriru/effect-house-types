@@ -1,0 +1,105 @@
+{
+    "Shader": "SkyBox",
+    "Pass":
+    [
+        {
+            "Ausl": "a1",
+            "BlendMode": "Normal",
+            "ColorWrite": "RGBA",
+            "Cull": "Front",
+            "FullScreenShading": "Off",
+            "DepthTestEnable": "On",
+            "UseCameraRT": "Off",
+            "UseFBOTexture": "Off",
+            "ClearType": "Dont",
+            "ZTest": "LessEqual",
+            "DepthWriteEnable": "On",
+            "UseFBOFetch": "Off",
+            "PassType": "Normal"
+        }
+    ]
+}
+---ENDJSON
+
+---BEGIN UIPROPERTY
+
+    $Base property$
+    _BaseCubemap (Skybox texture, TextureCube) = "Default_Material_Texture_Cubemap"
+    _BaseColor (Color, Color) = [1.000000, 1.000000, 1.000000, 1.000000]
+    _Exposure (Exposure, Range(0.000000, 8.000000)) = 1.000000
+    _Rotation (Rotation, Range(0.000000, 360.000000)) = 0.000000
+
+---END UIPROPERTY
+
+---BEGIN a1
+
+    #version 300 es
+    #pragma only_renderers glsl30 metal
+
+    // Attributes: attributes in vertex shader
+    #pragma input attributes
+        in vec3 attPosition;
+    #pragma end
+
+    // Varyings: outputs of vertex shader, inputs for fragment shader
+    #pragma varying varyings
+        highp vec3 v_WorldSpacePos;
+    #pragma end
+
+    // Output: output targets in fragment shader
+    #pragma output targets
+        out highp vec4 o_fragColor;
+    #pragma end
+
+    // Vertex stage section in vertex shader
+    #pragma vs attributes varyings
+        uniform mat4 u_MVP;
+        uniform mat4 u_View;
+        uniform mat4 u_Projection;
+    #pragma end
+
+    // Fragment stage section in fragment shader
+    #pragma fs varyings targets
+        precision mediump float;
+        precision highp int;
+        uniform mediump samplerCube _BaseCubemap;
+        uniform float _Rotation;
+        uniform float _Exposure;
+        uniform vec4 _BaseColor;
+        uniform vec4 u_WorldSpaceCameraPos;
+
+        vec3 SampleCubemap(mediump samplerCube cubemap, inout vec3 dir, float lod)
+        {
+            dir = normalize(dir);
+            return texture(cubemap, dir, lod).xyz;
+        }
+
+        vec3 SampleCubemap(mediump samplerCube cubemap, inout vec3 dir, float rotation, float lod)
+        {
+            float rad = rotation * (6.283185482025146484375 / 360.0);
+            dir = vec3((cos(rad) * dir.x) + (sin(rad) * (-dir.z)), dir.y, ((-sin(rad)) * dir.x) + (cos(rad) * (-dir.z)));
+            return SampleCubemap(cubemap, dir, lod);
+        }
+    #pragma end
+
+    // Entry function in vertex shader, must match "void vertex()"
+    void vertex() 
+    {
+        vec4 homogeneous_pos = u_MVP * vec4(attPosition, 1.0);
+        homogeneous_pos = u_View * vec4(attPosition, 0.0);
+        homogeneous_pos = u_Projection * vec4(homogeneous_pos.xyz, 1.0);
+        gl_Position = homogeneous_pos.xyww;
+        v_WorldSpacePos = attPosition;
+    }
+
+    // Entry function in fragment shader, must match "void fragment()"
+    void fragment() 
+    {
+        o_fragColor = vec4(0.0, 0.0, 0.0, 1.0);
+        vec3 viewDir = normalize(v_WorldSpacePos);
+        vec3 skyboxColor = SampleCubemap(_BaseCubemap, viewDir, _Rotation, 0.0);
+        vec3 outputColor = (skyboxColor * _Exposure) * _BaseColor.rgb;
+        o_fragColor = vec4(outputColor, _BaseColor.a);
+    }
+
+---END a1

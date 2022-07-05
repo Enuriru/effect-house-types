@@ -1,0 +1,48 @@
+{
+	"name": "Distance",
+	"id": "8c64ab81-5738-344b-745a-a3bddb45a783",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Vector2f",
+			"dynamic": true,
+			"item_type": "",
+			"description": "Input point A",
+			"displayType": "Vec2"
+		},
+		{
+			"name": "B",
+			"type": "Vector2f",
+			"dynamic": true,
+			"item_type": "",
+			"description": "Input point B",
+			"displayType": "Vec2"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Dist",
+			"type": "Double",
+			"item_type": "",
+			"description": "Distance between two points",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGDist.lua",
+	"js": "CGDist.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGDist",
+	"category": "Math",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f"
+	],
+	"description": "Calculates the 2D distance between two points (supporting Vec2, Vec3)",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

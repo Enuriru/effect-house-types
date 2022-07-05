@@ -1,0 +1,67 @@
+{
+    "name": "Teeth Info",
+    "id": "82359e00-af4e-f978-d427-89962e358dea",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Face ID",
+            "type": "Int",
+            "item_type": "",
+            "description": "Index of face"
+        },
+        {
+            "name": "Key Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "Key points of teeth"
+        },
+        {
+            "name": "Face Count",
+            "type": "Int",
+            "item_type": "",
+            "description": "Count of faces"
+        },
+        {
+            "name": "Image Width",
+            "type": "Int",
+            "item_type": "",
+            "description": "Image width"
+        },
+        {
+            "name": "Image Height",
+            "type": "Int",
+            "item_type": "",
+            "description": "Image height"
+        }
+    ],
+    "lua": "CGTeethInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGTeethInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["teeth"],
+    "description": "Get teeth info",
+    "productTypes": ["InHouse"]
+}

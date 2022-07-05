@@ -1,0 +1,19 @@
+{
+  "name": "ScreenWidth",
+  "id": "3dbd57cb-8afc-59a8-1219-bf588a763169",
+  "inputs": [
+  ],
+  "outputs": [
+    {
+      "name": "ScreenWidth",
+      "type": "Int",
+      "item_type":"",
+      "description": "Get current screen width"
+    }
+  ],
+  "lua": "CGGetScreenWidth.lua",
+  "version": "1.0",
+  "category": "Utility",
+  "description": "Get current screen width",
+    "productTypes": ["InHouse", "Domestic"]
+}

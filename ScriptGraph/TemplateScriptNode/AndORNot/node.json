@@ -1,0 +1,45 @@
+{
+  "name": "And or Not",
+  "id": "c2cb7ade-7a8e-158a-de10-81108318dcf0",
+  "inputs": [
+    {
+      "name": "Value1",
+      "type": "Bool",
+      "item_type": "",
+      "description": "First input value"
+    },
+    {
+      "name": "Value2",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Second input value"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "A and B",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Output the Boolean values of A and B"
+    },
+    {
+      "name": "A or B",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Output the Boolean values of A or B"
+    },
+    {
+      "name": "Not A",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Output the Boolean values of Not A"
+    }
+  ],
+  "lua": "CGAndOrNot.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGAndOrNot",
+  "category": "Calculation",
+  "description": "And or not operations on Boolean values",
+  "productTypes": ["InHouse", "Domestic"]
+}

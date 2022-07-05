@@ -1,0 +1,97 @@
+{
+  "name": "Texture Loop Control Sequence",
+  "id": "d163848c-e667-2ab0-9c6a-152c33183a02",
+  "inputs": [
+    {
+      "name": "StartLoop",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Begin attach texture when triggered"
+    },
+    {
+      "name": "StopLoop",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Stop attach texture"
+    },
+    {
+      "name": "Texture1",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture2",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture3",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture4",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture5",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Random Choice",
+      "type": "Bool",
+      "item_type": "",
+      "description": "Determine whether to start the sequentially from the first tile resource or to choose a random one"
+    },
+    {
+      "name": "Loop Count",
+      "type": "Int",
+      "item_type": "",
+      "default_value": "1",
+      "range": [[1, 9999, 1]],
+      "description": "Set the number of loops"
+    },
+    {
+      "name": "Switch Interval",
+      "type": "Double",
+      "item_type": "",
+      "default_value": "0",
+      "range": [[0, 9999, 0.01]],
+      "description": "The time interval between each texture resource switch"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Triggered",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node"
+    },
+    {
+      "name": "Switch Trigger",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger every time texture switch"
+    },
+    {
+      "name": "Attached to",
+      "type": "Texture",
+      "item_type": "",
+      "description": "The target which texture attached to"
+    }
+  ],
+  "lua": "CGTextureLoopSequence.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Control",
+  "nodeEvent": ["onUpdate"],
+  "description": "When triggered, the attached texture resources are looped into the material. Random start can be configured, and number of loops can be configured (infinite loops if greater than 100).",
+  "productTypes": ["InHouse", "Domestic"]
+}

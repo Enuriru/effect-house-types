@@ -1,0 +1,67 @@
+{
+    "name": "Skeleton Pose Info",
+    "id": "547f0a1f-93cb-ac87-04b3-86f667d6e5c0",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of 3D skeleton pose to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Pose",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "3D key points of 3D skeleton"
+        },
+        {
+            "name": "Fused",
+            "type": "Vec3Vector",
+            "item_type": "",
+            "description": "Fused 3D key points of 3D skeleton"
+        },
+        {
+            "name": "Key Points",
+            "type": "Vec2Vector",
+            "item_type": "",
+            "description": "2D key points of 3D skeleton"
+        },
+        {
+            "name": "Points Detected",
+            "type": "IntVector",
+            "item_type": "",
+            "description": "2D key points detection status"
+        },
+        {
+            "name": "Skeleton Detected",
+            "type": "Bool",
+            "item_type": "",
+            "description": "3D skeleton detection status"
+        }
+    ],
+    "lua": "CGSkeletonPose3DInfo.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGSkeletonPose3DInfo",
+    "category": "Algorithm",
+    "graphAlgorithms": ["SkeletonPose3D"],
+    "description": "Get 3D skeleton info",
+    "productTypes": ["InHouse"]
+}

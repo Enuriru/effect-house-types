@@ -1,0 +1,37 @@
+{
+    "name": "Left Eye Blink",
+    "id": "1d144776-6555-4792-dd4e-c7b67cd5a492",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start blinking left eye"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop blinking left eye"
+        }
+    ],
+    "lua": "CGLeftEyeBlink.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGLeftEyeBlink",
+    "category": "Face",
+    "nodeEvent": "onUpdate",
+    "description": "If face in camera is blinking left eye, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

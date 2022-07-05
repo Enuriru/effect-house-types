@@ -1,0 +1,36 @@
+{
+	"name": "Deg to Rad",
+	"id": "1e266a8d-452f-64b2-4c16-4ed1ee8caf42",
+	"inputs": [
+		{
+			"name": "Deg",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"description": "Input deg value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Rad",
+			"type": "Double",
+			"item_type": "",
+			"description": "Output rad value",
+			"displayType": "Number"
+		}
+	],
+	"js": "CGDegToRadian.js",
+	"lua": "CGDegToRadian.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGDegToRadian",
+	"category": "Math",
+	"description": "Convert from degree to radian",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

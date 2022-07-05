@@ -1,0 +1,41 @@
+{
+	"name": "Atan",
+	"id": "fc962ae6-f397-6f2c-1623-7f8b109dabd0",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Atan",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGArctan.lua",
+	"js": "CGArctan.js",
+	"version": "1.0",
+	"luaFuncName": "CGArctan",
+	"category": "Math",
+	"description": "Calculate the arctangent (in radians) of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

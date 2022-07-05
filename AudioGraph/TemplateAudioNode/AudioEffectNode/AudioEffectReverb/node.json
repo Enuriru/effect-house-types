@@ -1,0 +1,146 @@
+{
+	"name": "Reverb",
+	"id": "155d572d-2fa1-a1d7-6a44-f804183fb705",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Room size",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1.5,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The sense of space to the audio [0,1.5]"
+		},
+		{
+			"name": "Damping",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					0.9,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The 'softness' of the emulated room [0, 0.9]"
+		},
+		{
+			"name": "Stereo Balance",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "Adjust the left and right channel ratio of the output, the louder the sound, the more to the left channel [0, 1.0]"
+		},
+		{
+			"name": "Wet",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The mix rate of the reverb effect to the final audio [0, 1.0]"
+		},
+		{
+			"name": "Dry",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The mix rate of the original audio to the final audio [0, 1.0]"
+		},
+		{
+			"name": "Wet Gain",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The volume of mix rate of the reverb effect to the final audio [0, 1.0]"
+		},
+		{
+			"name": "Dry Gain",
+			"type": "Double",
+			"default_value": "0.5",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Number",
+			"description": "The volume mix rate of the original audio to the final audio[0, 1.0]"
+		},
+		{
+			"name": "Enabled",
+			"type": "Double",
+			"default_value": "0",
+			"range": [
+				[
+					0,
+					1,
+					0.1
+				]
+			],
+			"displayType": "Boolean",
+			"description": "Enable this node"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioEffectReverb.js",
+	"category": "Audio",
+	"description": "Create a sense of space or depth to the audio",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioEffectNode",
+	"audioNodeName": "reverb1",
+	"TTEHVer": "1.0.0"
+}

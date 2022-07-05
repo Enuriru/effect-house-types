@@ -1,0 +1,43 @@
+{
+    "name": "Get Mouth Pout State",
+    "id": "1a04b4d6-8019-8e53-909b-7ddb0489f11d",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "State",
+            "type": "Bool",
+            "item_type": "",
+            "description": "Indicate if mouth is pouting"
+        }
+    ],
+    "lua": "CGGetMouthPoutState.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetMouthPoutState",
+    "category": "Face",
+    "graphAlgorithms": ["faceDetectDuMouth"],
+    "description": "Get mouth pouting state",
+    "productTypes": ["InHouse", "Domestic"]
+}

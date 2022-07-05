@@ -1,0 +1,61 @@
+{
+    "name": "Get Nose Key Points",
+    "id": "51cfea3d-79f6-8910-7212-d46f242421bd",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get nose key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Left Nose Ala",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point beside the left nose ala"
+        },
+        {
+            "name": "Right Nose Ala",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point beside the right nose ala"
+        },
+        {
+            "name": "Nose Tip",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized key point on the nose tip"
+        },
+        {
+            "name": "Nose Ridge",
+            "type": "Vector2f",
+            "item_type": "",
+            "description": "Normalized Key point on the nose ridge"
+        }
+    ],
+    "lua": "CGGetNoseKeyPoints.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetNoseKeyPoints",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["faceDetect"],
+    "description": "Get nose key points",
+    "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,68 @@
+{
+    "name": "Entity Trigger Play",
+    "id": "5589575d-d872-d94b-2393-54f6638eebbe",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, start to play the entity"
+      },
+      {
+        "name": "Entity 1",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 2",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 3",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 4",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 5",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Random Start",
+        "type": "Bool",
+        "default_value": "0",
+        "item_type": "",
+        "description": "If it's selected, the play will begin with a random entity. Otherwise, it begins wtih the first one."
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the play starts, trigger next node"
+      }
+    ],
+    "lua": "CGEntityTriggerPlay.lua",
+    "luaFuncName": "CGEntityTriggerPlay",
+    "version": "1.0",
+    "category": "Control",
+    "description": "Play the entity one by one when triggered by the last node",
+    "productTypes": ["InHouse", "Domestic"]
+  }

@@ -1,0 +1,27 @@
+{
+
+  "name": "ScreenToWorld",
+  "id": "3a7hxb47-8b74-a89f-64a2-9f5874985bc1",
+  "inputs": [
+    {
+      "name": "Screen pos",
+      "type": "Vector2f",
+      "item_type":"",
+      "description": "The screen position to calculate from"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "World pos",
+      "type": "Vector3f",
+      "item_type": "",
+      "description": "The world position to calculate from"
+    }
+  ],
+  "js": "CGScreenToWorld.js",
+  "lua": "CGScreenToWorld.lua",
+  "version": "1.0",
+  "category": "Transform",
+  "description": "Calculate the world position from screen pixel position",
+  "productTypes": ["InHouse", "Domestic"]
+}

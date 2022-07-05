@@ -1,0 +1,58 @@
+{
+  "name": "Reverb",
+  "id": "c7041cb0-c48e-e768-f5c6-7a000b267c64",
+  "description":"By creating a sense of distance and space, makes the audio have a different scene effect",
+  "inputs": [
+    {
+      "name": "Audio In",
+      "type": "Audio Stream"
+    },
+    {
+      "name": "Decay Time",
+      "type": "Double",
+      "default_value": "3",
+      "description": "This parameter controls the reduction of sound wave amplitude when reverberation occurs. 4. The greater Decay Time, the weaker the sound is cut down and the longer the reverberation lasts."
+    },
+    {
+      "name": "Damp",
+      "type": "Double",
+      "default_value": "0.5",
+      "description": "This parameter controls the reduction of high frequency components when reverberation occurs. The larger the Damp, the more the high-frequency component is cut, and the warmer and dimmer the reverberation."
+    },
+    {
+      "name": "Mod Depth",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Reverb modulation can be introduced in the Reverb node, which is the dynamic change of Reverb. This parameter sets the degree of modulation. The greater the parameter value, the greater the degree of modulation."
+    },
+    {
+      "name": "Mod Rate",
+      "type": "Double",
+      "default_value": "0",
+      "description": "This parameter sets the speed of the modulation. The larger the value is, the faster the modulation speed is."
+    },
+    {
+      "name": "Wet Gain",
+      "type": "Double",
+      "default_value": "0",
+      "description": "Control the sense of space created by Wet Signal. The higher the value, the stronger the sense of space."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Audio Out",
+      "type": "Audio Stream"
+    }
+  ],
+  "category": "Audio",
+  "productTypes": [
+    "Pending"
+  ],
+  "nodeEvent": ["onUpdate","beforeStart"],
+  "scriptSupport": "js",
+  "js": "CGAudioReverb.js",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "builtinClass": "AudioMDSPNode",
+  "audioNodeName": "MDSPNode"
+}

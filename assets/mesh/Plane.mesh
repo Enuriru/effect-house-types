@@ -1,0 +1,105 @@
+%YAML 1.1
+--- !Mesh &1
+name: plane
+guid: {a: 15441413512210655388, b: 2306790827495428283}
+boundingBox: {min: {x: -4, y: -4, z: 0}, max: {x: 4, y: 4, z: 1.175494e-38}}
+vertices:
+  - -4
+  - 4
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 0
+  - -1
+  - 0
+  - 1
+  - -4
+  - -4
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 0
+  - -1
+  - 0
+  - 0
+  - 4
+  - 4
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 0
+  - -1
+  - 1
+  - 1
+  - 4
+  - -4
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 0
+  - -1
+  - 1
+  - 0
+instanceDataStride: 0
+materialIndex: 0
+vertexAttribs:
+  - __class: VertexAttribDesc
+    name: ""
+    guid: {a: 6001376477186650919, b: 969949802782394285}
+    semantic:
+      __class: VertexAttribType
+      value: POSITION
+    bindingIndex: 0
+  - __class: VertexAttribDesc
+    name: ""
+    guid: {a: 9891321573158330897, b: 6346807224748416689}
+    semantic:
+      __class: VertexAttribType
+      value: NORMAL
+    bindingIndex: 0
+  - __class: VertexAttribDesc
+    name: ""
+    guid: {a: 2325043452406863762, b: 6742097692921819319}
+    semantic:
+      __class: VertexAttribType
+      value: TANGENT
+    bindingIndex: 0
+  - __class: VertexAttribDesc
+    name: ""
+    guid: {a: 18107761541941068593, b: 7169173851027290787}
+    semantic:
+      __class: VertexAttribType
+      value: UNKOWN
+    bindingIndex: 0
+  - __class: VertexAttribDesc
+    name: ""
+    guid: {a: 9964255583613818968, b: 6790224384572734364}
+    semantic:
+      __class: VertexAttribType
+      value: TEXCOORD0
+    bindingIndex: 0
+submeshes:
+  - __class: SubMesh
+    name: !<str> 0
+    guid: {a: 9461618787343204552, b: 16516482024179781808}
+    useIndices32: false
+    boundingBox: {min: {x: -4, y: -4, z: 0}, max: {x: 4, y: 4, z: 0}}
+    indices16: [0, 1, 2, 3, 2, 1]
+    indicesCount: 6
+    instanceCount: 0
+    primitive:
+      __class: Primitive
+      value: TRIANGLES
+clearAfterUpload: true

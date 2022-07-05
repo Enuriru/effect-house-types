@@ -1,0 +1,30 @@
+{
+	"name": "Get Local Position",
+	"id": "315b9299-ee62-1dd1-2c57-ce565ee02f50",
+	"inputs": [
+		{
+			"name": "Transform",
+			"description": "The transform of the target entity",
+			"type": "Transform",
+			"displayType": "Transform"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Position",
+			"description": "Local position",
+			"type": "Vector3f",
+			"displayType": "Vec3"
+		}
+	],
+	"js": "CGGetLocalPosition.js",
+	"category": "Transform",
+	"TTEHVer": "1.0.0",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH",
+		"Deprecated"
+	],
+	"description": "Get local position of a transform"
+}

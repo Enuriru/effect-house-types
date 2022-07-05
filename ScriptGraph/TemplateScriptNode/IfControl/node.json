@@ -1,0 +1,46 @@
+{
+  "name": "If Control",
+  "id": "d8580910-8591-df9d-75df-0fa1f3dd5388",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger if else node to execute"
+    },
+    {
+      "name": "Condition",
+      "type": "Bool",
+      "item_type": "",
+      "default_value": "1",
+      "description": "A boolean value which determines the result"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "True",
+      "type": "Pulse",
+      "item_type": "",
+      "default_value": "0",
+      "description": "The value to pass if condition is true"
+    },
+    {
+      "name": "False",
+      "type": "Pulse",
+      "item_type": "",
+      "default_value": "0",
+      "description": "The value to pass if condition is false"
+    }
+  ],
+  "js": "CGIfControl.js",
+  "lua": "CGIfControl.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGIfControl",
+  "category": "Calculation",
+  "description": "Pass a value based on condition ",
+  "supportedValueTypes": [
+    "Bool"
+  ],
+  "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,58 @@
+{% comment %} -------------------------------------network connection------------------------------------- {% endcomment %}
+{% for edge in edgeList %}
+    {% if edge.edgeValid %}
+        {%- assign isExist = edge | isEdgeExist -%}
+        {% if isExist == false %}
+            {{- edge | registerEdge -}}
+            {% if edge.needExtraInputValue %}
+                {% if edge.outputPortType != "Pulse" %}
+    nodes["{{edge.outputNode | getIdentifierById}}"]:setInput({{ edge.outputPortIndex }}, function() return {{ edge.inputPortMetaData | getPortValueExpression }} end)
+                {% endif %}
+            {% elsif edge.needExtraOutputValue %}
+                {% if edge.inputPortType == "Pulse" %}
+                        {% if isPreview %}
+                            {{ edge.inputNode | addNeedExtraOutputValueNode }}
+                            {% assign luaStr = 'Amaz.AmazingUtil.setWatchValue("edge.outputPort", true)' | replace: "edge.outputPort", edge.outputPort  %}
+                            {{ edge.inputNode | addNeedExtraOutputValueLuaStr: luaStr }}
+                        {% endif %}
+                {% endif %}
+            {% else %}
+                {% if edge.inputPortType == "Pulse" %}
+    nodes["{{edge.inputNode | getIdentifierById}}"]:setNext({{edge.inputPortIndex}}, function()
+                    {% if isPreview %}
+        Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", true)
+                        {% assign hasNeedExtraOutputValue = edge.inputNode | hasNeedExtraOutputValueNode %}
+                        {% if  hasNeedExtraOutputValue %}
+                            {% assign needExtraOutputValueIndex = needExtraOutputValueArr | getContainSubStrIndex: edge.inputNode %}
+                            {% assign needExtraOutputValueStrArr = edge.inputNode | getNeedExtraOutputValueLuaStrArr %}
+                            {% for luaStr in needExtraOutputValueStrArr %}
+        {{ luaStr }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+        nodes["{{edge.outputNode | getIdentifierById}}"]:execute({{edge.outputPortIndex}})
+    end)
+                {% else %}
+    nodes["{{edge.outputNode | getIdentifierById}}"]:setInput({{edge.outputPortIndex}}, function()
+        local __portValue = nodes["{{edge.inputNode | getIdentifierById}}"]:getOutput({{edge.inputPortIndex}})
+                    {% if isPreview and supportedPreviewDataType%}
+                    {%- assign isSupportType = supportedPreviewDataType | contained: edge.inputPortType -%}
+                        {% if isSupportType and isPreview %}
+        if __portValue ~= nil then
+            Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", __portValue)
+        end
+                        {% elsif edge.outputPortType == "Enum" and isPreview %}
+        if __portValue ~= nil then
+            Amaz.AmazingUtil.setWatchValue("{{edge.outputPort}}", __portValue)
+        end
+                        {% endif %}
+                    {% endif %}
+        return __portValue
+    end)
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        -- error connection {{ edge.__uniqueId }}
+    {% endif %}
+{% endfor %}

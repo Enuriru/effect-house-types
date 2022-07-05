@@ -1,0 +1,79 @@
+{
+    "name": "Face Attribute",
+    "id": "a984c21f-94db-d036-b6b2-e826327a2b16",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node"
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Age",
+            "type": "Float",
+            "item_type": "",
+            "description": "Age of face"
+        },
+        {
+            "name": "Male Prob",
+            "type": "Float",
+            "item_type": "",
+            "description": "Probability of male face"
+        },
+        {
+            "name": "Gender",
+            "type": "FaceAttrGender",
+            "item_type": "",
+            "description": "Gender of face"
+        },
+        {
+            "name": "Attractive",
+            "type": "Float",
+            "item_type": "",
+            "description": "Attractiveness of face"
+        },
+        {
+            "name": "Happy Score",
+            "type": "Float",
+            "item_type": "",
+            "description": "Happiness of face"
+        },
+        {
+            "name": "Expression",
+            "type": "FaceAttrExpression",
+            "item_type": "",
+            "description": "Expression of face"
+        },
+        {
+            "name": "Expression Prob",
+            "type": "FloatVector",
+            "item_type": "",
+            "description": "Probability of face expressions"
+        }
+    ],
+    "lua": "CGFaceAttribute.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGFaceAttribute",
+    "category": "Algorithm",
+    "graphAlgorithms": ["genderDetect", "expressionDetect"],
+    "description": "Get face attributes",
+    "productTypes": ["InHouse"]
+}

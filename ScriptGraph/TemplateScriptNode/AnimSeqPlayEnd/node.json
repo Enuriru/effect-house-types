@@ -1,0 +1,38 @@
+{
+	"name": "Seq Animation::On Finished",
+	"id": "0d7cd670-c2c5-b287-43f4-92089277144e",
+	"inputs": [
+		{
+			"name": "Animation",
+			"type": "AnimSeqComponent",
+			"item_type": "",
+			"description": "The animation to bind event",
+			"displayType": "Seq Animation Component"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Finished",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the animation sequence finished playing",
+			"displayType": "Exec"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "AnimSeqPlayEnd.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"category": "Event",
+	"nodeEvent": [
+		"beforeStart",
+		"onCallBack",
+		"onDestroy"
+	],
+	"description": "Use On Seq Animation Finished to execute the next node when the sequence is finished playing. ",
+	"productTypes": [
+		"TTEH",
+		"Deprecated"
+	],
+	"TTEHVer": "1.0.0"
+}

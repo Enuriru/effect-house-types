@@ -1,0 +1,41 @@
+{
+	"name": "Volume",
+	"id": "7abbc486-1c1a-db4a-6084-dd0ba540253c",
+	"inputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node",
+			"displayType": "Audio Stream"
+		},
+		{
+			"name": "Volume",
+			"type": "Double",
+			"default_value": "1.0",
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Audio",
+			"type": "Audio Stream",
+			"description": "Execute this node,  connect to a speaker to play the audio stream",
+			"displayType": "Audio Stream"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAudioGain.js",
+	"category": "Audio",
+	"description": "Set the volume",
+	"productTypes": [
+		"TTEH"
+	],
+	"nodeEvent": [
+		"beforeStart",
+		"onUpdate"
+	],
+	"builtinClass": "AudioGeneralNode",
+	"audioNodeName": "GainNode",
+	"TTEHVer": "1.0.0"
+}

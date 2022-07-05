@@ -1,0 +1,79 @@
+{
+    "name": "Get Eye 3D Key Points",
+    "id": "271a72bd-4431-67dd-51df-5f957c535cf5",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get eye 3D key points"
+        },
+        {
+            "name": "Eye",
+            "type": "List",
+            "default_value": "0",
+            "value_list": [
+                {
+                    "value": "Left",
+                    "text": "Left",
+                    "value_type": "String"
+                },
+                {
+                    "value": "Right",
+                    "text": "Right",
+                    "value_type": "String"
+                }
+            ],
+            "description": "Select left or right eye to get eye 3D key points"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Inner Eye Corner",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the inner corner of eye"
+        },
+        {
+            "name": "Outer Eye Corner",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the outer corner of eye"
+        },
+        {
+            "name": "Pupil",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the pupil"
+        },
+        {
+            "name": "Middle Point",
+            "type": "Vector3f",
+            "item_type": "",
+            "description": "3D key point on the midpoint of two eyes"
+        }
+    ],
+    "lua": "CGGetEyeKeyPoints3D.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetEyeKeyPoints3D",
+    "category": "KeyPoints",
+    "graphAlgorithms": ["3dFaceMeshPerspective"],
+    "description": "Get eye 3D key points",
+    "productTypes": ["InHouse"]
+}

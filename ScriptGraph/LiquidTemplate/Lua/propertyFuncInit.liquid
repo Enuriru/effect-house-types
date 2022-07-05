@@ -1,0 +1,5 @@
+  -- init all property function
+
+{% for script in propertyScript %}
+    lua.{{ script | getPropertyScriptName }} = includeRelativePath("{{script}}")
+{% endfor %}

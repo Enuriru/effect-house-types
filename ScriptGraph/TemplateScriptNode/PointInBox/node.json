@@ -1,0 +1,54 @@
+{
+	"name": "Point in Box",
+	"id": "8c959fd9-9e35-b5e1-510c-8b9aa730977b",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Detect Boundary",
+			"type": "Rect",
+			"item_type": "",
+			"description": "The rect of box to detect as boundary",
+			"displayType": "Rect"
+		},
+		{
+			"name": "Detect Point",
+			"type": "Vector2f",
+			"item_type": "",
+			"description": "The point to detect",
+			"displayType": "Vec2"
+		}
+	],
+	"outputs": [
+		{
+			"name": "True",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the point is within the boundary",
+			"displayType": "Exec"
+		},
+		{
+			"name": "False",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the point is outside the boundary",
+			"displayType": "Exec"
+		}
+	],
+	"lua": "CGPointInBox.lua",
+	"js": "CGPointInBox.js",
+	"version": "1.0",
+	"category": "Math",
+	"description": "Detect whether or not a point is within a boundary",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

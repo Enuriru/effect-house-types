@@ -1,0 +1,40 @@
+{
+	"name": "Round",
+	"id": "4bba441f-078a-ad53-baec-c0a5a153ae99",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGRound.lua",
+	"js": "CGRound.js",
+	"version": "1.0",
+	"luaFuncName": "CGRound",
+	"category": "Math",
+	"description": "Calculate the rounding of an input value",
+	"supportedValueTypes": [
+		"Double"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

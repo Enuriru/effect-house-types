@@ -1,0 +1,50 @@
+{
+	"name": "Greater or Equal",
+	"id": "6084c606-3eed-9b4b-ab22-dd46ddd602cf",
+	"inputs": [
+		{
+			"name": "Value 1",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"description": "Number value",
+			"default_value": "0",
+			"displayType": "Number"
+		},
+		{
+			"name": "Value 2",
+			"type": "Int",
+			"item_type": "",
+			"dynamic": true,
+			"description": "Number value",
+			"default_value": "0",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Result",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean value",
+			"displayType": "Boolean"
+		}
+	],
+	"js": "CGGreaterEqual.js",
+	"lua": "CGGreaterEqual.lua",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGGreaterEqual",
+	"category": "Logic",
+	"description": "Check if one value is greater than or equal to another",
+	"supportedValueTypes": [
+		"Int",
+		"Double"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

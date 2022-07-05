@@ -1,0 +1,37 @@
+{
+    "name": "Head Nod",
+    "id": "c0b79c6c-10b3-54f0-e7e2-9fa27d9784fa",
+    "inputs":
+    [
+        {
+            "name": "Index",
+            "type": "Int",
+            "item_type": "",
+            "default_value": "0",
+            "description": "Index of face to detect"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when start noding"
+        },
+        {
+            "name": "Stop",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "A signal triggered when stop noding"
+        }
+    ],
+    "lua": "CGHeadNod.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGHeadNod",
+    "category": "Face",
+    "nodeEvent": "onUpdate",
+    "description": "If face in camera is nodding, will trigger next node",
+    "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,117 @@
+%YAML 1.1
+--- !XShader &1
+name: base/pink_xshader
+renderQueue: 2000
+passes:
+  - __class: Pass
+    name: ""
+    shaders:
+      __class: Map
+      gles2:
+        - {localId: 2}
+        - {localId: 3}
+    semantics:
+      __class: Map
+      attNormal:
+        __class: VertexAttribType
+        value: NORMAL
+      attTangent:
+        __class: VertexAttribType
+        value: TANGENT
+      attPosition:
+        __class: VertexAttribType
+        value: POSITION
+      attUV:
+        __class: VertexAttribType
+        value: TEXCOORD0
+      attBoneIds:
+        __class: VertexAttribType
+        value: INDICES
+      attWeights:
+        __class: VertexAttribType
+        value: WEIGHT
+    renderState:
+      __class: RenderState
+      name: ""
+      rasterization:
+        __class: RasterizationState
+        name: ""
+        depthClampEnable: false
+        depthClampEnableName: ""
+        rasterizerDiscardEnable: false
+        rasterizerDiscardEnableName: ""
+        polygonMode:
+          __class: PolygonMode
+          value: FILL
+        polygonModeName: ""
+        cullMode:
+          __class: CullFace
+          value: BACK
+        cullModeName: ""
+        frontFace:
+          __class: FrontFace
+          value: COUNTER_CLOCKWISE
+        frontFaceName: ""
+        depthBiasEnable: false
+        depthBiasEnableName: ""
+        depthBiasConstantFactor: 0
+        depthBiasConstantFactorName: ""
+        depthBiasClamp: 1
+        depthBiasClampName: ""
+        depthBiasSlopeFactor: 1
+        depthBiasSlopeFactorName: ""
+        lineWidth: 1
+        lineWidthName: ""
+      depthstencil:
+        __class: DepthStencilState
+        name: ""
+        depthTestEnable: true
+        depthTestEnableName: ""
+        depthCompareOp:
+          __class: CompareOp
+          value: LESS
+        depthCompareOpName: ""
+        depthWriteEnable: true
+        stencilTestEnable: false
+        stencilTestEnableName: ""
+        stencilFront: false
+        stencilBack: false
+      colorBlend:
+        __class: ColorBlendState
+        name: ""
+        blendConstants: {x: 0, y: 0, z: 0, w: 0}
+        attachments:
+          - __class: ColorBlendAttachmentState
+            name: ""
+            blendEnable: false
+            srcColorBlendFactor:
+              __class: BlendFactor
+              value: ONE
+            dstColorBlendFactor:
+              __class: BlendFactor
+              value: ONE_MINUS_SRC_ALPHA
+            srcAlphaBlendFactor:
+              __class: BlendFactor
+              value: ONE
+            dstAlphaBlendFactor:
+              __class: BlendFactor
+              value: ONE_MINUS_SRC_ALPHA
+            colorWriteMask: 15
+            ColorBlendOp:
+              __class: BlendOp
+              value: ADD
+            AlphaBlendOp:
+              __class: BlendOp
+              value: ADD
+--- !Shader &2
+name: ""
+type:
+  __class: ShaderType
+  value: VERTEX
+sourcePath: xshader/Pink.vert
+--- !Shader &3
+name: ""
+type:
+  __class: ShaderType
+  value: FRAGMENT
+sourcePath: xshader/Pink.frag

@@ -1,0 +1,43 @@
+{
+    "name": "Get Smile Score",
+    "id": "189f5d46-40e3-9bc8-ac2d-78290b0401a3",
+    "inputs":
+    [
+        {
+            "name": "Start",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger from last node" 
+        },
+        {
+            "name": "Index",
+            "type": "Int",
+            "default_value": "1",
+            "range": [[1, 5, 1]],
+            "description": "Index of face to get smile score"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "Trigger",
+            "type": "Pulse",
+            "item_type": "",
+            "description": "Trigger next node"
+        },
+        {
+            "name": "Smile Score",
+            "type": "Float",
+            "item_type": "",
+            "description": "Output the smile score of the selected face"
+        }
+    ],
+    "lua": "CGGetSmileScore.lua",
+    "version": "1.0",
+    "amazingVersion": "10.40.0",
+    "luaFuncName": "CGGetSmileScore",
+    "category": "Detection",
+    "graphAlgorithms": ["expressionDetect"],
+    "description": "Get smile score of a face",
+    "productTypes": ["InHouse", "Domestic"]
+}

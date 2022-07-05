@@ -1,0 +1,156 @@
+//require graph node
+{% include "nodeRequire" %}
+{% include "propertyFuncRequire" %}
+
+{% if containJSAsset %}
+const amg = require('./amg');
+{% endif %}
+
+const Amaz = effect.Amaz;
+
+class {{ systemName }} {
+    constructor() {
+        this.nodes = {};
+
+        this.variables = {};
+        this.resource = {};
+
+        this.callbackNode = {
+            "onInit": [],
+            "beforeStart": [],
+            "onStart": [],
+            "onUpdate": [],
+            "onEvent": [],
+            "onCallBack": [],
+            "onComponentAdded": [],
+            "onComponentRemoved": [],
+            "onDestroy": [],
+        };
+
+        this.graphUtils = new GraphUtils();
+
+        {% if containAudioGraph %}
+        this.audioAssembler = AudioGraphAssembler.getInstance();
+        AudioGraphAssembler.getInstance()._usedInGraph = true;
+        {% endif %}
+        this.executionDepth = 0;
+
+        // member variable init
+        {% include "variableInit" %}
+
+        //node init
+        {% include "nodeInit" %}
+
+        //node connection
+        {% include "nodeConnect" %}
+
+        //init callback table
+{% for node in  nodeList %}
+    {% if node.__class == "Group" or node.__class == 'PlaceholderNode' or node.__class == 'CommentNode' or node.__class == 'TemplateGroup' %}
+        {% continue %}
+    {% endif %}
+    {% if node.onCallback %}
+        {% for callback in node.onCallback %}
+        this.callbackNode["{{ callback }}"].push(this.nodes["{{ node.__uniqueId | getIdentifierById }}"]);
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+
+    }
+
+    onInit() {
+        {% include "AudioNodeInit" %}
+
+        {% include "AudioNodeConnect" %}
+
+        {% if containAudioGraph %}
+        this.audioAssembler && this.audioAssembler.startProxy();
+        {% endif %}
+        this.callbackNode["onInit"].forEach((node)=>{
+            node.onInit(this);
+        })
+    }
+
+    onStart() {
+        // load resource
+        {% include "loadResource" %}
+        this.callbackNode["beforeStart"].forEach((node)=>{
+            node.beforeStart(this);
+        })
+        this.callbackNode["onStart"].forEach((node)=>{
+            node.onStart(this);
+        })
+    }
+
+    onComponentAdded(comp) {
+        this.callbackNode["onComponentAdded"].forEach((node)=>{
+            node.onComponentAdded(this,comp);
+        })
+    }
+
+    onComponentRemoved(comp) {
+        this.callbackNode["onComponentRemoved"].forEach((node)=>{
+            node.onComponentRemoved(this, comp);
+        })
+    }
+
+    onUpdate(dt) {
+        this.callbackNode["onUpdate"].forEach((node)=>{
+            node.onUpdate(this, dt);
+        })
+{% if isPreview and supportedPreviewDataType%}
+    {% if isPreview %}
+        {% for edge in edgeList%}
+            {%- assign isSupportType = supportedPreviewDataType | contained: edge.outputPortType -%}
+            {% if edge.edgeValid and isSupportType %}
+                {% if edge.needExtraInputValue %}
+        var __portValue = {{ edge.inputPortMetaData | getPortValueExpression }}
+        if (__portValue !== null) {
+            this.graphUtils.setWatchValue("{{edge.outputPort}}", __portValue)
+        }
+                {% elsif edge.needExtraOutputValue %}
+        var __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}});
+        if (__portValue !== null) {
+            this.graphUtils.setWatchValue("{{edge.outputUIPort}}", __portValue);
+        }
+                {% else %}
+        var __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}});
+        if (__portValue !== null) {
+            this.graphUtils.setWatchValue("{{edge.outputPort}}", __portValue);
+        }
+                {% endif %}
+            {% elsif edge.outputPortType == "Enum" %}
+        var __portValue = this.nodes["{{edge.inputNode | getIdentifierById}}"].getOutput({{edge.inputPortIndex}});
+        if (__portValue !== null) {
+            this.graphUtils.setWatchValue("{{edge.outputPort}}", __portValue);
+        }
+            {% endif %}
+        {%endfor%}
+    {% endif %}
+{% endif %}
+    }
+
+    onEvent(event) {
+        this.callbackNode["onEvent"].forEach((node)=>{
+            node.onEvent(this, event);
+        })
+    }
+
+    onDestroy() {
+        this.callbackNode["onDestroy"].forEach((node)=>{
+            node.onDestroy(this);
+        })
+{% if containAudioGraph %}
+        this.audioAssembler && this.audioAssembler.releaseProxy();
+{% endif %}
+    }
+
+    onCallBack(sys, sender, eventType) {
+        this.callbackNode["onCallBack"].forEach((node)=>{
+            node.onCallBack(sys, sender, eventType);
+        })
+    }
+};
+
+exports.{{ systemName }} = {{ systemName }};

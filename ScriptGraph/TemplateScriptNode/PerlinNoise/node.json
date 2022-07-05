@@ -1,0 +1,27 @@
+{
+  "name": "Perlin Noise",
+  "id": "28cc9987-c18d-97b7-4a78-fdda06324788",
+  "inputs": [
+    {
+      "name": "Value",
+      "type": "Vector2f",
+      "item_type": "",
+      "description": "Input value"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "value",
+      "type": "Double",
+      "item_type": "",
+      "description": "mapped value"
+    }
+  ],
+  "lua": "CGPerlinNoise.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGPerlinNoise",
+  "category": "Math",
+  "description": "Calculates a x dimensional Perlin noise value between 0.0...1.0.",
+  "productTypes": ["InHouse", "Domestic"]
+}

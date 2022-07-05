@@ -1,0 +1,41 @@
+{
+	"name": "Sqrt",
+	"id": "26db9df3-718a-a459-e4aa-45b68fa1fa75",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "0",
+			"dynamic": true,
+			"description": "Input value",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Sqrt",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGSqrt.lua",
+	"js": "CGSqrt.js",
+	"version": "1.0",
+	"luaFuncName": "CGSqrt",
+	"category": "Math",
+	"description": "Calculate the square root of an input value",
+	"supportedValueTypes": [
+		"Double",
+		"Int"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

@@ -1,0 +1,54 @@
+{
+	"name": "Multiply",
+	"id": "f3d04790-2405-2f1e-f847-d8fb322377c6",
+	"inputs": [
+		{
+			"name": "A",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "1",
+			"dynamic": true,
+			"description": "Input value A",
+			"displayType": "Number"
+		},
+		{
+			"name": "B",
+			"type": "Double",
+			"item_type": "",
+			"default_value": "1",
+			"dynamic": true,
+			"description": "Input value B",
+			"displayType": "Number"
+		}
+	],
+	"outputs": [
+		{
+			"name": "A*B",
+			"type": "Double",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The result",
+			"displayType": "Number"
+		}
+	],
+	"lua": "CGMultiply.lua",
+	"js": "CGMultiply.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGMultiply",
+	"category": "Math",
+	"description": "Multiply two values; (supporting Number, Vec2, Vec3, Vec4)",
+	"supportedValueTypes": [
+		"Double",
+		"Int",
+		"Vector2f",
+		"Vector3f",
+		"Vector4f"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

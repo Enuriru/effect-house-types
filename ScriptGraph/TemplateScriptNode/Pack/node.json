@@ -1,0 +1,109 @@
+{
+	"name": "Combine",
+	"id": "da895c0a-894c-f23b-a341-8ab1aeafafd1",
+	"description": "Pack numbers to a vector; (supporting Vec2, Vec3, Vec4, Color)",
+	"inputChangeFollowOutput": [
+		{
+			"outputKey": "Vector2f",
+			"inputNames": [
+				"X",
+				"Y"
+			],
+			"inputTypes": [
+				"Double",
+				"Double"
+			],
+			"inputDescriptions": [
+				"Number to pack",
+				"Number to pack"
+			]
+		},
+		{
+			"outputKey": "Vector3f",
+			"inputNames": [
+				"X",
+				"Y",
+				"Z"
+			],
+			"inputTypes": [
+				"Double",
+				"Double",
+				"Double"
+			],
+			"inputDescriptions": [
+				"Number to pack",
+				"Number to pack",
+				"Number to pack"
+			]
+		},
+		{
+			"outputKey": "Vector4f",
+			"inputNames": [
+				"X",
+				"Y",
+				"Z",
+				"W"
+			],
+			"inputTypes": [
+				"Double",
+				"Double",
+				"Double",
+				"Double"
+			],
+			"inputDescriptions": [
+				"Number to pack",
+				"Number to pack",
+				"Number to pack",
+				"Number to pack"
+			]
+		},
+		{
+			"outputKey": "Color",
+			"inputNames": [
+				"R",
+				"G",
+				"B",
+				"A"
+			],
+			"inputTypes": [
+				"Double",
+				"Double",
+				"Double",
+				"Double"
+			],
+			"inputDescriptions": [
+				"Number to pack",
+				"Number to pack",
+				"Number to pack",
+				"Number to pack"
+			]
+		}
+	],
+	"inputs": [],
+	"outputs": [
+		{
+			"name": "Output",
+			"type": "Vector2f",
+			"item_type": "",
+			"dynamic": true,
+			"description": "The output vector",
+			"displayType": "Vec2"
+		}
+	],
+	"lua": "CGPackNode.lua",
+	"js": "CGPackNode.js",
+	"luaFuncName": "CGPackNode",
+	"category": "Utility",
+	"supportedValueTypes": [
+		"Vector2f",
+		"Vector3f",
+		"Vector4f",
+		"Color"
+	],
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

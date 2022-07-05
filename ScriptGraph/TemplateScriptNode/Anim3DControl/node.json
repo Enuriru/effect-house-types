@@ -1,0 +1,112 @@
+{
+	"name": "3D Animation Controller",
+	"id": "bb90d0ec-e437-3878-fd4f-93447bd646b5",
+	"inputs": [
+		{
+			"name": "Play",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Play the clip",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Stop",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Stop the clip",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Pause",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Pause the clip",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Resume",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Resume the clip",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Animation",
+			"type": "Animator",
+			"item_type": "",
+			"description": "The current clip to be controlled",
+			"displayType": "Animator"
+		},
+		{
+			"name": "Animation Index",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "0",
+			"description": "The index of the animation",
+			"displayType": "Number"
+		},
+		{
+			"name": "Loop Time",
+			"type": "Int",
+			"item_type": "",
+			"default_value": "1",
+			"description": "Play times for the clip, -1 is infinite loop",
+			"displayType": "Number"
+		},
+		{
+			"name": "Stop on Last Frame",
+			"type": "Bool",
+			"item_type": "",
+			"default_value": "0",
+			"description": "If it will stop on last frame",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Play",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the current clip starts playing",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Stop",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the current clip stops playing",
+			"displayType": "Exec"
+		},
+		{
+			"name": "On Finish",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node when the current clip finishes playing",
+			"displayType": "Exec"
+		}
+	],
+	"scriptSupport": "js",
+	"js": "CGAnimatorController.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"nodeEvent": [
+		"beforeStart",
+		"onCallBack",
+		"onDestroy"
+	],
+	"category": "Utility",
+	"description": "Control the 3D animation state",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}

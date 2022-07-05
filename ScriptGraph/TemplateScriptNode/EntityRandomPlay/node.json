@@ -1,0 +1,61 @@
+{
+    "name": "Entity Random Play",
+    "id": "67586dd4-31a1-1ddf-1f88-6ff5983108b5",
+    "inputs": [
+      {
+        "name": "Start",
+        "type": "Pulse",
+        "item_type": "",
+        "description": "When triggered by last node, start to play one of the entities at random"
+      },
+      {
+        "name": "Entity 1",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 2",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 3",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 4",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      },
+      {
+        "name": "Entity 5",
+        "type": "Entity",
+        "default_value": "0",
+        "item_type": "",
+        "description": "Entity to play"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Trigger",
+        "type": "Pulse",
+        "item_type":"",
+        "description": "When the play starts, trigger next node"
+      }
+    ],
+    "lua": "CGEntityRandomPlay.lua",
+    "luaFuncName": "CGEntityRandomPlay",
+    "version": "1.0",
+    "category": "Control",
+    "description": "Play one of the entities at random whenever the node is triggered",
+    "productTypes": ["InHouse", "Domestic"]
+  }

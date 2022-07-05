@@ -1,0 +1,62 @@
+{
+  "name": "Texture Random Control Sequence",
+  "id": "8b4b1615-64ce-9579-fe5d-224298c4483b",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Execute the node when triggered"
+    },
+    {
+      "name": "Texture1",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture2",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture3",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture4",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    },
+    {
+      "name": "Texture5",
+      "type": "Texture",
+      "item_type": "",
+      "description": "To toggle the texture resource, drag the corresponding resource from the Resources Panel into the Graph Panel for connection configuration"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Triggered",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger next node"
+    },
+    {
+      "name": "Attached to",
+      "type": "Texture",
+      "item_type": "",
+      "description": "The target which texture attached to"
+    }
+  ],
+  "lua": "CGTextureRandomSequence.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "category": "Control",
+  "description": "Each time it is triggered, a random texture resource is attached to the material.",
+  "productTypes": ["InHouse", "Domestic"]
+}

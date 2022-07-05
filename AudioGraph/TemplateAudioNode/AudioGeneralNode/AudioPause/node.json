@@ -1,0 +1,35 @@
+{
+  "name": "Pause(Audio)",
+  "id": "5bcd8fe7-4bb8-779b-b23d-c10dfb0fdbb4",
+  "inputs":
+  [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Control flow"
+    },
+    {
+      "name": "Audio Source",
+      "type": "Audio Source",
+      "description": "Input Audio Stream"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Trigger",
+      "type": "Pulse",
+      "description": "Trigger Next Node"
+    },
+    {
+      "name": "Audio Stream",
+      "type": "Audio Stream",
+      "description": "Output Audio Stream"
+    }
+  ],
+  "scriptSupport": "js",
+  "js": "CGAudioPause.js",
+  "category": "Audio",
+  "description": "Pause Audio",
+  "productTypes": ["Deprecated"],
+  "builtinClass": "AudioGeneralNode"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Sequence Random",
+  "id": "18c98e0c-50d3-ae6b-2faf-ea9aff92aa71",
+  "inputs": [
+    {
+      "name": "Start",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Trigger current node to execute"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Procedure 1",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "First procedure to execute"
+    },
+    {
+      "name": "Procedure 2",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Second procedure to execute"
+    },
+    {
+      "name": "Procedure 3",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Third procedure to execute"
+    },
+    {
+      "name": "Procedure 4",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Forth procedure to execute"
+    },
+    {
+      "name": "Procedure 5",
+      "type": "Pulse",
+      "item_type": "",
+      "description": "Fifth procedure to execute"
+    }
+  ],
+  "lua": "CGSequenceRandom.lua",
+  "version": "1.0",
+  "amazingVersion": "10.40.0",
+  "luaFuncName": "CGSequenceRandom",
+  "category": "Control",
+  "description": "Execute procedures which connnects to the next node randomly",
+  "productTypes": ["InHouse", "Domestic"]
+}

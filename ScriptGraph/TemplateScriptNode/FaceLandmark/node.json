@@ -1,0 +1,66 @@
+{
+  "name": "Face Landmark",
+  "id": "c4b0c8c1-hxb1-8f0e-936d-0944b30af5de",
+  "inputs": [
+    {
+      "name": "Face index",
+      "type": "Int",
+      "default_value": 0,
+      "description": "Which face to track"
+    },
+    {
+      "name": "Which position",
+      "type": "List",
+      "default_value": "0",
+      "value_list": [
+        {
+          "value": "CHEEK",
+          "text": "cheek"
+        },
+        {
+          "value": "CHIN",
+          "text": "chin"
+        },
+        {
+          "value": "EYEBALL",
+          "text": "eyeball"
+        },
+        {
+          "value": "EYEBROW",
+          "text": "eyebrow"
+        },
+        {
+          "value": "EYELID",
+          "text": "eyelid"
+        },
+        {
+          "value": "FOREHEAD",
+          "text": "forehead"
+        },
+        {
+          "value": "MOUTH",
+          "text": "mouth"
+        },
+        {
+          "value": "NOSE",
+          "text": "nose"
+        }
+      ],
+      "description": "cheek, chin, eyeball, eyebrow, eyelid, forehead, mouth and nose"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Position",
+      "type": "Vector2f",
+      "item_type": "",
+      "description": "Positions for cheek, chin, eyeball, eyebrow, eyelid, forehead, mouth and nose"
+    }
+  ],
+  "js": "CGFaceLandmark.js",
+  "version": "1.0",
+  "category": "Head & Face",
+  "graphAlgorithms": ["faceDetect280"],
+  "description": "Get face landmark",
+  "productTypes": ["InHouse", "Domestic"]
+}

@@ -1,0 +1,57 @@
+{
+	"name": "Set Visibility",
+	"id": "2a3e8c16-476c-8fdd-75c3-9671e25fe966",
+	"inputs": [
+		{
+			"name": "Enter",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute this node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Object",
+			"type": "Entity",
+			"item_type": "",
+			"description": "Scene Object",
+			"displayType": "Scene Object"
+		},
+		{
+			"name": "Value",
+			"type": "Bool",
+			"default_value": "0",
+			"item_type": "",
+			"description": "Boolean",
+			"displayType": "Boolean"
+		}
+	],
+	"outputs": [
+		{
+			"name": "Exit",
+			"type": "Pulse",
+			"item_type": "",
+			"description": "Execute the next node",
+			"displayType": "Exec"
+		},
+		{
+			"name": "Value",
+			"type": "Bool",
+			"item_type": "",
+			"description": "Boolean",
+			"displayType": "Boolean"
+		}
+	],
+	"lua": "CGEntitySetVisible.lua",
+	"js": "CGEntitySetVisible.js",
+	"version": "1.0",
+	"amazingVersion": "10.40.0",
+	"luaFuncName": "CGEntitySetVisible",
+	"category": "Utility",
+	"description": "Set entity visibility",
+	"productTypes": [
+		"InHouse",
+		"Domestic",
+		"TTEH"
+	],
+	"TTEHVer": "1.0.0"
+}
