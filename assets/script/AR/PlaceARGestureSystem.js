@@ -175,7 +175,7 @@ class PlaceARGestureSystem{
         this.scaleInfo.minValue = 0.01  //--- minimum scale size
         this.scaleInfo.speed = 0.15     //--- scale speed
         //---------------- rotationInfo ---------------
-        this.rotationInfo.speed = 6.0   //--- rotate speed
+        this.rotationInfo.speed = 50  //--- rotate speed
 
         
     }
@@ -513,7 +513,7 @@ class PlaceARGestureSystem{
             newAngle = -newAngle
         }
         console.log("_handleRotationGesture, new rotation: ", newAngle, ", now angle: ", newAngle * this.rotationInfo.speed + rotationInfo.currAngle, ", last world angle: ", interabeleObject.worldEulerAngle.y);
-        interabeleObject.worldEulerAngle = new Amaz.Vector3f(0, (newAngle * 10 + rotationInfo.currAngle), 0)
+        interabeleObject.worldEulerAngle = new Amaz.Vector3f(0, (newAngle * this.rotationInfo.speed + rotationInfo.currAngle), 0)
     }
 
     _initScaleGesture(scaleInfo, tracker){

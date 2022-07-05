@@ -94,7 +94,6 @@ class FaceInset extends InsetRenderer {
     onUpdate(dt) {
         /* Prevent placeholder face inset material from displaying */
         if (this.framecounter < 2) {
-            debugger;
             const renderer = this.entity.getComponent("MeshRenderer");
             if (renderer) {
                 renderer.enabled = false; 

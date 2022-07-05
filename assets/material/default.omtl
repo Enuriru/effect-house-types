@@ -723,7 +723,6 @@
 
     #ifdef Parallax
     // Calculates UV offset for parallax bump mapping
-    // https://learnopengl.com/Advanced-Lighting/Parallax-Mapping
     vec2 ParallaxOffset(float parallax)
     {
         vec3 vDir            = normalize(u_WorldSpaceCameraPos.xyz - v_posWS);
@@ -834,7 +833,6 @@
         float lighting = ndl;
         return S.diffCol * L.color * L.intensity * L.attenuate * lighting;
     }
-    //https://blog.selfshadow.com/publications/s2012-shading-course/burley/s2012_pbs_disney_brdf_slides_v2.pdf
     vec3 Diffuse_Disney(SurfaceParams S, LightParams L)
     {
         vec3 hDir = normalize(L.lDir + S.vDir);
@@ -896,15 +894,12 @@
     #ifdef Subsurface
     vec3 SubsurfaceTerm(SurfaceParams S, LightParams L)
     {
-        //forwardScatter base on https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/
         float transmittanceDistortion = 0.2;
         vec3 vLight = L.lDir + S.nDir * transmittanceDistortion;
         float vdl = max(0.0, dot(S.vDir, -vLight));
         float transmittancePower = 5.0;
         vec3 forwardScatter = pow(vdl, transmittancePower) * S.thin * S.subsurfaceCol; //Transmittance
 
-        
-        //backScatter base on http://blog.stevemcauley.com/2011/12/03/energy-conserving-wrapped-diffuse/
         vec3 normal = mix(S.nDir, S.vnDir, S.subsurface);
         float ndl = dot(normal, L.lDir);
         vec3 one = vec3(1.0, 1.0, 1.0);
@@ -1037,7 +1032,6 @@
 
 
      // ------ AO ------
-    //https://google.github.io/filament/Filament.md.html#materialsystem/clearcoatmodel 
     float SpecularAO(SurfaceParams S)
     {
         float ndv = max(0.0, dot(S.nDir, S.vDir));
@@ -1082,7 +1076,6 @@
     }
     */
 
-    //https://www.unrealengine.com/zh-CN/blog/physically-based-shading-on-mobile
     vec3 EnvBRDFApprox( SurfaceParams S )
     {
         float ndv = max(0.0, dot(S.nDir, S.vDir));
@@ -1221,7 +1214,6 @@
     }
 
      #ifdef Subsurface
-    // //https://google.github.io/filament/Filament.md.html
     vec3 Diffuse_Panoramic_Subsurface(SurfaceParams S, EnvironmentParams E, sampler2D envTex)
     {
         vec3 iblDiffuse = Diffuse_Panoramic(S, E, envTex);
@@ -1238,7 +1230,6 @@
     {
         //from Moving Frostbite to Physically Based Rendering 
         vec3 dir = mix(S.rDir, S.nDir, S.roughParams.x * S.roughParams.y);
-        //https://google.github.io/filament/Filament.md.html      5.3.4.4
         vec3 specEnv = SamplerEncodedPanoramic(envTex, dir, E.rotation, (S.roughParams.x - B_PBR_MIN_ROUGH) * AE_MIP_LEVEL);
         vec3 brdf = EnvBRDFApprox(S);
         vec3 multiBounceColor = GTAO_MultiBounce(S.occParams.y, S.specCol);

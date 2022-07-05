@@ -120,7 +120,6 @@ local  prefilter_FS= [[
         vec3 avg = c0 * w0 + c1 * w1 + c2 * w2 + c3 * w3;
         avg /= max(w0 + w1 + w2 + w3, 1e-4);
     
-        //由于直接下采样的话是取均值，这对CoC来说是错误的。所以这里我们取 四个点中CoC绝对值最大的
         float coc_min = min(coc0, Min3(coc1, coc2, coc3));
         float coc_max = max(coc0, Max3(coc1, coc2, coc3));
         float coc = (-coc_min > coc_max ? coc_min : coc_max) * _MaxCoC;

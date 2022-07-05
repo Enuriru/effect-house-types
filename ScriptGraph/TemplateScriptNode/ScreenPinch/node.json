@@ -26,5 +26,5 @@
     "subCategory": "Input",
     "graphAlgorithms": ["TouchGes"],
     "description": "Capture screen pinch event",
-    "productTypes": ["InHouse", "Domestic", "Pending", "TTEH"]
+    "productTypes": ["InHouse", "Domestic", "Pending"]
 }
