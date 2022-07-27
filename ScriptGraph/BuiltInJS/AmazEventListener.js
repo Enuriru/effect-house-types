@@ -16,12 +16,13 @@ class AmazEventListener {
       return false;
     } else {
       const arr = this.registry.get(eventType);
-      return arr.some(
-        item =>
+      return arr.some(item => {
+        return (
           (item.listener.equals ? item.listener.equals(listener) : item.listener === listener) &&
           (item.userData.equals ? item.userData.equals(userData) : item.userData === userData) &&
-          item.cbFun === cbFuncName
-      );
+          item.cbFunc === cbFuncName
+        );
+      });
     }
   }
 
@@ -34,7 +35,7 @@ class AmazEventListener {
       script.addScriptListener(listener, eventType, cbFuncName, userData);
       needReg = true;
     } else {
-      if (this.haveRegistered(eventType, listener, userData) === false) {
+      if (this.haveRegistered(eventType, listener, userData, cbFuncName) === false) {
         script.addScriptListener(listener, eventType, cbFuncName, userData);
         needReg = true;
       } else {
@@ -63,7 +64,7 @@ class AmazEventListener {
   onDestroy(sys) {
     for (const [k, v] of this.registry) {
       for (const item of v) {
-        this.removeListener(sys.script, k, item.listener, item.cbFun, item.userData);
+        this.removeListener(sys.script, k, item.listener, item.userData, item.cbFunc);
       }
     }
   }
